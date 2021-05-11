@@ -389,3 +389,14 @@ FodyWeavers.xsd
 /FBA_Solution/FBA_Model/sfml-audio-d-2.dll
 /FBA_Solution/FBA_Model/sfml-audio-2.dll
 /FBA_Solution/FBA_Model/openal32.dll
+/FBA_Solution/FBA_Controller/sfml-window-d-2.dll
+/FBA_Solution/FBA_Controller/sfml-window-2.dll
+/FBA_Solution/FBA_Controller/sfml-system-d-2.dll
+/FBA_Solution/FBA_Controller/sfml-system-2.dll
+/FBA_Solution/FBA_Controller/sfml-network-d-2.dll
+/FBA_Solution/FBA_Controller/sfml-network-2.dll
+/FBA_Solution/FBA_Controller/sfml-graphics-d-2.dll
+/FBA_Solution/FBA_Controller/sfml-graphics-2.dll
+/FBA_Solution/FBA_Controller/sfml-audio-d-2.dll
+/FBA_Solution/FBA_Controller/sfml-audio-2.dll
+/FBA_Solution/FBA_Controller/openal32.dll
