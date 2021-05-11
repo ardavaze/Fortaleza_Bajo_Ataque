@@ -364,6 +364,6 @@ FodyWeavers.xsd
 /FBA_Solution/FBA_Controller/FBA_Controller.vcxproj
 /FBA_Solution/FBA_Controller/FBA_Controller.vcxproj.filters
 /FBA_Solution/FBA_Model/FBA_Model.vcxproj
-/FBA_Solution/FBA_Model
-/FBA_Solution/FBA_View
-/FBA_Solution/FBA_Controller
+/FBA_Solution/FBA_Model/FBA_Model.vcxproj.filters
+/FBA_Solution/FBA_View/FBA_View.vcxproj
+/FBA_Solution/FBA_Controller/FBA_View.vcxproj.filters
