@@ -1,2 +1,3 @@
 # Fortaleza_Bajo_Ataque
 Proyecto sobre un videojuego para el curso Lenguaje de Programación Orientada a Objetos. Desarrollado por Danny Valdivieso Zavala, Roger Venegas Cabello y Jorge Mendoza
+-Instrucciones para clonar el repositorio: Clonar el repositorio en la carpeta que vayan a utilizar para almacenar el repo, copiar los archivos que están en la carpeta "Archivos_principales para los proyectos de VS2019" los de extensión ".vcxproj" y".vcxproj.filters" y pegarlos en las respectivas carpetas de los proyectos de visual studio con el mismo nombre. Los proyectos se encuentran dentro de la carpeta "FBA_Solution".
