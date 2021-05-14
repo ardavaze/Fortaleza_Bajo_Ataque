@@ -123,19 +123,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Base.h" />
     <ClInclude Include="FBA_Model.h" />
+    <ClInclude Include="History.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="Match.h" />
+    <ClInclude Include="Medal.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sale.h" />
+    <ClInclude Include="Skin-Background.h" />
+    <ClInclude Include="Survival.h" />
+    <ClInclude Include="Units.h" />
+    <ClInclude Include="Units_distance.h" />
+    <ClInclude Include="Units_mele.h" />
+    <ClInclude Include="Upgrade.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Base.cpp" />
     <ClCompile Include="FBA_Model.cpp" />
+    <ClCompile Include="History.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Match.cpp" />
+    <ClCompile Include="Medal.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Sale.cpp" />
+    <ClCompile Include="Skin-Background.cpp" />
+    <ClCompile Include="Survival.cpp" />
+    <ClCompile Include="Units.cpp" />
+    <ClCompile Include="Units_distance.cpp" />
+    <ClCompile Include="Units_mele.cpp" />
+    <ClCompile Include="Upgrade.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
