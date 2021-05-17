@@ -1,17 +1,9 @@
-/**
- * Project Untitled
- */
-
-
-#ifndef _HISTORY_H
-#define _HISTORY_H
-
+#pragma once
 #include "Match.h"
-
-
-class History: public Match {
-public: 
-    String Frase_entrada;
-};
-
-#endif //_HISTORY_H
+using namespace System;
+namespace FBAModel {
+    public ref class History : public Match {
+    public:
+        String^ Frase_entrada;
+    };
+}

@@ -1,10 +1,2 @@
-/**
- * Project Untitled
- */
-
-
+#include "pch.h"
 #include "Upgrade.h"
-
-/**
- * Upgrade implementation
- */

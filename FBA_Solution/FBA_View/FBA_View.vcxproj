@@ -117,6 +117,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FBA_Controller\FBA_Controller.vcxproj">
+      <Project>{57224f00-dc01-4d92-b957-dca46671b67e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\FBA_Model\FBA_Model.vcxproj">
+      <Project>{deb9f49b-295a-4eb9-9686-d3e5eca702c4}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

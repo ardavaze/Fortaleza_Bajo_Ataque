@@ -1,10 +1,2 @@
-/**
- * Project Untitled
- */
-
-
+#include "pch.h"
 #include "Skin-Background.h"
-
-/**
- * Skin-Background implementation
- */

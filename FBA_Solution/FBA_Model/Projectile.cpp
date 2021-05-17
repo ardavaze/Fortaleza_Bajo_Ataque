@@ -1,10 +1,2 @@
-/**
- * Project Untitled
- */
-
-
+#include "pch.h"
 #include "Projectile.h"
-
-/**
- * Projectile implementation
- */

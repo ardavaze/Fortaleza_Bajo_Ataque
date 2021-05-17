@@ -1,17 +1,10 @@
-/**
- * Project Untitled
- */
-
-
-#ifndef _UNITS_DISTANCE_H
-#define _UNITS_DISTANCE_H
-
+#pragma once
 #include "Units.h"
 
-
-class Units_distance: public Units {
-public: 
-    int Time_ creation;
-};
-
-#endif //_UNITS_DISTANCE_H
+using namespace System;
+namespace FBAModel {
+    public ref class Units_distance : public Units {
+    public:
+        int Time_creation;
+    };
+}

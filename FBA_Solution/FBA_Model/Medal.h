@@ -1,15 +1,10 @@
-/**
- * Project Untitled
- */
+#pragma once
+using namespace System;
+namespace FBAModel{
+    public ref class Medal {
+    public:
+        String^ Nombre;
+        String^ Imagen;
+    };
+}
 
-
-#ifndef _MEDAL_H
-#define _MEDAL_H
-
-class Medal {
-public: 
-    String Nombre;
-    String Imagen;
-};
-
-#endif //_MEDAL_H

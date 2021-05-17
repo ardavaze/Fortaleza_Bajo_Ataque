@@ -1,18 +1,11 @@
-/**
- * Project Untitled
- */
-
-
-#ifndef _SURVIVAL_H
-#define _SURVIVAL_H
-
+#pragma once
 #include "Match.h"
 
-
-class Survival: public Match {
-public: 
-    int Time_game;
-    int Factor_dificultad;
-};
-
-#endif //_SURVIVAL_H
+using namespace System;
+namespace FBAModel {
+    public ref class Survival : public Match {
+    public:
+        int Time_game;
+        int Factor_dificultad;
+    };
+}

@@ -3,14 +3,14 @@
  */
 
 
-#ifndef _MATCH_H
-#define _MATCH_H
+#pragma once
+using namespace System;
+namespace FBAModel{
+    public ref class Match {
+    public:
+        int Dinero;
+        int Unidades_desplegadas;
+        int Vida_usuario;
+    };
+}
 
-class Match {
-public: 
-    int Dinero;
-    int Unidades_desplegadas;
-    int Vida_usuario;
-};
-
-#endif //_MATCH_H

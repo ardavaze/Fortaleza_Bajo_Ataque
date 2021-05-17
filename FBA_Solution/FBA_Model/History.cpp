@@ -1,10 +1,2 @@
-/**
- * Project Untitled
- */
-
-
+#include "pch.h"
 #include "History.h"
-
-/**
- * History implementation
- */

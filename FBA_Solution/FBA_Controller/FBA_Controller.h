@@ -3,8 +3,7 @@
 using namespace System;
 
 namespace FBAController {
-	public ref class Class1
-	{
+	public ref class FBA_Controller{
 		// TODO: Agregue aquí los métodos de esta clase.
 	};
 }

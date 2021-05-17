@@ -80,11 +80,14 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Usuario\Documents\Fortaleza_Bajo_Ataque\SFML-2.5.1-x86\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Usuario\Documents\Fortaleza_Bajo_Ataque\SFML-2.5.1-x86\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -93,11 +96,14 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Usuario\Documents\Fortaleza_Bajo_Ataque\SFML-2.5.1-x64\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Usuario\Documents\Fortaleza_Bajo_Ataque\SFML-2.5.1-x64\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="Base.h" />
     <ClInclude Include="FBA_Model.h" />
+    <ClInclude Include="Game_obj.h" />
     <ClInclude Include="History.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Match.h" />
@@ -146,6 +153,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Base.cpp" />
     <ClCompile Include="FBA_Model.cpp" />
+    <ClCompile Include="Game_obj.cpp" />
     <ClCompile Include="History.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Match.cpp" />

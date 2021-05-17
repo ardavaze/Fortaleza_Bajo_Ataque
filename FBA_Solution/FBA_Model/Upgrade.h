@@ -1,18 +1,11 @@
-/**
- * Project Untitled
- */
-
-
-#ifndef _UPGRADE_H
-#define _UPGRADE_H
-
+#pragma once
 #include "Product.h"
 
-
-class Upgrade: public Product {
-public: 
-    String Tipo;
-    int Cantidad;
-};
-
-#endif //_UPGRADE_H
+using namespace System;
+namespace FBAModel{
+    public ref class Upgrade :public Product {
+    public:
+        String^ Tipo;
+        int Cantidad;
+    };
+}

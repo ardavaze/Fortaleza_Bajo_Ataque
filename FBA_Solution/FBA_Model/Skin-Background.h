@@ -1,17 +1,10 @@
-/**
- * Project Untitled
- */
-
-
-#ifndef _SKIN-BACKGROUND_H
-#define _SKIN-BACKGROUND_H
-
+#pragma once
 #include "Product.h"
+using namespace System;
+namespace FBAModel {
+    public ref class Skin_Background : public Product {
+    public:
+        String^ Tipo;
+    };
+}
 
-
-class Skin-Background: public Product {
-public: 
-    String Tipo;
-};
-
-#endif //_SKIN-BACKGROUND_H

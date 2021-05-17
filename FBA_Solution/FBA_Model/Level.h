@@ -1,17 +1,13 @@
-/**
- * Project Untitled
- */
 
+#pragma once
+using namespace System;
+namespace FBAModel{
+    public ref class Level {
+    public:
+        int Numero;
+        int Experience;
+        int Diamantes_obt;
+        int Cant_enemys;
+    };
+}
 
-#ifndef _LEVEL_H
-#define _LEVEL_H
-
-class Level {
-public: 
-    int Numero;
-    int Experience;
-    int Diamantes_ obt;
-    int Cant_enemys;
-};
-
-#endif //_LEVEL_H
