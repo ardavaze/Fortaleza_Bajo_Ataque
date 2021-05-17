@@ -14,6 +14,7 @@ int main() {
 			if (event.type == Event::Closed)
 				ventana.close();
 		}
+
 		ventana.clear();
 		ventana.draw(shape);
 		ventana.display();
