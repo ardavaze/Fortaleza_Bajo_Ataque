@@ -23,12 +23,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game_loop.h">
+    <ClInclude Include="menu_principal.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="menu_principal.h">
+    <ClInclude Include="Game_loop.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

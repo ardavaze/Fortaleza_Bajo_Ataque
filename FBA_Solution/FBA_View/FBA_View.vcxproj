@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game_loop.cpp" />
     <ClCompile Include="menu_principal.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +157,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game_loop.h" />
     <ClInclude Include="menu_principal.h">
       <FileType>CppForm</FileType>
     </ClInclude>
