@@ -10,3 +10,5 @@ void Main(/*array<String^>^ args*/) {
 	FBAView::menu_principal form;
 	Application::Run(% form);
 }
+
+
