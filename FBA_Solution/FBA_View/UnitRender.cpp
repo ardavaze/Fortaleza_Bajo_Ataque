@@ -8,6 +8,7 @@ Void FBAView::UnitRender::MakeAttack(){
 			indice = 0;
 		Actual = Attack[indice];
 	}
+	Actual->Position = Vector2f(position.X, position.Y);
 	contador++;
 }
 

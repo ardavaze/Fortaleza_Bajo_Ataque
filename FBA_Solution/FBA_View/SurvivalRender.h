@@ -15,5 +15,6 @@ namespace FBAView{
 		Sprite^ background;
 		List<UnitRender^>^ unit_allies;
 		List<UnitRender^>^ unit_enemies;
+		Event evento;
 	};
 }

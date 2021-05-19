@@ -511,7 +511,7 @@ namespace SFML.Window
         /// </summary>
         /// <param name="e">Event to dispatch</param>
         ////////////////////////////////////////////////////////////
-        private void CallEventHandler(Event e)
+        public virtual void CallEventHandler(Event e)
         {
             switch (e.Type)
             {
@@ -519,7 +519,6 @@ namespace SFML.Window
                     if (Closed != null){
                         Closed(this, EventArgs.Empty);
                     }
-                    this.Close();
                     break;
 
                 case EventType.GainedFocus:

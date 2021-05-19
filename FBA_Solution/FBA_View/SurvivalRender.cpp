@@ -22,16 +22,17 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
 		else
 			d = "c/4_enemies_1_attack_00" + (gcnew String(to_string(j).c_str())) + ".png";
 		this->unit_allies[0]->Attack->Add(gcnew Sprite(gcnew Texture(d)));
+        this->unit_allies[0]->position= Vector2f(0, 1080 / 2);
 		this->unit_allies[0]->Attack[j]->Scale = Vector2f(0.7, 0.7);
 		if (j > 9)
 			e = "c/4_enemies_1_walk_0" + (gcnew String(to_string(j).c_str())) + ".png"; //que pasa con la direccion de memoria creada con gcnew
 		else
 			e = "c/4_enemies_1_walk_00" + (gcnew String(to_string(j).c_str())) + ".png";
-		this->unit_allies[0]->position = Vector2f(0, 1080 / 2);
 		this->unit_allies[0]->Move->Add( gcnew Sprite(gcnew Texture(e)));
-		this->unit_allies[0]->Move[j]->Scale = Vector2f(0.5, 0.5);
+		this->unit_allies[0]->Move[j]->Scale = Vector2f(0.7, 0.7);
 	}
 	this->unit_allies[0]->Actual = this->unit_allies[0]->Move[0];
+    this->unit_allies[0]->FactorLentitud = 2;
 	this->SetFramerateLimit(60);
 }
 
@@ -40,15 +41,114 @@ void FBAView::SurvivalRender::Run(){
 		Procesar_evento();
 		this->Clear();
 		this->Draw(this->background);
-		this->unit_allies[0]->MakeMove();
+		
 		this->Draw(this->unit_allies[0]->Actual);
 		this->Display();
 	}
 }
 
 void FBAView::SurvivalRender::Procesar_evento(){
-	this->DispatchEvents();
+    if (this->PollEvent(evento)) {
+        switch (evento.Type) {
+        case EventType::Closed:
+            this->Close();
+            break;
+
+        case EventType::GainedFocus:
+            break;
+
+        case EventType::JoystickButtonPressed:
+
+
+            break;
+
+        case EventType::JoystickButtonReleased:
+
+
+            break;
+
+        case EventType::JoystickMoved:
+
+            break;
+
+        case EventType::JoystickConnected:
+
+
+            break;
+
+        case EventType::JoystickDisconnected:
+
+            break;
+
+        case EventType::KeyPressed:
+            if (Keyboard::IsKeyPressed(Keyboard::Key::Right)) {
+                unit_allies[0]->Actual->Position = Vector2f(unit_allies[0]->position.X, unit_allies[0]->position.Y);
+                this->unit_allies[0]->MakeAttack();
+            }
+            else if (Keyboard::IsKeyPressed(Keyboard::Key::A))
+                this->unit_allies[0]->MakeMove();
+            break;
+
+        case EventType::KeyReleased:
+
+        case EventType::LostFocus:
+
+        case EventType::MouseButtonPressed:
+
+
+        case EventType::MouseButtonReleased:
+
+            break;
+
+        case EventType::MouseEntered:
+
+            break;
+
+        case EventType::MouseLeft:
+
+            break;
+
+        case EventType::MouseMoved:
+
+            break;
+
+        case EventType::MouseWheelMoved:
+
+            break;
+
+        case EventType::MouseWheelScrolled:
+
+            break;
+
+        case EventType::Resized:
+
+            break;
+
+        case EventType::TextEntered:
+
+
+            break;
+
+        case EventType::TouchBegan:
+
+
+            break;
+
+        case EventType::TouchMoved:
+
+            break;
+
+        case EventType::TouchEnded:
+
+
+            break;
+
+        case EventType::SensorChanged:
+
+            break;
+        default:
+            break;
+        }
+    }
 }
-
-
 
