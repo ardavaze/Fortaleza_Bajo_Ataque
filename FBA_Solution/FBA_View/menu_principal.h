@@ -91,7 +91,7 @@ namespace FBAView {
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Left;
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(249, 957);
+			this->panel1->Size = System::Drawing::Size(228, 664);
 			this->panel1->TabIndex = 3;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &menu_principal::panel1_Paint);
 			// 
@@ -99,11 +99,11 @@ namespace FBAView {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1178, 957);
+			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->ClientSize = System::Drawing::Size(1258, 664);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->btn_survival);
 			this->IsMdiContainer = true;
-			this->MinimumSize = System::Drawing::Size(1200, 675);
 			this->Name = L"menu_principal";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"menu_principal";
