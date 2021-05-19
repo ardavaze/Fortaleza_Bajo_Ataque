@@ -8,7 +8,7 @@ namespace FBAView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace FBAView;
+	
 	/// <summary>
 	/// Summary for menu_principal
 	/// </summary>
@@ -22,7 +22,7 @@ namespace FBAView {
 			//TODO: Add the constructor code here
 			//
 		}
-
+	
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -34,23 +34,79 @@ namespace FBAView {
 				delete components;
 			}
 		}
+	private: void hide_panel() {
+		panel_modo->Visible = false;
+		panel_tienda->Visible = false;
+		}
 
+
+	private: void click_panel(Panel^panel) {
+		
+		if (panel->Visible == false) {
+			hide_panel();
+			panel->Visible = true;}
+		else
+			panel->Visible = false;
+		}
+
+
+	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Panel^ panel_lateral;
 	private: System::Windows::Forms::Button^ btn_config;
+	private: System::Windows::Forms::Panel^ panel_lateral;
+	private: System::Windows::Forms::Button^ btn_scoreboard;
+
+	private: System::Windows::Forms::Button^ btn_amigos;
+
+	private: System::Windows::Forms::Panel^ panel_tienda;
+	private: System::Windows::Forms::Button^ btn_backgrounds;
+
+
+	private: System::Windows::Forms::Button^ btn_skin;
+
+	private: System::Windows::Forms::Button^ btn_tienda;
+
+	private: System::Windows::Forms::Panel^ panel_modo;
+	private: System::Windows::Forms::Button^ btn_survival;
 
 
 
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ button7;
-	private: System::Windows::Forms::Button^ button8;
-	private: System::Windows::Forms::Button^ button9;
-	private: System::Windows::Forms::Button^ button10;
-	private: System::Windows::Forms::Button^ button11;
+
+	private: System::Windows::Forms::Button^ btn_historia;
+
+	private: System::Windows::Forms::Button^ btn_modo;
+
 	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Panel^ panel2;
+
+
+
+
+
+
+
+
+
+
+
+
+	private: System::ComponentModel::IContainer^ components;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -73,7 +129,7 @@ namespace FBAView {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -84,22 +140,23 @@ namespace FBAView {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(menu_principal::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->panel_lateral = (gcnew System::Windows::Forms::Panel());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->button8 = (gcnew System::Windows::Forms::Button());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->button9 = (gcnew System::Windows::Forms::Button());
-			this->button10 = (gcnew System::Windows::Forms::Button());
-			this->button11 = (gcnew System::Windows::Forms::Button());
 			this->btn_config = (gcnew System::Windows::Forms::Button());
+			this->panel_lateral = (gcnew System::Windows::Forms::Panel());
+			this->btn_scoreboard = (gcnew System::Windows::Forms::Button());
+			this->btn_amigos = (gcnew System::Windows::Forms::Button());
+			this->panel_tienda = (gcnew System::Windows::Forms::Panel());
+			this->btn_backgrounds = (gcnew System::Windows::Forms::Button());
+			this->btn_skin = (gcnew System::Windows::Forms::Button());
+			this->btn_tienda = (gcnew System::Windows::Forms::Button());
+			this->panel_modo = (gcnew System::Windows::Forms::Panel());
+			this->btn_survival = (gcnew System::Windows::Forms::Button());
+			this->btn_historia = (gcnew System::Windows::Forms::Button());
+			this->btn_modo = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel_lateral->SuspendLayout();
-			this->panel2->SuspendLayout();
-			this->panel1->SuspendLayout();
+			this->panel_tienda->SuspendLayout();
+			this->panel_modo->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -112,18 +169,33 @@ namespace FBAView {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 4;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &menu_principal::pictureBox1_Click);
+			// 
+			// btn_config
+			// 
+			this->btn_config->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->btn_config->FlatAppearance->BorderSize = 0;
+			this->btn_config->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_config->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_config->ForeColor = System::Drawing::Color::White;
+			this->btn_config->Location = System::Drawing::Point(0, 955);
+			this->btn_config->Name = L"btn_config";
+			this->btn_config->Size = System::Drawing::Size(375, 100);
+			this->btn_config->TabIndex = 5;
+			this->btn_config->Text = L"CONFIGURACIÓN";
+			this->btn_config->UseVisualStyleBackColor = true;
 			// 
 			// panel_lateral
 			// 
 			this->panel_lateral->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
-			this->panel_lateral->Controls->Add(this->button4);
-			this->panel_lateral->Controls->Add(this->button5);
-			this->panel_lateral->Controls->Add(this->panel2);
-			this->panel_lateral->Controls->Add(this->button8);
+			this->panel_lateral->Controls->Add(this->btn_scoreboard);
+			this->panel_lateral->Controls->Add(this->btn_amigos);
+			this->panel_lateral->Controls->Add(this->panel_tienda);
+			this->panel_lateral->Controls->Add(this->btn_tienda);
+			this->panel_lateral->Controls->Add(this->panel_modo);
+			this->panel_lateral->Controls->Add(this->btn_modo);
 			this->panel_lateral->Controls->Add(this->panel1);
-			this->panel_lateral->Controls->Add(this->button11);
 			this->panel_lateral->Controls->Add(this->btn_config);
 			this->panel_lateral->Controls->Add(this->pictureBox1);
 			this->panel_lateral->Dock = System::Windows::Forms::DockStyle::Left;
@@ -131,176 +203,167 @@ namespace FBAView {
 			this->panel_lateral->Name = L"panel_lateral";
 			this->panel_lateral->Size = System::Drawing::Size(375, 1024);
 			this->panel_lateral->TabIndex = 3;
-			this->panel_lateral->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &menu_principal::panel1_Paint);
 			// 
-			// button4
+			// btn_scoreboard
 			// 
-			this->button4->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_scoreboard->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_scoreboard->FlatAppearance->BorderSize = 0;
+			this->btn_scoreboard->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_scoreboard->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->ForeColor = System::Drawing::Color::White;
-			this->button4->Location = System::Drawing::Point(0, 765);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(375, 72);
-			this->button4->TabIndex = 8;
-			this->button4->Text = L"SCOREBOARDS";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &menu_principal::button4_Click);
+			this->btn_scoreboard->ForeColor = System::Drawing::Color::White;
+			this->btn_scoreboard->Location = System::Drawing::Point(0, 782);
+			this->btn_scoreboard->Name = L"btn_scoreboard";
+			this->btn_scoreboard->Size = System::Drawing::Size(375, 100);
+			this->btn_scoreboard->TabIndex = 28;
+			this->btn_scoreboard->Text = L"SCOREBOARDS";
+			this->btn_scoreboard->UseVisualStyleBackColor = true;
 			// 
-			// button5
+			// btn_amigos
 			// 
-			this->button5->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button5->FlatAppearance->BorderSize = 0;
-			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button5->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_amigos->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_amigos->FlatAppearance->BorderSize = 0;
+			this->btn_amigos->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_amigos->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->ForeColor = System::Drawing::Color::White;
-			this->button5->Location = System::Drawing::Point(0, 695);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(375, 70);
-			this->button5->TabIndex = 9;
-			this->button5->Text = L"AMIGOS";
-			this->button5->UseVisualStyleBackColor = true;
+			this->btn_amigos->ForeColor = System::Drawing::Color::White;
+			this->btn_amigos->Location = System::Drawing::Point(0, 712);
+			this->btn_amigos->Name = L"btn_amigos";
+			this->btn_amigos->Size = System::Drawing::Size(375, 100);
+			this->btn_amigos->TabIndex = 27;
+			this->btn_amigos->Text = L"AMIGOS";
+			this->btn_amigos->UseVisualStyleBackColor = true;
 			// 
-			// panel2
+			// panel_tienda
 			// 
-			this->panel2->Controls->Add(this->button6);
-			this->panel2->Controls->Add(this->button7);
-			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel2->Location = System::Drawing::Point(0, 515);
-			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(375, 180);
-			this->panel2->TabIndex = 12;
+			this->panel_tienda->Controls->Add(this->btn_backgrounds);
+			this->panel_tienda->Controls->Add(this->btn_skin);
+			this->panel_tienda->Dock = System::Windows::Forms::DockStyle::Top;
+			this->panel_tienda->Location = System::Drawing::Point(0, 586);
+			this->panel_tienda->Name = L"panel_tienda";
+			this->panel_tienda->Size = System::Drawing::Size(375, 150);
+			this->panel_tienda->TabIndex = 26;
+			this->panel_tienda->Visible = false;
 			// 
-			// button6
+			// btn_backgrounds
 			// 
-			this->button6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
+			this->btn_backgrounds->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
 				static_cast<System::Int32>(static_cast<System::Byte>(58)));
-			this->button6->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button6->FlatAppearance->BorderSize = 0;
-			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button6->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_backgrounds->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_backgrounds->FlatAppearance->BorderSize = 0;
+			this->btn_backgrounds->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_backgrounds->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button6->ForeColor = System::Drawing::Color::White;
-			this->button6->Location = System::Drawing::Point(0, 92);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(375, 66);
-			this->button6->TabIndex = 10;
-			this->button6->Text = L"Backgrounds";
-			this->button6->UseVisualStyleBackColor = false;
-			this->button6->Click += gcnew System::EventHandler(this, &menu_principal::button6_Click);
+			this->btn_backgrounds->ForeColor = System::Drawing::Color::White;
+			this->btn_backgrounds->Location = System::Drawing::Point(0, 56);
+			this->btn_backgrounds->Name = L"btn_backgrounds";
+			this->btn_backgrounds->Size = System::Drawing::Size(375, 75);
+			this->btn_backgrounds->TabIndex = 10;
+			this->btn_backgrounds->Text = L"Backgrounds";
+			this->btn_backgrounds->UseVisualStyleBackColor = false;
 			// 
-			// button7
+			// btn_skin
 			// 
-			this->button7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
+			this->btn_skin->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
 				static_cast<System::Int32>(static_cast<System::Byte>(58)));
-			this->button7->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button7->FlatAppearance->BorderSize = 0;
-			this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button7->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_skin->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_skin->FlatAppearance->BorderSize = 0;
+			this->btn_skin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_skin->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button7->ForeColor = System::Drawing::Color::White;
-			this->button7->Location = System::Drawing::Point(0, 0);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(375, 92);
-			this->button7->TabIndex = 11;
-			this->button7->Text = L"Skins ";
-			this->button7->UseVisualStyleBackColor = false;
-			this->button7->Click += gcnew System::EventHandler(this, &menu_principal::button7_Click);
+			this->btn_skin->ForeColor = System::Drawing::Color::White;
+			this->btn_skin->Location = System::Drawing::Point(0, 0);
+			this->btn_skin->Name = L"btn_skin";
+			this->btn_skin->Size = System::Drawing::Size(375, 75);
+			this->btn_skin->TabIndex = 11;
+			this->btn_skin->Text = L"Skins ";
+			this->btn_skin->UseVisualStyleBackColor = false;
 			// 
-			// button8
+			// btn_tienda
 			// 
-			this->button8->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button8->FlatAppearance->BorderSize = 0;
-			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button8->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_tienda->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_tienda->FlatAppearance->BorderSize = 0;
+			this->btn_tienda->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_tienda->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button8->ForeColor = System::Drawing::Color::White;
-			this->button8->Location = System::Drawing::Point(0, 427);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(375, 88);
-			this->button8->TabIndex = 12;
-			this->button8->Text = L"TIENDA";
-			this->button8->UseVisualStyleBackColor = true;
-			this->button8->Click += gcnew System::EventHandler(this, &menu_principal::button8_Click);
+			this->btn_tienda->ForeColor = System::Drawing::Color::White;
+			this->btn_tienda->Location = System::Drawing::Point(0, 498);
+			this->btn_tienda->Name = L"btn_tienda";
+			this->btn_tienda->Size = System::Drawing::Size(375, 100);
+			this->btn_tienda->TabIndex = 25;
+			this->btn_tienda->Text = L"TIENDA";
+			this->btn_tienda->UseVisualStyleBackColor = true;
+			this->btn_tienda->Click += gcnew System::EventHandler(this, &menu_principal::btn_tienda_Click);
+			// 
+			// panel_modo
+			// 
+			this->panel_modo->Controls->Add(this->btn_survival);
+			this->panel_modo->Controls->Add(this->btn_historia);
+			this->panel_modo->Dock = System::Windows::Forms::DockStyle::Top;
+			this->panel_modo->Location = System::Drawing::Point(0, 365);
+			this->panel_modo->Name = L"panel_modo";
+			this->panel_modo->Size = System::Drawing::Size(375, 150);
+			this->panel_modo->TabIndex = 24;
+			this->panel_modo->Visible = false;
+			// 
+			// btn_survival
+			// 
+			this->btn_survival->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
+				static_cast<System::Int32>(static_cast<System::Byte>(58)));
+			this->btn_survival->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_survival->FlatAppearance->BorderSize = 0;
+			this->btn_survival->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_survival->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_survival->ForeColor = System::Drawing::Color::White;
+			this->btn_survival->Location = System::Drawing::Point(0, 61);
+			this->btn_survival->Name = L"btn_survival";
+			this->btn_survival->Size = System::Drawing::Size(375, 75);
+			this->btn_survival->TabIndex = 13;
+			this->btn_survival->Text = L"Survival";
+			this->btn_survival->UseVisualStyleBackColor = false;
+			this->btn_survival->Click += gcnew System::EventHandler(this, &menu_principal::btn_survival_Click);
+			// 
+			// btn_historia
+			// 
+			this->btn_historia->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
+				static_cast<System::Int32>(static_cast<System::Byte>(58)));
+			this->btn_historia->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_historia->FlatAppearance->BorderSize = 0;
+			this->btn_historia->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_historia->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_historia->ForeColor = System::Drawing::Color::White;
+			this->btn_historia->Location = System::Drawing::Point(0, 0);
+			this->btn_historia->Name = L"btn_historia";
+			this->btn_historia->Size = System::Drawing::Size(375, 75);
+			this->btn_historia->TabIndex = 14;
+			this->btn_historia->Text = L"Historia";
+			this->btn_historia->UseVisualStyleBackColor = false;
+			// 
+			// btn_modo
+			// 
+			this->btn_modo->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_modo->FlatAppearance->BorderSize = 0;
+			this->btn_modo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_modo->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_modo->ForeColor = System::Drawing::Color::White;
+			this->btn_modo->Location = System::Drawing::Point(0, 267);
+			this->btn_modo->Name = L"btn_modo";
+			this->btn_modo->Size = System::Drawing::Size(375, 100);
+			this->btn_modo->TabIndex = 23;
+			this->btn_modo->Text = L"MODOS DE JUEGO";
+			this->btn_modo->UseVisualStyleBackColor = true;
+			this->btn_modo->Click += gcnew System::EventHandler(this, &menu_principal::btn_modo_Click);
 			// 
 			// panel1
 			// 
-			this->panel1->Controls->Add(this->button9);
-			this->panel1->Controls->Add(this->button10);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel1->Location = System::Drawing::Point(0, 284);
+			this->panel1->Location = System::Drawing::Point(0, 186);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(375, 143);
-			this->panel1->TabIndex = 15;
-			// 
-			// button9
-			// 
-			this->button9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
-				static_cast<System::Int32>(static_cast<System::Byte>(58)));
-			this->button9->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button9->FlatAppearance->BorderSize = 0;
-			this->button9->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button9->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button9->ForeColor = System::Drawing::Color::White;
-			this->button9->Location = System::Drawing::Point(0, 79);
-			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(375, 53);
-			this->button9->TabIndex = 13;
-			this->button9->Text = L"Survival";
-			this->button9->UseVisualStyleBackColor = false;
-			// 
-			// button10
-			// 
-			this->button10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
-				static_cast<System::Int32>(static_cast<System::Byte>(58)));
-			this->button10->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button10->FlatAppearance->BorderSize = 0;
-			this->button10->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button10->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button10->ForeColor = System::Drawing::Color::White;
-			this->button10->Location = System::Drawing::Point(0, 0);
-			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(375, 79);
-			this->button10->TabIndex = 14;
-			this->button10->Text = L"Historia";
-			this->button10->UseVisualStyleBackColor = false;
-			// 
-			// button11
-			// 
-			this->button11->Dock = System::Windows::Forms::DockStyle::Top;
-			this->button11->FlatAppearance->BorderSize = 0;
-			this->button11->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button11->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button11->ForeColor = System::Drawing::Color::White;
-			this->button11->Location = System::Drawing::Point(0, 186);
-			this->button11->Name = L"button11";
-			this->button11->Size = System::Drawing::Size(375, 98);
-			this->button11->TabIndex = 15;
-			this->button11->Text = L"MODOS DE JUEGO";
-			this->button11->UseVisualStyleBackColor = true;
-			this->button11->Click += gcnew System::EventHandler(this, &menu_principal::button11_Click);
-			// 
-			// btn_config
-			// 
-			this->btn_config->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->btn_config->FlatAppearance->BorderSize = 0;
-			this->btn_config->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btn_config->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btn_config->ForeColor = System::Drawing::Color::White;
-			this->btn_config->Location = System::Drawing::Point(0, 955);
-			this->btn_config->Name = L"btn_config";
-			this->btn_config->Size = System::Drawing::Size(375, 69);
-			this->btn_config->TabIndex = 5;
-			this->btn_config->Text = L"CONFIGURACIÓN";
-			this->btn_config->UseVisualStyleBackColor = true;
-			this->btn_config->Click += gcnew System::EventHandler(this, &menu_principal::button2_Click_1);
+			this->panel1->Size = System::Drawing::Size(375, 81);
+			this->panel1->TabIndex = 22;
 			// 
 			// menu_principal
 			// 
@@ -317,38 +380,23 @@ namespace FBAView {
 			this->Load += gcnew System::EventHandler(this, &menu_principal::menu_principal_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->panel_lateral->ResumeLayout(false);
-			this->panel2->ResumeLayout(false);
-			this->panel1->ResumeLayout(false);
+			this->panel_tienda->ResumeLayout(false);
+			this->panel_modo->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void menu_principal_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+	private: System::Void btn_modo_Click(System::Object^ sender, System::EventArgs^ e) {
+		click_panel(panel_modo);
+	}
 	private: System::Void btn_survival_Click(System::Object^ sender, System::EventArgs^ e) {
+
 		Game_loop::run();
 	}
-	private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	private: System::Void btn_tienda_Click(System::Object^ sender, System::EventArgs^ e) {
+		click_panel(panel_tienda);
 	}
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-}
 };
 }
