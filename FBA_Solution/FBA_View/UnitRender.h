@@ -13,7 +13,7 @@ namespace FBAView {
 		Void MakeAttack();
 		Void MakeMove();
 		int indice=0;
-		int FactorLentitud=3;
+		int FactorLentitud;
 		int contador=0;
 		Vector2f position;
 	};

@@ -45,7 +45,7 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
 }
 
 void FBAView::SurvivalRender::Run(){
-	for (int j = 0, i = 0; this->IsOpen; j++) {
+    while(this->IsOpen) {
 		Procesar_evento();
 		this->Clear();
 		this->Draw(this->background);
@@ -89,11 +89,11 @@ void FBAView::SurvivalRender::Procesar_evento(){
             break;
 
         case EventType::KeyPressed:
-            if (Keyboard::IsKeyPressed(Keyboard::Key::Right)) {
+            if (Keyboard::IsKeyPressed(Keyboard::Key::A)) {
                 unit_allies[0]->Actual->Position = Vector2f(unit_allies[0]->position.X, unit_allies[0]->position.Y);
                 this->unit_allies[0]->MakeAttack();
             }
-            else if (Keyboard::IsKeyPressed(Keyboard::Key::A))
+            else if (Keyboard::IsKeyPressed(Keyboard::Key::Right))
                 this->unit_allies[0]->MakeMove();
             break;
 
