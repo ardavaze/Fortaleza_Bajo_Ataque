@@ -6,6 +6,7 @@ namespace FBAModel{
     public:
         int Nro_ballesta;
         int Vida_max;
-        String^ Imagen;
+        String^ Textura;
+        String^ Sprite;
     };
 }
