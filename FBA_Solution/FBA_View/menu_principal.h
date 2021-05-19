@@ -1,5 +1,5 @@
 #pragma once
-#include "Game_loop.h"
+#include "SurvivalRender.h"
 namespace FBAView {
 
 	using namespace System;
@@ -12,7 +12,7 @@ namespace FBAView {
 	/// <summary>
 	/// Summary for menu_principal
 	/// </summary>
-	public ref class menu_principal : public System::Windows::Forms::Form
+	public ref class menu_principal : public Form
 	{
 	public:
 		menu_principal(void)
@@ -80,7 +80,8 @@ namespace FBAView {
 	private: System::Void menu_principal_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void btn_survival_Click(System::Object^ sender, System::EventArgs^ e) {
-		Game_loop::run();
+		SurvivalRender juego;
+		juego.Run();
 	}
 	};
 }

@@ -364,7 +364,7 @@ namespace SFML.Window
             Event e;
             if (WaitEvent(out e))
             {
-                CallEventHandler(e);
+                this.CallEventHandler(e);
             }
         }
 
@@ -375,10 +375,9 @@ namespace SFML.Window
         ////////////////////////////////////////////////////////////
         public void DispatchEvents()
         {
-            Event e;
-            while (PollEvent(out e))
+            while (this.PollEvent(out var e))
             {
-                CallEventHandler(e);
+                this.CallEventHandler(e);
             }
         }
 
@@ -517,11 +516,10 @@ namespace SFML.Window
             switch (e.Type)
             {
                 case EventType.Closed:
-                    if (Closed != null)
-                    {
+                    if (Closed != null){
                         Closed(this, EventArgs.Empty);
                     }
-
+                    this.Close();
                     break;
 
                 case EventType.GainedFocus:
@@ -529,7 +527,6 @@ namespace SFML.Window
                     {
                         GainedFocus(this, EventArgs.Empty);
                     }
-
                     break;
 
                 case EventType.JoystickButtonPressed:

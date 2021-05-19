@@ -123,8 +123,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game_loop.cpp" />
+    <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="menu_principal.cpp" />
+    <ClCompile Include="UnitRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FBA_Controller\FBA_Controller.vcxproj">
@@ -157,10 +158,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game_loop.h" />
+    <ClInclude Include="SurvivalRender.h" />
     <ClInclude Include="menu_principal.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="UnitRender.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="menu_principal.resx">

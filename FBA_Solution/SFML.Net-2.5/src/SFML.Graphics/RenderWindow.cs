@@ -75,7 +75,6 @@ namespace SFML.Graphics
             this(handle, new ContextSettings(0, 0))
         {
         }
-
         ////////////////////////////////////////////////////////////
         /// <summary>
         /// Create the window from an existing control
@@ -156,7 +155,6 @@ namespace SFML.Graphics
         {
             // Copy the title to a null-terminated UTF-32 byte array
             byte[] titleAsUtf32 = Encoding.UTF32.GetBytes(title + '\0');
-
             unsafe
             {
                 fixed (byte* titlePtr = titleAsUtf32)

@@ -9,13 +9,14 @@ using namespace std;
 namespace FBA_Controller {
 	public ref class FBAController {
 	public:
-		static RenderWindow^ window = gcnew RenderWindow(VideoMode(1920, 1080), "Modo Survival", Styles::Fullscreen);
+		static RenderWindow^ window;
 		static Texture^ backgroundTexture;
 		static Sprite^ backgroundSprite;
-		static Sprite^ unit;
 		static Texture^ Get_texture();
 		static void Set_texture(String^ background);
 		static Sprite^ Get_sprite();
 		static void Set_sprite(Texture^ background);
+		static List<Texture^>^ src_attack;
+		static List<Sprite^>^ ani_attack;
 	};
 }
