@@ -11,6 +11,7 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
     InitializeGraphics();
 	this->SetFramerateLimit(60);
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
+    TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
 }
 
 void FBAView::SurvivalRender::Run(){
@@ -20,6 +21,8 @@ void FBAView::SurvivalRender::Run(){
 		this->Draw(this->background);
         this->Draw(this->castle);
         this->Draw(this->crossbow);
+        if (arrow->throwed)
+            arrow->MakeFly();
         this->Draw(this->arrow);
         for (int i = 0; i < unit_allies_field->Count; i++) {
             if (unit_allies_field[i]->position.X>1500)
@@ -78,23 +81,19 @@ void FBAView::SurvivalRender::Procesar_evento(){
             }
             if (Keyboard::IsKeyPressed(Keyboard::Key::Up)) {
                 crossbow->Rotation--;
-                arrow->Rotation = -70 + crossbow->Rotation;
-                arrow->Position = Vector2f(crossbow->Position.X + 84*abs(cos(arrow->Rotation)), crossbow->Position.Y - 84* abs(sin(arrow->Rotation)));
-                
+                arrow->Rotation = crossbow->Rotation;
             }
             if (Keyboard::IsKeyPressed(Keyboard::Key::Down)) {
                 crossbow->Rotation++;
-                arrow->Rotation = -70 + crossbow->Rotation;
-                arrow->Position = Vector2f(crossbow->Position.X + 84 * abs(cos(arrow->Rotation)), crossbow->Position.Y - 84 * abs(sin(arrow->Rotation)));
-                
+                arrow->Rotation =   crossbow->Rotation;
             }
             if (Keyboard::IsKeyPressed(Keyboard::Key::Space)) {
-                TimeGenerate->Stop();
-                if (TimeGenerate->Elapsed.TotalSeconds > 4) {
+                TimeThrowArrow->Stop();
+                if (TimeThrowArrow->Elapsed.TotalSeconds > 8) {
                     ThrowArrow();
-                    TimeGenerate->Restart();
+                    TimeThrowArrow->Restart();
                 }
-                else TimeGenerate->Start();
+                else TimeThrowArrow->Start();
             }
 
             break;
@@ -166,7 +165,7 @@ void FBAView::SurvivalRender::InitializeGraphics(){
     background = gcnew Sprite(gcnew Texture("game_background_1.png"));
     castle = gcnew Sprite(gcnew Texture("c/Asset 27.png"));
     crossbow = gcnew Sprite(gcnew Texture("crossbow.png"));
-    arrow = gcnew Sprite(gcnew Texture("arrow.png"));
+    arrow = gcnew ArrowRender;
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
     //Background                                                //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura           
@@ -177,15 +176,18 @@ void FBAView::SurvivalRender::InitializeGraphics(){
     castle->Origin = Vector2f(0, 1080 / 2);
     castle->Position = Vector2f(700, 400);
     //Crossbow
-    crossbow->Origin = Vector2f(290,590);
+    crossbow->Origin = Vector2f(168,406);
     crossbow->Scale = Vector2f(0.18,0.18);
     crossbow->Position=Vector2f(500,470);
+    crossbow->Rotation = 0;
     //Arrow
-    arrow->Origin = Vector2f(1391, arrow->Texture->Size.Y / 2);  //Origen posicionado en punta de flecha
+    arrow->Texture = gcnew Texture("arrow.png");
+    arrow->arrow = gcnew FBAModel::Projectile;
+    arrow->Origin = Vector2f(376, 251);  //Origen posicionado en punta de flecha
     arrow->Scale = Vector2f(0.1,0.1);
-    arrow->Position = Vector2f(crossbow->Position.X+29, crossbow->Position.Y-79);
-    arrow->Rotation = -70;
-    
+    arrow->Position = crossbow->Position;
+    arrow->throwed = 0;
+    arrow->Rotation = 0;
     //Unidades Alidas  
     unit_allies->Add(gcnew FBAModel::Units);
     unit_allies[0]->AttackAnimation = gcnew List<Sprite^>;
@@ -238,16 +240,21 @@ void FBAView::SurvivalRender::GenerateUnits(){
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
-    TimeGenerate->Start();
-    int velocidad = 10;
-    int velX = velocidad * abs(cos(arrow->Rotation));
-    int velY = velocidad * abs(sin(arrow->Rotation));
-    
-    int xInicial = arrow->Position.X;
-    int yInicial = arrow->Position.Y;
-
-    arrow->Position.X = xInicial + velX * TimeGenerate;
-    arrow->Position.Y = yInicial + velY * TimeGenerate + (9.81 / 2) * pow(TimeGenerate, 2);  //corregir según orientacion
+    arrow->throwed = 1;
+    //arrow->Origin = Vector2f(arrow->Texture->Size.X / 2, arrow->Texture->Size.Y / 2);
+    arrow->arrow->Velocity = 600;
+    arrow->velX = arrow->arrow->Velocity * Math::Cos((arrow->Rotation)*Math::PI/180);
+    arrow->velY = arrow->arrow->Velocity * Math::Sin((arrow->Rotation) * Math::PI / 180);
+    arrow->Timearrow = gcnew System::Diagnostics::Stopwatch;
+    arrow->Timearrow->Restart();
+    //int velocidad = 10;
+    //int velX = velocidad * abs(cos(arrow->Rotation));
+    //int velY = velocidad * abs(sin(arrow->Rotation));
+    //
+    arrow->xInicial = arrow->Position.X;
+    arrow->yInicial = arrow->Position.Y;
+    //arrow->Position.X = xInicial + velX * TimeGenerate;
+    //arrow->Position.Y = yInicial + velY * TimeGenerate + (9.81 / 2) * Math::Pow(TimeGenerate, 2);  //corregir según orientacion
 
 }
 

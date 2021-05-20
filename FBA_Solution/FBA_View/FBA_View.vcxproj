@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArrowRender.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="menu_principal.cpp" />
@@ -159,6 +160,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrowRender.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="SurvivalRender.h" />
     <ClInclude Include="menu_principal.h">

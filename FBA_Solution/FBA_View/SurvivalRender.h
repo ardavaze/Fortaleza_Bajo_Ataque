@@ -1,5 +1,6 @@
 #pragma once
 #include "UnitRender.h"
+#include "ArrowRender.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -14,7 +15,9 @@ namespace FBAView{
 		Sprite^ castle;
 		Sprite^ background;
 		Sprite^ crossbow;
-		Sprite^ arrow;
+		FBAModel::Projectile^ arrowsAvailable;
+		ArrowRender^ arrow;
+		System::Diagnostics::Stopwatch^ TimeThrowArrow;
 		List<FBAModel::Units^>^ unit_allies;
 		List<FBAModel::Units^>^ unit_enemies;
 		List<UnitRender^>^ unit_allies_field;
