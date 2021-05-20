@@ -183,8 +183,8 @@ void FBAView::SurvivalRender::InitializeGraphics(){
     //Arrow
     arrow->Texture = gcnew Texture("arrow.png");
     arrow->arrow = gcnew FBAModel::Projectile;
-    arrow->Origin = Vector2f(376, 251);  //Origen posicionado en punta de flecha
-    arrow->Scale = Vector2f(0.1,0.1);
+    arrow->Origin = Vector2f(376, 251);  
+    arrow->Scale = Vector2f(0.125,0.125);
     arrow->Position = crossbow->Position;
     arrow->throwed = 0;
     arrow->Rotation = 0;
