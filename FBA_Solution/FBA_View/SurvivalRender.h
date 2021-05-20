@@ -11,12 +11,14 @@ namespace FBAView{
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
 		void Run();
 		void Procesar_evento();
-		Texture^ castle_text;
 		Sprite^ castle;
-		Texture^ background_text;
 		Sprite^ background;
-		List<UnitRender^>^ unit_allies;
-		List<UnitRender^>^ unit_enemies;
+		List<FBAModel::Units^>^ unit_allies;
+		List<FBAModel::Units^>^ unit_enemies;
+		List<UnitRender^>^ unit_allies_field;
 		Event event;
+		System::Diagnostics::Stopwatch^ TimeGenerate;
+		void InitializeGraphics();
+		void GenerateUnits();
 	};
 }

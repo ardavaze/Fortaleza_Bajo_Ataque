@@ -6,9 +6,10 @@ Void FBAView::UnitRender::MakeAttack(){
 		indice++;
 		if (indice > 19)
 			indice = 0;
-		Actual = Attack[indice];
+		this->Texture = unit->AttackAnimation[indice]->Texture;
 	}
-	Actual->Position = Vector2f(position.X, position.Y);
+	this->Position = Vector2f(position.X, position.Y);
+	this->Scale = Vector2f(0.7, 0.7);
 	contador++;
 }
 
@@ -18,9 +19,10 @@ Void FBAView::UnitRender::MakeMove(){
 		indice++;
 		if (indice > 19)
 			indice = 0;
-		Actual = Move[indice];
+		this->Texture = unit->MoveAnimation[indice]->Texture;
 		position.X += 2;
-		Actual->Position = Vector2f(position.X, position.Y);
+		this->Position = Vector2f(position.X, position.Y);
+		this->Scale = Vector2f(0.7,0.7);
 	}
 	contador++;
 }

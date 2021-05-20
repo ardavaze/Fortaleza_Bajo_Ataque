@@ -1,14 +1,18 @@
 #pragma once
-using namespace System;
+#include "Game_obj.h"
+
 namespace FBAModel {
-    public ref class Units {
+    public ref class Units: public Game_obj {
     public:
+        enum class unit_name{
+            Soldier
+        };
         String^ Nombre;
+        unit_name tipo;
+        List<Sprite^>^ AttackAnimation;
+        List<Sprite^>^ MoveAnimation;
         int Vida_max;
-        int Velocidad_ataque;
-        int Daño_ataque;
+        int attackDamage;
         int Valor_dinero;
-        int Velocidad_mov;
-        String^ Image;
     };
 }
