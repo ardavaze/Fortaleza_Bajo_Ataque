@@ -16,6 +16,7 @@ namespace FBAView {
 		int FactorLentitud;
 		int contador=0;
 		Vector2f position;
+
 	};
 }
 

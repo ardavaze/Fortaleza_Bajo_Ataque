@@ -8,15 +8,18 @@ using namespace System::Collections::Generic;
 using namespace std;
 
 FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31), "Modo survival", Styles::Fullscreen){
+    //Background
 	background_text = gcnew Texture("game_background_1.png"); //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura
 	background = gcnew Sprite(background_text);
 	background->Scale = Vector2f(1920.f / background->Texture->Size.X, 1080.f / background->Texture->Size.Y);
+    //Castle
     castle_text = gcnew Texture("c/Asset 27.png"); //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura
     castle= gcnew Sprite(castle_text);
     castle->Origin = Vector2f(castle->Texture->Size.X /2,0);
     castle->Scale = Vector2f(-0.7,0.7);
     castle->Origin = Vector2f(0 , 1080/2);
     castle->Position = Vector2f(700, 400 );
+    //Unidades Alidas
 	this->unit_allies = gcnew List<UnitRender^>;
 	this->unit_allies->Add(gcnew UnitRender());
 	this->unit_allies[0]->Attack = gcnew List<Sprite^>;
@@ -41,6 +44,7 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
 	}
 	this->unit_allies[0]->Actual = this->unit_allies[0]->Move[0];
     this->unit_allies[0]->FactorLentitud = 2;
+
 	this->SetFramerateLimit(60);
 }
 
@@ -54,6 +58,7 @@ void FBAView::SurvivalRender::Run(){
 		this->Display();
 	}
 }
+
 
 void FBAView::SurvivalRender::Procesar_evento(){
     if (this->PollEvent(event)) {

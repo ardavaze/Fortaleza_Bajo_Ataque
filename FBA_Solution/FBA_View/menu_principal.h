@@ -402,6 +402,7 @@ namespace FBAView {
 		}
 #pragma endregion
 	private: System::Void menu_principal_Load(System::Object^ sender, System::EventArgs^ e) {
+
 	}
 	private: System::Void btn_modo_Click(System::Object^ sender, System::EventArgs^ e) {
 		click_panel(panel_modo);
