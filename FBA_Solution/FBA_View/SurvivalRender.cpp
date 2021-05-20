@@ -19,6 +19,8 @@ void FBAView::SurvivalRender::Run(){
 		this->Clear();
 		this->Draw(this->background);
         this->Draw(this->castle);
+        this->Draw(this->crossbow);
+        this->Draw(this->arrow);
         for (int i = 0; i < unit_allies_field->Count; i++) {
             if (unit_allies_field[i]->position.X>1500)
                 this->unit_allies_field[i]->MakeAttack();
@@ -74,6 +76,27 @@ void FBAView::SurvivalRender::Procesar_evento(){
                 }
                 else TimeGenerate->Start();
             }
+            if (Keyboard::IsKeyPressed(Keyboard::Key::Up)) {
+                crossbow->Rotation--;
+                arrow->Rotation = -70 + crossbow->Rotation;
+                arrow->Position = Vector2f(crossbow->Position.X + 84*abs(cos(arrow->Rotation)), crossbow->Position.Y - 84* abs(sin(arrow->Rotation)));
+                
+            }
+            if (Keyboard::IsKeyPressed(Keyboard::Key::Down)) {
+                crossbow->Rotation++;
+                arrow->Rotation = -70 + crossbow->Rotation;
+                arrow->Position = Vector2f(crossbow->Position.X + 84 * abs(cos(arrow->Rotation)), crossbow->Position.Y - 84 * abs(sin(arrow->Rotation)));
+                
+            }
+            if (Keyboard::IsKeyPressed(Keyboard::Key::Space)) {
+                TimeGenerate->Stop();
+                if (TimeGenerate->Elapsed.TotalSeconds > 4) {
+                    ThrowArrow();
+                    TimeGenerate->Restart();
+                }
+                else TimeGenerate->Start();
+            }
+
             break;
 
         case EventType::KeyReleased:
@@ -142,6 +165,8 @@ void FBAView::SurvivalRender::Procesar_evento(){
 void FBAView::SurvivalRender::InitializeGraphics(){
     background = gcnew Sprite(gcnew Texture("game_background_1.png"));
     castle = gcnew Sprite(gcnew Texture("c/Asset 27.png"));
+    crossbow = gcnew Sprite(gcnew Texture("crossbow.png"));
+    arrow = gcnew Sprite(gcnew Texture("arrow.png"));
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
     //Background                                                //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura           
@@ -151,6 +176,16 @@ void FBAView::SurvivalRender::InitializeGraphics(){
     castle->Scale = Vector2f((float)-0.7, (float)0.7);
     castle->Origin = Vector2f(0, 1080 / 2);
     castle->Position = Vector2f(700, 400);
+    //Crossbow
+    crossbow->Origin = Vector2f(290,590);
+    crossbow->Scale = Vector2f(0.18,0.18);
+    crossbow->Position=Vector2f(500,470);
+    //Arrow
+    arrow->Origin = Vector2f(1391, arrow->Texture->Size.Y / 2);  //Origen posicionado en punta de flecha
+    arrow->Scale = Vector2f(0.1,0.1);
+    arrow->Position = Vector2f(crossbow->Position.X+29, crossbow->Position.Y-79);
+    arrow->Rotation = -70;
+    
     //Unidades Alidas  
     unit_allies->Add(gcnew FBAModel::Units);
     unit_allies[0]->AttackAnimation = gcnew List<Sprite^>;
@@ -200,5 +235,19 @@ void FBAView::SurvivalRender::GenerateUnits(){
     unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud = 3;
     unit_allies_field[unit_allies_field->Count - 1]->contador = unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud+1;
     unit_allies_field[unit_allies_field->Count - 1]->position = Vector2f((float)600, (float)550);
+}
+
+void FBAView::SurvivalRender::ThrowArrow() {
+    TimeGenerate->Start();
+    int velocidad = 10;
+    int velX = velocidad * abs(cos(arrow->Rotation));
+    int velY = velocidad * abs(sin(arrow->Rotation));
+    
+    int xInicial = arrow->Position.X;
+    int yInicial = arrow->Position.Y;
+
+    arrow->Position.X = xInicial + velX * TimeGenerate;
+    arrow->Position.Y = yInicial + velY * TimeGenerate + (9.81 / 2) * pow(TimeGenerate, 2);  //corregir según orientacion
+
 }
 

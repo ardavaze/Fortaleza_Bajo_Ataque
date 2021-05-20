@@ -13,6 +13,8 @@ namespace FBAView{
 		void Procesar_evento();
 		Sprite^ castle;
 		Sprite^ background;
+		Sprite^ crossbow;
+		Sprite^ arrow;
 		List<FBAModel::Units^>^ unit_allies;
 		List<FBAModel::Units^>^ unit_enemies;
 		List<UnitRender^>^ unit_allies_field;
@@ -20,5 +22,6 @@ namespace FBAView{
 		System::Diagnostics::Stopwatch^ TimeGenerate;
 		void InitializeGraphics();
 		void GenerateUnits();
+		void ThrowArrow();
 	};
 }
