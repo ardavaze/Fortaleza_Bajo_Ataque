@@ -22,7 +22,7 @@ namespace FBAView {
 			//TODO: Add the constructor code here
 			//
 		}
-	
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -37,17 +37,18 @@ namespace FBAView {
 	private: void Hide_panel() {
 		panel_modo->Visible = false;
 		panel_tienda->Visible = false;
-		}
+	}
 
 
-	private: void Click_panel(Panel^panel) {
-		
+	private: void Click_panel(Panel^ panel) {
+
 		if (panel->Visible == false) {
 			Hide_panel();
-			panel->Visible = true;}
+			panel->Visible = true;
+		}
 		else
 			panel->Visible = false;
-		}
+	}
 
 
 	protected:
@@ -173,7 +174,7 @@ namespace FBAView {
 			this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(552, 186);
+			this->pictureBox1->Size = System::Drawing::Size(368, 186);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 4;
 			this->pictureBox1->TabStop = false;
@@ -208,9 +209,9 @@ namespace FBAView {
 			this->btn_creditos->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_creditos->ForeColor = System::Drawing::Color::White;
-			this->btn_creditos->Location = System::Drawing::Point(0, 1508);
+			this->btn_creditos->Location = System::Drawing::Point(0, 930);
 			this->btn_creditos->Name = L"btn_creditos";
-			this->btn_creditos->Size = System::Drawing::Size(552, 101);
+			this->btn_creditos->Size = System::Drawing::Size(368, 101);
 			this->btn_creditos->TabIndex = 5;
 			this->btn_creditos->Text = L"CREDITOS";
 			this->btn_creditos->UseVisualStyleBackColor = true;
@@ -224,9 +225,9 @@ namespace FBAView {
 			this->btn_config->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_config->ForeColor = System::Drawing::Color::White;
-			this->btn_config->Location = System::Drawing::Point(0, 1659);
+			this->btn_config->Location = System::Drawing::Point(0, 1031);
 			this->btn_config->Name = L"btn_config";
-			this->btn_config->Size = System::Drawing::Size(552, 101);
+			this->btn_config->Size = System::Drawing::Size(368, 101);
 			this->btn_config->TabIndex = 7;
 			this->btn_config->Text = L"CONFIGURACIÓN";
 			this->btn_config->UseVisualStyleBackColor = true;
@@ -240,10 +241,10 @@ namespace FBAView {
 			this->btn_scoreboard->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_scoreboard->ForeColor = System::Drawing::Color::White;
-			this->btn_scoreboard->Location = System::Drawing::Point(0, 1305);
+			this->btn_scoreboard->Location = System::Drawing::Point(0, 829);
 			this->btn_scoreboard->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_scoreboard->Name = L"btn_scoreboard";
-			this->btn_scoreboard->Size = System::Drawing::Size(552, 101);
+			this->btn_scoreboard->Size = System::Drawing::Size(368, 101);
 			this->btn_scoreboard->TabIndex = 28;
 			this->btn_scoreboard->Text = L"PUNTUACIONES";
 			this->btn_scoreboard->UseVisualStyleBackColor = true;
@@ -257,23 +258,24 @@ namespace FBAView {
 			this->btn_amigos->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_amigos->ForeColor = System::Drawing::Color::White;
-			this->btn_amigos->Location = System::Drawing::Point(0, 1154);
+			this->btn_amigos->Location = System::Drawing::Point(0, 728);
 			this->btn_amigos->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_amigos->Name = L"btn_amigos";
-			this->btn_amigos->Size = System::Drawing::Size(552, 101);
+			this->btn_amigos->Size = System::Drawing::Size(368, 101);
 			this->btn_amigos->TabIndex = 27;
 			this->btn_amigos->Text = L"AMIGOS";
 			this->btn_amigos->UseVisualStyleBackColor = true;
+			this->btn_amigos->Click += gcnew System::EventHandler(this, &menu_principal::btn_amigos_Click);
 			// 
 			// panel_tienda
 			// 
 			this->panel_tienda->Controls->Add(this->btn_backgrounds);
 			this->panel_tienda->Controls->Add(this->btn_skin);
 			this->panel_tienda->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel_tienda->Location = System::Drawing::Point(0, 929);
+			this->panel_tienda->Location = System::Drawing::Point(0, 578);
 			this->panel_tienda->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel_tienda->Name = L"panel_tienda";
-			this->panel_tienda->Size = System::Drawing::Size(552, 150);
+			this->panel_tienda->Size = System::Drawing::Size(368, 150);
 			this->panel_tienda->TabIndex = 26;
 			this->panel_tienda->Visible = false;
 			// 
@@ -287,10 +289,10 @@ namespace FBAView {
 			this->btn_backgrounds->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_backgrounds->ForeColor = System::Drawing::Color::White;
-			this->btn_backgrounds->Location = System::Drawing::Point(0, 113);
+			this->btn_backgrounds->Location = System::Drawing::Point(0, 75);
 			this->btn_backgrounds->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_backgrounds->Name = L"btn_backgrounds";
-			this->btn_backgrounds->Size = System::Drawing::Size(552, 75);
+			this->btn_backgrounds->Size = System::Drawing::Size(368, 75);
 			this->btn_backgrounds->TabIndex = 10;
 			this->btn_backgrounds->Text = L"Fondos";
 			this->btn_backgrounds->UseVisualStyleBackColor = false;
@@ -309,7 +311,7 @@ namespace FBAView {
 			this->btn_skin->Location = System::Drawing::Point(0, 0);
 			this->btn_skin->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_skin->Name = L"btn_skin";
-			this->btn_skin->Size = System::Drawing::Size(552, 75);
+			this->btn_skin->Size = System::Drawing::Size(368, 75);
 			this->btn_skin->TabIndex = 11;
 			this->btn_skin->Text = L"Diseños";
 			this->btn_skin->UseVisualStyleBackColor = false;
@@ -323,10 +325,10 @@ namespace FBAView {
 			this->btn_tienda->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_tienda->ForeColor = System::Drawing::Color::White;
-			this->btn_tienda->Location = System::Drawing::Point(0, 777);
+			this->btn_tienda->Location = System::Drawing::Point(0, 477);
 			this->btn_tienda->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_tienda->Name = L"btn_tienda";
-			this->btn_tienda->Size = System::Drawing::Size(552, 101);
+			this->btn_tienda->Size = System::Drawing::Size(368, 101);
 			this->btn_tienda->TabIndex = 25;
 			this->btn_tienda->Text = L"TIENDA";
 			this->btn_tienda->UseVisualStyleBackColor = true;
@@ -337,10 +339,10 @@ namespace FBAView {
 			this->panel_modo->Controls->Add(this->btn_survival);
 			this->panel_modo->Controls->Add(this->btn_historia);
 			this->panel_modo->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel_modo->Location = System::Drawing::Point(0, 552);
+			this->panel_modo->Location = System::Drawing::Point(0, 327);
 			this->panel_modo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel_modo->Name = L"panel_modo";
-			this->panel_modo->Size = System::Drawing::Size(552, 150);
+			this->panel_modo->Size = System::Drawing::Size(368, 150);
 			this->panel_modo->TabIndex = 24;
 			this->panel_modo->Visible = false;
 			// 
@@ -354,10 +356,10 @@ namespace FBAView {
 			this->btn_survival->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_survival->ForeColor = System::Drawing::Color::White;
-			this->btn_survival->Location = System::Drawing::Point(0, 113);
+			this->btn_survival->Location = System::Drawing::Point(0, 75);
 			this->btn_survival->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_survival->Name = L"btn_survival";
-			this->btn_survival->Size = System::Drawing::Size(552, 75);
+			this->btn_survival->Size = System::Drawing::Size(368, 75);
 			this->btn_survival->TabIndex = 13;
 			this->btn_survival->Text = L"Supervivencia";
 			this->btn_survival->UseVisualStyleBackColor = false;
@@ -376,7 +378,7 @@ namespace FBAView {
 			this->btn_historia->Location = System::Drawing::Point(0, 0);
 			this->btn_historia->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_historia->Name = L"btn_historia";
-			this->btn_historia->Size = System::Drawing::Size(552, 75);
+			this->btn_historia->Size = System::Drawing::Size(368, 75);
 			this->btn_historia->TabIndex = 14;
 			this->btn_historia->Text = L"Campaña";
 			this->btn_historia->UseVisualStyleBackColor = false;
@@ -390,10 +392,10 @@ namespace FBAView {
 			this->btn_modo->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_modo->ForeColor = System::Drawing::Color::White;
-			this->btn_modo->Location = System::Drawing::Point(0, 401);
+			this->btn_modo->Location = System::Drawing::Point(0, 226);
 			this->btn_modo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_modo->Name = L"btn_modo";
-			this->btn_modo->Size = System::Drawing::Size(552, 101);
+			this->btn_modo->Size = System::Drawing::Size(368, 101);
 			this->btn_modo->TabIndex = 23;
 			this->btn_modo->Text = L"MODOS DE JUEGO";
 			this->btn_modo->UseVisualStyleBackColor = true;
@@ -402,10 +404,10 @@ namespace FBAView {
 			// panel1
 			// 
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel1->Location = System::Drawing::Point(0, 279);
+			this->panel1->Location = System::Drawing::Point(0, 186);
 			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(552, 40);
+			this->panel1->Size = System::Drawing::Size(368, 40);
 			this->panel1->TabIndex = 22;
 			// 
 			// menu_principal
@@ -443,13 +445,13 @@ namespace FBAView {
 		Hide_panel();
 		SurvivalRender Juego;
 		Juego.Run();
-		
+
 	}
 	private: System::Void btn_tienda_Click(System::Object^ sender, System::EventArgs^ e) {
 		Click_panel(panel_tienda);
 	}
-	
-	
+
+
 	private: System::Void btn_skin_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
 	}
@@ -457,17 +459,31 @@ namespace FBAView {
 	private: System::Void btn_backgrounds_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
 	}
+
+	private: System::Void btn_amigos_Click(System::Object^ sender, System::EventArgs^ e) {
+		Hide_panel();
+	}
+
 	private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
 	}
-	
+
 	private: System::Void btn_creditos_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
 	}
-	
+
 	private: System::Void btn_config_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
 	}
+
+
+
+
 	
+	
+	
+
+
+
 };
 }
