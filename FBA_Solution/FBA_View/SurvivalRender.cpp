@@ -158,7 +158,7 @@ void FBAView::SurvivalRender::GenerateUnits(){
     unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image->Texture;
     unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud = 3;
     unit_allies_field[unit_allies_field->Count - 1]->contador = unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud+1;
-    unit_allies_field[unit_allies_field->Count - 1]->position = Vector2f((float)600, (float)550);
+    unit_allies_field[unit_allies_field->Count - 1]->position = Vector2f((float)550, (float)550);
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
@@ -178,7 +178,7 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(){
     unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image->Texture;
     unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud = 3;
     unit_enemies_field[unit_enemies_field->Count - 1]->contador = unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud + 1;
-    unit_enemies_field[unit_enemies_field->Count - 1]->position = Vector2f((float)1920+ unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, (float)550);
+    unit_enemies_field[unit_enemies_field->Count - 1]->position = Vector2f((float)1750+ unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, (float)550);
 }
 
 void FBAView::SurvivalRender::ProcessCollision(){
