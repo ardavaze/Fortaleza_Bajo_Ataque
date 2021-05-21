@@ -107,7 +107,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     crossbow->Rotation = 0;
     //Arrow
     arrow->Texture = gcnew Texture("arrow.png");
-    arrow->arrow = gcnew FBAModel::Projectile;
+    arrow->parrow = gcnew FBAModel::Projectile;
     arrow->Origin = Vector2f(376, 251);
     arrow->Scale = Vector2f(0.125, 0.125);
     arrow->Position = crossbow->Position;
@@ -163,9 +163,9 @@ void FBAView::SurvivalRender::GenerateUnits(){
 
 void FBAView::SurvivalRender::ThrowArrow() {
     arrow->throwed = 1;
-    arrow->arrow->Velocity = 600;
-    arrow->velX = arrow->arrow->Velocity * Math::Cos((arrow->Rotation)*Math::PI/180);
-    arrow->velY = arrow->arrow->Velocity * Math::Sin((arrow->Rotation) * Math::PI / 180);
+    arrow->parrow->Velocity = 600;
+    arrow->velX = arrow->parrow->Velocity * Math::Cos((arrow->Rotation)*Math::PI/180);
+    arrow->velY = arrow->parrow->Velocity * Math::Sin((arrow->Rotation) * Math::PI / 180);
     arrow->Timearrow = gcnew System::Diagnostics::Stopwatch;
     arrow->Timearrow->Restart();
     arrow->xInicial = arrow->Position.X;
@@ -185,21 +185,21 @@ void FBAView::SurvivalRender::ProcessCollision(){
     
 }
 
-bool FBAView::SurvivalRender::ProcessCollisionUnits(UnitRender^ unit){
+bool FBAView::SurvivalRender::ProcessCollisionUnits(UnitRender^ unite){
     SFML::Graphics::FloatRect rect1;
     SFML::Graphics::FloatRect rect2;
-    if (unit->unit->band==FBAModel::Units::Band::allies) {
+    if (unite->unit->band==FBAModel::Units::Band::allies) {
         for (int i = 0; i < unit_enemies_field->Count; i++) {
-            rect1.Left = unit->GetGlobalBounds().Left; rect1.Height = unit->GetGlobalBounds().Height; rect1.Top = unit->GetGlobalBounds().Top; rect1.Width = unit->GetGlobalBounds().Width -60;
-            rect2.Left = unit_enemies_field[i]->GetGlobalBounds().Left-60; rect2.Height = unit_enemies_field[i]->GetGlobalBounds().Height; rect2.Top = unit_enemies_field[i]->GetGlobalBounds().Top; rect2.Width = unit_enemies_field[i]->GetGlobalBounds().Width-60;
+            rect1.Left = unite->GetGlobalBounds().Left; rect1.Height = unite->GetGlobalBounds().Height; rect1.Top = unite->GetGlobalBounds().Top; rect1.Width = unite->GetGlobalBounds().Width -95;
+            rect2.Left = unit_enemies_field[i]->GetGlobalBounds().Left+95; rect2.Height = unit_enemies_field[i]->GetGlobalBounds().Height; rect2.Top = unit_enemies_field[i]->GetGlobalBounds().Top; rect2.Width = unit_enemies_field[i]->GetGlobalBounds().Width;
             if (rect1.Intersects(rect2))
                 return true;
         }
     }
     else{
         for (int i = 0; i < unit_allies_field->Count; i++) {
-            rect1.Left = unit->GetGlobalBounds().Left-60; rect1.Height = unit->GetGlobalBounds().Height; rect1.Top = unit->GetGlobalBounds().Top; rect1.Width = unit->GetGlobalBounds().Width;
-            rect2.Left = unit_allies_field[i]->GetGlobalBounds().Left; rect2.Height = unit_allies_field[i]->GetGlobalBounds().Height; rect2.Top = unit_allies_field[i]->GetGlobalBounds().Top; rect2.Width = unit_allies_field[i]->GetGlobalBounds().Width-60;
+            rect1.Left = unite->GetGlobalBounds().Left+95; rect1.Height = unite->GetGlobalBounds().Height; rect1.Top = unite->GetGlobalBounds().Top; rect1.Width = unite->GetGlobalBounds().Width;
+            rect2.Left = unit_allies_field[i]->GetGlobalBounds().Left; rect2.Height = unit_allies_field[i]->GetGlobalBounds().Height; rect2.Top = unit_allies_field[i]->GetGlobalBounds().Top; rect2.Width = unit_allies_field[i]->GetGlobalBounds().Width-95;
             if (rect1.Intersects(rect2))
                 return true;
         }

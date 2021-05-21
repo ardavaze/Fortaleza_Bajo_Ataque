@@ -4,7 +4,7 @@ using namespace System;
 public ref class ArrowRender :Sprite {
 public:
 	void MakeFly();
-	FBAModel::Projectile^ arrow;
+	FBAModel::Projectile^ parrow;
 	float velX;
 	float velY;
 	int xInicial;
