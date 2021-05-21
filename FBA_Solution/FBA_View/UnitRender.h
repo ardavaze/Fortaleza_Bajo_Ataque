@@ -5,11 +5,9 @@ using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
 namespace FBAView {
-	public ref class UnitRender {
+	public ref class UnitRender:Sprite {
 	public:
-		List<Sprite^>^ Attack;
-		List<Sprite^>^ Move;
-		Sprite^ Actual;
+		FBAModel::Units^ unit;
 		Void MakeAttack();
 		Void MakeMove();
 		int indice=0;

@@ -1,5 +1,6 @@
 #pragma once
 #include "UnitRender.h"
+#include "ArrowRender.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -11,12 +12,19 @@ namespace FBAView{
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
 		void Run();
 		void Procesar_evento();
-		Texture^ castle_text;
 		Sprite^ castle;
-		Texture^ background_text;
 		Sprite^ background;
-		List<UnitRender^>^ unit_allies;
-		List<UnitRender^>^ unit_enemies;
+		Sprite^ crossbow;
+		FBAModel::Projectile^ arrowsAvailable;
+		ArrowRender^ arrow;
+		System::Diagnostics::Stopwatch^ TimeThrowArrow;
+		List<FBAModel::Units^>^ unit_allies;
+		List<FBAModel::Units^>^ unit_enemies;
+		List<UnitRender^>^ unit_allies_field;
 		Event event;
+		System::Diagnostics::Stopwatch^ TimeGenerate;
+		void InitializeGraphics();
+		void GenerateUnits();
+		void ThrowArrow();
 	};
 }

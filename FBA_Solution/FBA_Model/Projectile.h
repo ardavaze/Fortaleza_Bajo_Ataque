@@ -5,8 +5,7 @@ namespace FBAModel{
     public:
         int attack_damage;
         int Cooldown;
-        double angle;
         double Velocity;
-        String^ Image;
+        SFML::Graphics::Sprite^ Image;
     };
 }

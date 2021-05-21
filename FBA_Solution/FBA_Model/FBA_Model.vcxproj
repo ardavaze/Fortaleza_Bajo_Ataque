@@ -186,6 +186,23 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFML.Net-2.5\src\SFML.Audio\SFML.Audio.csproj">
+      <Project>{6306d8d1-b10e-4286-ba8f-e5ee1e47a88b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SFML.Net-2.5\src\SFML.Graphics\SFML.Graphics.csproj">
+      <Project>{63396559-62f8-47c5-8684-5ea639ae1804}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SFML.Net-2.5\src\SFML.Net\SFML.Net.csproj">
+      <Project>{ce55f7d4-3acb-4b5d-837f-0f579b76f25b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SFML.Net-2.5\src\SFML.System\SFML.System.csproj">
+      <Project>{44d607e8-25ac-42f7-9057-4f394a7eeaf5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SFML.Net-2.5\src\SFML.Window\SFML.Window.csproj">
+      <Project>{9dd0fbe4-15c0-4a96-a6af-86935a861b4a}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
