@@ -21,10 +21,15 @@ namespace FBAView{
 		List<FBAModel::Units^>^ unit_allies;
 		List<FBAModel::Units^>^ unit_enemies;
 		List<UnitRender^>^ unit_allies_field;
+		List<UnitRender^>^ unit_enemies_field;
 		Event event;
 		System::Diagnostics::Stopwatch^ TimeGenerate;
 		void InitializeGraphics();
 		void GenerateUnits();
 		void ThrowArrow();
+		void GenerateUnits_enemies();
+		System::Diagnostics::Stopwatch^ TimeEnemies;
+		void ProcessCollision();
+		bool ProcessCollisionUnits(UnitRender^ unit);
 	};
 }

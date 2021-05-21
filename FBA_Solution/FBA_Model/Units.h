@@ -7,8 +7,11 @@ namespace FBAModel {
         enum class unit_name{
             Soldier
         };
-        String^ Nombre;
-        unit_name tipo;
+        enum class Band {
+            allies,enemies
+        };
+        Band band;
+        unit_name Nombre;
         List<Sprite^>^ AttackAnimation;
         List<Sprite^>^ MoveAnimation;
         int Vida_max;
