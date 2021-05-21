@@ -24,6 +24,11 @@ void FBAView::SurvivalRender::Run(){
         this->Draw(this->crossbow);
         if (arrow->throwed)
             arrow->MakeFly();
+        else {
+            arrow->Position= crossbow->Position;
+            arrow->Rotation =crossbow ->Rotation;
+        }
+        ProcessCollision();
         this->Draw(this->arrow);
         TimeEnemies->Stop();
         if (TimeEnemies->Elapsed.TotalSeconds > 8) {
@@ -75,7 +80,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
             }
             if (Keyboard::IsKeyPressed(Keyboard::Key::Space)) {
                 TimeThrowArrow->Stop();
-                if (TimeThrowArrow->Elapsed.TotalSeconds > 8) {
+                if (TimeThrowArrow->Elapsed.TotalSeconds > 5) {
                     ThrowArrow();
                     TimeThrowArrow->Restart();
                 }
@@ -108,7 +113,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //Arrow
     arrow->Texture = gcnew Texture("arrow.png");
     arrow->parrow = gcnew FBAModel::Projectile;
-    arrow->Origin = Vector2f(376, 251);
+    arrow->Origin = Vector2f(327, 76);
     arrow->Scale = Vector2f(0.125, 0.125);
     arrow->Position = crossbow->Position;
     arrow->throwed = 0;
@@ -162,14 +167,16 @@ void FBAView::SurvivalRender::GenerateUnits(){
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
-    arrow->throwed = 1;
-    arrow->parrow->Velocity = 600;
-    arrow->velX = arrow->parrow->Velocity * Math::Cos((arrow->Rotation)*Math::PI/180);
-    arrow->velY = arrow->parrow->Velocity * Math::Sin((arrow->Rotation) * Math::PI / 180);
-    arrow->Timearrow = gcnew System::Diagnostics::Stopwatch;
-    arrow->Timearrow->Restart();
-    arrow->xInicial = arrow->Position.X;
-    arrow->yInicial = arrow->Position.Y;
+    if (arrow->throwed == 0) {
+        arrow->throwed = 1;
+        arrow->parrow->Velocity = 600;
+        arrow->velX = arrow->parrow->Velocity * Math::Cos((arrow->Rotation) * Math::PI / 180);
+        arrow->velY = arrow->parrow->Velocity * Math::Sin((arrow->Rotation) * Math::PI / 180);
+        arrow->Timearrow = gcnew System::Diagnostics::Stopwatch;
+        arrow->Timearrow->Restart();
+        arrow->xInicial = arrow->Position.X;
+        arrow->yInicial = arrow->Position.Y;
+    }
 }
 
 void FBAView::SurvivalRender::GenerateUnits_enemies(){    
@@ -182,7 +189,16 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(){
 }
 
 void FBAView::SurvivalRender::ProcessCollision(){
-    
+    SFML::Graphics::FloatRect rect1;
+    if (arrow->analizeCollision) {
+        for (int i = 0; i < unit_enemies_field->Count; i++) {
+            rect1.Left = unit_enemies_field[i]->GetGlobalBounds().Left + 100; rect1.Height = unit_enemies_field[i]->GetGlobalBounds().Height; rect1.Top = unit_enemies_field[i]->GetGlobalBounds().Top; rect1.Width = unit_enemies_field[i]->GetGlobalBounds().Width-120;
+            if (arrow->GetGlobalBounds().Intersects(rect1)) {
+                unit_enemies_field[i]->Color = SFML::Graphics::Color::Red;
+                return;
+            }
+        }
+    }
 }
 
 bool FBAView::SurvivalRender::ProcessCollisionUnits(UnitRender^ unite){

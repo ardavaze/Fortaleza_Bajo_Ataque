@@ -11,5 +11,6 @@ public:
 	int yInicial;
 	bool throwed;
 	System::Diagnostics::Stopwatch^ Timearrow;
+	bool analizeCollision;
 };
 
