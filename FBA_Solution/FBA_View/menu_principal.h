@@ -8,6 +8,7 @@ namespace FBAView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
 	
 	/// <summary>
 	/// Summary for menu_principal
@@ -15,9 +16,11 @@ namespace FBAView {
 	public ref class menu_principal : public System::Windows::Forms::Form
 	{
 	public:
+		SoundPlayer^ sound_menu = gcnew SoundPlayer("menu_music.wav");
 		menu_principal(void)
 		{
 			InitializeComponent();
+			sound_menu->PlayLooping();
 			//
 			//TODO: Add the constructor code here
 			//
