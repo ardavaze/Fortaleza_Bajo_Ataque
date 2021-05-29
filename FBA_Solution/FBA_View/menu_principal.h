@@ -52,7 +52,24 @@ namespace FBAView {
 		else
 			panel->Visible = false;
 	}
+	private: System::Windows::Forms::PictureBox^ background;
+	private: System::Windows::Forms::Label^ title;
 
+	private: Form^ active_Form = nullptr;
+	private: void open_ChildForm(Form^ childForm) {
+	
+		if (active_Form != nullptr)
+			active_Form->Close();
+		active_Form = childForm;
+		childForm->TopLevel = false;
+		childForm->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+		childForm->Dock = System::Windows::Forms::DockStyle::Fill; 
+		panel_childform->Controls->Add(childForm);
+		panel_childform->Tag = childForm;
+		childForm->BringToFront();
+		childForm->Show();
+
+	}
 
 	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
@@ -83,6 +100,8 @@ namespace FBAView {
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ btn_creditos;
 	private: System::Windows::Forms::Button^ btn_config;
+	private: System::Windows::Forms::Panel^ panel_childform;
+
 
 
 
@@ -164,10 +183,15 @@ namespace FBAView {
 			this->btn_historia = (gcnew System::Windows::Forms::Button());
 			this->btn_modo = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->panel_childform = (gcnew System::Windows::Forms::Panel());
+			this->background = (gcnew System::Windows::Forms::PictureBox());
+			this->title = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel_lateral->SuspendLayout();
 			this->panel_tienda->SuspendLayout();
 			this->panel_modo->SuspendLayout();
+			this->panel_childform->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->background))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -413,6 +437,45 @@ namespace FBAView {
 			this->panel1->Size = System::Drawing::Size(368, 40);
 			this->panel1->TabIndex = 22;
 			// 
+			// panel_childform
+			// 
+			this->panel_childform->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)), static_cast<System::Int32>(static_cast<System::Byte>(54)),
+				static_cast<System::Int32>(static_cast<System::Byte>(58)));
+			this->panel_childform->Controls->Add(this->title);
+			this->panel_childform->Controls->Add(this->background);
+			this->panel_childform->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panel_childform->Location = System::Drawing::Point(394, 0);
+			this->panel_childform->Name = L"panel_childform";
+			this->panel_childform->Size = System::Drawing::Size(1500, 1024);
+			this->panel_childform->TabIndex = 5;
+			// 
+			// background
+			// 
+			this->background->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->background->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"background.Image")));
+			this->background->Location = System::Drawing::Point(0, 0);
+			this->background->Name = L"background";
+			this->background->Size = System::Drawing::Size(1500, 1024);
+			this->background->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->background->TabIndex = 0;
+			this->background->TabStop = false;
+			// 
+			// title
+			// 
+			this->title->AutoSize = true;
+			this->title->BackColor = System::Drawing::Color::Black;
+			this->title->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->title->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 26, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->title->ForeColor = System::Drawing::Color::White;
+			this->title->Location = System::Drawing::Point(83, 866);
+			this->title->Name = L"title";
+			this->title->Size = System::Drawing::Size(682, 54);
+			this->title->TabIndex = 1;
+			this->title->Text = L"Fortaleza Bajo Ataque";
+			// 
 			// menu_principal
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -420,7 +483,9 @@ namespace FBAView {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->ClientSize = System::Drawing::Size(1894, 1024);
+			this->Controls->Add(this->panel_childform);
 			this->Controls->Add(this->panel_lateral);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->IsMdiContainer = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"menu_principal";
@@ -431,6 +496,9 @@ namespace FBAView {
 			this->panel_lateral->ResumeLayout(false);
 			this->panel_tienda->ResumeLayout(false);
 			this->panel_modo->ResumeLayout(false);
+			this->panel_childform->ResumeLayout(false);
+			this->panel_childform->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->background))->EndInit();
 			this->ResumeLayout(false);
 
 		}
