@@ -1,5 +1,7 @@
 #pragma once
 #include "SurvivalRender.h"
+#include "campaign.h"
+#include "Survival.h"
 namespace FBAView {
 
 	using namespace System;
@@ -17,6 +19,8 @@ namespace FBAView {
 	{
 	public:
 		SoundPlayer^ sound_menu = gcnew SoundPlayer("menu_music.wav");
+		SoundPlayer^ sound_submenu_click = gcnew SoundPlayer("Trigger_click.wav");
+
 		menu_principal(void)
 		{
 			InitializeComponent();
@@ -508,43 +512,54 @@ namespace FBAView {
 	}
 	private: System::Void btn_modo_Click(System::Object^ sender, System::EventArgs^ e) {
 		Click_panel(panel_modo);
+		
 	}
 	private: System::Void btn_historia_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
+		
+		open_ChildForm(gcnew campaign());
+		
 	}
 	private: System::Void btn_survival_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		SurvivalRender Juego;
-		Juego.Run();
+		
+		open_ChildForm(gcnew Survival());
 
 	}
 	private: System::Void btn_tienda_Click(System::Object^ sender, System::EventArgs^ e) {
 		Click_panel(panel_tienda);
+		
 	}
 
 
 	private: System::Void btn_skin_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
+		
 	}
 
 	private: System::Void btn_backgrounds_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
+		
 	}
 
 	private: System::Void btn_amigos_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
+		
 	}
 
 	private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
+		
 	}
 
 	private: System::Void btn_creditos_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
+		
 	}
 
 	private: System::Void btn_config_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
+		
 	}
 
 
