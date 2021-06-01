@@ -126,6 +126,7 @@
     <ClCompile Include="ArrowRender.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="campaign.cpp" />
+    <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Survival.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="menu_principal.cpp" />
@@ -167,6 +168,9 @@
     <ClInclude Include="campaign.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Survival.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -179,6 +183,9 @@
   <ItemGroup>
     <EmbeddedResource Include="campaign.resx">
       <DependentUpon>campaign.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menu_principal.resx">
       <DependentUpon>menu_principal.h</DependentUpon>
