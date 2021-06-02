@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <User>
+    <username>Danny</username>
+    <password>password</password>
+    <Level_max>0</Level_max>
+    <Age>0</Age>
+    <Score_max>0</Score_max>
+    <Time_max>0</Time_max>
+  </User>
+</ArrayOfUser>

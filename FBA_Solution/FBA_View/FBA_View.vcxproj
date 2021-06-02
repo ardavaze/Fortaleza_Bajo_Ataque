@@ -129,7 +129,7 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Survival.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
-    <ClCompile Include="menu_principal.cpp" />
+    <ClCompile Include="Menu_principal.cpp" />
     <ClCompile Include="UnitRender.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,11 +171,14 @@
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PruebaForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Survival.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="SurvivalRender.h" />
-    <ClInclude Include="menu_principal.h">
+    <ClInclude Include="Menu_principal.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UnitRender.h" />
@@ -187,8 +190,11 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menu_principal.resx">
-      <DependentUpon>menu_principal.h</DependentUpon>
+    <EmbeddedResource Include="Menu_principal.resx">
+      <DependentUpon>Menu_principal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PruebaForm.resx">
+      <DependentUpon>PruebaForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Survival.resx">
       <DependentUpon>Survival.h</DependentUpon>

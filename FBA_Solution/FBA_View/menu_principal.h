@@ -14,28 +14,28 @@ namespace FBAView {
 	using namespace System::Media;
 	
 	/// <summary>
-	/// Summary for menu_principal
+	/// Summary for Menu_principal
 	/// </summary>
-	public ref class menu_principal : public System::Windows::Forms::Form
+	public ref class Menu_principal : public System::Windows::Forms::Form
 	{
 		public:
 			SoundPlayer^ sound_menu = gcnew SoundPlayer("Assets/Audio/menu_music.wav");
 			SoundPlayer^ sound_submenu_click = gcnew SoundPlayer("Trigger_click.wav");
 			static FBAModel::User^ user;
-			menu_principal(void)
-			{
+			Menu_principal(void){
+				if (user == nullptr) {
+					LoginForm^ login = gcnew LoginForm();
+					login->ShowDialog();
+				}
 				InitializeComponent();
 				sound_menu->PlayLooping();
-				//
-				//TODO: Add the constructor code here
-				//
 			}
 
 		protected:
 			/// <summary>
 			/// Clean up any resources being used.
 			/// </summary>
-			~menu_principal()
+			~Menu_principal()
 			{
 				if (components)
 				{
@@ -120,7 +120,7 @@ namespace FBAView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(menu_principal::typeid));
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Menu_principal::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel_lateral = (gcnew System::Windows::Forms::Panel());
 			this->btn_creditos = (gcnew System::Windows::Forms::Button());
@@ -196,7 +196,7 @@ namespace FBAView {
 			this->btn_creditos->TabIndex = 5;
 			this->btn_creditos->Text = L"CREDITOS";
 			this->btn_creditos->UseVisualStyleBackColor = true;
-			this->btn_creditos->Click += gcnew System::EventHandler(this, &menu_principal::btn_creditos_Click);
+			this->btn_creditos->Click += gcnew System::EventHandler(this, &Menu_principal::btn_creditos_Click);
 			// 
 			// btn_config
 			// 
@@ -213,7 +213,7 @@ namespace FBAView {
 			this->btn_config->TabIndex = 7;
 			this->btn_config->Text = L"CONFIGURACIÓN";
 			this->btn_config->UseVisualStyleBackColor = true;
-			this->btn_config->Click += gcnew System::EventHandler(this, &menu_principal::btn_config_Click);
+			this->btn_config->Click += gcnew System::EventHandler(this, &Menu_principal::btn_config_Click);
 			// 
 			// btn_scoreboard
 			// 
@@ -230,7 +230,7 @@ namespace FBAView {
 			this->btn_scoreboard->TabIndex = 28;
 			this->btn_scoreboard->Text = L"PUNTUACIONES";
 			this->btn_scoreboard->UseVisualStyleBackColor = true;
-			this->btn_scoreboard->Click += gcnew System::EventHandler(this, &menu_principal::btn_scoreboard_Click);
+			this->btn_scoreboard->Click += gcnew System::EventHandler(this, &Menu_principal::btn_scoreboard_Click);
 			// 
 			// btn_amigos
 			// 
@@ -247,7 +247,7 @@ namespace FBAView {
 			this->btn_amigos->TabIndex = 27;
 			this->btn_amigos->Text = L"AMIGOS";
 			this->btn_amigos->UseVisualStyleBackColor = true;
-			this->btn_amigos->Click += gcnew System::EventHandler(this, &menu_principal::btn_amigos_Click);
+			this->btn_amigos->Click += gcnew System::EventHandler(this, &Menu_principal::btn_amigos_Click);
 			// 
 			// panel_tienda
 			// 
@@ -278,7 +278,7 @@ namespace FBAView {
 			this->btn_backgrounds->TabIndex = 10;
 			this->btn_backgrounds->Text = L"Fondos";
 			this->btn_backgrounds->UseVisualStyleBackColor = false;
-			this->btn_backgrounds->Click += gcnew System::EventHandler(this, &menu_principal::btn_backgrounds_Click);
+			this->btn_backgrounds->Click += gcnew System::EventHandler(this, &Menu_principal::btn_backgrounds_Click);
 			// 
 			// btn_skin
 			// 
@@ -297,7 +297,7 @@ namespace FBAView {
 			this->btn_skin->TabIndex = 11;
 			this->btn_skin->Text = L"Diseños";
 			this->btn_skin->UseVisualStyleBackColor = false;
-			this->btn_skin->Click += gcnew System::EventHandler(this, &menu_principal::btn_skin_Click);
+			this->btn_skin->Click += gcnew System::EventHandler(this, &Menu_principal::btn_skin_Click);
 			// 
 			// btn_tienda
 			// 
@@ -314,7 +314,7 @@ namespace FBAView {
 			this->btn_tienda->TabIndex = 25;
 			this->btn_tienda->Text = L"TIENDA";
 			this->btn_tienda->UseVisualStyleBackColor = true;
-			this->btn_tienda->Click += gcnew System::EventHandler(this, &menu_principal::btn_tienda_Click);
+			this->btn_tienda->Click += gcnew System::EventHandler(this, &Menu_principal::btn_tienda_Click);
 			// 
 			// panel_modo
 			// 
@@ -345,7 +345,7 @@ namespace FBAView {
 			this->btn_survival->TabIndex = 13;
 			this->btn_survival->Text = L"Supervivencia";
 			this->btn_survival->UseVisualStyleBackColor = false;
-			this->btn_survival->Click += gcnew System::EventHandler(this, &menu_principal::btn_survival_Click);
+			this->btn_survival->Click += gcnew System::EventHandler(this, &Menu_principal::btn_survival_Click);
 			// 
 			// btn_historia
 			// 
@@ -364,7 +364,7 @@ namespace FBAView {
 			this->btn_historia->TabIndex = 14;
 			this->btn_historia->Text = L"Campaña";
 			this->btn_historia->UseVisualStyleBackColor = false;
-			this->btn_historia->Click += gcnew System::EventHandler(this, &menu_principal::btn_historia_Click);
+			this->btn_historia->Click += gcnew System::EventHandler(this, &Menu_principal::btn_historia_Click);
 			// 
 			// btn_modo
 			// 
@@ -381,7 +381,7 @@ namespace FBAView {
 			this->btn_modo->TabIndex = 23;
 			this->btn_modo->Text = L"MODOS DE JUEGO";
 			this->btn_modo->UseVisualStyleBackColor = true;
-			this->btn_modo->Click += gcnew System::EventHandler(this, &menu_principal::btn_modo_Click);
+			this->btn_modo->Click += gcnew System::EventHandler(this, &Menu_principal::btn_modo_Click);
 			// 
 			// panel1
 			// 
@@ -433,7 +433,7 @@ namespace FBAView {
 			this->background->TabIndex = 0;
 			this->background->TabStop = false;
 			// 
-			// menu_principal
+			// Menu_principal
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -445,11 +445,12 @@ namespace FBAView {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->IsMdiContainer = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->Name = L"menu_principal";
+			this->Name = L"Menu_principal";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Fortaleza Bajo Ataque ";
-			this->Load += gcnew System::EventHandler(this, &menu_principal::menu_principal_Load);
-			this->Leave += gcnew System::EventHandler(this, &menu_principal::menu_principal_Leave);
+			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
+			this->Load += gcnew System::EventHandler(this, &Menu_principal::Menu_principal_Load);
+			this->Leave += gcnew System::EventHandler(this, &Menu_principal::Menu_principal_Leave);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->panel_lateral->ResumeLayout(false);
 			this->panel_tienda->ResumeLayout(false);
@@ -461,11 +462,7 @@ namespace FBAView {
 
 		}
 #pragma endregion
-	private: System::Void menu_principal_Load(System::Object^ sender, System::EventArgs^ e) {
-		if (user == nullptr) {
-			LoginForm^ login = gcnew LoginForm();
-			login->ShowDialog();
-		}
+	private: System::Void Menu_principal_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void btn_modo_Click(System::Object^ sender, System::EventArgs^ e) {
 		Click_panel(panel_modo);
@@ -527,7 +524,7 @@ namespace FBAView {
 
 
 
-private: System::Void menu_principal_Leave(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void Menu_principal_Leave(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
 }
 };

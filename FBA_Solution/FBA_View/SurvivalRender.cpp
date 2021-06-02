@@ -162,9 +162,9 @@ void FBAView::SurvivalRender::Procesar_evento(){
 }
 
 void FBAView::SurvivalRender::InitializeGraphics(){
-    background = gcnew Sprite(gcnew Texture("game_background_1.png"));
-    castle = gcnew Sprite(gcnew Texture("c/Asset 27.png"));
-    crossbow = gcnew Sprite(gcnew Texture("crossbow.png"));
+    background = gcnew Sprite(gcnew Texture("Assets/Environment/Maps/game_background_1.png"));
+    castle = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/Asset 27.png"));
+    crossbow = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/crossbow.png"));
     arrow = gcnew ArrowRender;
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
@@ -181,7 +181,7 @@ void FBAView::SurvivalRender::InitializeGraphics(){
     crossbow->Position=Vector2f(500,470);
     crossbow->Rotation = 0;
     //Arrow
-    arrow->Texture = gcnew Texture("arrow.png");
+    arrow->Texture = gcnew Texture("Assets/Environment/MapsElements/arrow.png");
     arrow->arrow = gcnew FBAModel::Projectile;
     arrow->Origin = Vector2f(376, 251);  
     arrow->Scale = Vector2f(0.125,0.125);
@@ -194,14 +194,14 @@ void FBAView::SurvivalRender::InitializeGraphics(){
     unit_allies[0]->MoveAnimation = gcnew List<Sprite^>;
     String^ d;               //auxiliar para Directorio de imagenes
     for (int j = 0; j < 20; j++) {
-        d = j > 9? "c/4_enemies_1_attack_0" + (gcnew String(to_string(j).c_str())) + ".png": //que pasa con la direccion de memoria creada con gcnew
-                    "c/4_enemies_1_attack_00" + (gcnew String(to_string(j).c_str())) + ".png";
+        d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + (gcnew String(to_string(j).c_str())) + ".png": //que pasa con la direccion de memoria creada con gcnew
+                    "Assets/Characters/Soldier/4_enemies_1_attack_00" + (gcnew String(to_string(j).c_str())) + ".png";
         unit_allies[0]->AttackAnimation->Add(gcnew Sprite(gcnew Texture(d)));
         //
         unit_allies[0]->AttackAnimation[j]->Scale = Vector2f((float)0.7, (float)0.7);
         //
-        d = j > 9? "c/4_enemies_1_walk_0" + (gcnew String(to_string(j).c_str())) + ".png": //que pasa con la direccion de memoria creada con gcnew
-                    "c/4_enemies_1_walk_00" + (gcnew String(to_string(j).c_str())) + ".png";
+        d = j > 9? "Assets/Characters/Soldier/4_enemies_1_walk_0" + (gcnew String(to_string(j).c_str())) + ".png": //que pasa con la direccion de memoria creada con gcnew
+                    "Assets/Characters/Soldier/4_enemies_1_walk_00" + (gcnew String(to_string(j).c_str())) + ".png";
         unit_allies[0]->MoveAnimation->Add(gcnew Sprite(gcnew Texture(d)));
         unit_allies[0]->MoveAnimation[j]->Scale = Vector2f((float)0.7, (float)0.7);
         //unit_allies[0]->Move[j]->Position = unit_allies[0]->position;

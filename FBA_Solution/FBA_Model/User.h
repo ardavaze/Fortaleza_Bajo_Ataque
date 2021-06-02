@@ -3,8 +3,8 @@ using namespace System;
 namespace FBAModel {
     public ref class User {
     public:
-        String^ Username;
-        String^ Pasword;
+        String^ username;
+        String^ password;
         int Level_max;
         int Age;
         int Score_max;

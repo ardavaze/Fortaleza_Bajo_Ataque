@@ -18,6 +18,7 @@ namespace FBAView {
 		Graphics^ plotter;
 		static int mousePositionX = 0;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
+		   bool frstTimeEnterTxbPassword;
 	public:
 		static int mousePositionY = 0;
 		LoginForm(void)
@@ -27,6 +28,10 @@ namespace FBAView {
 			// draw lines for textboxes
 			//
 			plotter = this->CreateGraphics();
+			//FBAModel::User^ user = gcnew FBAModel::User(); Por mientras se puede agregar usuarios por aqui
+			//user->username ="Danny";
+			//user->password ="password";
+			//FBA_Controller::FBAController::AddUser(user);
 		}
 
 	protected:
@@ -46,6 +51,9 @@ namespace FBAView {
 	private: System::Windows::Forms::Label^ lblLogin;
 	private: System::Windows::Forms::TextBox^ txbUser;
 	private: System::Windows::Forms::TextBox^ txbPassword;
+
+	private:
+
 	private: System::Windows::Forms::Button^ btnClose;
 	private: System::Windows::Forms::Button^ btnMinimize;
 	private: System::Windows::Forms::LinkLabel^ lklRegister;
@@ -86,12 +94,12 @@ namespace FBAView {
 			// 
 			// splitter1
 			// 
-			this->splitter1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(122)),
-				static_cast<System::Int32>(static_cast<System::Byte>(204)));
+			this->splitter1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(220)), static_cast<System::Int32>(static_cast<System::Byte>(40)),
+				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->splitter1->Enabled = false;
 			this->splitter1->Location = System::Drawing::Point(0, 0);
 			this->splitter1->Name = L"splitter1";
-			this->splitter1->Size = System::Drawing::Size(250, 400);
+			this->splitter1->Size = System::Drawing::Size(250, 370);
 			this->splitter1->TabIndex = 0;
 			this->splitter1->TabStop = false;
 			// 
@@ -99,18 +107,17 @@ namespace FBAView {
 			// 
 			this->btnAccess->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(40)), static_cast<System::Int32>(static_cast<System::Byte>(40)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
-			this->btnAccess->DialogResult = System::Windows::Forms::DialogResult::Cancel;
 			this->btnAccess->FlatAppearance->BorderSize = 0;
 			this->btnAccess->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
-			this->btnAccess->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Gray;
+			this->btnAccess->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
 			this->btnAccess->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnAccess->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnAccess->ForeColor = System::Drawing::Color::LightGray;
-			this->btnAccess->Location = System::Drawing::Point(360, 266);
+			this->btnAccess->Location = System::Drawing::Point(309, 224);
 			this->btnAccess->Name = L"btnAccess";
-			this->btnAccess->Size = System::Drawing::Size(324, 43);
-			this->btnAccess->TabIndex = 0;
+			this->btnAccess->Size = System::Drawing::Size(503, 43);
+			this->btnAccess->TabIndex = 3;
 			this->btnAccess->Text = L"Acceder";
 			this->btnAccess->UseVisualStyleBackColor = false;
 			this->btnAccess->Click += gcnew System::EventHandler(this, &LoginForm::btnAccess_Click);
@@ -118,14 +125,14 @@ namespace FBAView {
 			// lblLogin
 			// 
 			this->lblLogin->AutoSize = true;
-			this->lblLogin->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 19, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblLogin->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblLogin->ForeColor = System::Drawing::Color::LightGray;
-			this->lblLogin->Location = System::Drawing::Point(471, 25);
+			this->lblLogin->Location = System::Drawing::Point(440, 12);
 			this->lblLogin->Name = L"lblLogin";
-			this->lblLogin->Size = System::Drawing::Size(127, 34);
+			this->lblLogin->Size = System::Drawing::Size(244, 35);
 			this->lblLogin->TabIndex = 2;
-			this->lblLogin->Text = L"LOGIN";
+			this->lblLogin->Text = L"CYBERPUCP";
 			// 
 			// txbUser
 			// 
@@ -135,9 +142,9 @@ namespace FBAView {
 			this->txbUser->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->txbUser->ForeColor = System::Drawing::Color::DimGray;
-			this->txbUser->Location = System::Drawing::Point(309, 109);
+			this->txbUser->Location = System::Drawing::Point(309, 87);
 			this->txbUser->Name = L"txbUser";
-			this->txbUser->Size = System::Drawing::Size(410, 25);
+			this->txbUser->Size = System::Drawing::Size(503, 25);
 			this->txbUser->TabIndex = 1;
 			this->txbUser->Text = L"USUARIO";
 			this->txbUser->Enter += gcnew System::EventHandler(this, &LoginForm::txbUser_Enter);
@@ -151,15 +158,14 @@ namespace FBAView {
 			this->txbPassword->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->txbPassword->ForeColor = System::Drawing::Color::DimGray;
-			this->txbPassword->Location = System::Drawing::Point(309, 173);
+			this->txbPassword->Location = System::Drawing::Point(309, 151);
 			this->txbPassword->Name = L"txbPassword";
-			this->txbPassword->Size = System::Drawing::Size(410, 25);
+			this->txbPassword->Size = System::Drawing::Size(503, 25);
 			this->txbPassword->TabIndex = 2;
 			this->txbPassword->Text = L"CONTRASEÑA";
-			this->txbPassword->Click += gcnew System::EventHandler(this, &LoginForm::txbPassword_Click);
 			this->txbPassword->Enter += gcnew System::EventHandler(this, &LoginForm::txbPassword_Enter);
+			this->txbPassword->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &LoginForm::txbPassword_KeyPress);
 			this->txbPassword->Leave += gcnew System::EventHandler(this, &LoginForm::txbPassword_Leave);
-			this->txbPassword->ImeModeChanged += gcnew System::EventHandler(this, &LoginForm::txbPassword_ImeModeChanged);
 			// 
 			// btnClose
 			// 
@@ -168,10 +174,10 @@ namespace FBAView {
 			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnClose->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.Image")));
-			this->btnClose->Location = System::Drawing::Point(768, 10);
+			this->btnClose->Location = System::Drawing::Point(818, 10);
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(20, 20);
-			this->btnClose->TabIndex = 4;
+			this->btnClose->TabIndex = 6;
 			this->btnClose->UseVisualStyleBackColor = true;
 			this->btnClose->Click += gcnew System::EventHandler(this, &LoginForm::btnClose_Click);
 			// 
@@ -182,7 +188,7 @@ namespace FBAView {
 			this->btnMinimize->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
 			this->btnMinimize->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnMinimize->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnMinimize.Image")));
-			this->btnMinimize->Location = System::Drawing::Point(740, 10);
+			this->btnMinimize->Location = System::Drawing::Point(792, 10);
 			this->btnMinimize->Name = L"btnMinimize";
 			this->btnMinimize->Size = System::Drawing::Size(20, 20);
 			this->btnMinimize->TabIndex = 5;
@@ -194,38 +200,43 @@ namespace FBAView {
 			this->lklRegister->ActiveLinkColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->lklRegister->AutoSize = true;
+			this->lklRegister->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->lklRegister->ForeColor = System::Drawing::SystemColors::ButtonFace;
 			this->lklRegister->LinkColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->lklRegister->Location = System::Drawing::Point(441, 327);
+			this->lklRegister->Location = System::Drawing::Point(477, 293);
 			this->lklRegister->Name = L"lklRegister";
-			this->lklRegister->Size = System::Drawing::Size(159, 17);
-			this->lklRegister->TabIndex = 6;
+			this->lklRegister->Size = System::Drawing::Size(163, 18);
+			this->lklRegister->TabIndex = 0;
 			this->lklRegister->TabStop = true;
 			this->lklRegister->Text = L"¿No tienes una cuenta\?";
+			this->lklRegister->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &LoginForm::lklRegister_LinkClicked);
 			// 
 			// linkLabel1
 			// 
 			this->linkLabel1->ActiveLinkColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->linkLabel1->AutoSize = true;
+			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->linkLabel1->LinkColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->linkLabel1->Location = System::Drawing::Point(434, 356);
+			this->linkLabel1->Location = System::Drawing::Point(470, 322);
 			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(174, 17);
-			this->linkLabel1->TabIndex = 7;
+			this->linkLabel1->Size = System::Drawing::Size(179, 18);
+			this->linkLabel1->TabIndex = 4;
 			this->linkLabel1->TabStop = true;
 			this->linkLabel1->Text = L"¿Olvidaste tu contraseña\?";
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(122)),
-				static_cast<System::Int32>(static_cast<System::Byte>(204)));
+			this->pictureBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(220)), static_cast<System::Int32>(static_cast<System::Byte>(40)),
+				static_cast<System::Int32>(static_cast<System::Byte>(40)));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(0, 121);
+			this->pictureBox1->Location = System::Drawing::Point(6, 132);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(236, 142);
+			this->pictureBox1->Size = System::Drawing::Size(236, 94);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 8;
 			this->pictureBox1->TabStop = false;
@@ -235,7 +246,7 @@ namespace FBAView {
 			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->pictureBox2->Location = System::Drawing::Point(247, 0);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(550, 30);
+			this->pictureBox2->Size = System::Drawing::Size(601, 50);
 			this->pictureBox2->TabIndex = 9;
 			this->pictureBox2->TabStop = false;
 			this->pictureBox2->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &LoginForm::pictureBox2_MouseDown);
@@ -243,12 +254,11 @@ namespace FBAView {
 			// 
 			// LoginForm
 			// 
-			this->AcceptButton = this->btnAccess;
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(15)), static_cast<System::Int32>(static_cast<System::Byte>(15)),
 				static_cast<System::Int32>(static_cast<System::Byte>(20)));
-			this->ClientSize = System::Drawing::Size(800, 400);
+			this->ClientSize = System::Drawing::Size(850, 370);
 			this->ControlBox = false;
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->linkLabel1);
@@ -268,7 +278,6 @@ namespace FBAView {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"CyberPUCP 1917";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &LoginForm::LoginForm_FormClosed);
-			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &LoginForm::LoginForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
@@ -277,9 +286,6 @@ namespace FBAView {
 
 		}
 #pragma endregion
-		private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		
-		}
 		private: System::Void LoginForm_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Point p1(this->txbUser->Location.X + 1, this->txbUser->Location.Y + this->txbUser->Size.Height);
 			Point p2(p1.X + txbUser->Size.Width, p1.Y);
@@ -288,6 +294,7 @@ namespace FBAView {
 			plotter->DrawLine(Pens::DimGray, p1, p2);
 			plotter->DrawLine(Pens::DimGray, p3, p4);
 		}
+		private: System::Void LoginForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e);
 		private: System::Void txbUser_Enter(System::Object^ sender, System::EventArgs^ e) {
 			if (txbUser->Text == "USUARIO") {
 				txbUser->Text = "";
@@ -301,11 +308,10 @@ namespace FBAView {
 			}
 		}
 		private: System::Void txbPassword_Enter(System::Object^ sender, System::EventArgs^ e) {
+			frstTimeEnterTxbPassword = 1;
 			if (txbPassword->Text == "CONTRASEÑA") {
 				txbPassword->Text = "";
 				txbPassword->ForeColor = System::Drawing::Color::LightGray;
-				//txbPassword->UseSystemPasswordChar = true;
-				int j = 0;
 			}
 		}
 		private: System::Void txbPassword_Leave(System::Object^ sender, System::EventArgs^ e) {
@@ -315,14 +321,18 @@ namespace FBAView {
 				txbPassword->ForeColor = System::Drawing::Color::DimGray;
 			}
 		}
-		private: System::Void txbPassword_Click(System::Object^ sender, System::EventArgs^ e) {
-			txbPassword->UseSystemPasswordChar = true;
+		private: System::Void txbPassword_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+			if (frstTimeEnterTxbPassword) {
+				txbPassword->UseSystemPasswordChar = true;
+				txbPassword->Text = e->KeyChar.ToString();
+				txbPassword->Select(txbPassword->Text->Length, 0);
+				frstTimeEnterTxbPassword = 0;
+			}
 		}
 		private: System::Void btnAccess_Click(System::Object^ sender, System::EventArgs^ e);
 		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 			Application::Exit();
 		}
-		private: System::Void LoginForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e);
 		private: System::Void btnMinimize_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->WindowState = FormWindowState::Minimized;
 		}
@@ -336,8 +346,7 @@ namespace FBAView {
 				this->Location = Point(this->Location.X + e->Location.X - mousePositionX, this->Location.Y +(e->Location.Y - mousePositionY));
 			}
 		}
-		private: System::Void txbPassword_ImeModeChanged(System::Object^ sender, System::EventArgs^ e) {
-			txbPassword->ResetImeMode();
+		private: System::Void lklRegister_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 		}
 	};
 }

@@ -1,29 +1,46 @@
 #include "pch.h"
 #include "FBA_Controller.h"
+#include "DBController.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
-#include <string>
-using namespace std;
-Texture^ FBA_Controller::FBAController::Get_texture() {
-	return backgroundTexture;
+
+void FBA_Controller::FBAController::InicializeController(){
+	DBController::InicializeController();
 }
 
-void FBA_Controller::FBAController::Set_texture(String^ background) {
-	backgroundTexture = gcnew Texture(background);
+void FBA_Controller::FBAController::SaveUsers()
+{
+	DBController::SaveUsers();
 }
 
-Sprite^ FBA_Controller::FBAController::Get_sprite() {
-
-	return backgroundSprite;
+void FBA_Controller::FBAController::LoadUsers()
+{
+	DBController::LoadUsers();
 }
 
-void FBA_Controller::FBAController::Set_sprite(Texture^ background) {
-	backgroundSprite = gcnew Sprite(background);
-	backgroundSprite->Origin = Vector2f(backgroundSprite->Texture->Size.X / 2.f, backgroundSprite->Texture->Size.Y / 2.f);  //Poner origen en el centro
-	backgroundSprite->Position = Vector2f(960, 540);
-	backgroundSprite->Scale = Vector2f(1920.f / backgroundSprite->Texture->Size.X, 1080.f / backgroundSprite->Texture->Size.Y);
+User^ FBA_Controller::FBAController::ValidateUser(String^ username, String^ password){
+	return DBController::ValidateUser(username, password);
 }
 
+void FBA_Controller::FBAController::AddUser(User^ user){
+	DBController::AddUser(user);
+}
+
+void FBA_Controller::FBAController::UpdateUser(User^ user){
+	DBController::UpdateUser(user);
+}
+
+void FBA_Controller::FBAController::DeleteUser(User^ user){
+	DBController::DeleteUser( user);
+}
+
+List<User^>^ FBA_Controller::FBAController::QueryAllUser(){
+	return DBController::QueryAllUser();
+}
+
+User^ FBA_Controller::FBAController::QueryUserByID(){
+	return DBController::QueryUserByID();
+}

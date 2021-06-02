@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="menu_principal.cpp">
+    <ClCompile Include="Menu_principal.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="SurvivalRender.cpp">
@@ -41,7 +41,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="menu_principal.h">
+    <ClInclude Include="Menu_principal.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SurvivalRender.h">
@@ -63,6 +63,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PruebaForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,12 +1,12 @@
-#include "menu_principal.h"
+#include "Menu_principal.h"
+#include "LoginForm.h"
 using namespace System;
 using namespace System::Windows::Forms;
 [STAThreadAttribute]
 void Main(/*array<String^>^ args*/) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	//LPOOInduction is your project name
-	FBAView::menu_principal form;
+	FBAView::Menu_principal form;
 	Application::Run(% form);
 }
 
