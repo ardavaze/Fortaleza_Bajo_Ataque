@@ -6,6 +6,13 @@ namespace FBAModel {
 	public ref class Game_obj {
 	public:
 		Sprite^ Image;
+		enum class TypeElement {
+			Soldier
+		};
+		enum class Band {
+			Allies, Enemies
+		};
+		Band band;
 	};
 }
 

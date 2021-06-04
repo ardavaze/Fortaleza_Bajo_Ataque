@@ -118,7 +118,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     arrow->Rotation = 0;
     //Unidades Alidas  
     unit_allies->Add(gcnew FBAModel::Units);
-    unit_allies[0]->band = FBAModel::Units::Band::allies;
+    unit_allies[0]->band = FBAModel::Units::Band::Allies;
     unit_allies[0]->AttackAnimation = gcnew List<Sprite^>;
     unit_allies[0]->MoveAnimation = gcnew List<Sprite^>;
     String^ d;               //auxiliar para Directorio de imagenes
@@ -135,7 +135,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[0]->Image = unit_allies[0]->MoveAnimation[0];
     //Unidades Enemigas
     unit_enemies->Add(gcnew FBAModel::Units);
-    unit_enemies[0]->band = FBAModel::Units::Band::enemies;
+    unit_enemies[0]->band = FBAModel::Units::Band::Enemies;
     unit_enemies[0]->AttackAnimation = gcnew List<Sprite^>;
     unit_enemies[0]->MoveAnimation = gcnew List<Sprite^>;
     for (int j = 0; j < 20; j++) {
@@ -161,7 +161,7 @@ void FBAView::SurvivalRender::GenerateUnits(){
     unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image->Texture;
     unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud = 3;
     unit_allies_field[unit_allies_field->Count - 1]->contador = unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud+1;
-    unit_allies_field[unit_allies_field->Count - 1]->position = Vector2f((float)550, (float)550);
+    unit_allies_field[unit_allies_field->Count - 1]->Position = Vector2f((float)550, (float)550);
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
@@ -183,7 +183,7 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(){
     unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image->Texture;
     unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud = 3;
     unit_enemies_field[unit_enemies_field->Count - 1]->contador = unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud + 1;
-    unit_enemies_field[unit_enemies_field->Count - 1]->position = Vector2f((float)1750+ unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, (float)550);
+    unit_enemies_field[unit_enemies_field->Count - 1]->Position = Vector2f((float)1750+ unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, (float)550);
 }
 
 void FBAView::SurvivalRender::ProcessCollision(){
@@ -202,7 +202,7 @@ void FBAView::SurvivalRender::ProcessCollision(){
 bool FBAView::SurvivalRender::ProcessCollisionUnits(UnitRender^ unite){
     SFML::Graphics::FloatRect rect1;
     SFML::Graphics::FloatRect rect2;
-    if (unite->unit->band==FBAModel::Units::Band::allies) {
+    if (unite->unit->band==FBAModel::Units::Band::Allies) {
         for (int i = 0; i < unit_enemies_field->Count; i++) {
             rect1.Left = unite->GetGlobalBounds().Left; rect1.Height = unite->GetGlobalBounds().Height; rect1.Top = unite->GetGlobalBounds().Top; rect1.Width = unite->GetGlobalBounds().Width -95;
             rect2.Left = unit_enemies_field[i]->GetGlobalBounds().Left+95; rect2.Height = unit_enemies_field[i]->GetGlobalBounds().Height; rect2.Top = unit_enemies_field[i]->GetGlobalBounds().Top; rect2.Width = unit_enemies_field[i]->GetGlobalBounds().Width;
