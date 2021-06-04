@@ -154,22 +154,46 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArrowRender.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="campaign.cpp" />
+    <ClCompile Include="Credits.cpp" />
+    <ClCompile Include="Friends.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Menu_principal.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
+    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="Skins.cpp" />
     <ClCompile Include="Survival.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="UnitRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrowRender.h" />
+    <ClInclude Include="Background.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="campaign.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Credits.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Friends.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Menu_principal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Scoreboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Skins.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Survival.h">
@@ -179,14 +203,32 @@
     <ClInclude Include="UnitRender.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Background.resx">
+      <DependentUpon>Background.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="campaign.resx">
       <DependentUpon>campaign.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Credits.resx">
+      <DependentUpon>Credits.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Friends.resx">
+      <DependentUpon>Friends.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_principal.resx">
       <DependentUpon>Menu_principal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scoreboard.resx">
+      <DependentUpon>Scoreboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins.resx">
+      <DependentUpon>Skins.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Survival.resx">
       <DependentUpon>Survival.h</DependentUpon>

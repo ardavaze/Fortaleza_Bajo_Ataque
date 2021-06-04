@@ -3,6 +3,12 @@
 #include "campaign.h"
 #include "Survival.h"
 #include "LoginForm.h"
+#include "Skins.h"
+#include "Background.h"
+#include "Friends.h"
+#include "Scoreboard.h"
+#include "Credits.h"
+#include "Settings.h"
 namespace FBAView {
 
 	using namespace System;
@@ -487,32 +493,32 @@ namespace FBAView {
 
 	private: System::Void btn_skin_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Skins());
 	}
 
 	private: System::Void btn_backgrounds_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Background());
 	}
 
 	private: System::Void btn_amigos_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Friends());
 	}
 
 	private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Scoreboard());
 	}
 
 	private: System::Void btn_creditos_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Credits());
 	}
 
 	private: System::Void btn_config_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Settings());
 	}
 
 
