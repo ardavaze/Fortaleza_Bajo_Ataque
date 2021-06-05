@@ -7,6 +7,9 @@ using namespace System::Collections::Generic;
 
 FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31), "Modo survival", Styles::Fullscreen){
     InitializeGraphics();
+    for (int i = 0; i < 96; i++){
+        physicalSpace[i] = gcnew List<PhysicalElement^>;
+    }
 	this->SetFramerateLimit(60);
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
@@ -14,10 +17,29 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
 }
 
 void FBAView::SurvivalRender::Run(){
-    while(this->IsOpen) {
-        Procesar_evento();
-		this->Clear();
-		this->Draw(this->background);
+    while (this->IsOpen) {
+            for (int i = 2; i < 4; i++){
+                for (int j = 0; j < physicalElemts[i]->Count; j++)
+                    physicalElemts[i][j]->OccupySpace();
+            }
+            for (int i = 1; i < 4; i++) {
+                for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                    physicalElemts[i][j]->ProcessCollision();
+                }
+            }
+            for (int i = 2; i < 4; i++) {
+                for (int j = physicalElemts[i]->Count -1; 0 <= j; j--) {
+                    physicalElemts[i][j]->FreeSpace();
+                }
+            }
+            for (int i = 2; i < 4; i++) {
+                for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                    physicalElemts[i][j]->Todo();
+                }
+            }
+            Procesar_evento();
+        this->Clear();
+        this->Draw(this->background);
         this->Draw(this->castle);
         this->Draw(this->crossbow);
         if (arrow->throwed)
@@ -26,7 +48,6 @@ void FBAView::SurvivalRender::Run(){
             arrow->Position= crossbow->Position;
             arrow->Rotation =crossbow ->Rotation;
         }
-        ProcessCollision();
         this->Draw(this->arrow);
         TimeEnemies->Stop();
         if (TimeEnemies->Elapsed.TotalSeconds > 8) {
@@ -35,21 +56,21 @@ void FBAView::SurvivalRender::Run(){
         }
         else TimeEnemies->Start();
         for (int i = 0; i < unit_allies_field->Count; i++) {
-            if(ProcessCollisionUnits(unit_allies_field[i]))
-                this->unit_allies_field[i]->MakeAttack();
-            else
-                this->unit_allies_field[i]->MakeMove();
+        //    if(ProcessCollisionUnits(unit_allies_field[i]))
+        //        this->unit_allies_field[i]->MakeAttack();
+        //    else
+        //        this->unit_allies_field[i]->MakeMove();
             this->Draw(this->unit_allies_field[i]);
         }
         for (int i = 0; i < unit_enemies_field->Count; i++) {
-            if(ProcessCollisionUnits(unit_enemies_field[i]))
-                this->unit_enemies_field[i]->MakeAttack();
-            else
-                this->unit_enemies_field[i]->MakeMove();
+            //if(ProcessCollisionUnits(unit_enemies_field[i]))
+            //    this->unit_enemies_field[i]->MakeAttack();
+            //else
+            //    this->unit_enemies_field[i]->MakeMove();
             this->Draw(this->unit_enemies_field[i]);
         }
-		this->Display();
-	}
+        this->Display();
+    }
 }
 
 
@@ -90,15 +111,25 @@ void FBAView::SurvivalRender::Procesar_evento(){
 }
 
 void FBAView::SurvivalRender::InitializeGraphics() {
+    physicalElemts = gcnew array<List<PhysicalElement^>^>(4);
     background = gcnew Sprite(gcnew Texture("Assets/Environment/Maps/GameBackground.png"));
-    castle = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/Asset 27.png"));
+    castle = gcnew CastleRender();
     crossbow = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/crossbow.png"));
     arrow = gcnew ArrowRender;
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
+    //physical elements
+    physicalElemts[0]=gcnew List<PhysicalElement^>() ; //Castillo
+    physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
+    physicalElemts[0]->Add(castle);
+    physicalElemts[1]->Add(arrow);
+    physicalElemts[2] = gcnew List<PhysicalElement^>();
+    physicalElemts[3] = gcnew List<PhysicalElement^>();
+
     //Background                                                //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura           
     background->Scale = Vector2f(1920.f / background->Texture->Size.X, 1080.f / background->Texture->Size.Y);
     //Castle                                                     //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura
+    castle->Texture = gcnew Texture("Assets/Environment/MapsElements/Asset 27.png");
     castle->Origin = Vector2f(castle->Texture->Size.X / (float)2, 0);
     castle->Scale = Vector2f((float)-0.7, (float)0.7);
     castle->Origin = Vector2f(0, 1080 / 2);
@@ -143,10 +174,13 @@ void FBAView::SurvivalRender::InitializeGraphics() {
                     "Assets/Characters/Soldier/4_enemies_1_attack_00" + j + ".png";
         unit_enemies[0]->AttackAnimation->Add(gcnew Sprite(gcnew Texture(d)));
         unit_enemies[0]->AttackAnimation[j]->Scale = Vector2f((float)-0.7, (float)0.7);
+        unit_enemies[0]->AttackAnimation[j]->Origin = Vector2f(unit_enemies[0]->AttackAnimation[j]->Texture->Size.X, 0);
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_walk_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_walk_00" + j + ".png";
         unit_enemies[0]->MoveAnimation->Add(gcnew Sprite(gcnew Texture(d)));
         unit_enemies[0]->MoveAnimation[j]->Scale = Vector2f((float)-0.7, (float)0.7);
+        unit_enemies[0]->MoveAnimation[j]->Origin = Vector2f(unit_enemies[0]->MoveAnimation[j]->Texture->Size.X, 0);
+        int k = 0;
     }
     unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0];
     //Aliados en batalla
@@ -157,6 +191,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
 
 void FBAView::SurvivalRender::GenerateUnits(){
     unit_allies_field->Add(gcnew UnitRender);
+    physicalElemts[2]->Add(unit_allies_field[unit_allies_field->Count - 1]);
     unit_allies_field[unit_allies_field->Count - 1]->unit=unit_allies[0];
     unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image->Texture;
     unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud = 3;
@@ -179,6 +214,8 @@ void FBAView::SurvivalRender::ThrowArrow() {
 
 void FBAView::SurvivalRender::GenerateUnits_enemies(){    
     unit_enemies_field->Add(gcnew UnitRender);
+    physicalElemts[3]->Add(unit_enemies_field[unit_enemies_field->Count - 1]);
+    unit_enemies_field[unit_enemies_field->Count - 1]->band = FBAModel::Game_obj::Band::Enemies;
     unit_enemies_field[unit_enemies_field->Count - 1]->unit = unit_enemies[0];
     unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image->Texture;
     unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud = 3;

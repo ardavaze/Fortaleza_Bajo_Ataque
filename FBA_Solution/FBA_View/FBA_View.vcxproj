@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="ArrowRender.cpp" />
     <ClCompile Include="campaign.cpp" />
+    <ClCompile Include="CastleRender.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Menu_principal.cpp" />
     <ClCompile Include="PhysicalElement.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="campaign.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="CastleRender.h" />
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
