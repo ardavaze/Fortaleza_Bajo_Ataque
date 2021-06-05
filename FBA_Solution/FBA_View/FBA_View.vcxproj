@@ -157,7 +157,6 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="campaign.cpp" />
     <ClCompile Include="Credits.cpp" />
-    <ClCompile Include="Friends.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Menu_principal.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
@@ -176,9 +175,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Credits.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="Friends.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
@@ -211,9 +207,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Credits.resx">
       <DependentUpon>Credits.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Friends.resx">
-      <DependentUpon>Friends.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
