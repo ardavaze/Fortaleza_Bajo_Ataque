@@ -142,7 +142,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //Arrow
     arrow->Texture = gcnew Texture("Assets/Environment/MapsElements/arrow.png");
     arrow->parrow = gcnew FBAModel::Projectile;
-    arrow->Origin = Vector2f(327, 76);
+    arrow->Origin = Vector2f(327, 70);
     arrow->Scale = Vector2f(0.125, 0.125);
     arrow->Position = crossbow->Position;
     arrow->throwed = 0;
