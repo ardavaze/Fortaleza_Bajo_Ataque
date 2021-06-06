@@ -92,8 +92,8 @@ namespace FBAView {
 			this->btnBuy3 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->gpb = (gcnew System::Windows::Forms::GroupBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pnlItem1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->pnlItem2->SuspendLayout();
@@ -110,15 +110,15 @@ namespace FBAView {
 			this->btn_close->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btn_close->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DarkGray;
 			this->btn_close->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btn_close->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_close->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 25.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_close->ForeColor = System::Drawing::Color::WhiteSmoke;
-			this->btn_close->Location = System::Drawing::Point(68, 48);
+			this->btn_close->Location = System::Drawing::Point(0, 0);
 			this->btn_close->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_close->Name = L"btn_close";
-			this->btn_close->Size = System::Drawing::Size(78, 62);
+			this->btn_close->Size = System::Drawing::Size(48, 48);
 			this->btn_close->TabIndex = 3;
-			this->btn_close->Text = L"<-";
+			this->btn_close->Text = L"<";
 			this->btn_close->UseVisualStyleBackColor = false;
 			this->btn_close->Click += gcnew System::EventHandler(this, &Background::btn_close_Click);
 			// 
@@ -276,12 +276,12 @@ namespace FBAView {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::LightGray;
-			this->label1->Location = System::Drawing::Point(451, 60);
+			this->label1->Location = System::Drawing::Point(57, 64);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(520, 35);
+			this->label1->Size = System::Drawing::Size(945, 62);
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"Tienda de Fondos de Imagen";
 			// 
@@ -303,6 +303,21 @@ namespace FBAView {
 			this->gpb->TabStop = false;
 			this->gpb->Text = L"Productos disponibles";
 			// 
+			// button2
+			// 
+			this->button2->BackColor = System::Drawing::Color::DimGray;
+			this->button2->FlatAppearance->BorderSize = 0;
+			this->button2->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->button2->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Gray;
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button2->ForeColor = System::Drawing::Color::Honeydew;
+			this->button2->Location = System::Drawing::Point(1112, 30);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(49, 29);
+			this->button2->TabIndex = 8;
+			this->button2->Text = L"<-";
+			this->button2->UseVisualStyleBackColor = false;
+			// 
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::DimGray;
@@ -319,21 +334,6 @@ namespace FBAView {
 			this->button1->TabIndex = 7;
 			this->button1->Text = L"->";
 			this->button1->UseVisualStyleBackColor = false;
-			// 
-			// button2
-			// 
-			this->button2->BackColor = System::Drawing::Color::DimGray;
-			this->button2->FlatAppearance->BorderSize = 0;
-			this->button2->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
-			this->button2->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Gray;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->ForeColor = System::Drawing::Color::Honeydew;
-			this->button2->Location = System::Drawing::Point(1112, 30);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(49, 29);
-			this->button2->TabIndex = 8;
-			this->button2->Text = L"<-";
-			this->button2->UseVisualStyleBackColor = false;
 			// 
 			// Background
 			// 

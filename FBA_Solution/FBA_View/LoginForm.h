@@ -1,5 +1,5 @@
 #pragma once
-
+#include "RegisterForm.h"
 namespace FBAView {
 
 	using namespace System;
@@ -278,6 +278,7 @@ namespace FBAView {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"CyberPUCP 1917";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &LoginForm::LoginForm_FormClosed);
+			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &LoginForm::LoginForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
@@ -293,6 +294,14 @@ namespace FBAView {
 			Point p4(p3.X + txbPassword->Size.Width, p3.Y);
 			plotter->DrawLine(Pens::DimGray, p1, p2);
 			plotter->DrawLine(Pens::DimGray, p3, p4);
+			Point k1(1, 1);
+			Point k2(this->Size.Width-1, 1);
+			Point k3(1, this->Size.Height-1);
+			Point k4(this->Size.Width-1, this->Size.Height-1);
+			plotter->DrawLine(Pens::DimGray, k1, k2);
+			plotter->DrawLine(Pens::DimGray, k3, k4);
+			plotter->DrawLine(Pens::DimGray, k1, k3);
+			plotter->DrawLine(Pens::DimGray, k2, k4);
 		}
 		private: System::Void LoginForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e);
 		private: System::Void txbUser_Enter(System::Object^ sender, System::EventArgs^ e) {
@@ -347,6 +356,11 @@ namespace FBAView {
 			}
 		}
 		private: System::Void lklRegister_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+			this->Hide();
+			RegisterForm^ regist = gcnew RegisterForm();
+			regist->ShowDialog();
 		}
-	};
+	private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
