@@ -36,7 +36,7 @@ namespace FBAView {
 			}
 		}
 	private: System::Windows::Forms::Button^ btn_playSurvival;
-	private: System::Windows::Forms::Button^ btn_close;
+
 	private: System::Windows::Forms::Label^ label_title;
 	private: System::Windows::Forms::Panel^ panel_info;
 	private: System::Windows::Forms::Label^ label1;
@@ -68,7 +68,6 @@ namespace FBAView {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Survival::typeid));
 			this->btn_playSurvival = (gcnew System::Windows::Forms::Button());
-			this->btn_close = (gcnew System::Windows::Forms::Button());
 			this->label_title = (gcnew System::Windows::Forms::Label());
 			this->panel_info = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -95,27 +94,13 @@ namespace FBAView {
 			this->btn_playSurvival->UseVisualStyleBackColor = false;
 			this->btn_playSurvival->Click += gcnew System::EventHandler(this, &Survival::btn_playSurvival_Click);
 			// 
-			// btn_close
-			// 
-			this->btn_close->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->btn_close->Font = (gcnew System::Drawing::Font(L"BankGothic Md BT", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btn_close->ForeColor = System::Drawing::Color::Black;
-			this->btn_close->Location = System::Drawing::Point(0, 0);
-			this->btn_close->Name = L"btn_close";
-			this->btn_close->Size = System::Drawing::Size(47, 48);
-			this->btn_close->TabIndex = 2;
-			this->btn_close->Text = L"<";
-			this->btn_close->UseVisualStyleBackColor = false;
-			this->btn_close->Click += gcnew System::EventHandler(this, &Survival::btn_close_Click_1);
-			// 
 			// label_title
 			// 
 			this->label_title->AutoSize = true;
 			this->label_title->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 48, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label_title->ForeColor = System::Drawing::Color::White;
-			this->label_title->Location = System::Drawing::Point(12, 66);
+			this->label_title->Location = System::Drawing::Point(0, 0);
 			this->label_title->Name = L"label_title";
 			this->label_title->Size = System::Drawing::Size(897, 100);
 			this->label_title->TabIndex = 6;
@@ -184,7 +169,6 @@ namespace FBAView {
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->panel_info);
 			this->Controls->Add(this->label_title);
-			this->Controls->Add(this->btn_close);
 			this->Controls->Add(this->btn_playSurvival);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"Survival";
