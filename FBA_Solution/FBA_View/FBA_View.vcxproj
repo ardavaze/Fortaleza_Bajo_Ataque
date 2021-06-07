@@ -157,9 +157,9 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="campaign.cpp" />
     <ClCompile Include="Credits.cpp" />
-    <ClCompile Include="Friends.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Menu_principal.cpp" />
+    <ClCompile Include="Profile.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Skins.cpp" />
@@ -178,13 +178,13 @@
     <ClInclude Include="Credits.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Friends.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Menu_principal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Profile.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Scoreboard.h">
@@ -212,14 +212,14 @@
     <EmbeddedResource Include="Credits.resx">
       <DependentUpon>Credits.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Friends.resx">
-      <DependentUpon>Friends.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_principal.resx">
       <DependentUpon>Menu_principal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile.resx">
+      <DependentUpon>Profile.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scoreboard.resx">
       <DependentUpon>Scoreboard.h</DependentUpon>
