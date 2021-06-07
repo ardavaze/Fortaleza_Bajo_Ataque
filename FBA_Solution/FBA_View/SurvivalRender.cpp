@@ -18,30 +18,35 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
 
 void FBAView::SurvivalRender::Run(){
     while (this->IsOpen) {
-            for (int i = 2; i < 4; i++){
-                for (int j = 0; j < physicalElemts[i]->Count; j++)
-                    physicalElemts[i][j]->OccupySpace();
+        for (int i = 2; i < 4; i++){
+            for (int j = 0; j < physicalElemts[i]->Count; j++)
+                physicalElemts[i][j]->OccupySpace();
+        }
+        for (int i = 1; i < 4; i++) {
+            for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                physicalElemts[i][j]->ProcessCollision();
             }
-            for (int i = 1; i < 4; i++) {
-                for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                    physicalElemts[i][j]->ProcessCollision();
-                }
+        }
+        for (int i = 2; i < 4; i++) {
+            for (int j = physicalElemts[i]->Count -1; 0 <= j; j--) {
+                physicalElemts[i][j]->FreeSpace();
             }
-            for (int i = 2; i < 4; i++) {
-                for (int j = physicalElemts[i]->Count -1; 0 <= j; j--) {
-                    physicalElemts[i][j]->FreeSpace();
-                }
+        }
+        for (int i = 2; i < 4; i++) {
+            for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                physicalElemts[i][j]->Todo();
             }
-            for (int i = 2; i < 4; i++) {
-                for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                    physicalElemts[i][j]->Todo();
-                }
-            }
-            Procesar_evento();
+        }
+        Procesar_evento();
         this->Clear();
         this->Draw(this->background);
         this->Draw(this->castle);
         this->Draw(this->crossbow);
+        RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400));
+        for (int i = 0; i < 96; i++){
+            da->Position = Vector2f(20 * i, 0);
+            this->Draw(da);
+        }
         if (arrow->throwed)
             arrow->MakeFly();
         else {
@@ -56,17 +61,9 @@ void FBAView::SurvivalRender::Run(){
         }
         else TimeEnemies->Start();
         for (int i = 0; i < unit_allies_field->Count; i++) {
-        //    if(ProcessCollisionUnits(unit_allies_field[i]))
-        //        this->unit_allies_field[i]->MakeAttack();
-        //    else
-        //        this->unit_allies_field[i]->MakeMove();
             this->Draw(this->unit_allies_field[i]);
         }
         for (int i = 0; i < unit_enemies_field->Count; i++) {
-            //if(ProcessCollisionUnits(unit_enemies_field[i]))
-            //    this->unit_enemies_field[i]->MakeAttack();
-            //else
-            //    this->unit_enemies_field[i]->MakeMove();
             this->Draw(this->unit_enemies_field[i]);
         }
         this->Display();
@@ -150,37 +147,29 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //Unidades Alidas  
     unit_allies->Add(gcnew FBAModel::Units);
     unit_allies[0]->band = FBAModel::Units::Band::Allies;
-    unit_allies[0]->AttackAnimation = gcnew List<Sprite^>;
-    unit_allies[0]->MoveAnimation = gcnew List<Sprite^>;
+    unit_allies[0]->AttackAnimation = gcnew List<Texture^>;
+    unit_allies[0]->MoveAnimation = gcnew List<Texture^>;
     String^ d;               //auxiliar para Directorio de imagenes
     for (int j = 0; j < 20; j++) {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_attack_00" + j + ".png";
-        unit_allies[0]->AttackAnimation->Add(gcnew Sprite(gcnew Texture(d)));
-        unit_allies[0]->AttackAnimation[j]->Scale = Vector2f((float)0.7, (float)0.7);
+        unit_allies[0]->AttackAnimation->Add(gcnew Texture(d));
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_walk_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_walk_00" + j + ".png";
-        unit_allies[0]->MoveAnimation->Add(gcnew Sprite(gcnew Texture(d)));
-        unit_allies[0]->MoveAnimation[j]->Scale = Vector2f((float)0.7, (float)0.7);
-    }
+        unit_allies[0]->MoveAnimation->Add(gcnew Texture(d));    }
     unit_allies[0]->Image = unit_allies[0]->MoveAnimation[0];
     //Unidades Enemigas
     unit_enemies->Add(gcnew FBAModel::Units);
     unit_enemies[0]->band = FBAModel::Units::Band::Enemies;
-    unit_enemies[0]->AttackAnimation = gcnew List<Sprite^>;
-    unit_enemies[0]->MoveAnimation = gcnew List<Sprite^>;
+    unit_enemies[0]->AttackAnimation = gcnew List<Texture^>;
+    unit_enemies[0]->MoveAnimation = gcnew List<Texture^>;
     for (int j = 0; j < 20; j++) {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_attack_00" + j + ".png";
-        unit_enemies[0]->AttackAnimation->Add(gcnew Sprite(gcnew Texture(d)));
-        unit_enemies[0]->AttackAnimation[j]->Scale = Vector2f((float)-0.7, (float)0.7);
-        unit_enemies[0]->AttackAnimation[j]->Origin = Vector2f(unit_enemies[0]->AttackAnimation[j]->Texture->Size.X, 0);
+        unit_enemies[0]->AttackAnimation->Add(gcnew Texture(d));
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_walk_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_walk_00" + j + ".png";
-        unit_enemies[0]->MoveAnimation->Add(gcnew Sprite(gcnew Texture(d)));
-        unit_enemies[0]->MoveAnimation[j]->Scale = Vector2f((float)-0.7, (float)0.7);
-        unit_enemies[0]->MoveAnimation[j]->Origin = Vector2f(unit_enemies[0]->MoveAnimation[j]->Texture->Size.X, 0);
-        int k = 0;
+        unit_enemies[0]->MoveAnimation->Add(gcnew Texture(d));
     }
     unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0];
     //Aliados en batalla
@@ -193,10 +182,15 @@ void FBAView::SurvivalRender::GenerateUnits(){
     unit_allies_field->Add(gcnew UnitRender);
     physicalElemts[2]->Add(unit_allies_field[unit_allies_field->Count - 1]);
     unit_allies_field[unit_allies_field->Count - 1]->unit=unit_allies[0];
-    unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image->Texture;
+    unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image;
     unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud = 3;
     unit_allies_field[unit_allies_field->Count - 1]->contador = unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud+1;
     unit_allies_field[unit_allies_field->Count - 1]->Position = Vector2f((float)550, (float)550);
+    unit_allies_field[unit_allies_field->Count - 1]->Scale = Vector2f(0.7, 0.7);
+    unit_allies_field[unit_allies_field->Count - 1]->sizeElement = Vector2i(177 - 42, 284 - 52);
+    unit_allies_field[unit_allies_field->Count - 1]->positionElement = Vector2i(42, 52);
+    unit_allies_field[unit_allies_field->Count - 1]->attackVelocity = 1.2;
+    unit_allies_field[unit_allies_field->Count - 1]->movementVelocity = 1.2;
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
@@ -217,44 +211,16 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(){
     physicalElemts[3]->Add(unit_enemies_field[unit_enemies_field->Count - 1]);
     unit_enemies_field[unit_enemies_field->Count - 1]->band = FBAModel::Game_obj::Band::Enemies;
     unit_enemies_field[unit_enemies_field->Count - 1]->unit = unit_enemies[0];
-    unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image->Texture;
+    unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image;
     unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud = 3;
     unit_enemies_field[unit_enemies_field->Count - 1]->contador = unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud + 1;
-    unit_enemies_field[unit_enemies_field->Count - 1]->Position = Vector2f((float)1750+ unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, (float)550);
+    unit_enemies_field[unit_enemies_field->Count - 1]->Position = Vector2f(1920, (float)550);
+    unit_enemies_field[unit_enemies_field->Count - 1]->Scale = Vector2f(-0.7, 0.7);
+    unit_enemies_field[unit_enemies_field->Count - 1]->Origin = Vector2f(unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, 0);
+    unit_enemies_field[unit_enemies_field->Count - 1]->positionElement = Vector2i(42, 52);
+    unit_enemies_field[unit_enemies_field->Count - 1]->sizeElement = Vector2i(177 - 42, 284 - 52);
+    unit_enemies_field[unit_enemies_field->Count - 1]->attackVelocity = 1.2;
+    unit_enemies_field[unit_enemies_field->Count - 1]->movementVelocity = 1.2;
 }
 
-void FBAView::SurvivalRender::ProcessCollision(){
-    SFML::Graphics::FloatRect rect1;
-    if (arrow->analizeCollision) {
-        for (int i = 0; i < unit_enemies_field->Count; i++) {
-            rect1.Left = unit_enemies_field[i]->GetGlobalBounds().Left + 100; rect1.Height = unit_enemies_field[i]->GetGlobalBounds().Height; rect1.Top = unit_enemies_field[i]->GetGlobalBounds().Top; rect1.Width = unit_enemies_field[i]->GetGlobalBounds().Width-120;
-            if (arrow->GetGlobalBounds().Intersects(rect1)) {
-                unit_enemies_field[i]->Color = SFML::Graphics::Color::Red;
-                return;
-            }
-        }
-    }
-}
-
-bool FBAView::SurvivalRender::ProcessCollisionUnits(UnitRender^ unite){
-    SFML::Graphics::FloatRect rect1;
-    SFML::Graphics::FloatRect rect2;
-    if (unite->unit->band==FBAModel::Units::Band::Allies) {
-        for (int i = 0; i < unit_enemies_field->Count; i++) {
-            rect1.Left = unite->GetGlobalBounds().Left; rect1.Height = unite->GetGlobalBounds().Height; rect1.Top = unite->GetGlobalBounds().Top; rect1.Width = unite->GetGlobalBounds().Width -95;
-            rect2.Left = unit_enemies_field[i]->GetGlobalBounds().Left+95; rect2.Height = unit_enemies_field[i]->GetGlobalBounds().Height; rect2.Top = unit_enemies_field[i]->GetGlobalBounds().Top; rect2.Width = unit_enemies_field[i]->GetGlobalBounds().Width;
-            if (rect1.Intersects(rect2))
-                return true;
-        }
-    }
-    else{
-        for (int i = 0; i < unit_allies_field->Count; i++) {
-            rect1.Left = unite->GetGlobalBounds().Left+95; rect1.Height = unite->GetGlobalBounds().Height; rect1.Top = unite->GetGlobalBounds().Top; rect1.Width = unite->GetGlobalBounds().Width;
-            rect2.Left = unit_allies_field[i]->GetGlobalBounds().Left; rect2.Height = unit_allies_field[i]->GetGlobalBounds().Height; rect2.Top = unit_allies_field[i]->GetGlobalBounds().Top; rect2.Width = unit_allies_field[i]->GetGlobalBounds().Width-95;
-            if (rect1.Intersects(rect2))
-                return true;
-        }
-    }
-    return false;
-}
 

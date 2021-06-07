@@ -159,7 +159,6 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Menu_principal.cpp" />
     <ClCompile Include="PhysicalElement.cpp" />
-    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Survival.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="UnitRender.cpp" />
@@ -177,7 +176,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PhysicalElement.h" />
-    <ClInclude Include="Physics.h" />
     <ClInclude Include="Survival.h">
       <FileType>CppForm</FileType>
     </ClInclude>

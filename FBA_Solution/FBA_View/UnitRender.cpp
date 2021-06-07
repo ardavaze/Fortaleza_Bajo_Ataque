@@ -6,14 +6,7 @@ Void FBAView::UnitRender::MakeAttack(){
 		indice++;
 		if (indice > 19)
 			indice = 0;
-		this->Texture = unit->AttackAnimation[indice]->Texture;
-	}
-	if (this->unit->band == FBAModel::Game_obj::Band::Allies) {
-		this->Scale = Vector2f(0.7, 0.7);
-	}
-	else {
-		this->Scale = Vector2f(-0.7, 0.7);
-		this->Origin = Vector2f(this->Texture->Size.X, 0);
+		this->Texture = unit->AttackAnimation[indice];
 	}
 	contador++;
 }
@@ -24,14 +17,11 @@ Void FBAView::UnitRender::MakeMove(){
 		indice++;
 		if (indice > 19)
 			indice = 0;
-		this->Texture = unit->MoveAnimation[indice]->Texture;
+		this->Texture = unit->MoveAnimation[indice];
 		if(this->unit->band == FBAModel::Units::Band::Allies) {
-			this->Scale = Vector2f(0.7, 0.7);
 			Position= Vector2f(Position.X +2, Position.Y);
 		}
 		else {
-			this->Scale = Vector2f(-0.7, 0.7);
-			this->Origin = Vector2f(this->Texture->Size.X,0);
 			Position= Vector2f(Position.X-2, Position.Y);
 		}
 	}
@@ -39,16 +29,16 @@ Void FBAView::UnitRender::MakeMove(){
 }
 
 void FBAView::UnitRender::ProcessCollision() {
-	for (int i = 0; i < 2; i++) {
-		if (((int(this->Position.X) / 20) + (((int(this->Position.X) % 20) < 10) ? 0 : 1) +
-			(this->TextureRect.Width / 20) + (((this->TextureRect.Width % 20) == 0) ? 0 : 1) + ((this->band == FBAModel::Game_obj::Band::Allies) ? i : (i * -1)))<96) {
-			int k =  (int(this->Position.X) / 20) + ( ( (int(this->Position.X) % 20) < 10) ? 0 : 1 ) +
-				(this->TextureRect.Width / 20) + ( ( (this->TextureRect.Width % 20) == 0) ? 0 : 1) + ( (this->band == FBAModel::Game_obj::Band::Allies) ? i : (i * -1) );
-			for (int j = 0; j < SurvivalRender::physicalSpace[(int(this->Position.X) / 20) + (((int(this->Position.X) % 20) < 10) ? 0 : 1) +
-				(this->TextureRect.Width / 20) + (((this->TextureRect.Width % 20) == 0) ? 0 : 1) + ((this->band == FBAModel::Game_obj::Band::Allies) ? i : (i * -1))]->Count
-				; j++) {
-				if (SurvivalRender::physicalSpace[(int(this->Position.X) / 20) + (((int(this->Position.X) % 20) < 10) ? 0 : 1) +
-					(this->TextureRect.Width / 20) + (((this->TextureRect.Width % 20) == 0) ? 0 : 1) + ((this->band == FBAModel::Game_obj::Band::Allies) ? i : (i * -1))][j]->band != this->band) {
+	int k;
+	for (int i = 0; i < 2; i++) {//recorremos 2 cuadrados del espacio fisico al frente o detras de la unidad
+		if (this->band == Game_obj::Band::Allies)
+			k = (numRectangule + i) ;
+		else
+			k = ((i * -1) - 1);
+		if ( ( (frstRectangule + k) < 96) &&
+			 ( (frstRectangule + k) >= 0 )     ) {
+			for (int j = 0; j < SurvivalRender::physicalSpace[frstRectangule + k]->Count ; j++) {
+				if (SurvivalRender::physicalSpace[frstRectangule + k ][j]->band != this->band) {
 					this->attackMove = 1;
 					return;
 				}
@@ -58,11 +48,41 @@ void FBAView::UnitRender::ProcessCollision() {
 	this->attackMove = 0;
 }
 
-void FBAView::UnitRender::Todo(){
-	if (attackMove)
-		MakeAttack();
-	else
-		MakeMove();
+void FBAView::UnitRender::Todo() {
+	double timeaux;
+	if (this->frstTimeJob) {
+		timeJob->Restart();
+		attackMoveJob = attackMove;
+		frstTimechange = 1;
+		if (attackMove) { totalTimeJob = (1 / attackVelocity); }
+		else {totalTimeJob = (1 / double(movementVelocity));}
+		positionx=Position.X;
+	}
+	frstTimeJob = 0;
+	timeJob->Stop();
+	timeaux = timeJob->Elapsed.TotalSeconds;
+	timeJob->Start();
+	if (timeaux >= (indice + 1) * (totalTimeJob / this->unit->MoveAnimation->Count)) {
+		if (attackMoveJob) {
+			indice = int(timeaux * (this->unit->AttackAnimation->Count / totalTimeJob));
+			if (indice >= 20)indice = 0;
+			this->Texture = unit->AttackAnimation[indice];
+		}
+		else {
+			indice = int(timeaux * (this->unit->MoveAnimation->Count / totalTimeJob));
+			if (indice >= 20)indice = 0;
+			this->Texture = unit->MoveAnimation[indice];
+		}
+	}
+	if (!attackMove) {
+		if (this->unit->band == FBAModel::Units::Band::Allies) {
+			Position = Vector2f(positionx + int(timeaux * movementVelocity * 50), Position.Y);
+		}
+		else {
+			Position = Vector2f(positionx - int(timeaux * movementVelocity * 50), Position.Y);
+		}
+	}
+	if (timeaux >= totalTimeJob) frstTimeJob = 1;
 }
 
 

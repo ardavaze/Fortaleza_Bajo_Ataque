@@ -5,7 +5,7 @@ using namespace System::Collections::Generic;
 namespace FBAModel {
 	public ref class Game_obj {
 	public:
-		Sprite^ Image;
+		Texture^ Image;
 		enum class TypeElement {
 			Soldier
 		};

@@ -1,7 +1,6 @@
 #pragma once
 #include "UnitRender.h"
 #include "ArrowRender.h"
-#include "Physics.h"
 #include "CastleRender.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
@@ -32,8 +31,6 @@ namespace FBAView{
 		void ThrowArrow();
 		void GenerateUnits_enemies();
 		System::Diagnostics::Stopwatch^ TimeEnemies;
-		void ProcessCollision();
-		bool ProcessCollisionUnits(UnitRender^ unit);
 		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(96);
 	};
 }

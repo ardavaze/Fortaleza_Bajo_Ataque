@@ -1,17 +1,23 @@
 #pragma once
-#include "Physics.h"
 using namespace System;
 using namespace SFML::Graphics;
+using namespace FBAModel;
+using namespace SFML::System;
 namespace FBAView {
 	public ref class PhysicalElement : public Sprite {
 	public:
-		FBAModel::Game_obj::TypeElement type;
-		int index;
-		FBAModel::Game_obj::Band band;
-		virtual void ProcessCollision() {}
+		Vector2i sizeElement;//tamaño real del personaje sin considerar el rectangulo de imagen que la contiene
+		Vector2i positionElement;//posicion del comienzo del elemento respecto de la esquina del rectangulo de imagen que la contiene
+		Game_obj::TypeElement type;
+		Game_obj::Band band;
 		void OccupySpace();
 		void FreeSpace();
-		virtual void Todo() {}
-		
+		virtual void ProcessCollision() {}
+		virtual void Todo() {};
+	protected:
+		Vector2f size;
+		array<int>^ index;
+		int frstRectangule;
+		int numRectangule ;
 	};
 }

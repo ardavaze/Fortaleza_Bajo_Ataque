@@ -4,10 +4,9 @@
 namespace FBAModel {
     public ref class Units: public Game_obj {
     public:
-        
         TypeElement Nombre;
-        List<Sprite^>^ AttackAnimation;
-        List<Sprite^>^ MoveAnimation;
+        List<Texture^>^ AttackAnimation;
+        List<Texture^>^ MoveAnimation;
         int Vida_max;
         int attackDamage;
         int Valor_dinero;
