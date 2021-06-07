@@ -16,7 +16,7 @@ void FBAView::ArrowRender::ProcessCollision(){
 	a.X = ((int)this->Position.X + 953*0.125*Math::Cos((this->Rotation)*Math::PI/180) ) / 20;//# del physicalspace
 	a.Y = this->Position.Y + 953 * 0.125 * Math::Sin((this->Rotation) * Math::PI / 180);
 	for (int i = 0; i < SurvivalRender::physicalSpace[a.X]->Count; i++) {
-		if ((SurvivalRender::physicalSpace[a.X][i]->band == FBAModel::Game_obj::Band::Enemies) && (a.Y >= (SurvivalRender::physicalSpace[a.X][i]->Position.Y + SurvivalRender::physicalSpace[a.X][i]->positionElement.Y * Math::Abs(SurvivalRender::physicalSpace[a.X][i]->Scale.Y))) && (a.Y < (SurvivalRender::physicalSpace[a.X][i]->Position.Y + (SurvivalRender::physicalSpace[a.X][i]->positionElement.Y + SurvivalRender::physicalSpace[a.X][i]->sizeElement.Y)*Math::Abs(SurvivalRender::physicalSpace[a.X][i]->Scale.Y)))) {    //Si es enemigo
+		if ((SurvivalRender::physicalSpace[a.X][i]->band == FBAModel::Game_obj::Band::Enemies) && (a.Y >= (SurvivalRender::physicalSpace[a.X][i]->Position.Y + SurvivalRender::physicalSpace[a.X][i]->positionElement.Y * Math::Abs(SurvivalRender::physicalSpace[a.X][i]->Scale.Y))) && (a.Y < (SurvivalRender::physicalSpace[a.X][i]->Position.Y + (SurvivalRender::physicalSpace[a.X][i]->positionElement.Y + SurvivalRender::physicalSpace[a.X][i]->sizeElement.Y*3/4)*Math::Abs(SurvivalRender::physicalSpace[a.X][i]->Scale.Y)))) {    //Si es enemigo
 			impacto = 1;
 			//SurvivalRender::physicalSpace[a][i]->BajarVida(20);
 			SurvivalRender::physicalSpace[a.X][i]->Color=SFML::Graphics::Color::Red;
