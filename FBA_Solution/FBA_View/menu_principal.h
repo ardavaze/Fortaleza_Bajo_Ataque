@@ -3,6 +3,11 @@
 #include "campaign.h"
 #include "Survival.h"
 #include "LoginForm.h"
+#include "Skins.h"
+#include "Background.h"
+#include "Scoreboard.h"
+#include "Credits.h"
+#include "Settings.h"
 namespace FBAView {
 
 	using namespace System;
@@ -82,7 +87,7 @@ namespace FBAView {
 		private: System::Windows::Forms::Panel^ panel_lateral;
 		private: System::Windows::Forms::Button^ btn_scoreboard;
 
-		private: System::Windows::Forms::Button^ btn_amigos;
+
 
 		private: System::Windows::Forms::Panel^ panel_tienda;
 		private: System::Windows::Forms::Button^ btn_backgrounds;
@@ -126,7 +131,6 @@ namespace FBAView {
 			this->btn_creditos = (gcnew System::Windows::Forms::Button());
 			this->btn_config = (gcnew System::Windows::Forms::Button());
 			this->btn_scoreboard = (gcnew System::Windows::Forms::Button());
-			this->btn_amigos = (gcnew System::Windows::Forms::Button());
 			this->panel_tienda = (gcnew System::Windows::Forms::Panel());
 			this->btn_backgrounds = (gcnew System::Windows::Forms::Button());
 			this->btn_skin = (gcnew System::Windows::Forms::Button());
@@ -158,6 +162,7 @@ namespace FBAView {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 4;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &Menu_principal::pictureBox1_Click);
 			// 
 			// panel_lateral
 			// 
@@ -167,7 +172,6 @@ namespace FBAView {
 			this->panel_lateral->Controls->Add(this->btn_creditos);
 			this->panel_lateral->Controls->Add(this->btn_config);
 			this->panel_lateral->Controls->Add(this->btn_scoreboard);
-			this->panel_lateral->Controls->Add(this->btn_amigos);
 			this->panel_lateral->Controls->Add(this->panel_tienda);
 			this->panel_lateral->Controls->Add(this->btn_tienda);
 			this->panel_lateral->Controls->Add(this->panel_modo);
@@ -178,7 +182,7 @@ namespace FBAView {
 			this->panel_lateral->Location = System::Drawing::Point(0, 0);
 			this->panel_lateral->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel_lateral->Name = L"panel_lateral";
-			this->panel_lateral->Size = System::Drawing::Size(350, 1023);
+			this->panel_lateral->Size = System::Drawing::Size(350, 993);
 			this->panel_lateral->TabIndex = 3;
 			// 
 			// btn_creditos
@@ -189,7 +193,7 @@ namespace FBAView {
 			this->btn_creditos->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_creditos->ForeColor = System::Drawing::Color::White;
-			this->btn_creditos->Location = System::Drawing::Point(0, 861);
+			this->btn_creditos->Location = System::Drawing::Point(0, 831);
 			this->btn_creditos->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_creditos->Name = L"btn_creditos";
 			this->btn_creditos->Size = System::Drawing::Size(350, 81);
@@ -206,7 +210,7 @@ namespace FBAView {
 			this->btn_config->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_config->ForeColor = System::Drawing::Color::White;
-			this->btn_config->Location = System::Drawing::Point(0, 942);
+			this->btn_config->Location = System::Drawing::Point(0, 912);
 			this->btn_config->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_config->Name = L"btn_config";
 			this->btn_config->Size = System::Drawing::Size(350, 81);
@@ -223,7 +227,7 @@ namespace FBAView {
 			this->btn_scoreboard->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_scoreboard->ForeColor = System::Drawing::Color::White;
-			this->btn_scoreboard->Location = System::Drawing::Point(0, 664);
+			this->btn_scoreboard->Location = System::Drawing::Point(0, 583);
 			this->btn_scoreboard->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_scoreboard->Name = L"btn_scoreboard";
 			this->btn_scoreboard->Size = System::Drawing::Size(350, 81);
@@ -231,23 +235,6 @@ namespace FBAView {
 			this->btn_scoreboard->Text = L"PUNTUACIONES";
 			this->btn_scoreboard->UseVisualStyleBackColor = true;
 			this->btn_scoreboard->Click += gcnew System::EventHandler(this, &Menu_principal::btn_scoreboard_Click);
-			// 
-			// btn_amigos
-			// 
-			this->btn_amigos->Dock = System::Windows::Forms::DockStyle::Top;
-			this->btn_amigos->FlatAppearance->BorderSize = 0;
-			this->btn_amigos->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btn_amigos->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btn_amigos->ForeColor = System::Drawing::Color::White;
-			this->btn_amigos->Location = System::Drawing::Point(0, 583);
-			this->btn_amigos->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btn_amigos->Name = L"btn_amigos";
-			this->btn_amigos->Size = System::Drawing::Size(350, 81);
-			this->btn_amigos->TabIndex = 27;
-			this->btn_amigos->Text = L"AMIGOS";
-			this->btn_amigos->UseVisualStyleBackColor = true;
-			this->btn_amigos->Click += gcnew System::EventHandler(this, &Menu_principal::btn_amigos_Click);
 			// 
 			// panel_tienda
 			// 
@@ -402,7 +389,7 @@ namespace FBAView {
 			this->panel_childform->Location = System::Drawing::Point(350, 0);
 			this->panel_childform->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel_childform->Name = L"panel_childform";
-			this->panel_childform->Size = System::Drawing::Size(1552, 1023);
+			this->panel_childform->Size = System::Drawing::Size(1552, 993);
 			this->panel_childform->TabIndex = 5;
 			// 
 			// title
@@ -428,7 +415,7 @@ namespace FBAView {
 			this->background->Location = System::Drawing::Point(0, 0);
 			this->background->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->background->Name = L"background";
-			this->background->Size = System::Drawing::Size(1552, 1023);
+			this->background->Size = System::Drawing::Size(1552, 993);
 			this->background->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->background->TabIndex = 0;
 			this->background->TabStop = false;
@@ -439,12 +426,14 @@ namespace FBAView {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(39)),
 				static_cast<System::Int32>(static_cast<System::Byte>(40)));
-			this->ClientSize = System::Drawing::Size(1902, 1023);
+			this->ClientSize = System::Drawing::Size(1902, 993);
 			this->Controls->Add(this->panel_childform);
 			this->Controls->Add(this->panel_lateral);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->IsMdiContainer = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->MaximumSize = System::Drawing::Size(1920, 1080);
+			this->MinimumSize = System::Drawing::Size(1600, 800);
 			this->Name = L"Menu_principal";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Fortaleza Bajo Ataque ";
@@ -483,36 +472,30 @@ namespace FBAView {
 		Click_panel(panel_tienda);
 		
 	}
-
-
 	private: System::Void btn_skin_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Skins());
 	}
 
 	private: System::Void btn_backgrounds_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Background());
 	}
 
-	private: System::Void btn_amigos_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
-		
-	}
 
 	private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Scoreboard());
 	}
 
 	private: System::Void btn_creditos_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Credits());
 	}
 
 	private: System::Void btn_config_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
-		
+		open_ChildForm(gcnew Settings());
 	}
 
 
@@ -526,6 +509,8 @@ namespace FBAView {
 
 private: System::Void Menu_principal_Leave(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
+}
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
