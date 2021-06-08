@@ -2,7 +2,7 @@
 using namespace System::Collections::Generic;
 using namespace FBAModel;
 using namespace System;
-namespace FBA_Controller {
+namespace FBAController {
 	public ref class DBController{
 	private:
 		static List<User^>^ user=gcnew List<User^>;

@@ -8,19 +8,22 @@ namespace FBAView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace FBAModel;
+	using namespace FBAController;
 	/// <summary>
 	/// Summary for RegisterForm
 	/// </summary>
 	public ref class RegisterForm : public System::Windows::Forms::Form
 	{
 	public:
+		Graphics^ plotter;
+		static int mousePositionX = 0;
+		static int mousePositionY = 0;
+		bool close=1;
 		RegisterForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			plotter = this->CreateGraphics();
 		}
 
 	protected:
@@ -35,6 +38,7 @@ namespace FBAView {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ btnRegister;
 	protected:
 
 
@@ -44,7 +48,7 @@ namespace FBAView {
 
 
 
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
@@ -52,18 +56,31 @@ namespace FBAView {
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::TextBox^ textBox4;
-	private: System::Windows::Forms::TextBox^ textBox5;
-	private: System::Windows::Forms::TextBox^ textBox6;
-	private: System::Windows::Forms::TextBox^ textBox7;
+	private: System::Windows::Forms::TextBox^ txbLastNameFath;
+	private: System::Windows::Forms::TextBox^ txbName;
+
+
+
+	private: System::Windows::Forms::TextBox^ txbLastNameMoth;
+
+	private: System::Windows::Forms::TextBox^ txbnickname;
+
+	private: System::Windows::Forms::TextBox^ txbBirthday;
+
+	private: System::Windows::Forms::TextBox^ txbemail;
+	private: System::Windows::Forms::TextBox^ txbPassword;
+
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ btnClose;
+
+	private: System::Windows::Forms::Button^ btnMinimize;
+	private: System::Windows::Forms::Button^ btnBack;
+
+
+	private: System::Windows::Forms::PictureBox^ pictureBox3;
+
 
 	private:
 		/// <summary>
@@ -80,26 +97,28 @@ namespace FBAView {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(RegisterForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnRegister = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+			this->txbLastNameFath = (gcnew System::Windows::Forms::TextBox());
+			this->txbName = (gcnew System::Windows::Forms::TextBox());
+			this->txbLastNameMoth = (gcnew System::Windows::Forms::TextBox());
+			this->txbnickname = (gcnew System::Windows::Forms::TextBox());
+			this->txbBirthday = (gcnew System::Windows::Forms::TextBox());
+			this->txbemail = (gcnew System::Windows::Forms::TextBox());
+			this->txbPassword = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->btnClose = (gcnew System::Windows::Forms::Button());
+			this->btnMinimize = (gcnew System::Windows::Forms::Button());
+			this->btnBack = (gcnew System::Windows::Forms::Button());
+			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -115,26 +134,25 @@ namespace FBAView {
 			this->label1->Size = System::Drawing::Size(328, 31);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Registro de cuenta";
-			this->label1->Click += gcnew System::EventHandler(this, &RegisterForm::label1_Click);
 			// 
-			// button1
+			// btnRegister
 			// 
-			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(50)),
+			this->btnRegister->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(50)),
 				static_cast<System::Int32>(static_cast<System::Byte>(50)));
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
-			this->button1->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnRegister->FlatAppearance->BorderSize = 0;
+			this->btnRegister->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnRegister->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
+			this->btnRegister->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnRegister->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::WhiteSmoke;
-			this->button1->Location = System::Drawing::Point(51, 730);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(589, 49);
-			this->button1->TabIndex = 9;
-			this->button1->Text = L"Register";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &RegisterForm::button1_Click);
+			this->btnRegister->ForeColor = System::Drawing::Color::WhiteSmoke;
+			this->btnRegister->Location = System::Drawing::Point(48, 715);
+			this->btnRegister->Name = L"btnRegister";
+			this->btnRegister->Size = System::Drawing::Size(596, 49);
+			this->btnRegister->TabIndex = 8;
+			this->btnRegister->Text = L"Register";
+			this->btnRegister->UseVisualStyleBackColor = false;
+			this->btnRegister->Click += gcnew System::EventHandler(this, &RegisterForm::btnRegister_Click);
 			// 
 			// label9
 			// 
@@ -144,12 +162,11 @@ namespace FBAView {
 			this->label9->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label9->ForeColor = System::Drawing::Color::SteelBlue;
-			this->label9->Location = System::Drawing::Point(47, 599);
+			this->label9->Location = System::Drawing::Point(42, 594);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(118, 24);
+			this->label9->Size = System::Drawing::Size(112, 23);
 			this->label9->TabIndex = 8;
 			this->label9->Text = L"Correo: ";
-			this->label9->Click += gcnew System::EventHandler(this, &RegisterForm::label9_Click);
 			// 
 			// label3
 			// 
@@ -160,9 +177,9 @@ namespace FBAView {
 			this->label3->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::SteelBlue;
-			this->label3->Location = System::Drawing::Point(49, 100);
+			this->label3->Location = System::Drawing::Point(44, 95);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(128, 24);
+			this->label3->Size = System::Drawing::Size(121, 23);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Nombres:";
 			// 
@@ -174,12 +191,11 @@ namespace FBAView {
 			this->label4->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::SteelBlue;
-			this->label4->Location = System::Drawing::Point(47, 171);
+			this->label4->Location = System::Drawing::Point(42, 166);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(237, 24);
+			this->label4->Size = System::Drawing::Size(227, 23);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Apellido Paterno:";
-			this->label4->Click += gcnew System::EventHandler(this, &RegisterForm::label4_Click);
 			// 
 			// label6
 			// 
@@ -189,12 +205,11 @@ namespace FBAView {
 			this->label6->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label6->ForeColor = System::Drawing::Color::SteelBlue;
-			this->label6->Location = System::Drawing::Point(44, 254);
+			this->label6->Location = System::Drawing::Point(39, 249);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(241, 24);
+			this->label6->Size = System::Drawing::Size(231, 23);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"Apellido Materno:";
-			this->label6->Click += gcnew System::EventHandler(this, &RegisterForm::label6_Click);
 			// 
 			// label7
 			// 
@@ -204,12 +219,11 @@ namespace FBAView {
 			this->label7->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::SteelBlue;
-			this->label7->Location = System::Drawing::Point(44, 343);
+			this->label7->Location = System::Drawing::Point(39, 338);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(132, 24);
+			this->label7->Size = System::Drawing::Size(127, 23);
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"Nickname:";
-			this->label7->Click += gcnew System::EventHandler(this, &RegisterForm::label7_Click);
 			// 
 			// label8
 			// 
@@ -219,112 +233,102 @@ namespace FBAView {
 			this->label8->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label8->ForeColor = System::Drawing::Color::SteelBlue;
-			this->label8->Location = System::Drawing::Point(47, 515);
+			this->label8->Location = System::Drawing::Point(42, 510);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(272, 24);
+			this->label8->Size = System::Drawing::Size(262, 23);
 			this->label8->TabIndex = 7;
 			this->label8->Text = L"Fecha de Nacimiento:";
-			this->label8->Click += gcnew System::EventHandler(this, &RegisterForm::label8_Click);
 			// 
-			// textBox1
+			// txbLastNameFath
 			// 
-			this->textBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			this->txbLastNameFath->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txbLastNameFath->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txbLastNameFath->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->ForeColor = System::Drawing::Color::LightGray;
-			this->textBox1->Location = System::Drawing::Point(51, 195);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(435, 20);
-			this->textBox1->TabIndex = 10;
-			this->textBox1->Text = L"a";
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &RegisterForm::textBox1_TextChanged);
+			this->txbLastNameFath->ForeColor = System::Drawing::Color::LightGray;
+			this->txbLastNameFath->Location = System::Drawing::Point(46, 190);
+			this->txbLastNameFath->Name = L"txbLastNameFath";
+			this->txbLastNameFath->Size = System::Drawing::Size(598, 21);
+			this->txbLastNameFath->TabIndex = 2;
 			// 
-			// textBox2
+			// txbName
 			// 
-			this->textBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			this->txbName->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txbName->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txbName->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->ForeColor = System::Drawing::Color::LightGray;
-			this->textBox2->Location = System::Drawing::Point(53, 124);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(435, 20);
-			this->textBox2->TabIndex = 11;
-			this->textBox2->Text = L"a";
-			this->textBox2->TextChanged += gcnew System::EventHandler(this, &RegisterForm::textBox2_TextChanged);
+			this->txbName->ForeColor = System::Drawing::Color::LightGray;
+			this->txbName->Location = System::Drawing::Point(48, 119);
+			this->txbName->Name = L"txbName";
+			this->txbName->Size = System::Drawing::Size(596, 21);
+			this->txbName->TabIndex = 1;
 			// 
-			// textBox3
+			// txbLastNameMoth
 			// 
-			this->textBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			this->txbLastNameMoth->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->textBox3->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox3->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txbLastNameMoth->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txbLastNameMoth->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox3->ForeColor = System::Drawing::Color::LightGray;
-			this->textBox3->Location = System::Drawing::Point(48, 278);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(430, 20);
-			this->textBox3->TabIndex = 12;
-			this->textBox3->Text = L"a";
+			this->txbLastNameMoth->ForeColor = System::Drawing::Color::LightGray;
+			this->txbLastNameMoth->Location = System::Drawing::Point(43, 273);
+			this->txbLastNameMoth->Name = L"txbLastNameMoth";
+			this->txbLastNameMoth->Size = System::Drawing::Size(601, 21);
+			this->txbLastNameMoth->TabIndex = 3;
 			// 
-			// textBox4
+			// txbnickname
 			// 
-			this->textBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			this->txbnickname->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->textBox4->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox4->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txbnickname->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txbnickname->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox4->ForeColor = System::Drawing::Color::LightGray;
-			this->textBox4->Location = System::Drawing::Point(48, 367);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(435, 20);
-			this->textBox4->TabIndex = 13;
-			this->textBox4->Text = L"a";
+			this->txbnickname->ForeColor = System::Drawing::Color::LightGray;
+			this->txbnickname->Location = System::Drawing::Point(43, 362);
+			this->txbnickname->Name = L"txbnickname";
+			this->txbnickname->Size = System::Drawing::Size(601, 21);
+			this->txbnickname->TabIndex = 4;
 			// 
-			// textBox5
+			// txbBirthday
 			// 
-			this->textBox5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			this->txbBirthday->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->textBox5->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox5->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txbBirthday->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txbBirthday->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox5->ForeColor = System::Drawing::Color::LightGray;
-			this->textBox5->Location = System::Drawing::Point(51, 539);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(437, 20);
-			this->textBox5->TabIndex = 14;
-			this->textBox5->Text = L"a";
+			this->txbBirthday->ForeColor = System::Drawing::Color::LightGray;
+			this->txbBirthday->Location = System::Drawing::Point(46, 534);
+			this->txbBirthday->Name = L"txbBirthday";
+			this->txbBirthday->Size = System::Drawing::Size(598, 21);
+			this->txbBirthday->TabIndex = 6;
 			// 
-			// textBox6
+			// txbemail
 			// 
-			this->textBox6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			this->txbemail->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->textBox6->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox6->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txbemail->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txbemail->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox6->ForeColor = System::Drawing::Color::LightGray;
-			this->textBox6->Location = System::Drawing::Point(49, 623);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(437, 20);
-			this->textBox6->TabIndex = 15;
-			this->textBox6->Text = L"a";
+			this->txbemail->ForeColor = System::Drawing::Color::LightGray;
+			this->txbemail->Location = System::Drawing::Point(44, 618);
+			this->txbemail->Name = L"txbemail";
+			this->txbemail->Size = System::Drawing::Size(600, 21);
+			this->txbemail->TabIndex = 7;
 			// 
-			// textBox7
+			// txbPassword
 			// 
-			this->textBox7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			this->txbPassword->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->textBox7->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox7->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->txbPassword->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->txbPassword->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox7->ForeColor = System::Drawing::Color::LightGray;
-			this->textBox7->Location = System::Drawing::Point(48, 445);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(406, 20);
-			this->textBox7->TabIndex = 16;
-			this->textBox7->Text = L"b";
+			this->txbPassword->ForeColor = System::Drawing::Color::LightGray;
+			this->txbPassword->Location = System::Drawing::Point(43, 440);
+			this->txbPassword->Name = L"txbPassword";
+			this->txbPassword->Size = System::Drawing::Size(601, 21);
+			this->txbPassword->TabIndex = 5;
 			// 
 			// label2
 			// 
@@ -334,9 +338,9 @@ namespace FBAView {
 			this->label2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 13.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::SteelBlue;
-			this->label2->Location = System::Drawing::Point(48, 421);
+			this->label2->Location = System::Drawing::Point(43, 416);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(157, 24);
+			this->label2->Size = System::Drawing::Size(152, 23);
 			this->label2->TabIndex = 17;
 			this->label2->Text = L"Contraseña";
 			// 
@@ -344,60 +348,92 @@ namespace FBAView {
 			// 
 			this->pictureBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(1)));
-			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(0, 0);
+			this->pictureBox1->Location = System::Drawing::Point(0, 644);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(700, 800);
+			this->pictureBox1->Size = System::Drawing::Size(700, 156);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 18;
 			this->pictureBox1->TabStop = false;
 			// 
-			// button2
+			// btnClose
 			// 
-			this->button2->Location = System::Drawing::Point(663, 12);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(25, 23);
-			this->button2->TabIndex = 19;
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &RegisterForm::button2_Click);
+			this->btnClose->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(1)));
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::DarkGray;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.Image")));
+			this->btnClose->Location = System::Drawing::Point(667, 10);
+			this->btnClose->Name = L"btnClose";
+			this->btnClose->Size = System::Drawing::Size(22, 22);
+			this->btnClose->TabIndex = 10;
+			this->btnClose->UseVisualStyleBackColor = false;
+			this->btnClose->Click += gcnew System::EventHandler(this, &RegisterForm::btnClose_Click);
 			// 
-			// button3
+			// btnMinimize
 			// 
-			this->button3->Location = System::Drawing::Point(634, 12);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(23, 22);
-			this->button3->TabIndex = 20;
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &RegisterForm::button3_Click);
+			this->btnMinimize->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(1)));
+			this->btnMinimize->FlatAppearance->BorderSize = 0;
+			this->btnMinimize->FlatAppearance->MouseDownBackColor = System::Drawing::Color::DarkGray;
+			this->btnMinimize->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
+			this->btnMinimize->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnMinimize->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnMinimize.Image")));
+			this->btnMinimize->Location = System::Drawing::Point(639, 10);
+			this->btnMinimize->Name = L"btnMinimize";
+			this->btnMinimize->Size = System::Drawing::Size(22, 22);
+			this->btnMinimize->TabIndex = 9;
+			this->btnMinimize->UseVisualStyleBackColor = false;
+			this->btnMinimize->Click += gcnew System::EventHandler(this, &RegisterForm::btnMinimize_Click);
 			// 
-			// button4
+			// btnBack
 			// 
-			this->button4->Location = System::Drawing::Point(0, 0);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(42, 37);
-			this->button4->TabIndex = 21;
-			this->button4->UseVisualStyleBackColor = true;
+			this->btnBack->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(1)));
+			this->btnBack->FlatAppearance->BorderSize = 0;
+			this->btnBack->FlatAppearance->MouseDownBackColor = System::Drawing::Color::DarkGray;
+			this->btnBack->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DimGray;
+			this->btnBack->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnBack->Location = System::Drawing::Point(0, 0);
+			this->btnBack->Name = L"btnBack";
+			this->btnBack->Size = System::Drawing::Size(42, 37);
+			this->btnBack->TabIndex = 21;
+			this->btnBack->UseVisualStyleBackColor = false;
+			this->btnBack->Click += gcnew System::EventHandler(this, &RegisterForm::btnBack_Click);
+			// 
+			// pictureBox3
+			// 
+			this->pictureBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(1)));
+			this->pictureBox3->Location = System::Drawing::Point(0, 0);
+			this->pictureBox3->Name = L"pictureBox3";
+			this->pictureBox3->Size = System::Drawing::Size(700, 50);
+			this->pictureBox3->TabIndex = 23;
+			this->pictureBox3->TabStop = false;
+			this->pictureBox3->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &RegisterForm::pictureBox3_MouseDown);
+			this->pictureBox3->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &RegisterForm::pictureBox3_MouseMove);
 			// 
 			// RegisterForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(15)), static_cast<System::Int32>(static_cast<System::Byte>(15)),
-				static_cast<System::Int32>(static_cast<System::Byte>(15)));
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(1)));
 			this->ClientSize = System::Drawing::Size(700, 800);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->btnBack);
+			this->Controls->Add(this->btnMinimize);
+			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->textBox7);
-			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->textBox5);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->txbPassword);
+			this->Controls->Add(this->txbemail);
+			this->Controls->Add(this->txbBirthday);
+			this->Controls->Add(this->txbnickname);
+			this->Controls->Add(this->txbLastNameMoth);
+			this->Controls->Add(this->txbName);
+			this->Controls->Add(this->txbLastNameFath);
+			this->Controls->Add(this->btnRegister);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
@@ -405,40 +441,72 @@ namespace FBAView {
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
+			this->Controls->Add(this->pictureBox3);
 			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"RegisterForm";
+			this->Opacity = 0.95;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"RegisterForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &RegisterForm::RegisterForm_FormClosing);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &RegisterForm::RegisterForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label9_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+		private: System::Void btnMinimize_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->WindowState = FormWindowState::Minimized;
+		}
+		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			Application::Exit();
+		}
+		private: System::Void pictureBox3_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			if (e->Button == Windows::Forms::MouseButtons::Left) {
+				mousePositionX = e->Location.X; mousePositionY = e->Location.Y;
+			}
+		}
+		private: System::Void pictureBox3_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			if (e->Button == Windows::Forms::MouseButtons::Left) {
+				this->Location = Point(this->Location.X + e->Location.X - mousePositionX, this->Location.Y + (e->Location.Y - mousePositionY));
+			}
+		}
+		private: System::Void RegisterForm_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			Point p1(this->txbBirthday->Location.X + 1, this->txbBirthday->Location.Y + this->txbBirthday->Size.Height);
+			Point p2(p1.X + txbBirthday->Size.Width, p1.Y);
+			Point p3(this->txbemail->Location.X + 1, this->txbemail->Location.Y + this->txbemail->Size.Height);
+			Point p4(p3.X + txbemail->Size.Width, p3.Y);
+			Point p5(this->txbLastNameFath->Location.X + 1, this->txbLastNameFath->Location.Y + this->txbLastNameFath->Size.Height);
+			Point p6(p5.X + txbLastNameFath->Size.Width, p5.Y);
+			Point p7(this->txbLastNameMoth->Location.X + 1, this->txbLastNameMoth->Location.Y + this->txbLastNameMoth->Size.Height);
+			Point p8(p7.X + txbLastNameMoth->Size.Width, p7.Y);
+			Point p9(this->txbName->Location.X + 1, this->txbName->Location.Y + this->txbName->Size.Height);
+			Point p10(p9.X + txbName->Size.Width, p9.Y);
+			Point p11(this->txbnickname->Location.X + 1, this->txbnickname->Location.Y + this->txbnickname->Size.Height);
+			Point p12(p11.X + txbnickname->Size.Width, p11.Y);
+			Point p13(this->txbPassword->Location.X + 1, this->txbPassword->Location.Y + this->txbPassword->Size.Height);
+			Point p14(p13.X + txbPassword->Size.Width, p13.Y);
+			plotter->DrawLine(Pens::DimGray, p1, p2);
+			plotter->DrawLine(Pens::DimGray, p3, p4);
+			plotter->DrawLine(Pens::DimGray, p5, p6);
+			plotter->DrawLine(Pens::DimGray, p7, p8);
+			plotter->DrawLine(Pens::DimGray, p9, p10);
+			plotter->DrawLine(Pens::DimGray, p11, p12);
+			plotter->DrawLine(Pens::DimGray, p13, p14);
+		}
+		private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Hide();
+			close = 0;
+			Owner->Show();
+		}
+		private: System::Void RegisterForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+			if (close) {
+				Application::Exit();
+			}
+			close = 1;
+		}
+		private: System::Void btnRegister_Click(System::Object^ sender, System::EventArgs^ e);
+	};
 }

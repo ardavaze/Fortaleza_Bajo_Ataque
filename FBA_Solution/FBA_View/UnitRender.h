@@ -10,20 +10,14 @@ namespace FBAView {
 	public:
 		FBAModel::Units^ unit;
 		int life;
-		int damageAttack;
-		double movementVelocity; //en pixeles/segundo
-		double attackVelocity;  //ataques/segundo
-		Void MakeAttack();
-		Void MakeMove();
-		int indice=0;
-		int FactorLentitud;
-		int contador=0;
+		int attackDamage;
+		double movementVelocity; //en metros/segundo(1m=50pix)
+		double attackVelocity;  //ataques/minuto
 		virtual void ProcessCollision() override;
 		virtual void Todo() override;
 		bool attackMove;//1 si debe atacar, 0 si debe moverse
 	protected:
-		bool startJob;
-		bool inProgressJob;
+		int indice = 0;
 		bool frstTimeJob=1;
 		double totalTimeJob;
 		bool attackMoveJob;

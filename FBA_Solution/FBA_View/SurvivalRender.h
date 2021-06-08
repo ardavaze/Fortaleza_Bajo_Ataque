@@ -6,7 +6,7 @@ using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
 using namespace System::Collections::Generic;
-using namespace FBA_Controller;
+using namespace FBAController;
 namespace FBAView{
 	public ref class SurvivalRender : public RenderWindow {
 	public:

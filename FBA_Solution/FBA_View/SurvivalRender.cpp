@@ -158,6 +158,13 @@ void FBAView::SurvivalRender::InitializeGraphics() {
                     "Assets/Characters/Soldier/4_enemies_1_walk_00" + j + ".png";
         unit_allies[0]->MoveAnimation->Add(gcnew Texture(d));    }
     unit_allies[0]->Image = unit_allies[0]->MoveAnimation[0];
+    unit_allies[0]->scale=Vector2f(0.6,0.6);
+    unit_allies[0]->positionElement = Vector2i(42, 52);
+    unit_allies[0]->sizeElement=Vector2i(177-42,284-52) ;
+    unit_allies[0]->attackVelocity = 50;
+    unit_allies[0]->movementVelocity=0.9;
+    unit_allies[0]->moneyValue = 50;
+
     //Unidades Enemigas
     unit_enemies->Add(gcnew FBAModel::Units);
     unit_enemies[0]->band = FBAModel::Units::Band::Enemies;
@@ -172,6 +179,12 @@ void FBAView::SurvivalRender::InitializeGraphics() {
         unit_enemies[0]->MoveAnimation->Add(gcnew Texture(d));
     }
     unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0];
+    unit_enemies[0]->scale = Vector2f(-0.6, 0.6);
+    unit_enemies[0]->positionElement = Vector2i(42, 52);
+    unit_enemies[0]->sizeElement = Vector2i(177 - 42, 284 - 52);
+    unit_enemies[0]->attackVelocity = 50;
+    unit_enemies[0]->movementVelocity = 0.9;
+    unit_enemies[0]->moneyValue = 50;
     //Aliados en batalla
     unit_allies_field = gcnew List<UnitRender^>;
     //Enemigos en batalla
@@ -182,15 +195,16 @@ void FBAView::SurvivalRender::GenerateUnits(){
     unit_allies_field->Add(gcnew UnitRender);
     physicalElemts[2]->Add(unit_allies_field[unit_allies_field->Count - 1]);
     unit_allies_field[unit_allies_field->Count - 1]->unit=unit_allies[0];
+    unit_allies_field[unit_allies_field->Count - 1]->band= unit_allies_field[unit_allies_field->Count - 1]->unit->band;
     unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image;
-    unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud = 3;
-    unit_allies_field[unit_allies_field->Count - 1]->contador = unit_allies_field[unit_allies_field->Count - 1]->FactorLentitud+1;
     unit_allies_field[unit_allies_field->Count - 1]->Position = Vector2f((float)550, (float)550);
-    unit_allies_field[unit_allies_field->Count - 1]->Scale = Vector2f(0.7, 0.7);
-    unit_allies_field[unit_allies_field->Count - 1]->sizeElement = Vector2i(177 - 42, 284 - 52);
-    unit_allies_field[unit_allies_field->Count - 1]->positionElement = Vector2i(42, 52);
-    unit_allies_field[unit_allies_field->Count - 1]->attackVelocity = 1.2;
-    unit_allies_field[unit_allies_field->Count - 1]->movementVelocity = 1.2;
+    unit_allies_field[unit_allies_field->Count - 1]->Scale = unit_allies_field[unit_allies_field->Count - 1]->unit->scale;
+    unit_allies_field[unit_allies_field->Count - 1]->sizeElement = unit_allies_field[unit_allies_field->Count - 1]->unit->sizeElement;
+    unit_allies_field[unit_allies_field->Count - 1]->positionElement = unit_allies_field[unit_allies_field->Count - 1]->unit->positionElement;
+    unit_allies_field[unit_allies_field->Count - 1]->attackVelocity = unit_allies_field[unit_allies_field->Count - 1]->unit->attackVelocity;
+    unit_allies_field[unit_allies_field->Count - 1]->movementVelocity = unit_allies_field[unit_allies_field->Count - 1]->unit->movementVelocity;
+    unit_allies_field[unit_allies_field->Count - 1]->attackDamage =unit_allies_field[unit_allies_field->Count - 1]->unit->attackDamage;
+    unit_allies_field[unit_allies_field->Count - 1]->life=unit_allies_field[unit_allies_field->Count - 1]->unit->Maxlife;
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
@@ -209,18 +223,18 @@ void FBAView::SurvivalRender::ThrowArrow() {
 void FBAView::SurvivalRender::GenerateUnits_enemies(){    
     unit_enemies_field->Add(gcnew UnitRender);
     physicalElemts[3]->Add(unit_enemies_field[unit_enemies_field->Count - 1]);
-    unit_enemies_field[unit_enemies_field->Count - 1]->band = FBAModel::Game_obj::Band::Enemies;
     unit_enemies_field[unit_enemies_field->Count - 1]->unit = unit_enemies[0];
+    unit_enemies_field[unit_enemies_field->Count - 1]->band = unit_enemies_field[unit_enemies_field->Count - 1]->unit->band;
     unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image;
-    unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud = 3;
-    unit_enemies_field[unit_enemies_field->Count - 1]->contador = unit_enemies_field[unit_enemies_field->Count - 1]->FactorLentitud + 1;
     unit_enemies_field[unit_enemies_field->Count - 1]->Position = Vector2f(1920, (float)550);
-    unit_enemies_field[unit_enemies_field->Count - 1]->Scale = Vector2f(-0.7, 0.7);
+    unit_enemies_field[unit_enemies_field->Count - 1]->Scale = unit_enemies_field[unit_enemies_field->Count - 1]->unit->scale;
     unit_enemies_field[unit_enemies_field->Count - 1]->Origin = Vector2f(unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, 0);
-    unit_enemies_field[unit_enemies_field->Count - 1]->positionElement = Vector2i(42, 52);
-    unit_enemies_field[unit_enemies_field->Count - 1]->sizeElement = Vector2i(177 - 42, 284 - 52);
-    unit_enemies_field[unit_enemies_field->Count - 1]->attackVelocity = 1.2;
-    unit_enemies_field[unit_enemies_field->Count - 1]->movementVelocity = 1.2;
+    unit_enemies_field[unit_enemies_field->Count - 1]->positionElement = unit_enemies_field[unit_enemies_field->Count - 1]->unit->positionElement;
+    unit_enemies_field[unit_enemies_field->Count - 1]->sizeElement = unit_enemies_field[unit_enemies_field->Count - 1]->unit->sizeElement;
+    unit_enemies_field[unit_enemies_field->Count - 1]->attackVelocity = unit_enemies_field[unit_enemies_field->Count - 1]->unit->attackVelocity;
+    unit_enemies_field[unit_enemies_field->Count - 1]->movementVelocity = unit_enemies_field[unit_enemies_field->Count - 1]->unit->movementVelocity;
+    unit_enemies_field[unit_enemies_field->Count - 1]->attackDamage = unit_enemies_field[unit_enemies_field->Count - 1]->unit->attackDamage;
+    unit_enemies_field[unit_enemies_field->Count - 1]->life= unit_enemies_field[unit_enemies_field->Count - 1]->unit->Maxlife;
 }
 
 

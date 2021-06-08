@@ -7,40 +7,40 @@ using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
 
-void FBA_Controller::FBAController::InicializeController(){
+void FBAController::FBA_Controller::InicializeController(){
 	DBController::InicializeController();
 }
 
-void FBA_Controller::FBAController::SaveUsers()
+void FBAController::FBA_Controller::SaveUsers()
 {
 	DBController::SaveUsers();
 }
 
-void FBA_Controller::FBAController::LoadUsers()
+void FBAController::FBA_Controller::LoadUsers()
 {
 	DBController::LoadUsers();
 }
 
-User^ FBA_Controller::FBAController::ValidateUser(String^ username, String^ password){
+User^ FBAController::FBA_Controller::ValidateUser(String^ username, String^ password){
 	return DBController::ValidateUser(username, password);
 }
 
-void FBA_Controller::FBAController::AddUser(User^ user){
+void FBAController::FBA_Controller::AddUser(User^ user){
 	DBController::AddUser(user);
 }
 
-void FBA_Controller::FBAController::UpdateUser(User^ user){
+void FBAController::FBA_Controller::UpdateUser(User^ user){
 	DBController::UpdateUser(user);
 }
 
-void FBA_Controller::FBAController::DeleteUser(User^ user){
+void FBAController::FBA_Controller::DeleteUser(User^ user){
 	DBController::DeleteUser( user);
 }
 
-List<User^>^ FBA_Controller::FBAController::QueryAllUser(){
+List<User^>^ FBAController::FBA_Controller::QueryAllUser(){
 	return DBController::QueryAllUser();
 }
 
-User^ FBA_Controller::FBAController::QueryUserByID(){
+User^ FBAController::FBA_Controller::QueryUserByID(){
 	return DBController::QueryUserByID();
 }

@@ -249,6 +249,7 @@ namespace FBAView {
 			this->pictureBox2->Size = System::Drawing::Size(601, 50);
 			this->pictureBox2->TabIndex = 9;
 			this->pictureBox2->TabStop = false;
+			this->pictureBox2->Click += gcnew System::EventHandler(this, &LoginForm::pictureBox2_Click);
 			this->pictureBox2->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &LoginForm::pictureBox2_MouseDown);
 			this->pictureBox2->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &LoginForm::pictureBox2_MouseMove);
 			// 
@@ -358,9 +359,12 @@ namespace FBAView {
 		private: System::Void lklRegister_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 			this->Hide();
 			RegisterForm^ regist = gcnew RegisterForm();
+			regist->Owner = this;
 			regist->ShowDialog();
 		}
 	private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

@@ -31,6 +31,7 @@ namespace FBAView {
 				if (user == nullptr) {
 					LoginForm^ login = gcnew LoginForm();
 					login->ShowDialog();
+					login->Owner = this;
 				}
 				InitializeComponent();
 				sound_menu->PlayLooping();

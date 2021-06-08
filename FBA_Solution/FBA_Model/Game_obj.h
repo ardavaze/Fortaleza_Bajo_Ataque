@@ -9,6 +9,7 @@ namespace FBAModel {
 		enum class TypeElement {
 			Soldier
 		};
+		TypeElement name;
 		enum class Band {
 			Allies, Enemies
 		};

@@ -5,8 +5,8 @@ using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace FBAModel;
-namespace FBA_Controller {
-	public ref class FBAController {
+namespace FBAController {
+	public ref class FBA_Controller {
 	public:
 		static void InicializeController();
 		/*User*/
