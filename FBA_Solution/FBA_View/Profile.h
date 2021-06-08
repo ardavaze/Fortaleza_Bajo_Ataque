@@ -52,7 +52,7 @@ namespace FBAView {
 
 	private: System::Windows::Forms::Label^ label_title;
 	private: System::Windows::Forms::ListView^ listView1;
-	private: System::Windows::Forms::Panel^ panel1;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ btn_cancel;
 	private: System::Windows::Forms::Button^ btn_OK;
@@ -99,7 +99,6 @@ namespace FBAView {
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			this->name = (gcnew System::Windows::Forms::ColumnHeader());
 			this->rank = (gcnew System::Windows::Forms::ColumnHeader());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->textBox_max_time = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_level = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_skill_points = (gcnew System::Windows::Forms::TextBox());
@@ -113,7 +112,6 @@ namespace FBAView {
 			this->btn_update = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label_friends_list = (gcnew System::Windows::Forms::Label());
-			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -152,25 +150,6 @@ namespace FBAView {
 			this->rank->Text = L"Insignia";
 			this->rank->Width = 146;
 			// 
-			// panel1
-			// 
-			this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->panel1->Controls->Add(this->textBox_max_time);
-			this->panel1->Controls->Add(this->textBox_level);
-			this->panel1->Controls->Add(this->textBox_skill_points);
-			this->panel1->Controls->Add(this->textBox_emerald);
-			this->panel1->Controls->Add(this->textBox_rank);
-			this->panel1->Controls->Add(this->pictureBox1);
-			this->panel1->Controls->Add(this->textBox_username);
-			this->panel1->Controls->Add(this->label2);
-			this->panel1->Controls->Add(this->btn_cancel);
-			this->panel1->Controls->Add(this->btn_OK);
-			this->panel1->Controls->Add(this->btn_update);
-			this->panel1->Location = System::Drawing::Point(40, 243);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1012, 719);
-			this->panel1->TabIndex = 8;
-			// 
 			// textBox_max_time
 			// 
 			this->textBox_max_time->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
@@ -179,7 +158,7 @@ namespace FBAView {
 			this->textBox_max_time->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_max_time->ForeColor = System::Drawing::Color::White;
-			this->textBox_max_time->Location = System::Drawing::Point(448, 468);
+			this->textBox_max_time->Location = System::Drawing::Point(572, 683);
 			this->textBox_max_time->Name = L"textBox_max_time";
 			this->textBox_max_time->ReadOnly = true;
 			this->textBox_max_time->Size = System::Drawing::Size(251, 26);
@@ -194,7 +173,7 @@ namespace FBAView {
 			this->textBox_level->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_level->ForeColor = System::Drawing::Color::White;
-			this->textBox_level->Location = System::Drawing::Point(448, 403);
+			this->textBox_level->Location = System::Drawing::Point(572, 632);
 			this->textBox_level->Name = L"textBox_level";
 			this->textBox_level->ReadOnly = true;
 			this->textBox_level->Size = System::Drawing::Size(251, 26);
@@ -209,7 +188,7 @@ namespace FBAView {
 			this->textBox_skill_points->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_skill_points->ForeColor = System::Drawing::Color::White;
-			this->textBox_skill_points->Location = System::Drawing::Point(448, 353);
+			this->textBox_skill_points->Location = System::Drawing::Point(572, 568);
 			this->textBox_skill_points->Name = L"textBox_skill_points";
 			this->textBox_skill_points->ReadOnly = true;
 			this->textBox_skill_points->Size = System::Drawing::Size(251, 26);
@@ -224,7 +203,7 @@ namespace FBAView {
 			this->textBox_emerald->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_emerald->ForeColor = System::Drawing::Color::White;
-			this->textBox_emerald->Location = System::Drawing::Point(448, 307);
+			this->textBox_emerald->Location = System::Drawing::Point(572, 523);
 			this->textBox_emerald->Name = L"textBox_emerald";
 			this->textBox_emerald->ReadOnly = true;
 			this->textBox_emerald->Size = System::Drawing::Size(251, 26);
@@ -239,7 +218,7 @@ namespace FBAView {
 			this->textBox_rank->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_rank->ForeColor = System::Drawing::Color::White;
-			this->textBox_rank->Location = System::Drawing::Point(448, 260);
+			this->textBox_rank->Location = System::Drawing::Point(572, 470);
 			this->textBox_rank->Name = L"textBox_rank";
 			this->textBox_rank->ReadOnly = true;
 			this->textBox_rank->Size = System::Drawing::Size(251, 26);
@@ -249,7 +228,7 @@ namespace FBAView {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(466, 105);
+			this->pictureBox1->Location = System::Drawing::Point(607, 357);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(106, 98);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -264,7 +243,7 @@ namespace FBAView {
 			this->textBox_username->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_username->ForeColor = System::Drawing::Color::White;
-			this->textBox_username->Location = System::Drawing::Point(448, 55);
+			this->textBox_username->Location = System::Drawing::Point(572, 271);
 			this->textBox_username->Name = L"textBox_username";
 			this->textBox_username->ReadOnly = true;
 			this->textBox_username->Size = System::Drawing::Size(251, 26);
@@ -277,7 +256,7 @@ namespace FBAView {
 			this->label2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(42, 55);
+			this->label2->Location = System::Drawing::Point(84, 271);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(328, 475);
 			this->label2->TabIndex = 12;
@@ -288,7 +267,7 @@ namespace FBAView {
 			// 
 			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_cancel->Location = System::Drawing::Point(838, 667);
+			this->btn_cancel->Location = System::Drawing::Point(753, 773);
 			this->btn_cancel->Name = L"btn_cancel";
 			this->btn_cancel->Size = System::Drawing::Size(146, 36);
 			this->btn_cancel->TabIndex = 11;
@@ -300,7 +279,7 @@ namespace FBAView {
 			// 
 			this->btn_OK->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_OK->Location = System::Drawing::Point(681, 666);
+			this->btn_OK->Location = System::Drawing::Point(607, 773);
 			this->btn_OK->Name = L"btn_OK";
 			this->btn_OK->Size = System::Drawing::Size(140, 37);
 			this->btn_OK->TabIndex = 10;
@@ -311,7 +290,7 @@ namespace FBAView {
 			// 
 			this->btn_update->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_update->Location = System::Drawing::Point(512, 666);
+			this->btn_update->Location = System::Drawing::Point(438, 772);
 			this->btn_update->Name = L"btn_update";
 			this->btn_update->Size = System::Drawing::Size(154, 37);
 			this->btn_update->TabIndex = 9;
@@ -350,16 +329,24 @@ namespace FBAView {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
 			this->ClientSize = System::Drawing::Size(1552, 1023);
+			this->Controls->Add(this->btn_cancel);
+			this->Controls->Add(this->textBox_max_time);
+			this->Controls->Add(this->btn_OK);
 			this->Controls->Add(this->label_friends_list);
-			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->btn_update);
+			this->Controls->Add(this->textBox_level);
+			this->Controls->Add(this->textBox_skill_points);
 			this->Controls->Add(this->listView1);
+			this->Controls->Add(this->textBox_emerald);
 			this->Controls->Add(this->label1);
+			this->Controls->Add(this->textBox_rank);
 			this->Controls->Add(this->label_title);
+			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->textBox_username);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"Profile";
 			this->Text = L"Profile";
-			this->panel1->ResumeLayout(false);
-			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -386,5 +373,6 @@ private: System::Void btn_update_Click(System::Object^ sender, System::EventArgs
 private: System::Void btn_cancel_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReadOnly_true();
 }
+
 };
 }
