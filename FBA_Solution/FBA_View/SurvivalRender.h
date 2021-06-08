@@ -1,18 +1,20 @@
 #pragma once
 #include "UnitRender.h"
 #include "ArrowRender.h"
+#include "CastleRender.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
 using namespace System::Collections::Generic;
-using namespace FBA_Controller;
+using namespace FBAController;
 namespace FBAView{
 	public ref class SurvivalRender : public RenderWindow {
 	public:
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
-		void Run();
-		void Procesar_evento();
-		Sprite^ castle;
+		array<List<PhysicalElement^>^>^ physicalElemts;
+		Void Run();
+		Void Procesar_evento();
+		CastleRender^ castle;
 		Sprite^ background;
 		Sprite^ crossbow;
 		FBAModel::Projectile^ arrowsAvailable;
@@ -29,7 +31,6 @@ namespace FBAView{
 		void ThrowArrow();
 		void GenerateUnits_enemies();
 		System::Diagnostics::Stopwatch^ TimeEnemies;
-		void ProcessCollision();
-		bool ProcessCollisionUnits(UnitRender^ unit);
+		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(96);
 	};
 }

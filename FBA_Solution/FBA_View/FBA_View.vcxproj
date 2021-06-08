@@ -123,12 +123,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ArrowRender.cpp" />
-    <ClCompile Include="SurvivalRender.cpp" />
-    <ClCompile Include="menu_principal.cpp" />
-    <ClCompile Include="UnitRender.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FBA_Controller\FBA_Controller.vcxproj">
       <Project>{57224f00-dc01-4d92-b957-dca46671b67e}</Project>
     </ProjectReference>
@@ -159,16 +153,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArrowRender.cpp" />
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="campaign.cpp" />
+    <ClCompile Include="Credits.cpp" />
+    <ClCompile Include="CastleRender.cpp" />
+    <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="Menu_principal.cpp" />
+    <ClCompile Include="PhysicalElement.cpp" />
+    <ClCompile Include="RegisterForm.cpp" />
+    <ClCompile Include="Profile.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
+    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="Skins.cpp" />
+    <ClCompile Include="Survival.cpp" />
+    <ClCompile Include="SurvivalRender.cpp" />
+    <ClCompile Include="UnitRender.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="ArrowRender.h" />
-    <ClInclude Include="SurvivalRender.h" />
-    <ClInclude Include="menu_principal.h">
+    <ClInclude Include="Background.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="campaign.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="CastleRender.h" />
+    <ClInclude Include="Credits.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Menu_principal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="RegisterForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Profile.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Scoreboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Skins.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PhysicalElement.h" />
+    <ClInclude Include="Survival.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SurvivalRender.h" />
     <ClInclude Include="UnitRender.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="menu_principal.resx">
-      <DependentUpon>menu_principal.h</DependentUpon>
+    <EmbeddedResource Include="Background.resx">
+      <DependentUpon>Background.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="campaign.resx">
+      <DependentUpon>campaign.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Credits.resx">
+      <DependentUpon>Credits.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu_principal.resx">
+      <DependentUpon>Menu_principal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile.resx">
+      <DependentUpon>Profile.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scoreboard.resx">
+      <DependentUpon>Scoreboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins.resx">
+      <DependentUpon>Skins.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Survival.resx">
+      <DependentUpon>Survival.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

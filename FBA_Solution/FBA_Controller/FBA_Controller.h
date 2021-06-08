@@ -4,19 +4,19 @@ using namespace SFML::Window;
 using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
-#include <string>
-using namespace std;
-namespace FBA_Controller {
-	public ref class FBAController {
+using namespace FBAModel;
+namespace FBAController {
+	public ref class FBA_Controller {
 	public:
-		static RenderWindow^ window;
-		static Texture^ backgroundTexture;
-		static Sprite^ backgroundSprite;
-		static Texture^ Get_texture();
-		static void Set_texture(String^ background);
-		static Sprite^ Get_sprite();
-		static void Set_sprite(Texture^ background);
-		static List<Texture^>^ src_attack;
-		static List<Sprite^>^ ani_attack;
+		static void InicializeController();
+		/*User*/
+		static void SaveUsers();
+		static void LoadUsers();
+		static User^ ValidateUser(String^ username, String^ password);
+		static void AddUser(User^);
+		static void UpdateUser(User^);
+		static void DeleteUser(User^);
+		static List<User^>^ QueryAllUser();
+		static User^ QueryUserByID();
 	};
 }

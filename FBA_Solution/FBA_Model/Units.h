@@ -1,21 +1,19 @@
 #pragma once
 #include "Game_obj.h"
-
+using namespace SFML::System;
 namespace FBAModel {
     public ref class Units: public Game_obj {
     public:
-        enum class unit_name{
-            Soldier
-        };
-        enum class Band {
-            allies,enemies
-        };
-        Band band;
-        unit_name Nombre;
-        List<Sprite^>^ AttackAnimation;
-        List<Sprite^>^ MoveAnimation;
-        int Vida_max;
+        List<Texture^>^ AttackAnimation;
+        List<Texture^>^ MoveAnimation;
+        List<Texture^>^ DieAnimation;
+        int Maxlife;
         int attackDamage;
-        int Valor_dinero;
-    };
+        double movementVelocity;
+        double attackVelocity;
+        int moneyValue;
+        Vector2f scale;      //la escala que debe tener la imagen al dibujarla
+        Vector2i sizeElement;     //tamaño real del personaje sin considerar el rectangulo de imagen que la contiene
+        Vector2i positionElement; //posicion del comienzo del elemento respecto de la esquina del rectangulo de imagen que la contiene 
+    };  
 }
