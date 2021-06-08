@@ -42,11 +42,11 @@ void FBAView::SurvivalRender::Run(){
         this->Draw(this->background);
         this->Draw(this->castle);
         this->Draw(this->crossbow);
-        RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400));
-        for (int i = 0; i < 96; i++){
-            da->Position = Vector2f(20 * i, 0);
-            this->Draw(da);
-        }
+        //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
+        //for (int i = 0; i < 96; i++){
+        //    da->Position = Vector2f(20 * i, 0);
+        //    this->Draw(da);
+        //}
         if (arrow->throwed)
             arrow->MakeFly();
         else {
@@ -197,7 +197,7 @@ void FBAView::SurvivalRender::GenerateUnits(){
     unit_allies_field[unit_allies_field->Count - 1]->unit=unit_allies[0];
     unit_allies_field[unit_allies_field->Count - 1]->band= unit_allies_field[unit_allies_field->Count - 1]->unit->band;
     unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image;
-    unit_allies_field[unit_allies_field->Count - 1]->Position = Vector2f((float)550, (float)550);
+    unit_allies_field[unit_allies_field->Count - 1]->Position = Vector2f((float)550, (float)560);
     unit_allies_field[unit_allies_field->Count - 1]->Scale = unit_allies_field[unit_allies_field->Count - 1]->unit->scale;
     unit_allies_field[unit_allies_field->Count - 1]->sizeElement = unit_allies_field[unit_allies_field->Count - 1]->unit->sizeElement;
     unit_allies_field[unit_allies_field->Count - 1]->positionElement = unit_allies_field[unit_allies_field->Count - 1]->unit->positionElement;
@@ -226,7 +226,7 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(){
     unit_enemies_field[unit_enemies_field->Count - 1]->unit = unit_enemies[0];
     unit_enemies_field[unit_enemies_field->Count - 1]->band = unit_enemies_field[unit_enemies_field->Count - 1]->unit->band;
     unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image;
-    unit_enemies_field[unit_enemies_field->Count - 1]->Position = Vector2f(1920, (float)550);
+    unit_enemies_field[unit_enemies_field->Count - 1]->Position = Vector2f(1920, (float)560);
     unit_enemies_field[unit_enemies_field->Count - 1]->Scale = unit_enemies_field[unit_enemies_field->Count - 1]->unit->scale;
     unit_enemies_field[unit_enemies_field->Count - 1]->Origin = Vector2f(unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, 0);
     unit_enemies_field[unit_enemies_field->Count - 1]->positionElement = unit_enemies_field[unit_enemies_field->Count - 1]->unit->positionElement;

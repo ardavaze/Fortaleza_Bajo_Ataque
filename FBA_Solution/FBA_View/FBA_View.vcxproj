@@ -162,6 +162,7 @@
     <ClCompile Include="Menu_principal.cpp" />
     <ClCompile Include="PhysicalElement.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
+    <ClCompile Include="Profile.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Skins.cpp" />
@@ -188,6 +189,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RegisterForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Profile.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Scoreboard.h">
@@ -224,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile.resx">
+      <DependentUpon>Profile.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scoreboard.resx">
       <DependentUpon>Scoreboard.h</DependentUpon>
