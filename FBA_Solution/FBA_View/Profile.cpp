@@ -1,7 +1,7 @@
 #include "Profile.h"
 #include "menu_principal.h"
 
-void FBAView::Profile::User_data()
+void FBAView::Profile::User_data_load()
 {
 	textBox_username->Text = "" + Menu_principal::user->nickname;
 	textBox_name->Text = "" + Menu_principal::user->name;
@@ -13,4 +13,16 @@ void FBAView::Profile::User_data()
 	textBox_skill_points->Text = "" + Menu_principal::user->Skill_point;
 	textBox_level->Text = "" + Menu_principal::user->Level_max;
 	textBox_max_time->Text = "" + Menu_principal::user->Time_max;
+}
+
+System::Void FBAView::Profile::btn_delete_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (MessageBox::Show(
+		"¿Está seguro de eliminar su cuenta?",
+		"Confirmación", MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+	{
+		FBA_Controller::DeleteUser(Menu_principal::user);
+		Application::Exit();
+	}
 }

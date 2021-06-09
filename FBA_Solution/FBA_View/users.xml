@@ -8,6 +8,8 @@
     <birthday>dfsaf</birthday>
     <email>fsad</email>
     <password>fsda</password>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
     <Level_max>0</Level_max>
     <Score_max>0</Score_max>
     <Time_max>0</Time_max>
@@ -20,18 +22,8 @@
     <birthday>05/10/2000</birthday>
     <email>dan051020@gmail.com</email>
     <password>password</password>
-    <Level_max>0</Level_max>
-    <Score_max>0</Score_max>
-    <Time_max>0</Time_max>
-  </User>
-  <User>
-    <nickname>JorgeMz</nickname>
-    <lastNameFath>Mendoza</lastNameFath>
-    <lastNameMoth>Zambrano</lastNameMoth>
-    <name>Jorge</name>
-    <birthday>25/11/99</birthday>
-    <email>jorgemz1320@gmail.com</email>
-    <password>password</password>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
     <Level_max>0</Level_max>
     <Score_max>0</Score_max>
     <Time_max>0</Time_max>

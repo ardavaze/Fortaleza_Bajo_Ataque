@@ -8,7 +8,7 @@ namespace FBAView {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace FBAController;
 	/// <summary>
 	/// Summary for Profile
 	/// </summary>
@@ -18,8 +18,8 @@ namespace FBAView {
 		Profile(void)
 		{
 			InitializeComponent();
-			User_data();
-			Set_button();
+			User_data_load();
+			Hide_button();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -67,13 +67,19 @@ namespace FBAView {
 		this->textBox_email->ReadOnly = false;
 		this->textBox_email->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 	}
-	private: void User_data();
-	private: void Set_button() {
+	private: void User_data_load();
+	private: void Hide_button() {
 			
 		btn_cancel->Visible = false;
 		btn_OK->Visible = false;
+		btn_delete->Visible = false;
 	}
+	private: void Show_button() {
+		btn_cancel->Visible = true;
+		btn_OK->Visible = true;
+		btn_delete->Visible = true;
 
+	}
 		
 
 	private: System::Windows::Forms::Label^ label_title;
@@ -111,6 +117,8 @@ namespace FBAView {
 
 
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ btn_delete;
+
 
 
 
@@ -156,6 +164,7 @@ namespace FBAView {
 			this->textBox_Birthday = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_email = (gcnew System::Windows::Forms::TextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->btn_delete = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -177,9 +186,9 @@ namespace FBAView {
 			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) { this->name, this->rank });
 			this->listView1->GridLines = true;
 			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(1111, 243);
+			this->listView1->Location = System::Drawing::Point(1074, 225);
 			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(373, 676);
+			this->listView1->Size = System::Drawing::Size(373, 565);
 			this->listView1->TabIndex = 7;
 			this->listView1->UseCompatibleStateImageBehavior = false;
 			this->listView1->View = System::Windows::Forms::View::Details;
@@ -299,11 +308,11 @@ namespace FBAView {
 			// 
 			// btn_cancel
 			// 
-			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_cancel->Location = System::Drawing::Point(836, 882);
+			this->btn_cancel->Location = System::Drawing::Point(859, 881);
 			this->btn_cancel->Name = L"btn_cancel";
-			this->btn_cancel->Size = System::Drawing::Size(146, 38);
+			this->btn_cancel->Size = System::Drawing::Size(176, 38);
 			this->btn_cancel->TabIndex = 11;
 			this->btn_cancel->Text = L"Cancelar";
 			this->btn_cancel->UseVisualStyleBackColor = true;
@@ -311,22 +320,22 @@ namespace FBAView {
 			// 
 			// btn_OK
 			// 
-			this->btn_OK->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_OK->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_OK->Location = System::Drawing::Point(679, 882);
 			this->btn_OK->Name = L"btn_OK";
-			this->btn_OK->Size = System::Drawing::Size(140, 37);
+			this->btn_OK->Size = System::Drawing::Size(155, 37);
 			this->btn_OK->TabIndex = 10;
 			this->btn_OK->Text = L"Aceptar";
 			this->btn_OK->UseVisualStyleBackColor = true;
 			// 
 			// btn_update
 			// 
-			this->btn_update->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_update->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_update->Location = System::Drawing::Point(510, 883);
+			this->btn_update->Location = System::Drawing::Point(482, 883);
 			this->btn_update->Name = L"btn_update";
-			this->btn_update->Size = System::Drawing::Size(154, 37);
+			this->btn_update->Size = System::Drawing::Size(175, 37);
 			this->btn_update->TabIndex = 9;
 			this->btn_update->Text = L"Modificar";
 			this->btn_update->UseVisualStyleBackColor = true;
@@ -350,7 +359,7 @@ namespace FBAView {
 			this->label_friends_list->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 22, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label_friends_list->ForeColor = System::Drawing::Color::White;
-			this->label_friends_list->Location = System::Drawing::Point(1103, 131);
+			this->label_friends_list->Location = System::Drawing::Point(1025, 131);
 			this->label_friends_list->Name = L"label_friends_list";
 			this->label_friends_list->Size = System::Drawing::Size(394, 46);
 			this->label_friends_list->TabIndex = 9;
@@ -454,6 +463,21 @@ namespace FBAView {
 			this->pictureBox1->TabIndex = 26;
 			this->pictureBox1->TabStop = false;
 			// 
+			// btn_delete
+			// 
+			this->btn_delete->BackColor = System::Drawing::Color::DarkRed;
+			this->btn_delete->FlatAppearance->BorderColor = System::Drawing::Color::DarkRed;
+			this->btn_delete->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_delete->ForeColor = System::Drawing::Color::White;
+			this->btn_delete->Location = System::Drawing::Point(84, 882);
+			this->btn_delete->Name = L"btn_delete";
+			this->btn_delete->Size = System::Drawing::Size(283, 38);
+			this->btn_delete->TabIndex = 27;
+			this->btn_delete->Text = L"Eliminar cuenta";
+			this->btn_delete->UseVisualStyleBackColor = false;
+			this->btn_delete->Click += gcnew System::EventHandler(this, &Profile::btn_delete_Click);
+			// 
 			// Profile
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -461,6 +485,7 @@ namespace FBAView {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
 			this->ClientSize = System::Drawing::Size(1522, 1009);
+			this->Controls->Add(this->btn_delete);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->textBox_email);
 			this->Controls->Add(this->textBox_Birthday);
@@ -505,16 +530,23 @@ namespace FBAView {
 
 private: System::Void btn_update_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReadOnly_false();
-	btn_cancel->Visible = true;
-	btn_OK->Visible = true;
+	Show_button();
 }
 
 private: System::Void btn_cancel_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReadOnly_true();
+	User_data_load();
+	Hide_button();
 }
 
 
 
+
+private: System::Void btn_delete_Click(System::Object^ sender, System::EventArgs^ e);
+
+	
+
+	
 
 };
 }

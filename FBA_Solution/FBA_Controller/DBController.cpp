@@ -48,8 +48,9 @@ void FBAController::DBController::UpdateUser(User^){
     throw gcnew System::NotImplementedException();
 }
 
-void FBAController::DBController::DeleteUser(User^){
-    throw gcnew System::NotImplementedException();
+void FBAController::DBController::DeleteUser(User^user){
+    DBController::user->Remove(user);
+    SaveUsers();
 }
 
 List<User^>^ FBAController::DBController::QueryAllUser(){
