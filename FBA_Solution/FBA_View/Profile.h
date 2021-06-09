@@ -19,6 +19,7 @@ namespace FBAView {
 		{
 			InitializeComponent();
 			User_data();
+			Set_button();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -38,15 +39,41 @@ namespace FBAView {
 	private: void ReadOnly_true() {
 		this->textBox_username->ReadOnly = true;
 		this->textBox_username->BorderStyle = System::Windows::Forms::BorderStyle::None;
+		this->textBox_name->ReadOnly = true;
+		this->textBox_name->BorderStyle = System::Windows::Forms::BorderStyle::None;
+		this->textBox_LastName_Father->ReadOnly = true;
+		this->textBox_LastName_Father->BorderStyle = System::Windows::Forms::BorderStyle::None;
+		this->textBox_LastName_Mother->ReadOnly = true;
+		this->textBox_LastName_Mother->BorderStyle = System::Windows::Forms::BorderStyle::None;
+		this->textBox_Birthday->ReadOnly = true;
+		this->textBox_Birthday->BorderStyle = System::Windows::Forms::BorderStyle::None;
+		this->textBox_email->ReadOnly = true;
+		this->textBox_email->BorderStyle = System::Windows::Forms::BorderStyle::None;
+
 	}
 	
 
 	private: void ReadOnly_false() {
 		this->textBox_username->ReadOnly = false;
 		this->textBox_username->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->textBox_name->ReadOnly = false;
+		this->textBox_name->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->textBox_LastName_Father->ReadOnly = false;
+		this->textBox_LastName_Father->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->textBox_LastName_Mother->ReadOnly = false;
+		this->textBox_LastName_Mother->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->textBox_Birthday->ReadOnly = false;
+		this->textBox_Birthday->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->textBox_email->ReadOnly = false;
+		this->textBox_email->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 	}
 	private: void User_data();
-	
+	private: void Set_button() {
+			
+		btn_cancel->Visible = false;
+		btn_OK->Visible = false;
+	}
+
 		
 
 	private: System::Windows::Forms::Label^ label_title;
@@ -478,7 +505,8 @@ namespace FBAView {
 
 private: System::Void btn_update_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReadOnly_false();
-
+	btn_cancel->Visible = true;
+	btn_OK->Visible = true;
 }
 
 private: System::Void btn_cancel_Click(System::Object^ sender, System::EventArgs^ e) {
