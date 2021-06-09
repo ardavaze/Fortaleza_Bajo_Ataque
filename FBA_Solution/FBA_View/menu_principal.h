@@ -29,6 +29,7 @@ namespace FBAView {
 			SoundPlayer^ sound_submenu_click = gcnew SoundPlayer("Trigger_click.wav");
 
 	public:
+			
 	private: System::Windows::Forms::TextBox^ textBox_username;
 	private: System::Windows::Forms::TextBox^ textBox_skills_points;
 
@@ -79,6 +80,7 @@ namespace FBAView {
 					delete components;
 				}
 			}
+	
 		private: void Hide_panel() {
 			panel_modo->Visible = false;
 			panel_tienda->Visible = false;
@@ -233,6 +235,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_lateral->Name = L"panel_lateral";
 			this->panel_lateral->Size = System::Drawing::Size(394, 1024);
 			this->panel_lateral->TabIndex = 3;
+			//this->panel_lateral->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			// 
 			// btn_creditos
 			// 
