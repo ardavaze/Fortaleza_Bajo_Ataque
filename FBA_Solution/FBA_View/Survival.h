@@ -150,10 +150,10 @@ namespace FBAView {
 			this->label2->ForeColor = System::Drawing::Color::White;
 			this->label2->Location = System::Drawing::Point(83, 225);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(296, 646);
+			this->label2->Size = System::Drawing::Size(444, 867);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"Rango:\r\n\r\nUnidades \r\nDesbloqueadas:\r\n\r\nUnidades \r\nEnemigas:\r\n\r\nMejoras:\r\n\r\n\r\n\r\n\r\n"
-				L"\r\n\r\nTiempo \r\nMáximo:\r\n\r\nIntentos:\r\n";
+				L"Tiempo \r\nMáximo:\r\n\r\nIntentos:\r\n";
 			// 
 			// textBox1
 			// 
@@ -232,10 +232,10 @@ namespace FBAView {
 			this->textBox5->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox5->ForeColor = System::Drawing::Color::White;
-			this->textBox5->Location = System::Drawing::Point(474, 743);
+			this->textBox5->Location = System::Drawing::Point(474, 669);
 			this->textBox5->Multiline = true;
 			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(345, 81);
+			this->textBox5->Size = System::Drawing::Size(165, 55);
 			this->textBox5->TabIndex = 17;
 			this->textBox5->Text = L"3:00min";
 			// 
@@ -247,10 +247,10 @@ namespace FBAView {
 			this->textBox6->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox6->ForeColor = System::Drawing::Color::White;
-			this->textBox6->Location = System::Drawing::Point(474, 821);
+			this->textBox6->Location = System::Drawing::Point(474, 765);
 			this->textBox6->Multiline = true;
 			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(345, 81);
+			this->textBox6->Size = System::Drawing::Size(140, 41);
 			this->textBox6->TabIndex = 18;
 			this->textBox6->Text = L"12";
 			// 

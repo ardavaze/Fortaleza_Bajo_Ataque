@@ -40,10 +40,12 @@ namespace FBAView {
 	private: System::Windows::Forms::TextBox^ textBox_emerald;
 
 
-	private: System::Windows::Forms::PictureBox^ pictureBox_profile;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox_frame;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
+	private: System::Windows::Forms::PictureBox^ pictureBox_avatar;
+
 
 
 
@@ -68,7 +70,9 @@ namespace FBAView {
 					login->Owner = this;
 				}
 				InitializeComponent();
+				User_data();
 				sound_menu->PlayLooping();
+
 			}
 
 		protected:
@@ -82,8 +86,11 @@ namespace FBAView {
 					delete components;
 				}
 			}
-	
-		private: void Hide_panel() {
+	private: void User_data() {
+
+
+	}
+	   private: void Hide_panel() {
 			panel_modo->Visible = false;
 			panel_tienda->Visible = false;
 		}
@@ -180,9 +187,9 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->btn_historia = (gcnew System::Windows::Forms::Button());
 			this->btn_modo = (gcnew System::Windows::Forms::Button());
 			this->panel_user = (gcnew System::Windows::Forms::Panel());
+			this->pictureBox_avatar = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox_profile = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox_frame = (gcnew System::Windows::Forms::PictureBox());
 			this->textBox_emerald = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_skills_points = (gcnew System::Windows::Forms::TextBox());
@@ -197,9 +204,9 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_tienda->SuspendLayout();
 			this->panel_modo->SuspendLayout();
 			this->panel_user->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_avatar))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_profile))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_frame))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_rank))->BeginInit();
 			this->panel_childform->SuspendLayout();
@@ -427,9 +434,9 @@ private: System::Windows::Forms::Panel^ panel_user;
 			// 
 			// panel_user
 			// 
+			this->panel_user->Controls->Add(this->pictureBox_avatar);
 			this->panel_user->Controls->Add(this->pictureBox2);
 			this->panel_user->Controls->Add(this->pictureBox1);
-			this->panel_user->Controls->Add(this->pictureBox_profile);
 			this->panel_user->Controls->Add(this->pictureBox_frame);
 			this->panel_user->Controls->Add(this->textBox_emerald);
 			this->panel_user->Controls->Add(this->textBox_skills_points);
@@ -443,6 +450,17 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_user->Size = System::Drawing::Size(368, 169);
 			this->panel_user->TabIndex = 22;
 			this->panel_user->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Menu_principal::panel_user_Paint);
+			// 
+			// pictureBox_avatar
+			// 
+			this->pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_avatar.Image")));
+			this->pictureBox_avatar->Location = System::Drawing::Point(55, 52);
+			this->pictureBox_avatar->Name = L"pictureBox_avatar";
+			this->pictureBox_avatar->Size = System::Drawing::Size(89, 83);
+			this->pictureBox_avatar->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox_avatar->TabIndex = 2;
+			this->pictureBox_avatar->TabStop = false;
+			this->pictureBox_avatar->Click += gcnew System::EventHandler(this, &Menu_principal::pictureBox_avatar_Click);
 			// 
 			// pictureBox2
 			// 
@@ -463,17 +481,6 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
-			// 
-			// pictureBox_profile
-			// 
-			this->pictureBox_profile->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_profile.Image")));
-			this->pictureBox_profile->Location = System::Drawing::Point(57, 53);
-			this->pictureBox_profile->Name = L"pictureBox_profile";
-			this->pictureBox_profile->Size = System::Drawing::Size(87, 78);
-			this->pictureBox_profile->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox_profile->TabIndex = 2;
-			this->pictureBox_profile->TabStop = false;
-			this->pictureBox_profile->Click += gcnew System::EventHandler(this, &Menu_principal::pictureBox5_Click);
 			// 
 			// pictureBox_frame
 			// 
@@ -545,7 +552,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->textBox_username->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_username->ForeColor = System::Drawing::Color::White;
-			this->textBox_username->Location = System::Drawing::Point(24, 5);
+			this->textBox_username->Location = System::Drawing::Point(37, 5);
 			this->textBox_username->Name = L"textBox_username";
 			this->textBox_username->ReadOnly = true;
 			this->textBox_username->Size = System::Drawing::Size(144, 26);
@@ -620,9 +627,9 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_modo->ResumeLayout(false);
 			this->panel_user->ResumeLayout(false);
 			this->panel_user->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_avatar))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_profile))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_frame))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_rank))->EndInit();
 			this->panel_childform->ResumeLayout(false);
@@ -700,18 +707,16 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 
 }
 
-
-private: System::Void pictureBox5_Click(System::Object^ sender, System::EventArgs^ e) {
-	open_ChildForm(gcnew Profile());
-}
-
-
-
 private: System::Void panel_user_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	Graphics^ h = e->Graphics;
 	h->DrawLine(System::Drawing::Pens::WhiteSmoke,0,0,260,0);
 	h->DrawLine(System::Drawing::Pens::WhiteSmoke, 0, 105, 260,105);
 }
 
+
+private: System::Void pictureBox_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
+	Hide_panel();
+	open_ChildForm(gcnew Profile());
+}
 };
 }
