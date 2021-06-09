@@ -87,7 +87,9 @@ namespace FBAView {
 				}
 			}
 	private: void User_data() {
-
+		textBox_username->Text = "" + user->nickname;
+		textBox_emerald->Text = "" + user->Emerald;
+		textBox_skills_points->Text = "" + user->Skill_point;
 
 	}
 	   private: void Hide_panel() {
