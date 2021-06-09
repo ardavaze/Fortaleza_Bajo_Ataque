@@ -36,16 +36,18 @@ namespace FBAView {
 	private: System::Windows::Forms::PictureBox^ pictureBox_rank;
 
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label1;
+
 	private: System::Windows::Forms::TextBox^ textBox_emerald;
 
 
 	private: System::Windows::Forms::PictureBox^ pictureBox_profile;
 	private: System::Windows::Forms::PictureBox^ pictureBox_frame;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::PictureBox^ pictureBox2;
 
 
 
-	private: System::Windows::Forms::Label^ label3;
+
 
 
 	public:
@@ -178,14 +180,14 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->btn_historia = (gcnew System::Windows::Forms::Button());
 			this->btn_modo = (gcnew System::Windows::Forms::Button());
 			this->panel_user = (gcnew System::Windows::Forms::Panel());
-			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox_profile = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox_frame = (gcnew System::Windows::Forms::PictureBox());
 			this->textBox_emerald = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_skills_points = (gcnew System::Windows::Forms::TextBox());
 			this->pictureBox_rank = (gcnew System::Windows::Forms::PictureBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox_username = (gcnew System::Windows::Forms::TextBox());
 			this->panel_childform = (gcnew System::Windows::Forms::Panel());
 			this->title = (gcnew System::Windows::Forms::Label());
@@ -195,6 +197,8 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_tienda->SuspendLayout();
 			this->panel_modo->SuspendLayout();
 			this->panel_user->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_profile))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_frame))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_rank))->BeginInit();
@@ -235,7 +239,6 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_lateral->Name = L"panel_lateral";
 			this->panel_lateral->Size = System::Drawing::Size(394, 1024);
 			this->panel_lateral->TabIndex = 3;
-			//this->panel_lateral->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			// 
 			// btn_creditos
 			// 
@@ -424,14 +427,14 @@ private: System::Windows::Forms::Panel^ panel_user;
 			// 
 			// panel_user
 			// 
-			this->panel_user->Controls->Add(this->label3);
+			this->panel_user->Controls->Add(this->pictureBox2);
+			this->panel_user->Controls->Add(this->pictureBox1);
 			this->panel_user->Controls->Add(this->pictureBox_profile);
 			this->panel_user->Controls->Add(this->pictureBox_frame);
 			this->panel_user->Controls->Add(this->textBox_emerald);
 			this->panel_user->Controls->Add(this->textBox_skills_points);
 			this->panel_user->Controls->Add(this->pictureBox_rank);
 			this->panel_user->Controls->Add(this->label2);
-			this->panel_user->Controls->Add(this->label1);
 			this->panel_user->Controls->Add(this->textBox_username);
 			this->panel_user->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel_user->Location = System::Drawing::Point(0, 190);
@@ -441,17 +444,25 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_user->TabIndex = 22;
 			this->panel_user->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Menu_principal::panel_user_Paint);
 			// 
-			// label3
+			// pictureBox2
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label3->ForeColor = System::Drawing::Color::White;
-			this->label3->Location = System::Drawing::Point(174, 85);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(175, 25);
-			this->label3->TabIndex = 9;
-			this->label3->Text = L"Esmeraldas:";
+			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
+			this->pictureBox2->Location = System::Drawing::Point(180, 116);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(36, 32);
+			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox2->TabIndex = 9;
+			this->pictureBox2->TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(180, 70);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(36, 34);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox1->TabIndex = 2;
+			this->pictureBox1->TabStop = false;
 			// 
 			// pictureBox_profile
 			// 
@@ -482,7 +493,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->textBox_emerald->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_emerald->ForeColor = System::Drawing::Color::White;
-			this->textBox_emerald->Location = System::Drawing::Point(355, 85);
+			this->textBox_emerald->Location = System::Drawing::Point(222, 78);
 			this->textBox_emerald->Name = L"textBox_emerald";
 			this->textBox_emerald->ReadOnly = true;
 			this->textBox_emerald->Size = System::Drawing::Size(29, 26);
@@ -497,7 +508,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->textBox_skills_points->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_skills_points->ForeColor = System::Drawing::Color::White;
-			this->textBox_skills_points->Location = System::Drawing::Point(297, 125);
+			this->textBox_skills_points->Location = System::Drawing::Point(222, 122);
 			this->textBox_skills_points->Name = L"textBox_skills_points";
 			this->textBox_skills_points->ReadOnly = true;
 			this->textBox_skills_points->Size = System::Drawing::Size(68, 26);
@@ -507,7 +518,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 			// pictureBox_rank
 			// 
 			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_rank.Image")));
-			this->pictureBox_rank->Location = System::Drawing::Point(277, 33);
+			this->pictureBox_rank->Location = System::Drawing::Point(284, 23);
 			this->pictureBox_rank->Name = L"pictureBox_rank";
 			this->pictureBox_rank->Size = System::Drawing::Size(52, 49);
 			this->pictureBox_rank->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -520,23 +531,11 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->label2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(175, 45);
+			this->label2->Location = System::Drawing::Point(175, 33);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(103, 25);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Rango:";
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(175, 125);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(116, 25);
-			this->label1->TabIndex = 2;
-			this->label1->Text = L"P. Hab :";
 			// 
 			// textBox_username
 			// 
@@ -621,6 +620,8 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->panel_modo->ResumeLayout(false);
 			this->panel_user->ResumeLayout(false);
 			this->panel_user->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_profile))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_frame))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_rank))->EndInit();
@@ -711,5 +712,6 @@ private: System::Void panel_user_Paint(System::Object^ sender, System::Windows::
 	h->DrawLine(System::Drawing::Pens::WhiteSmoke,0,0,260,0);
 	h->DrawLine(System::Drawing::Pens::WhiteSmoke, 0, 105, 260,105);
 }
+
 };
 }

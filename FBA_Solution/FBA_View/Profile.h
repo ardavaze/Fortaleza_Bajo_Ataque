@@ -374,5 +374,6 @@ private: System::Void btn_cancel_Click(System::Object^ sender, System::EventArgs
 	ReadOnly_true();
 }
 
+
 };
 }
