@@ -24,4 +24,16 @@
     <Score_max>0</Score_max>
     <Time_max>0</Time_max>
   </User>
+  <User>
+    <nickname>Rovenegas</nickname>
+    <lastNameFath>Venegas</lastNameFath>
+    <lastNameMoth>Cabello</lastNameMoth>
+    <name>Roger</name>
+    <birthday>11/06/2000</birthday>
+    <email>a20171555@pucp.edu.pe</email>
+    <password>password</password>
+    <Level_max>0</Level_max>
+    <Score_max>0</Score_max>
+    <Time_max>0</Time_max>
+  </User>
 </ArrayOfUser>
