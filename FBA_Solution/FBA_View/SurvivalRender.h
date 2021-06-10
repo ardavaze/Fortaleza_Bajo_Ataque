@@ -32,5 +32,22 @@ namespace FBAView{
 		void GenerateUnits_enemies();
 		System::Diagnostics::Stopwatch^ TimeEnemies;
 		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(96);
+
+		System::Diagnostics::Stopwatch^ Chronometer;
+		System::Diagnostics::Stopwatch^ ChronometerAux;
+		Sprite^ segUnidad;
+		Sprite^ segDecena;
+		Sprite^ minUnidad;
+		Sprite^ minDecena;
+		Sprite^ dosPuntos;
+		int segUnidTranscurridos = 0;
+		int segDecTranscurridos = 0;
+		int minUnidTranscurridos = 0;
+		int minDecTranscurridos = 0;
+		void ActualizarNumero();
+
+		User^ user;
+		Base^ base;
+
 	};
 }

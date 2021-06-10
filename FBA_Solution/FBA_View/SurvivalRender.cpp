@@ -1,4 +1,5 @@
 #include "SurvivalRender.h"
+#include "Math.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -14,11 +15,14 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
+    Chronometer = gcnew System::Diagnostics::Stopwatch; Chronometer->Start();
+    ChronometerAux = gcnew System::Diagnostics::Stopwatch; ChronometerAux->Start();
+
 }
 
-void FBAView::SurvivalRender::Run(){
+void FBAView::SurvivalRender::Run() {
     while (this->IsOpen) {
-        for (int i = 2; i < 4; i++){
+        for (int i = 2; i < 4; i++) {
             for (int j = 0; j < physicalElemts[i]->Count; j++)
                 physicalElemts[i][j]->OccupySpace();
         }
@@ -28,7 +32,7 @@ void FBAView::SurvivalRender::Run(){
             }
         }
         for (int i = 2; i < 4; i++) {
-            for (int j = physicalElemts[i]->Count -1; 0 <= j; j--) {
+            for (int j = physicalElemts[i]->Count - 1; 0 <= j; j--) {
                 physicalElemts[i][j]->FreeSpace();
             }
         }
@@ -47,11 +51,38 @@ void FBAView::SurvivalRender::Run(){
         //    da->Position = Vector2f(20 * i, 0);
         //    this->Draw(da);
         //}
+
+        this->Draw(this->minDecena);
+        this->Draw(this->minUnidad);
+        this->Draw(this->dosPuntos);
+        this->Draw(this->segDecena);
+        this->Draw(this->segUnidad);
+
+
+        Chronometer->Stop();
+        ChronometerAux->Stop();
+
+        if (Chronometer->Elapsed.Seconds % 60 == 0)
+            ChronometerAux->Restart();
+
+        segUnidTranscurridos = (int)(ChronometerAux->Elapsed.TotalSeconds) % 10;
+        segDecTranscurridos = floor((ChronometerAux->Elapsed.TotalSeconds) / 10);
+        minUnidTranscurridos = (int)(Chronometer->Elapsed.TotalMinutes) % 10;
+        minDecTranscurridos = floor((Chronometer->Elapsed.TotalMinutes) / 10);
+
+        ActualizarNumero();
+
+
+        Chronometer->Start();
+        ChronometerAux->Start();
+
+
+
         if (arrow->throwed)
             arrow->MakeFly();
         else {
-            arrow->Position= crossbow->Position;
-            arrow->Rotation =crossbow ->Rotation;
+            arrow->Position = crossbow->Position;
+            arrow->Rotation = crossbow->Rotation;
         }
         this->Draw(this->arrow);
         TimeEnemies->Stop();
@@ -68,6 +99,12 @@ void FBAView::SurvivalRender::Run(){
         }
         this->Display();
     }
+
+    //Se actualiza score
+    Chronometer->Stop();
+    if (Chronometer->Elapsed.TotalSeconds>user->Time_max)
+        user->Time_max = Chronometer->Elapsed.TotalSeconds;
+
 }
 
 
@@ -189,6 +226,15 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies_field = gcnew List<UnitRender^>;
     //Enemigos en batalla
     unit_enemies_field = gcnew List<UnitRender^>;
+    //Cronometro
+    minDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
+    minUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
+    segDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
+    segUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
+    dosPuntos = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/2puntos.png"));
+    //Base
+    base->HP = user->VidaMaxBase;
+
 }
 
 void FBAView::SurvivalRender::GenerateUnits(){
@@ -236,5 +282,21 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(){
     unit_enemies_field[unit_enemies_field->Count - 1]->attackDamage = unit_enemies_field[unit_enemies_field->Count - 1]->unit->attackDamage;
     unit_enemies_field[unit_enemies_field->Count - 1]->life= unit_enemies_field[unit_enemies_field->Count - 1]->unit->Maxlife;
 }
+
+void FBAView::SurvivalRender::ActualizarNumero()
+{
+    minDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + minDecTranscurridos + ".png"));
+    minUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + minUnidTranscurridos + ".png"));
+    segDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + segDecTranscurridos + ".png"));
+    segUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + segUnidTranscurridos + ".png"));
+    int refCronometroY = 60; //60
+    int refCronometroX = 730; //730
+    minDecena->Position = Vector2f(refCronometroX, refCronometroY);
+    minUnidad->Position = Vector2f(minDecena->Position.X + 115, refCronometroY);
+    dosPuntos->Position = Vector2f(minUnidad->Position.X + 115, refCronometroY);
+    segDecena->Position = Vector2f(dosPuntos->Position.X + 115, refCronometroY);
+    segUnidad->Position = Vector2f(segDecena->Position.X + 115, refCronometroY);
+}
+
 
 

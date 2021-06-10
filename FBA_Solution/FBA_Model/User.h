@@ -13,6 +13,7 @@ namespace FBAModel {
         int Level_max;
         int Score_max;
         int Time_max;
+        int VidaMaxBase;
         User() {}
         User(String^ nickname, String^ lastNameFath, String^ lastNameMoth, String^ name, String^ birthday, String^ email, String^ password);
     };
