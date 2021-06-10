@@ -86,12 +86,16 @@ namespace FBAView {
 					delete components;
 				}
 			}
-	private: void User_data() {
-		textBox_username->Text = "" + user->nickname;
-		textBox_emerald->Text = "" + user->Emerald;
-		textBox_skills_points->Text = "" + user->Skill_point;
-
+	public: void User_data() {
+		if (Menu_principal::user!=nullptr) {
+			textBox_username->Text = "" + Menu_principal::user->nickname;
+			textBox_emerald->Text = "" + Menu_principal::user->Emerald;
+			textBox_skills_points->Text = "" + Menu_principal::user->Skill_point;
+		}
 	}
+	
+
+	
 	   private: void Hide_panel() {
 			panel_modo->Visible = false;
 			panel_tienda->Visible = false;
@@ -718,7 +722,9 @@ private: System::Void panel_user_Paint(System::Object^ sender, System::Windows::
 
 private: System::Void pictureBox_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
 	Hide_panel();
-	open_ChildForm(gcnew Profile());
+	Profile^ a = gcnew Profile();
+	a->Owner = this;
+	open_ChildForm(a);
 }
 };
 }

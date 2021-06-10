@@ -9,6 +9,7 @@ namespace FBAView {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace FBAController;
+	using namespace FBAModel;
 	/// <summary>
 	/// Summary for Profile
 	/// </summary>
@@ -328,6 +329,7 @@ namespace FBAView {
 			this->btn_OK->TabIndex = 10;
 			this->btn_OK->Text = L"Aceptar";
 			this->btn_OK->UseVisualStyleBackColor = true;
+			this->btn_OK->Click += gcnew System::EventHandler(this, &Profile::btn_OK_Click);
 			// 
 			// btn_update
 			// 
@@ -523,11 +525,6 @@ namespace FBAView {
 	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-
-
-
-
-
 private: System::Void btn_update_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReadOnly_false();
 	Show_button();
@@ -546,6 +543,9 @@ private: System::Void btn_delete_Click(System::Object^ sender, System::EventArgs
 
 	
 
+	
+
+private: System::Void btn_OK_Click(System::Object^ sender, System::EventArgs^ e);
 	
 
 };
