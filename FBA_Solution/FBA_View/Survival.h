@@ -38,11 +38,20 @@ namespace FBAView {
 	private: System::Windows::Forms::Button^ btn_playSurvival;
 
 	private: System::Windows::Forms::Label^ label_title;
-	private: System::Windows::Forms::Panel^ panel_info;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Label^ label2;
+
+
+
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::PictureBox^ pictureBox_rank;
+	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::TextBox^ textBox6;
 
 
 
@@ -70,14 +79,18 @@ namespace FBAView {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Survival::typeid));
 			this->btn_playSurvival = (gcnew System::Windows::Forms::Button());
 			this->label_title = (gcnew System::Windows::Forms::Label());
-			this->panel_info = (gcnew System::Windows::Forms::Panel());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->panel_info->SuspendLayout();
-			this->panel1->SuspendLayout();
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->pictureBox_rank = (gcnew System::Windows::Forms::PictureBox());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_rank))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btn_playSurvival
@@ -107,57 +120,139 @@ namespace FBAView {
 			this->label_title->TabIndex = 6;
 			this->label_title->Text = L"SUPERVIVENCIA";
 			// 
-			// panel_info
+			// pictureBox1
 			// 
-			this->panel_info->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->panel_info->Controls->Add(this->label1);
-			this->panel_info->Location = System::Drawing::Point(46, 196);
-			this->panel_info->Name = L"panel_info";
-			this->panel_info->Size = System::Drawing::Size(488, 566);
-			this->panel_info->TabIndex = 7;
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(864, 121);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(646, 486);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox1->TabIndex = 9;
+			this->pictureBox1->TabStop = false;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 28, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(82, 215);
+			this->label1->Location = System::Drawing::Point(48, 121);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(288, 29);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"información sobre el nivel";
-			// 
-			// panel1
-			// 
-			this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->panel1->Controls->Add(this->label2);
-			this->panel1->Location = System::Drawing::Point(46, 850);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(828, 132);
-			this->panel1->TabIndex = 8;
+			this->label1->Size = System::Drawing::Size(672, 58);
+			this->label1->TabIndex = 10;
+			this->label1->Text = L"INFORMACIÓN NIVEL";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(220, 40);
+			this->label2->Location = System::Drawing::Point(83, 225);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(264, 32);
-			this->label2->TabIndex = 9;
-			this->label2->Text = L"Datos sobre el nivel";
+			this->label2->Size = System::Drawing::Size(444, 867);
+			this->label2->TabIndex = 11;
+			this->label2->Text = L"Rango:\r\n\r\nUnidades \r\nDesbloqueadas:\r\n\r\nUnidades \r\nEnemigas:\r\n\r\nMejoras:\r\n\r\n\r\n\r\n\r\n"
+				L"Tiempo \r\nMáximo:\r\n\r\nIntentos:\r\n";
 			// 
-			// pictureBox1
+			// textBox1
 			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(588, 196);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(909, 566);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox1->TabIndex = 9;
-			this->pictureBox1->TabStop = false;
+			this->textBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)));
+			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox1->ForeColor = System::Drawing::Color::White;
+			this->textBox1->Location = System::Drawing::Point(474, 222);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(155, 34);
+			this->textBox1->TabIndex = 12;
+			this->textBox1->Text = L"Coronel";
+			// 
+			// pictureBox_rank
+			// 
+			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_rank.Image")));
+			this->pictureBox_rank->Location = System::Drawing::Point(635, 222);
+			this->pictureBox_rank->Name = L"pictureBox_rank";
+			this->pictureBox_rank->Size = System::Drawing::Size(52, 49);
+			this->pictureBox_rank->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox_rank->TabIndex = 13;
+			this->pictureBox_rank->TabStop = false;
+			// 
+			// textBox2
+			// 
+			this->textBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)));
+			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox2->ForeColor = System::Drawing::Color::White;
+			this->textBox2->Location = System::Drawing::Point(474, 291);
+			this->textBox2->Multiline = true;
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(345, 81);
+			this->textBox2->TabIndex = 14;
+			this->textBox2->Text = L"Soldado, Arquero, Curardor";
+			// 
+			// textBox3
+			// 
+			this->textBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)));
+			this->textBox3->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox3->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox3->ForeColor = System::Drawing::Color::White;
+			this->textBox3->Location = System::Drawing::Point(474, 394);
+			this->textBox3->Multiline = true;
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(345, 81);
+			this->textBox3->TabIndex = 15;
+			this->textBox3->Text = L"Duende, Golem, ELemental";
+			// 
+			// textBox4
+			// 
+			this->textBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)));
+			this->textBox4->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox4->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox4->ForeColor = System::Drawing::Color::White;
+			this->textBox4->Location = System::Drawing::Point(474, 481);
+			this->textBox4->Multiline = true;
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(358, 256);
+			this->textBox4->TabIndex = 16;
+			this->textBox4->Text = L"Ataque I, Ataque II. Defensa I, Pillaje I, Velocidad I\r\n";
+			// 
+			// textBox5
+			// 
+			this->textBox5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)));
+			this->textBox5->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox5->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox5->ForeColor = System::Drawing::Color::White;
+			this->textBox5->Location = System::Drawing::Point(474, 669);
+			this->textBox5->Multiline = true;
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(165, 55);
+			this->textBox5->TabIndex = 17;
+			this->textBox5->Text = L"3:00min";
+			// 
+			// textBox6
+			// 
+			this->textBox6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)));
+			this->textBox6->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox6->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox6->ForeColor = System::Drawing::Color::White;
+			this->textBox6->Location = System::Drawing::Point(474, 765);
+			this->textBox6->Multiline = true;
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(140, 41);
+			this->textBox6->TabIndex = 18;
+			this->textBox6->Text = L"12";
 			// 
 			// Survival
 			// 
@@ -166,19 +261,23 @@ namespace FBAView {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
 			this->ClientSize = System::Drawing::Size(1552, 1023);
+			this->Controls->Add(this->textBox6);
+			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->pictureBox_rank);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->panel1);
-			this->Controls->Add(this->panel_info);
 			this->Controls->Add(this->label_title);
 			this->Controls->Add(this->btn_playSurvival);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"Survival";
 			this->Text = L"Survival";
-			this->panel_info->ResumeLayout(false);
-			this->panel_info->PerformLayout();
-			this->panel1->ResumeLayout(false);
-			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_rank))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -191,5 +290,6 @@ namespace FBAView {
 	private: System::Void btn_close_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
+
 };
 }

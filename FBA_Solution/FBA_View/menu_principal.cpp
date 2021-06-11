@@ -9,5 +9,8 @@ void Main(/*array<String^>^ args*/) {
 	FBAView::Menu_principal form;
 	Application::Run(% form);
 }
+#include "menu_principal.h"
 
+	
+	
 

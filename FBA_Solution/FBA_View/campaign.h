@@ -70,6 +70,11 @@ namespace FBAView {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::Button^ button10;
+	private: System::Windows::Forms::Button^ button11;
+	private: System::Windows::Forms::Button^ button12;
+	private: System::Windows::Forms::Button^ button13;
+
 
 
 
@@ -119,6 +124,10 @@ namespace FBAView {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->button11 = (gcnew System::Windows::Forms::Button());
+			this->button12 = (gcnew System::Windows::Forms::Button());
+			this->button13 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label2
@@ -349,7 +358,7 @@ namespace FBAView {
 			this->label7->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 28, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label7->ForeColor = System::Drawing::Color::White;
-			this->label7->Location = System::Drawing::Point(966, 530);
+			this->label7->Location = System::Drawing::Point(993, 555);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(208, 58);
 			this->label7->TabIndex = 24;
@@ -363,7 +372,7 @@ namespace FBAView {
 			this->textBox4->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 28, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox4->ForeColor = System::Drawing::Color::White;
-			this->textBox4->Location = System::Drawing::Point(1203, 532);
+			this->textBox4->Location = System::Drawing::Point(1230, 557);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(122, 59);
 			this->textBox4->TabIndex = 25;
@@ -375,7 +384,7 @@ namespace FBAView {
 			this->label5->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::White;
-			this->label5->Location = System::Drawing::Point(918, 616);
+			this->label5->Location = System::Drawing::Point(945, 641);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(187, 170);
 			this->label5->TabIndex = 26;
@@ -389,7 +398,7 @@ namespace FBAView {
 			this->textBox5->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox5->ForeColor = System::Drawing::Color::White;
-			this->textBox5->Location = System::Drawing::Point(1156, 616);
+			this->textBox5->Location = System::Drawing::Point(1183, 641);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(81, 34);
 			this->textBox5->TabIndex = 27;
@@ -403,11 +412,51 @@ namespace FBAView {
 			this->textBox6->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox6->ForeColor = System::Drawing::Color::White;
-			this->textBox6->Location = System::Drawing::Point(1156, 690);
+			this->textBox6->Location = System::Drawing::Point(1183, 715);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(81, 34);
 			this->textBox6->TabIndex = 28;
 			this->textBox6->Text = L"2";
+			// 
+			// button10
+			// 
+			this->button10->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button10.BackgroundImage")));
+			this->button10->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->button10->Location = System::Drawing::Point(511, 530);
+			this->button10->Name = L"button10";
+			this->button10->Size = System::Drawing::Size(81, 83);
+			this->button10->TabIndex = 29;
+			this->button10->UseVisualStyleBackColor = true;
+			// 
+			// button11
+			// 
+			this->button11->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button11.BackgroundImage")));
+			this->button11->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->button11->Location = System::Drawing::Point(666, 530);
+			this->button11->Name = L"button11";
+			this->button11->Size = System::Drawing::Size(81, 83);
+			this->button11->TabIndex = 30;
+			this->button11->UseVisualStyleBackColor = true;
+			// 
+			// button12
+			// 
+			this->button12->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button12.BackgroundImage")));
+			this->button12->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->button12->Location = System::Drawing::Point(511, 669);
+			this->button12->Name = L"button12";
+			this->button12->Size = System::Drawing::Size(81, 83);
+			this->button12->TabIndex = 31;
+			this->button12->UseVisualStyleBackColor = true;
+			// 
+			// button13
+			// 
+			this->button13->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button13.BackgroundImage")));
+			this->button13->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->button13->Location = System::Drawing::Point(666, 669);
+			this->button13->Name = L"button13";
+			this->button13->Size = System::Drawing::Size(81, 83);
+			this->button13->TabIndex = 32;
+			this->button13->UseVisualStyleBackColor = true;
 			// 
 			// campaign
 			// 
@@ -416,6 +465,10 @@ namespace FBAView {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
 			this->ClientSize = System::Drawing::Size(1522, 1009);
+			this->Controls->Add(this->button13);
+			this->Controls->Add(this->button12);
+			this->Controls->Add(this->button11);
+			this->Controls->Add(this->button10);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->label5);
@@ -443,6 +496,7 @@ namespace FBAView {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"campaign";
 			this->Text = L"campaign";
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &campaign::campaign_Paint);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -458,5 +512,14 @@ namespace FBAView {
 
 
 
+
+
+
+private: System::Void campaign_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	Graphics^ g = e->Graphics;
+	g->DrawLine(System::Drawing::Pens::WhiteSmoke,600,350,950,350);
+	g->DrawLine(System::Drawing::Pens::WhiteSmoke, 600,350,600,500);
+
+}
 };
 }

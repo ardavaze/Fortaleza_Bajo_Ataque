@@ -10,6 +10,8 @@ namespace FBAModel {
         String^ birthday;
         String^ email;
         String^ password;
+        int Skill_point;
+        int Emerald;
         int Level_max;
         int Score_max;
         int Time_max;

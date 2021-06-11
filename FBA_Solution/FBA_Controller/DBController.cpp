@@ -44,12 +44,15 @@ void FBAController::DBController::AddUser(User^ usernew){
     SaveUsers();
 }
 
-void FBAController::DBController::UpdateUser(User^){
-    throw gcnew System::NotImplementedException();
+void FBAController::DBController::UpdateUser(User^ delete_user, User^ add_user){
+    DBController::user->Remove(delete_user);
+    DBController::user->Add(add_user);
+    SaveUsers();
 }
 
-void FBAController::DBController::DeleteUser(User^){
-    throw gcnew System::NotImplementedException();
+void FBAController::DBController::DeleteUser(User^user){
+    DBController::user->Remove(user);
+    SaveUsers();
 }
 
 List<User^>^ FBAController::DBController::QueryAllUser(){
