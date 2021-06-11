@@ -101,10 +101,10 @@ void FBAView::SurvivalRender::Run() {
     }
 
     //Se actualiza score
-    Chronometer->Stop();
+    /*Chronometer->Stop();
     if (Chronometer->Elapsed.TotalSeconds>user->Time_max)
         user->Time_max = Chronometer->Elapsed.TotalSeconds;
-
+    */
 }
 
 
@@ -148,10 +148,12 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     physicalElemts = gcnew array<List<PhysicalElement^>^>(4);
     background = gcnew Sprite(gcnew Texture("Assets/Environment/Maps/GameBackground.png"));
     castle = gcnew CastleRender();
+    castle->base = gcnew Base;
     crossbow = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/crossbow.png"));
     arrow = gcnew ArrowRender;
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
+
     //physical elements
     physicalElemts[0]=gcnew List<PhysicalElement^>() ; //Castillo
     physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
@@ -163,6 +165,8 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //Background                                                //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura           
     background->Scale = Vector2f(1920.f / background->Texture->Size.X, 1080.f / background->Texture->Size.Y);
     //Castle                                                     //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura
+    castle->base->Vida_max = 100;
+    castle->HP = castle->base->Vida_max;
     castle->Texture = gcnew Texture("Assets/Environment/MapsElements/Asset 27.png");
     castle->Origin = Vector2f(castle->Texture->Size.X / (float)2, 0);
     castle->Scale = Vector2f((float)-0.7, (float)0.7);
@@ -233,7 +237,8 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     segUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
     dosPuntos = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/2puntos.png"));
     //Base
-    base->HP = user->VidaMaxBase;
+    //base->HP = user->VidaMaxBase;
+    
 
 }
 

@@ -8,6 +8,5 @@ namespace FBAModel{
         int Vida_max;
         String^ Textura;
         String^ Sprite;
-        float HP;
     };
 }
