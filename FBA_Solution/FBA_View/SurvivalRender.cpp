@@ -274,6 +274,8 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->attackVelocity = 50;
     unit_enemies[0]->movementVelocity = 0.9;
     unit_enemies[0]->moneyValue = 50;
+    unit_enemies[0]->attackDamage = 40;
+    unit_enemies[0]->Maxlife = 200;
     //Cronometro
     minDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
     minUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
