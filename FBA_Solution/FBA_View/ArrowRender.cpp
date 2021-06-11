@@ -19,7 +19,8 @@ void FBAView::ArrowRender::ProcessCollision(){
 		if ((SurvivalRender::physicalSpace[a.X][i]->band == FBAModel::Game_obj::Band::Enemies) && (a.Y >= (SurvivalRender::physicalSpace[a.X][i]->Position.Y + SurvivalRender::physicalSpace[a.X][i]->positionElement.Y * Math::Abs(SurvivalRender::physicalSpace[a.X][i]->Scale.Y))) && (a.Y < (SurvivalRender::physicalSpace[a.X][i]->Position.Y + (SurvivalRender::physicalSpace[a.X][i]->positionElement.Y + SurvivalRender::physicalSpace[a.X][i]->sizeElement.Y*3/4)*Math::Abs(SurvivalRender::physicalSpace[a.X][i]->Scale.Y)))) {    //Si es enemigo
 			impacto = 1;
 			//SurvivalRender::physicalSpace[a][i]->BajarVida(20);
-			SurvivalRender::physicalSpace[a.X][i]->Color=SFML::Graphics::Color::Red;
+			SurvivalRender::physicalSpace[a.X][i]->LostLife(80);
+			this->throwed = 0;
 			return;
 		}
 

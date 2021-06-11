@@ -10,10 +10,14 @@ namespace FBAView {
 		Vector2i positionElement;//posicion del comienzo del elemento respecto de la esquina del rectangulo de imagen que la contiene
 		Game_obj::TypeElement type;
 		Game_obj::Band band;
+		int life;
+		int attackDamage;
 		void OccupySpace();
 		void FreeSpace();
 		virtual void ProcessCollision() {}
 		virtual void Todo() {};
+		virtual Void LostLife(int) {};
+		bool muerto;
 	protected:
 		Vector2f size;
 		array<int>^ index;
