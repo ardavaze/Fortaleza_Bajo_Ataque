@@ -2,6 +2,7 @@
 #include "UnitRender.h"
 #include "ArrowRender.h"
 #include "CastleRender.h"
+#include "PhysicalElement.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -22,15 +23,15 @@ namespace FBAView{
 		System::Diagnostics::Stopwatch^ TimeThrowArrow;
 		List<FBAModel::Units^>^ unit_allies;
 		List<FBAModel::Units^>^ unit_enemies;
-		List<UnitRender^>^ unit_allies_field;
-		List<UnitRender^>^ unit_enemies_field;
 		Event event;
 		System::Diagnostics::Stopwatch^ TimeGenerate;
 		void InitializeGraphics();
-		void GenerateUnits();
+		void GenerateUnits(Units^);
 		void ThrowArrow();
-		void GenerateUnits_enemies();
+		void GenerateUnits_enemies(Units^);
 		System::Diagnostics::Stopwatch^ TimeEnemies;
 		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(96);
+		int piso=740;
+		Sprite^ cover;
 	};
 }

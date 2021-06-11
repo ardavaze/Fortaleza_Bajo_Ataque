@@ -18,9 +18,11 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
 
 void FBAView::SurvivalRender::Run(){
     while (this->IsOpen) {
-        for (int i = 2; i < 4; i++){
-            for (int j = 0; j < physicalElemts[i]->Count; j++)
-                physicalElemts[i][j]->OccupySpace();
+        for (int i = 0; i < 4; i++){
+            if (i !=1) {
+                for (int j = 0; j < physicalElemts[i]->Count; j++)
+                    physicalElemts[i][j]->OccupySpace();
+            }
         }
         for (int i = 1; i < 4; i++) {
             for (int j = 0; j < physicalElemts[i]->Count; j++) {
@@ -37,11 +39,18 @@ void FBAView::SurvivalRender::Run(){
                 physicalElemts[i][j]->Todo();
             }
         }
+        for (int i = 2; i < 4; i++) {
+            for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                if (physicalElemts[i][j]->muerto) {
+                    physicalElemts[i]->RemoveAt(j);
+                }
+            }
+        }
         Procesar_evento();
         this->Clear();
         this->Draw(this->background);
         this->Draw(this->castle);
-        this->Draw(this->crossbow);
+        
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
         //    da->Position = Vector2f(20 * i, 0);
@@ -53,19 +62,21 @@ void FBAView::SurvivalRender::Run(){
             arrow->Position= crossbow->Position;
             arrow->Rotation =crossbow ->Rotation;
         }
-        this->Draw(this->arrow);
+        
         TimeEnemies->Stop();
         if (TimeEnemies->Elapsed.TotalSeconds > 8) {
-            GenerateUnits_enemies();
+            GenerateUnits_enemies(this->unit_enemies[0]);
             TimeEnemies->Restart();
         }
         else TimeEnemies->Start();
-        for (int i = 0; i < unit_allies_field->Count; i++) {
-            this->Draw(this->unit_allies_field[i]);
+        for (int i = 2; i < 4; i++) {
+            for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                this->Draw(physicalElemts[i][j]);
+            }
         }
-        for (int i = 0; i < unit_enemies_field->Count; i++) {
-            this->Draw(this->unit_enemies_field[i]);
-        }
+        this->Draw(cover);
+        this->Draw(this->crossbow);
+        this->Draw(this->arrow);
         this->Display();
     }
 }
@@ -81,7 +92,15 @@ void FBAView::SurvivalRender::Procesar_evento(){
             if (Keyboard::IsKeyPressed(Keyboard::Key::D)) {
                 TimeGenerate->Stop();
                 if (TimeGenerate->Elapsed.TotalSeconds > 8) {
-                    GenerateUnits();
+                    GenerateUnits(this->unit_allies[0]);
+                    TimeGenerate->Restart();
+                }
+                else TimeGenerate->Start();
+            }
+            if (Keyboard::IsKeyPressed(Keyboard::Key::E)) {
+                TimeGenerate->Stop();
+                if (TimeGenerate->Elapsed.TotalSeconds > 8) {
+                    GenerateUnits(this->unit_allies[1]);
                     TimeGenerate->Restart();
                 }
                 else TimeGenerate->Start();
@@ -122,15 +141,20 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     physicalElemts[1]->Add(arrow);
     physicalElemts[2] = gcnew List<PhysicalElement^>();
     physicalElemts[3] = gcnew List<PhysicalElement^>();
-
     //Background                                                //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura           
     background->Scale = Vector2f(1920.f / background->Texture->Size.X, 1080.f / background->Texture->Size.Y);
     //Castle                                                     //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura
     castle->Texture = gcnew Texture("Assets/Environment/MapsElements/Asset 27.png");
-    castle->Origin = Vector2f(castle->Texture->Size.X / (float)2, 0);
     castle->Scale = Vector2f((float)-0.7, (float)0.7);
-    castle->Origin = Vector2f(0, 1080 / 2);
-    castle->Position = Vector2f(700, 400);
+    castle->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
+    castle->Position = Vector2f(-300, 400);
+    castle->positionElement = Vector2i(0, 0);
+    castle->sizeElement= Vector2i(350, 200);
+    cover = gcnew Sprite();
+    cover->Texture = gcnew Texture("Assets/Environment/MapsElements/CoverAsset 27.png");
+    cover->Scale = Vector2f((float)-0.7, (float)0.7);
+    cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
+    cover->Position = Vector2f(-300, 400);
     //Crossbow
     crossbow->Origin = Vector2f(168, 406);
     crossbow->Scale = Vector2f(0.18, 0.18);
@@ -164,8 +188,32 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[0]->attackVelocity = 50;
     unit_allies[0]->movementVelocity=0.9;
     unit_allies[0]->moneyValue = 50;
-
+    unit_allies[0]->attackDamage = 40;
+    unit_allies[0]->Maxlife = 200;
+    unit_allies->Add(gcnew FBAModel::Units);
+    unit_allies[1]->band = FBAModel::Units::Band::Allies;
+    unit_allies[1]->AttackAnimation = gcnew List<Texture^>;
+    unit_allies[1]->MoveAnimation = gcnew List<Texture^>;
+    for (int j = 0; j < 11; j++) {
+        d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
+            "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_00" + j + ".png";
+        unit_allies[1]->AttackAnimation->Add(gcnew Texture(d));
+        d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Walking/Walking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
+            "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Walking/Walking_00" + j + ".png";
+        unit_allies[1]->MoveAnimation->Add(gcnew Texture(d));
+    }
+    unit_allies[1]->Image = unit_allies[1]->MoveAnimation[0];
+    unit_allies[1]->scale = Vector2f(0.5, 0.5);
+    unit_allies[1]->positionElement = Vector2i(172, 94);
+    unit_allies[1]->sizeElement = Vector2i(358 - 172, 334 - 94);
+    unit_allies[1]->attackVelocity = 50;
+    unit_allies[1]->movementVelocity = 0.9;
+    unit_allies[1]->moneyValue = 50;
+    unit_allies[1]->attackDamage = 40;
+    unit_allies[1]->Maxlife = 200;
+    //
     //Unidades Enemigas
+    //
     unit_enemies->Add(gcnew FBAModel::Units);
     unit_enemies[0]->band = FBAModel::Units::Band::Enemies;
     unit_enemies[0]->AttackAnimation = gcnew List<Texture^>;
@@ -185,26 +233,24 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->attackVelocity = 50;
     unit_enemies[0]->movementVelocity = 0.9;
     unit_enemies[0]->moneyValue = 50;
-    //Aliados en batalla
-    unit_allies_field = gcnew List<UnitRender^>;
-    //Enemigos en batalla
-    unit_enemies_field = gcnew List<UnitRender^>;
+    unit_enemies[0]->attackDamage = 40;
+    unit_enemies[0]->Maxlife = 200;
 }
 
-void FBAView::SurvivalRender::GenerateUnits(){
-    unit_allies_field->Add(gcnew UnitRender);
-    physicalElemts[2]->Add(unit_allies_field[unit_allies_field->Count - 1]);
-    unit_allies_field[unit_allies_field->Count - 1]->unit=unit_allies[0];
-    unit_allies_field[unit_allies_field->Count - 1]->band= unit_allies_field[unit_allies_field->Count - 1]->unit->band;
-    unit_allies_field[unit_allies_field->Count - 1]->Texture = unit_allies_field[unit_allies_field->Count - 1]->unit->Image;
-    unit_allies_field[unit_allies_field->Count - 1]->Position = Vector2f((float)550, (float)560);
-    unit_allies_field[unit_allies_field->Count - 1]->Scale = unit_allies_field[unit_allies_field->Count - 1]->unit->scale;
-    unit_allies_field[unit_allies_field->Count - 1]->sizeElement = unit_allies_field[unit_allies_field->Count - 1]->unit->sizeElement;
-    unit_allies_field[unit_allies_field->Count - 1]->positionElement = unit_allies_field[unit_allies_field->Count - 1]->unit->positionElement;
-    unit_allies_field[unit_allies_field->Count - 1]->attackVelocity = unit_allies_field[unit_allies_field->Count - 1]->unit->attackVelocity;
-    unit_allies_field[unit_allies_field->Count - 1]->movementVelocity = unit_allies_field[unit_allies_field->Count - 1]->unit->movementVelocity;
-    unit_allies_field[unit_allies_field->Count - 1]->attackDamage =unit_allies_field[unit_allies_field->Count - 1]->unit->attackDamage;
-    unit_allies_field[unit_allies_field->Count - 1]->life=unit_allies_field[unit_allies_field->Count - 1]->unit->Maxlife;
+void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
+    UnitRender^ newUnit =gcnew UnitRender ;
+    physicalElemts[2]->Add(newUnit);
+    newUnit->unit= baseUnit;
+    newUnit->band= newUnit->unit->band;
+    newUnit->Texture = newUnit->unit->Image;
+    newUnit->Scale = newUnit->unit->scale;
+    newUnit->sizeElement = newUnit->unit->sizeElement;
+    newUnit->positionElement = newUnit->unit->positionElement;
+    newUnit->Position = Vector2f((float)450, (float)(piso - (newUnit->Scale.Y) * (newUnit->positionElement.Y + newUnit->sizeElement.Y)));
+    newUnit->attackVelocity = newUnit->unit->attackVelocity;
+    newUnit->movementVelocity = newUnit->unit->movementVelocity;
+    newUnit->attackDamage =newUnit->unit->attackDamage;
+    newUnit->life=newUnit->unit->Maxlife;
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
@@ -220,21 +266,22 @@ void FBAView::SurvivalRender::ThrowArrow() {
     }
 }
 
-void FBAView::SurvivalRender::GenerateUnits_enemies(){    
-    unit_enemies_field->Add(gcnew UnitRender);
-    physicalElemts[3]->Add(unit_enemies_field[unit_enemies_field->Count - 1]);
-    unit_enemies_field[unit_enemies_field->Count - 1]->unit = unit_enemies[0];
-    unit_enemies_field[unit_enemies_field->Count - 1]->band = unit_enemies_field[unit_enemies_field->Count - 1]->unit->band;
-    unit_enemies_field[unit_enemies_field->Count - 1]->Texture = unit_enemies_field[unit_enemies_field->Count - 1]->unit->Image;
-    unit_enemies_field[unit_enemies_field->Count - 1]->Position = Vector2f(1920, (float)560);
-    unit_enemies_field[unit_enemies_field->Count - 1]->Scale = unit_enemies_field[unit_enemies_field->Count - 1]->unit->scale;
-    unit_enemies_field[unit_enemies_field->Count - 1]->Origin = Vector2f(unit_enemies_field[unit_enemies_field->Count - 1]->Texture->Size.X, 0);
-    unit_enemies_field[unit_enemies_field->Count - 1]->positionElement = unit_enemies_field[unit_enemies_field->Count - 1]->unit->positionElement;
-    unit_enemies_field[unit_enemies_field->Count - 1]->sizeElement = unit_enemies_field[unit_enemies_field->Count - 1]->unit->sizeElement;
-    unit_enemies_field[unit_enemies_field->Count - 1]->attackVelocity = unit_enemies_field[unit_enemies_field->Count - 1]->unit->attackVelocity;
-    unit_enemies_field[unit_enemies_field->Count - 1]->movementVelocity = unit_enemies_field[unit_enemies_field->Count - 1]->unit->movementVelocity;
-    unit_enemies_field[unit_enemies_field->Count - 1]->attackDamage = unit_enemies_field[unit_enemies_field->Count - 1]->unit->attackDamage;
-    unit_enemies_field[unit_enemies_field->Count - 1]->life= unit_enemies_field[unit_enemies_field->Count - 1]->unit->Maxlife;
+void FBAView::SurvivalRender::GenerateUnits_enemies(Units^ baseUnit){
+    UnitRender^ newUnit = gcnew UnitRender;
+    physicalElemts[3]->Add(newUnit);
+    //((UnitRender^)physicalElemts[3][physicalElemts[3]->Count - 1])
+    newUnit->unit = baseUnit;
+    newUnit->band = newUnit->unit->band;
+    newUnit->Texture = newUnit->unit->Image;
+    newUnit->Scale = newUnit->unit->scale;
+    newUnit->Origin = Vector2f(newUnit->Texture->Size.X, 0);
+    newUnit->positionElement = newUnit->unit->positionElement;
+    newUnit->sizeElement = newUnit->unit->sizeElement;
+    newUnit->Position = Vector2f(1920, (float)(piso - (newUnit->Scale.Y) * (newUnit->positionElement.Y + newUnit->sizeElement.Y)));
+    newUnit->attackVelocity = newUnit->unit->attackVelocity;
+    newUnit->movementVelocity = newUnit->unit->movementVelocity;
+    newUnit->attackDamage = newUnit->unit->attackDamage;
+    newUnit->life= newUnit->unit->Maxlife;
 }
 
 

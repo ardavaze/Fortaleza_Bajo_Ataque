@@ -9,20 +9,21 @@ namespace FBAView {
 	public ref class UnitRender: public PhysicalElement{
 	public:
 		FBAModel::Units^ unit;
-		int life;
-		int attackDamage;
 		double movementVelocity; //en metros/segundo(1m=50pix)
 		double attackVelocity;  //ataques/minuto
-		virtual void ProcessCollision() override;
-		virtual void Todo() override;
-		bool attackMove;//1 si debe atacar, 0 si debe moverse
+		void ProcessCollision() override;
+		virtual Void Todo() override;
+		virtual Void LostLife(int) override;
+		
 	protected:
+		bool attackMove;//1 si debe atacar, 0 si debe moverse
 		int indice = 0;
 		bool frstTimeJob=1;
 		double totalTimeJob;
 		bool attackMoveJob;
 		bool frstTimechange;
 		int positionx;
+		PhysicalElement^ enemyUnit;
 		System::Diagnostics::Stopwatch^ timeJob=gcnew System::Diagnostics::Stopwatch;
 	};
 }
