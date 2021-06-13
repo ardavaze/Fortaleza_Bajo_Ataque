@@ -64,6 +64,7 @@ namespace FBAView {
 
 		   static FBAModel::User^ user;
 			Menu_principal(void){
+				FBA_Controller::InicializeController();
 				if (user == nullptr) {
 					LoginForm^ login = gcnew LoginForm();
 					login->ShowDialog();
@@ -89,13 +90,10 @@ namespace FBAView {
 	public: void User_data() {
 		if (Menu_principal::user!=nullptr) {
 			textBox_username->Text = "" + Menu_principal::user->nickname;
-			textBox_emerald->Text = "" + Menu_principal::user->Emerald;
-			textBox_skills_points->Text = "" + Menu_principal::user->Skill_point;
+			textBox_emerald->Text = "" + Menu_principal::user->emerald;
+			textBox_skills_points->Text = "" + Menu_principal::user->experience;
 		}
 	}
-	
-
-	
 	   private: void Hide_panel() {
 			panel_modo->Visible = false;
 			panel_tienda->Visible = false;
@@ -645,86 +643,73 @@ private: System::Windows::Forms::Panel^ panel_user;
 
 		}
 #pragma endregion
-	private: System::Void Menu_principal_Load(System::Object^ sender, System::EventArgs^ e) {
+		private: System::Void Menu_principal_Load(System::Object^ sender, System::EventArgs^ e) {
 	
-	}
-	private: System::Void btn_modo_Click(System::Object^ sender, System::EventArgs^ e) {
-		Click_panel(panel_modo);
-	}
-	private: System::Void btn_historia_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
+		}
+		private: System::Void btn_modo_Click(System::Object^ sender, System::EventArgs^ e) {
+			Click_panel(panel_modo);
+		}
+		private: System::Void btn_historia_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
 		
-		open_ChildForm(gcnew campaign());
+			open_ChildForm(gcnew campaign());
 		
-	}
-	private: System::Void btn_survival_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
+		}
+		private: System::Void btn_survival_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
 		
-		open_ChildForm(gcnew Survival());
+			open_ChildForm(gcnew Survival());
 
-	}
-	private: System::Void btn_tienda_Click(System::Object^ sender, System::EventArgs^ e) {
-		Click_panel(panel_tienda);
+		}
+		private: System::Void btn_tienda_Click(System::Object^ sender, System::EventArgs^ e) {
+			Click_panel(panel_tienda);
 		
-	}
-	private: System::Void btn_skin_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
-		open_ChildForm(gcnew Skins());
-	}
+		}
+		private: System::Void btn_skin_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
+			open_ChildForm(gcnew Skins());
+		}
 
-	private: System::Void btn_backgrounds_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
-		open_ChildForm(gcnew Background());
-	}
-
-	
-
-	private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
-		open_ChildForm(gcnew Scoreboard());
-	}
-
-	private: System::Void btn_creditos_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
-		open_ChildForm(gcnew Credits());
-	}
-
-	private: System::Void btn_config_Click(System::Object^ sender, System::EventArgs^ e) {
-		Hide_panel();
-		open_ChildForm(gcnew Settings());
-	}
-
-
-
+		private: System::Void btn_backgrounds_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
+			open_ChildForm(gcnew Background());
+		}
 
 	
-	
-	
 
+		private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
+			open_ChildForm(gcnew Scoreboard());
+		}
 
+		private: System::Void btn_creditos_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
+			open_ChildForm(gcnew Credits());
+		}
 
-private: System::Void Menu_principal_Leave(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-}
-private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-	Hide_panel();
-	if (active_Form != nullptr)
-		active_Form->Close();
+		private: System::Void btn_config_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
+			open_ChildForm(gcnew Settings());
+		}
+		private: System::Void Menu_principal_Leave(System::Object^ sender, System::EventArgs^ e) {
+			this->Hide();
+		}
+		private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
+			if (active_Form != nullptr)
+				active_Form->Close();
 
-}
-
-private: System::Void panel_user_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-	Graphics^ h = e->Graphics;
-	h->DrawLine(System::Drawing::Pens::WhiteSmoke,0,0,260,0);
-	h->DrawLine(System::Drawing::Pens::WhiteSmoke, 0, 105, 260,105);
-}
-
-
-private: System::Void pictureBox_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
-	Hide_panel();
-	Profile^ a = gcnew Profile();
-	a->Owner = this;
-	open_ChildForm(a);
-}
-};
+		}
+		private: System::Void panel_user_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			Graphics^ h = e->Graphics;
+			h->DrawLine(System::Drawing::Pens::WhiteSmoke,0,0,260,0);
+			h->DrawLine(System::Drawing::Pens::WhiteSmoke, 0, 105, 260,105);
+		}
+		private: System::Void pictureBox_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
+			Hide_panel();
+			Profile^ a = gcnew Profile();
+			a->Owner = this;
+			open_ChildForm(a);
+		}
+	};
 }

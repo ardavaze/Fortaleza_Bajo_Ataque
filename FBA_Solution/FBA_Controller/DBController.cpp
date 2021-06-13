@@ -2,6 +2,7 @@
 #include "DBController.h"
 
 void FBAController::DBController::InicializeController(){
+    LoadUsers();
 }
 
 void FBAController::DBController::SaveUsers(){

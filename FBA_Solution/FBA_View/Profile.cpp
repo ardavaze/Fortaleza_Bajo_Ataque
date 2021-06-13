@@ -9,10 +9,10 @@ void FBAView::Profile::User_data_load()
 	textBox_LastName_Father->Text = "" + Menu_principal::user->lastNameFath;
 	textBox_Birthday->Text = "" + Menu_principal::user->birthday;
 	textBox_email->Text = "" + Menu_principal::user->email;
-	textBox_emerald->Text = "" + Menu_principal::user->Emerald;
-	textBox_skill_points->Text = "" + Menu_principal::user->Skill_point;
-	textBox_level->Text = "" + Menu_principal::user->Level_max;
-	textBox_max_time->Text = "" + Menu_principal::user->Time_max;
+	textBox_emerald->Text = "" + Menu_principal::user->emerald;
+	textBox_skill_points->Text = "" + Menu_principal::user->experience;
+	textBox_level->Text = "" + Menu_principal::user->levelMax;
+	textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
 }
 
 System::Void FBAView::Profile::btn_delete_Click(System::Object^ sender, System::EventArgs^ e)
@@ -65,12 +65,11 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 			u->lastNameMoth = "" + textBox_LastName_Father->Text;
 			u->birthday = "" + textBox_Birthday->Text;
 			u->email = "" + textBox_email->Text;
-			u->Emerald = Int32::Parse(textBox_emerald->Text);
-			u->Skill_point = Int32::Parse(textBox_skill_points->Text);
-			u->Level_max = Int32::Parse(textBox_level->Text);
-			u->Time_max = Int32::Parse(textBox_max_time->Text);
+			u->emerald = Int32::Parse(textBox_emerald->Text);
+			u->experience = Int32::Parse(textBox_skill_points->Text);
+			u->levelMax = Int32::Parse(textBox_level->Text);
+			u->survival->timeMax = Int32::Parse(textBox_max_time->Text);
 			u->password = Menu_principal::user->password;
-
 			FBA_Controller::UpdateUser(Menu_principal::user, u);
 			Hide_button();
 			Menu_principal::user = u;

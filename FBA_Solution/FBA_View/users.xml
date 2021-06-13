@@ -10,9 +10,10 @@
     <password>123456</password>
     <Skill_point>0</Skill_point>
     <Emerald>0</Emerald>
-	<Level_max>0</Level_max>
-	<Score_max>0</Score_max>
-	<Time_max>0</Time_max>
+    <Level_max>0</Level_max>
+    <Score_max>0</Score_max>
+    <Time_max>0</Time_max>
+    <VidaMaxBase>0</VidaMaxBase>
   </User>
   <User>
     <nickname>Ardavaze</nickname>
@@ -22,11 +23,12 @@
     <birthday>05/10/2000</birthday>
     <email>dan051020@gmail.com</email>
     <password>password</password>
-	<Skill_point>0</Skill_point>
-	<Emerald>0</Emerald>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
     <Level_max>0</Level_max>
     <Score_max>0</Score_max>
     <Time_max>0</Time_max>
+    <VidaMaxBase>0</VidaMaxBase>
   </User>
   <User>
     <nickname>Rovenegas</nickname>
@@ -36,10 +38,26 @@
     <birthday>11/06/2000</birthday>
     <email>a20171555@pucp.edu.pe</email>
     <password>password</password>
-	<Skill_point>0</Skill_point>
-	<Emerald>0</Emerald>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
     <Level_max>0</Level_max>
     <Score_max>0</Score_max>
     <Time_max>0</Time_max>
+    <VidaMaxBase>0</VidaMaxBase>
+  </User>
+  <User>
+    <nickname>g</nickname>
+    <lastNameFath>dd</lastNameFath>
+    <lastNameMoth>ggg</lastNameMoth>
+    <name>dd</name>
+    <birthday>d</birthday>
+    <email>g</email>
+    <password>g</password>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
+    <Level_max>0</Level_max>
+    <Score_max>0</Score_max>
+    <Time_max>0</Time_max>
+    <VidaMaxBase>0</VidaMaxBase>
   </User>
 </ArrayOfUser>
