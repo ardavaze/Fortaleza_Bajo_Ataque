@@ -1,8 +1,7 @@
 #include "Profile.h"
 #include "menu_principal.h"
 
-void FBAView::Profile::User_data_load()
-{
+void FBAView::Profile::User_data_load(){
 	textBox_username->Text = "" + Menu_principal::user->nickname;
 	textBox_name->Text = "" + Menu_principal::user->name;
 	textBox_LastName_Mother->Text = "" + Menu_principal::user->lastNameMoth;
