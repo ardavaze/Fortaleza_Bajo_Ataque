@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUser xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <User>
-    <nickname>jorge</nickname>
-    <lastNameFath>a</lastNameFath>
-    <lastNameMoth>a</lastNameMoth>
-    <name>jorge</name>
-    <birthday>a</birthday>
-    <email>a</email>
-    <password>123456</password>
-    <Skill_point>0</Skill_point>
-    <Emerald>0</Emerald>
-	<Level_max>0</Level_max>
-	<Score_max>0</Score_max>
-	<Time_max>0</Time_max>
-  </User>
-  <User>
     <nickname>Ardavaze</nickname>
     <lastNameFath>Valdivieso</lastNameFath>
     <lastNameMoth>Zavala</lastNameMoth>
@@ -22,11 +8,12 @@
     <birthday>05/10/2000</birthday>
     <email>dan051020@gmail.com</email>
     <password>password</password>
-	<Skill_point>0</Skill_point>
-	<Emerald>0</Emerald>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
     <Level_max>0</Level_max>
     <Score_max>0</Score_max>
     <Time_max>0</Time_max>
+    <VidaMaxBase>0</VidaMaxBase>
   </User>
   <User>
     <nickname>Rovenegas</nickname>
@@ -36,10 +23,26 @@
     <birthday>11/06/2000</birthday>
     <email>a20171555@pucp.edu.pe</email>
     <password>password</password>
-	<Skill_point>0</Skill_point>
-	<Emerald>0</Emerald>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
     <Level_max>0</Level_max>
     <Score_max>0</Score_max>
     <Time_max>0</Time_max>
+    <VidaMaxBase>0</VidaMaxBase>
+  </User>
+  <User>
+    <nickname>jorge</nickname>
+    <lastNameFath>aea</lastNameFath>
+    <lastNameMoth>aea</lastNameMoth>
+    <name>jorge</name>
+    <birthday>aea</birthday>
+    <email>aea</email>
+    <password>123456</password>
+    <Skill_point>0</Skill_point>
+    <Emerald>0</Emerald>
+    <Level_max>0</Level_max>
+    <Score_max>0</Score_max>
+    <Time_max>0</Time_max>
+    <VidaMaxBase>0</VidaMaxBase>
   </User>
 </ArrayOfUser>

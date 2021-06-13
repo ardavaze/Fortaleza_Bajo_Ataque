@@ -73,6 +73,8 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 
 			FBA_Controller::UpdateUser(Menu_principal::user, u);
 			Hide_button();
+			ReadOnly_true();
+			btn_update->Visible = true;
 			Menu_principal::user = u;
 			((Menu_principal^)this->Owner)->User_data();
 		}

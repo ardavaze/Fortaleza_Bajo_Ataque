@@ -558,10 +558,10 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->textBox_username->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_username->ForeColor = System::Drawing::Color::White;
-			this->textBox_username->Location = System::Drawing::Point(37, 5);
+			this->textBox_username->Location = System::Drawing::Point(3, 5);
 			this->textBox_username->Name = L"textBox_username";
 			this->textBox_username->ReadOnly = true;
-			this->textBox_username->Size = System::Drawing::Size(144, 26);
+			this->textBox_username->Size = System::Drawing::Size(186, 26);
 			this->textBox_username->TabIndex = 0;
 			this->textBox_username->Text = L"USUARIO";
 			this->textBox_username->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -677,8 +677,6 @@ private: System::Windows::Forms::Panel^ panel_user;
 		open_ChildForm(gcnew Background());
 	}
 
-	
-
 	private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
 		Hide_panel();
 		open_ChildForm(gcnew Scoreboard());
@@ -694,37 +692,29 @@ private: System::Windows::Forms::Panel^ panel_user;
 		open_ChildForm(gcnew Settings());
 	}
 
-
-
-
-	
-	
-	
-
-
-
-private: System::Void Menu_principal_Leave(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void Menu_principal_Leave(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
-}
-private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-	Hide_panel();
-	if (active_Form != nullptr)
-		active_Form->Close();
+	}
 
-}
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+		Hide_panel();
+		if (active_Form != nullptr)
+			active_Form->Close();
 
-private: System::Void panel_user_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-	Graphics^ h = e->Graphics;
-	h->DrawLine(System::Drawing::Pens::WhiteSmoke,0,0,260,0);
-	h->DrawLine(System::Drawing::Pens::WhiteSmoke, 0, 105, 260,105);
-}
+	}
+
+	private: System::Void panel_user_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+		Graphics^ h = e->Graphics;
+		h->DrawLine(System::Drawing::Pens::WhiteSmoke,0,0,260,0);
+		h->DrawLine(System::Drawing::Pens::WhiteSmoke, 0, 105, 260,105);
+	}
 
 
-private: System::Void pictureBox_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
-	Hide_panel();
-	Profile^ a = gcnew Profile();
-	a->Owner = this;
-	open_ChildForm(a);
-}
+	private: System::Void pictureBox_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
+		Hide_panel();
+		Profile^ a = gcnew Profile();
+		a->Owner = this;
+		open_ChildForm(a);
+	}
 };
 }

@@ -519,21 +519,21 @@ namespace FBAView {
 		}
 #pragma endregion
 	
-	private: System::Void btn_close_Click_1(System::Object^ sender, System::EventArgs^ e) {
-		this->Close();
-	}
+	
 	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 
 private: System::Void btn_update_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReadOnly_false();
 	Show_button();
+	btn_update->Visible = false;
 }
 
 private: System::Void btn_cancel_Click(System::Object^ sender, System::EventArgs^ e) {
 	ReadOnly_true();
 	User_data_load();
 	Hide_button();
+	btn_update->Visible = true;
 }
 
 
