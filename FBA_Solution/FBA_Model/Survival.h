@@ -3,9 +3,12 @@
 
 using namespace System;
 namespace FBAModel {
+    [Serializable]
     public ref class Survival : public Match {
     public:
-        int Time_game;
-        int Factor_dificultad;
+        /// <summary>
+        /// 
+        /// </summary>
+        int timeMax; //en Segundos
     };
 }
