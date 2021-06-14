@@ -2,7 +2,7 @@
 #include "menu_principal.h"
 void FBAView::Survival::user_rank_load()
 {
-	int level = Menu_principal::user->Level_max;
+	/*int level = Menu_principal::user->Level_max;
 	if (0 < level < 5) {
 
 
@@ -24,5 +24,5 @@ void FBAView::Survival::user_rank_load()
 
 
 
-	}
+	}*/
 }
