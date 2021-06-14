@@ -6,7 +6,9 @@ System::Void FBAView::RegisterForm::btnRegister_Click(System::Object^ sender, Sy
 		(txbLastNameMoth->Text->Trim() != "") && (txbName->Text->Trim() != "") && (txbnickname->Text->Trim() != "") &&
 		(txbPassword->Text->Trim() != "")) {
 		User^ user = gcnew User(txbnickname->Text, txbLastNameFath->Text, txbLastNameMoth->Text, txbName->Text,
-			txbBirthday->Text, txbemail->Text, txbPassword->Text);
+								txbBirthday->Text, txbemail->Text, txbPassword->Text);
+		user->medal=gcnew Medal();
+		user->survival = gcnew FBAModel::Survival();
 		FBAController::FBA_Controller::AddUser(user);
 		Menu_principal::user = user;
 		MessageBox::Show("Cuenta creada satisfactoriamente.");

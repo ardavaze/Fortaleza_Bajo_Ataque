@@ -6,6 +6,7 @@ namespace FBAModel {
     [Serializable]
     public ref class User {
     public:
+        int id;
         String^ nickname;
         String^ lastNameFath;
         String^ lastNameMoth;

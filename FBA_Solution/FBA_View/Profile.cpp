@@ -11,11 +11,11 @@ void FBAView::Profile::User_data_load(){
 	textBox_emerald->Text = "" + Menu_principal::user->emerald;
 	textBox_skill_points->Text = "" + Menu_principal::user->experience;
 	textBox_level->Text = "" + Menu_principal::user->levelMax;
+
 	textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
 }
 
-System::Void FBAView::Profile::btn_delete_Click(System::Object^ sender, System::EventArgs^ e)
-{
+System::Void FBAView::Profile::btn_delete_Click(System::Object^ sender, System::EventArgs^ e){
 	if (MessageBox::Show(
 		"¿Está seguro de eliminar su cuenta?",
 		"Confirmación", MessageBoxButtons::YesNo,
@@ -58,6 +58,7 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 		User^ u = gcnew User();
 		try {
+			u = Menu_principal::user;
 			u->nickname = "" + textBox_username->Text;
 			u->name = "" + textBox_name->Text;
 			u->lastNameFath = "" + textBox_LastName_Mother->Text;
@@ -68,10 +69,8 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 			u->experience = Int32::Parse(textBox_skill_points->Text);
 			u->levelMax = Int32::Parse(textBox_level->Text);
 			u->survival->timeMax = Int32::Parse(textBox_max_time->Text);
-			u->password = Menu_principal::user->password;
 			FBA_Controller::UpdateUser(Menu_principal::user, u);
 			Hide_button();
-			Menu_principal::user = u;
 			((Menu_principal^)this->Owner)->User_data();
 		}
 		catch (Exception^ ex) {
