@@ -19,6 +19,7 @@ namespace FBAView {
 		Survival(void)
 		{
 			InitializeComponent();
+			user_rank_load();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -35,6 +36,8 @@ namespace FBAView {
 				delete components;
 			}
 		}
+	private:void user_rank_load();
+	
 	private: System::Windows::Forms::Button^ btn_playSurvival;
 
 	private: System::Windows::Forms::Label^ label_title;
@@ -45,9 +48,12 @@ namespace FBAView {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ textBox_rank;
+
+
 	private: System::Windows::Forms::PictureBox^ pictureBox_rank;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox_unlock_units;
+
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::TextBox^ textBox4;
 	private: System::Windows::Forms::TextBox^ textBox5;
@@ -82,9 +88,9 @@ namespace FBAView {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox_rank = (gcnew System::Windows::Forms::TextBox());
 			this->pictureBox_rank = (gcnew System::Windows::Forms::PictureBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox_unlock_units = (gcnew System::Windows::Forms::TextBox());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
@@ -150,24 +156,24 @@ namespace FBAView {
 			this->label2->ForeColor = System::Drawing::Color::White;
 			this->label2->Location = System::Drawing::Point(83, 225);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(444, 867);
+			this->label2->Size = System::Drawing::Size(296, 578);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"Rango:\r\n\r\nUnidades \r\nDesbloqueadas:\r\n\r\nUnidades \r\nEnemigas:\r\n\r\nMejoras:\r\n\r\n\r\n\r\n\r\n"
 				L"Tiempo \r\nMáximo:\r\n\r\nIntentos:\r\n";
 			// 
-			// textBox1
+			// textBox_rank
 			// 
-			this->textBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
+			this->textBox_rank->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBox_rank->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox_rank->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->ForeColor = System::Drawing::Color::White;
-			this->textBox1->Location = System::Drawing::Point(474, 222);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(155, 34);
-			this->textBox1->TabIndex = 12;
-			this->textBox1->Text = L"Coronel";
+			this->textBox_rank->ForeColor = System::Drawing::Color::White;
+			this->textBox_rank->Location = System::Drawing::Point(474, 222);
+			this->textBox_rank->Name = L"textBox_rank";
+			this->textBox_rank->Size = System::Drawing::Size(155, 34);
+			this->textBox_rank->TabIndex = 12;
+			this->textBox_rank->Text = L"Coronel";
 			// 
 			// pictureBox_rank
 			// 
@@ -179,20 +185,20 @@ namespace FBAView {
 			this->pictureBox_rank->TabIndex = 13;
 			this->pictureBox_rank->TabStop = false;
 			// 
-			// textBox2
+			// textBox_unlock_units
 			// 
-			this->textBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
-				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBox_unlock_units->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)),
+				static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)));
+			this->textBox_unlock_units->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox_unlock_units->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->ForeColor = System::Drawing::Color::White;
-			this->textBox2->Location = System::Drawing::Point(474, 291);
-			this->textBox2->Multiline = true;
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(345, 81);
-			this->textBox2->TabIndex = 14;
-			this->textBox2->Text = L"Soldado, Arquero, Curardor";
+			this->textBox_unlock_units->ForeColor = System::Drawing::Color::White;
+			this->textBox_unlock_units->Location = System::Drawing::Point(474, 291);
+			this->textBox_unlock_units->Multiline = true;
+			this->textBox_unlock_units->Name = L"textBox_unlock_units";
+			this->textBox_unlock_units->Size = System::Drawing::Size(345, 81);
+			this->textBox_unlock_units->TabIndex = 14;
+			this->textBox_unlock_units->Text = L"Soldado, Arquero, Curardor";
 			// 
 			// textBox3
 			// 
@@ -265,9 +271,9 @@ namespace FBAView {
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBox_unlock_units);
 			this->Controls->Add(this->pictureBox_rank);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->textBox_rank);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->pictureBox1);

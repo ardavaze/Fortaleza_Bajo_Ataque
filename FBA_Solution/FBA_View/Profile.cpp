@@ -11,7 +11,6 @@ void FBAView::Profile::User_data_load(){
 	textBox_emerald->Text = "" + Menu_principal::user->emerald;
 	textBox_skill_points->Text = "" + Menu_principal::user->experience;
 	textBox_level->Text = "" + Menu_principal::user->levelMax;
-
 	textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
 }
 
@@ -71,6 +70,9 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 			u->survival->timeMax = Int32::Parse(textBox_max_time->Text);
 			FBA_Controller::UpdateUser(Menu_principal::user, u);
 			Hide_button();
+			ReadOnly_true();
+			btn_update->Visible = true;
+			Menu_principal::user = u;
 			((Menu_principal^)this->Owner)->User_data();
 		}
 		catch (Exception^ ex) {

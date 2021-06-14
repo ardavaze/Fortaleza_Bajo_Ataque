@@ -556,10 +556,10 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->textBox_username->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_username->ForeColor = System::Drawing::Color::White;
-			this->textBox_username->Location = System::Drawing::Point(37, 5);
+			this->textBox_username->Location = System::Drawing::Point(3, 5);
 			this->textBox_username->Name = L"textBox_username";
 			this->textBox_username->ReadOnly = true;
-			this->textBox_username->Size = System::Drawing::Size(144, 26);
+			this->textBox_username->Size = System::Drawing::Size(186, 26);
 			this->textBox_username->TabIndex = 0;
 			this->textBox_username->Text = L"USUARIO";
 			this->textBox_username->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;

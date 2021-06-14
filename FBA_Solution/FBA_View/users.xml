@@ -5,7 +5,7 @@
     <nickname>jorge</nickname>
     <lastNameFath>a</lastNameFath>
     <lastNameMoth>a</lastNameMoth>
-    <name>jorge</name>
+    <name>Jorge</name>
     <birthday>a</birthday>
     <email>a</email>
     <password>123456</password>
@@ -43,8 +43,8 @@
   <User>
     <id>2</id>
     <nickname>Ardavaze</nickname>
-    <lastNameFath>Zavala</lastNameFath>
-    <lastNameMoth>Valdivieso</lastNameMoth>
+    <lastNameFath>Valdivieso</lastNameFath>
+    <lastNameMoth>Zavala</lastNameMoth>
     <name>Danny</name>
     <birthday>05/10/2000</birthday>
     <email>dan051020@gmail.com</email>
