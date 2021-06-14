@@ -6,11 +6,12 @@ namespace FBAModel {
     public:
         List<Texture^>^ AttackAnimation;
         List<Texture^>^ MoveAnimation;
-        List<Texture^>^ DieAnimation;
+        List<Texture^>^ DeathAnimation;
         int Maxlife;
         int attackDamage;
         double movementVelocity;
         double attackVelocity;
+        double deathTime;
         int moneyValue;
         Vector2f scale;      //la escala que debe tener la imagen al dibujarla
         Vector2i sizeElement;     //tamaño real del personaje sin considerar el rectangulo de imagen que la contiene

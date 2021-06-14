@@ -1,6 +1,5 @@
 #include "SurvivalRender.h"
 #include "menu_principal.h"
-#include "Math.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -25,16 +24,19 @@ void FBAView::SurvivalRender::Run() {
         for (int i = 0; i < 4; i++){
             if (i !=1) {
                 for (int j = 0; j < physicalElemts[i]->Count; j++)
+                    if(!physicalElemts[i][j]->muerto)
                     physicalElemts[i][j]->OccupySpace();
             }
         }
         for (int i = 1; i < 4; i++) {
             for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                if (!physicalElemts[i][j]->muerto)
                 physicalElemts[i][j]->ProcessCollision();
             }
         }
         for (int i = 2; i < 4; i++) {
             for (int j = physicalElemts[i]->Count - 1; 0 <= j; j--) {
+                if (!physicalElemts[i][j]->muerto)
                 physicalElemts[i][j]->FreeSpace();
             }
         }
@@ -45,7 +47,7 @@ void FBAView::SurvivalRender::Run() {
         }
         for (int i = 2; i < 4; i++) {
             for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                if (physicalElemts[i][j]->muerto) {
+                if (physicalElemts[i][j]->dead) {
                     physicalElemts[i]->RemoveAt(j);
                 }
             }
@@ -73,7 +75,7 @@ void FBAView::SurvivalRender::Run() {
         }
         
         TimeEnemies->Stop();
-        if (TimeEnemies->Elapsed.TotalSeconds > 6) {
+        if (TimeEnemies->Elapsed.TotalSeconds > 10) {
             GenerateUnits_enemies(this->unit_enemies[0]);
             TimeEnemies->Restart();
         }
@@ -180,14 +182,19 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[0]->band = FBAModel::Units::Band::Allies;
     unit_allies[0]->AttackAnimation = gcnew List<Texture^>;
     unit_allies[0]->MoveAnimation = gcnew List<Texture^>;
+    unit_allies[0]->DeathAnimation = gcnew List<Texture^>;
     String^ d;               //auxiliar para Directorio de imagenes
     for (int j = 0; j < 20; j++) {
-        d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
+        d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": 
                     "Assets/Characters/Soldier/4_enemies_1_attack_00" + j + ".png";
         unit_allies[0]->AttackAnimation->Add(gcnew Texture(d));
-        d = j > 9? "Assets/Characters/Soldier/4_enemies_1_walk_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
+        d = j > 9? "Assets/Characters/Soldier/4_enemies_1_walk_0" + j + ".png": 
                     "Assets/Characters/Soldier/4_enemies_1_walk_00" + j + ".png";
-        unit_allies[0]->MoveAnimation->Add(gcnew Texture(d));    }
+        unit_allies[0]->MoveAnimation->Add(gcnew Texture(d));  
+        d = j > 9 ? "Assets/Characters/Soldier/4_enemies_1_die_0" + j + ".png" :
+            "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
+        unit_allies[0]->DeathAnimation->Add(gcnew Texture(d));
+    }
     unit_allies[0]->Image = unit_allies[0]->MoveAnimation[0];
     unit_allies[0]->scale=Vector2f(0.6,0.6);
     unit_allies[0]->positionElement = Vector2i(42, 52);
@@ -197,10 +204,12 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[0]->moneyValue = 50;
     unit_allies[0]->attackDamage = 40;
     unit_allies[0]->Maxlife = 200;
+    unit_allies[0]->deathTime = 1.2;
     unit_allies->Add(gcnew FBAModel::Units);
     unit_allies[1]->band = FBAModel::Units::Band::Allies;
     unit_allies[1]->AttackAnimation = gcnew List<Texture^>;
     unit_allies[1]->MoveAnimation = gcnew List<Texture^>;
+    unit_allies[1]->DeathAnimation = gcnew List<Texture^>;
     for (int j = 0; j < 11; j++) {
         d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
             "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_00" + j + ".png";
@@ -218,6 +227,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[1]->moneyValue = 50;
     unit_allies[1]->attackDamage = 40;
     unit_allies[1]->Maxlife = 200;
+    unit_allies[1]->deathTime = 1.2;
     //
     //Unidades Enemigas
     //
@@ -225,6 +235,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->band = FBAModel::Units::Band::Enemies;
     unit_enemies[0]->AttackAnimation = gcnew List<Texture^>;
     unit_enemies[0]->MoveAnimation = gcnew List<Texture^>;
+    unit_enemies[0]->DeathAnimation = gcnew List<Texture^>;
     for (int j = 0; j < 20; j++) {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_attack_00" + j + ".png";
@@ -232,6 +243,9 @@ void FBAView::SurvivalRender::InitializeGraphics() {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_walk_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_walk_00" + j + ".png";
         unit_enemies[0]->MoveAnimation->Add(gcnew Texture(d));
+        d = j > 9 ? "Assets/Characters/Soldier/4_enemies_1_die_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
+            "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
+        unit_enemies[0]->DeathAnimation->Add(gcnew Texture(d));
     }
     unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0];
     unit_enemies[0]->scale = Vector2f(-0.6, 0.6);
@@ -242,6 +256,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->moneyValue = 50;
     unit_enemies[0]->attackDamage = 40;
     unit_enemies[0]->Maxlife = 200;
+    unit_enemies[0]->deathTime = 1.2;
     //Cronometro
     watch->numbers = gcnew array<Texture^>(10);
     for (int i = 0; i < watch->numbers->Length; i++) {
@@ -276,7 +291,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 27.png"));
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 28.png"));
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
-    base->Vida_max = 200;
+    base->Vida_max = 1000;
     //Castle
     castle->base = base;
     castle->HP = castle->base->Vida_max;
@@ -306,6 +321,7 @@ void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
     newUnit->movementVelocity = newUnit->unit->movementVelocity;
     newUnit->attackDamage =newUnit->unit->attackDamage;
     newUnit->life=newUnit->unit->Maxlife;
+    newUnit->deathTime = newUnit->unit->deathTime;
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
@@ -337,5 +353,6 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(Units^ baseUnit){
     newUnit->movementVelocity = newUnit->unit->movementVelocity;
     newUnit->attackDamage = newUnit->unit->attackDamage;
     newUnit->life= newUnit->unit->Maxlife;
+    newUnit->deathTime = newUnit->unit->deathTime;
 }
 

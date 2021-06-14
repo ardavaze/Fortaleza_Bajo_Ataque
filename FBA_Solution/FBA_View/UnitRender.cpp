@@ -29,8 +29,8 @@ void FBAView::UnitRender::Todo() {
 			if (attackMove) { totalTimeJob = (60 / attackVelocity); }
 			else { totalTimeJob = ((80 / 50) / movementVelocity); } //tiempo en que demora moverse una sola vez y la velocidad es 80 pix por movimiento
 			positionx = Position.X;
+			frstTimeJob = 0;
 		}
-		frstTimeJob = 0;
 		timeJob->Stop();
 		timeaux = timeJob->Elapsed.TotalSeconds;
 		timeJob->Start();
@@ -59,11 +59,34 @@ void FBAView::UnitRender::Todo() {
 			if (attackMove && attackMoveJob) { enemyUnit->LostLife(this->attackDamage); }
 		}
 	}
+	else {
+		double timeaux;
+		if (this->frstTimeJob) {
+			timeJob->Restart();
+			indice = 0;
+			totalTimeJob = deathTime;//tiempo en que demora moverse una sola vez y la velocidad es 80 pix por movimiento
+			frstTimeJob = 0;
+		}
+		timeJob->Stop();
+		timeaux = timeJob->Elapsed.TotalSeconds;
+		timeJob->Start();
+		if (timeaux >= (indice + 1) * (totalTimeJob / this->unit->DeathAnimation->Count)) {
+			indice = int(timeaux * (this->unit->DeathAnimation->Count / totalTimeJob));
+			if (indice >= this->unit->DeathAnimation->Count) { indice = 0; }
+			this->Texture = unit->DeathAnimation[indice];
+		}
+		if (timeaux >= totalTimeJob) {
+			dead = 1;
+		}
+	}
 }
 
 Void FBAView::UnitRender::LostLife(int damage){
 	this->life -= damage;
-	if (life <= 0) { muerto = 1; }
+	if (life <= 0) { 
+		muerto = 1; 
+		frstTimeJob = 1;
+	}
 	return Void();
 }
 

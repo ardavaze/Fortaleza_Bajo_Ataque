@@ -17,7 +17,8 @@ namespace FBAView {
 		virtual void ProcessCollision() {}
 		virtual void Todo() {};
 		virtual Void LostLife(int) {};
-		bool muerto;
+		bool muerto=0;
+		bool dead=0;
 	protected:
 		Vector2f size;
 		array<int>^ index;

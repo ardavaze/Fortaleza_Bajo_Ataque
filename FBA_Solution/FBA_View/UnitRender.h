@@ -11,6 +11,7 @@ namespace FBAView {
 		FBAModel::Units^ unit;
 		double movementVelocity; //en metros/segundo(1m=50pix)
 		double attackVelocity;  //ataques/minuto
+		double deathTime; //Segundos que demora en morirse
 		void ProcessCollision() override;
 		virtual Void Todo() override;
 		virtual Void LostLife(int) override;
