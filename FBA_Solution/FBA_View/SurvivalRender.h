@@ -3,51 +3,43 @@
 #include "ArrowRender.h"
 #include "CastleRender.h"
 #include "PhysicalElement.h"
+#include "Watch.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
+using namespace System::Windows::Forms;
 using namespace System::Collections::Generic;
 namespace FBAView{
 	public ref class SurvivalRender : public RenderWindow {
 	public:
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
+		Form^ owner;
 		array<List<PhysicalElement^>^>^ physicalElemts;
 		Void Run();
-		Void Procesar_evento();
-		CastleRender^ castle;
 		Sprite^ background;
+		CastleRender^ castle;
+		Base^ base;
+		Sprite^ cover;
 		Sprite^ crossbow;
 		FBAModel::Projectile^ arrowsAvailable;
 		ArrowRender^ arrow;
 		System::Diagnostics::Stopwatch^ TimeThrowArrow;
 		List<FBAModel::Units^>^ unit_allies;
 		List<FBAModel::Units^>^ unit_enemies;
-		Event event;
 		System::Diagnostics::Stopwatch^ TimeGenerate;
+		//
+		//Watch
+		//
+		Watch^ watch;
 		void InitializeGraphics();
+		Void Procesar_evento();
+		Event event;
 		void GenerateUnits(Units^);
 		void ThrowArrow();
 		void GenerateUnits_enemies(Units^);
 		System::Diagnostics::Stopwatch^ TimeEnemies;
 		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(96);
-
-		System::Diagnostics::Stopwatch^ Chronometer;
-		System::Diagnostics::Stopwatch^ ChronometerAux;
-		Sprite^ segUnidad;
-		Sprite^ segDecena;
-		Sprite^ minUnidad;
-		Sprite^ minDecena;
-		Sprite^ dosPuntos;
-		int segUnidTranscurridos = 0;
-		int segDecTranscurridos = 0;
-		int minUnidTranscurridos = 0;
-		int minDecTranscurridos = 0;
-		void ActualizarNumero();
-
-		User^ user;
-		Base^ base;
-
-		int piso=740;
-		Sprite^ cover;
+		int piso = 740;
+		System::Diagnostics::Stopwatch^ render;
 	};
 }

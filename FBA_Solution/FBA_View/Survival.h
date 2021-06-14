@@ -284,8 +284,9 @@ namespace FBAView {
 		}
 #pragma endregion
 	private: System::Void btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e) {
-		SurvivalRender Juego;
-		Juego.Run();
+		SurvivalRender^ juego=gcnew SurvivalRender;
+		juego->owner=this->Owner;
+		juego->Run();
 	}
 	private: System::Void btn_close_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();

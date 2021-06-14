@@ -1,4 +1,5 @@
 #include "SurvivalRender.h"
+#include "menu_principal.h"
 #include "Math.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
@@ -15,13 +16,12 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
-    Chronometer = gcnew System::Diagnostics::Stopwatch; Chronometer->Start();
-    ChronometerAux = gcnew System::Diagnostics::Stopwatch; ChronometerAux->Start();
-
+    render = gcnew System::Diagnostics::Stopwatch; 
 }
 
 void FBAView::SurvivalRender::Run() {
     while (this->IsOpen) {
+        render->Restart();
         for (int i = 0; i < 4; i++){
             if (i !=1) {
                 for (int j = 0; j < physicalElemts[i]->Count; j++)
@@ -54,39 +54,17 @@ void FBAView::SurvivalRender::Run() {
         this->Clear();
         this->Draw(this->background);
         this->Draw(this->castle);
-        
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
         //    da->Position = Vector2f(20 * i, 0);
         //    this->Draw(da);
         //}
-
-        this->Draw(this->minDecena);
-        this->Draw(this->minUnidad);
-        this->Draw(this->dosPuntos);
-        this->Draw(this->segDecena);
-        this->Draw(this->segUnidad);
-
-
-        Chronometer->Stop();
-        ChronometerAux->Stop();
-
-        if (Chronometer->Elapsed.Seconds % 60 == 0)
-            ChronometerAux->Restart();
-
-        segUnidTranscurridos = (int)(ChronometerAux->Elapsed.TotalSeconds) % 10;
-        segDecTranscurridos = floor((ChronometerAux->Elapsed.TotalSeconds) / 10);
-        minUnidTranscurridos = (int)(Chronometer->Elapsed.TotalMinutes) % 10;
-        minDecTranscurridos = floor((Chronometer->Elapsed.TotalMinutes) / 10);
-
-        ActualizarNumero();
-
-
-        Chronometer->Start();
-        ChronometerAux->Start();
-
-
-
+        this->Draw(this->watch->minDecena);
+        this->Draw(this->watch->minUnidad);
+        this->Draw(this->watch->dosPuntos);
+        this->Draw(this->watch->segDecena);
+        this->Draw(this->watch->segUnidad);
+        watch->ActualizarNumero();
         if (arrow->throwed)
             arrow->MakeFly();
         else {
@@ -95,7 +73,7 @@ void FBAView::SurvivalRender::Run() {
         }
         
         TimeEnemies->Stop();
-        if (TimeEnemies->Elapsed.TotalSeconds > 4) {
+        if (TimeEnemies->Elapsed.TotalSeconds > 6) {
             GenerateUnits_enemies(this->unit_enemies[0]);
             TimeEnemies->Restart();
         }
@@ -109,6 +87,7 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(cover);
         this->Draw(this->crossbow);
         this->Draw(this->arrow);
+        render->Stop();
         this->Display();
     }
 
@@ -129,7 +108,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
         case EventType::KeyPressed:
             if (Keyboard::IsKeyPressed(Keyboard::Key::D)) {
                 TimeGenerate->Stop();
-                if (TimeGenerate->Elapsed.TotalSeconds > 8) {
+                if (TimeGenerate->Elapsed.TotalSeconds > 6) {
                     GenerateUnits(this->unit_allies[0]);
                     TimeGenerate->Restart();
                 }
@@ -137,7 +116,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
             }
             if (Keyboard::IsKeyPressed(Keyboard::Key::E)) {
                 TimeGenerate->Stop();
-                if (TimeGenerate->Elapsed.TotalSeconds > 8) {
+                if (TimeGenerate->Elapsed.TotalSeconds > 6) {
                     GenerateUnits(this->unit_allies[1]);
                     TimeGenerate->Restart();
                 }
@@ -173,7 +152,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     arrow = gcnew ArrowRender;
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
-
+    watch = gcnew Watch;
     //physical elements
     physicalElemts[0]=gcnew List<PhysicalElement^>() ; //Castillo
     physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
@@ -264,11 +243,29 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->attackDamage = 40;
     unit_enemies[0]->Maxlife = 200;
     //Cronometro
-    minDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
-    minUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
-    segDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
-    segUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
-    dosPuntos = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/2puntos.png"));
+    watch->numbers = gcnew array<Texture^>(10);
+    for (int i = 0; i < watch->numbers->Length; i++) {
+        watch->numbers[i] = gcnew Texture("Assets/Environment/Numeros/"+ i +".png");
+    }
+    watch->minDecena = gcnew Sprite(watch->numbers[0]);
+    watch->minUnidad = gcnew Sprite(watch->numbers[0]);
+    watch->segDecena = gcnew Sprite(watch->numbers[0]);
+    watch->segUnidad = gcnew Sprite(watch->numbers[0]);
+    watch->dosPuntos = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/2puntos.png"));
+    watch->refCronometro = Vector2f(1200, 60);
+    watch->minDecena ->Position=Vector2f(watch->refCronometro.X, watch->refCronometro.Y);
+    watch->minUnidad ->Position=Vector2f(watch->refCronometro.X+115, watch->refCronometro.Y);
+    watch->dosPuntos->Position = Vector2f(watch->refCronometro.X+230, watch->refCronometro.Y);
+    watch->segDecena ->Position=Vector2f(watch->refCronometro.X+345, watch->refCronometro.Y);
+    watch->segUnidad ->Position=Vector2f(watch->refCronometro.X+460, watch->refCronometro.Y);
+    watch->scaleCronometro = Vector2f(0.85,0.85);
+    watch->minDecena ->Scale=Vector2f(watch->scaleCronometro.X, watch->scaleCronometro.Y);
+    watch->minUnidad ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
+    watch->segDecena ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
+    watch->segUnidad ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
+    watch->dosPuntos ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
+    watch->Chronometer = gcnew System::Diagnostics::Stopwatch;    watch->Chronometer->Start();
+    watch->ChronometerAux = gcnew System::Diagnostics::Stopwatch; watch->ChronometerAux->Start();
     //Base
     base = gcnew FBAModel::Base;
     base->baseState = gcnew List<Texture^>;
@@ -293,8 +290,6 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     cover->Scale = Vector2f((float)-0.7, (float)0.7);
     cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
     cover->Position = Vector2f(-300, 400);
-    
-
 }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
@@ -343,21 +338,4 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(Units^ baseUnit){
     newUnit->attackDamage = newUnit->unit->attackDamage;
     newUnit->life= newUnit->unit->Maxlife;
 }
-
-void FBAView::SurvivalRender::ActualizarNumero()
-{
-    minDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + minDecTranscurridos + ".png"));
-    minUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + minUnidTranscurridos + ".png"));
-    segDecena = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + segDecTranscurridos + ".png"));
-    segUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/" + segUnidTranscurridos + ".png"));
-    int refCronometroY = 60; //60
-    int refCronometroX = 730; //730
-    minDecena->Position = Vector2f(refCronometroX, refCronometroY);
-    minUnidad->Position = Vector2f(minDecena->Position.X + 115, refCronometroY);
-    dosPuntos->Position = Vector2f(minUnidad->Position.X + 115, refCronometroY);
-    segDecena->Position = Vector2f(dosPuntos->Position.X + 115, refCronometroY);
-    segUnidad->Position = Vector2f(segDecena->Position.X + 115, refCronometroY);
-}
-
-
 

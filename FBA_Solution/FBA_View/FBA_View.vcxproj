@@ -156,6 +156,7 @@
     <ClCompile Include="ArrowRender.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="campaign.cpp" />
+    <ClCompile Include="ControlElements.cpp" />
     <ClCompile Include="Credits.cpp" />
     <ClCompile Include="CastleRender.cpp" />
     <ClCompile Include="LoginForm.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Survival.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="UnitRender.cpp" />
+    <ClCompile Include="Watch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrowRender.h" />
@@ -179,6 +181,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="CastleRender.h" />
+    <ClInclude Include="ControlElements.h" />
     <ClInclude Include="Credits.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -209,6 +212,7 @@
     </ClInclude>
     <ClInclude Include="SurvivalRender.h" />
     <ClInclude Include="UnitRender.h" />
+    <ClInclude Include="Watch.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Background.resx">
