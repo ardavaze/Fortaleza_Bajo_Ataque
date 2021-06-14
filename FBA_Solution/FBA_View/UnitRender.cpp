@@ -26,7 +26,6 @@ void FBAView::UnitRender::Todo() {
 		if (this->frstTimeJob) {
 			timeJob->Restart();
 			attackMoveJob = attackMove;
-			frstTimechange = 1;
 			if (attackMove) { totalTimeJob = (60 / attackVelocity); }
 			else { totalTimeJob = ((80 / 50) / movementVelocity); } //tiempo en que demora moverse una sola vez y la velocidad es 80 pix por movimiento
 			positionx = Position.X;
