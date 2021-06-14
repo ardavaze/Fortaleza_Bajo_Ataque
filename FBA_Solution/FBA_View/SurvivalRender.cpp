@@ -95,7 +95,7 @@ void FBAView::SurvivalRender::Run() {
         }
         
         TimeEnemies->Stop();
-        if (TimeEnemies->Elapsed.TotalSeconds > 8) {
+        if (TimeEnemies->Elapsed.TotalSeconds > 4) {
             GenerateUnits_enemies(this->unit_enemies[0]);
             TimeEnemies->Restart();
         }
@@ -105,6 +105,7 @@ void FBAView::SurvivalRender::Run() {
                 this->Draw(physicalElemts[i][j]);
             }
         }
+        cover->Texture = base->coverState[castle->indiceStatus];
         this->Draw(cover);
         this->Draw(this->crossbow);
         this->Draw(this->arrow);
@@ -182,20 +183,6 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     physicalElemts[3] = gcnew List<PhysicalElement^>();
     //Background                                                //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura           
     background->Scale = Vector2f(1920.f / background->Texture->Size.X, 1080.f / background->Texture->Size.Y);
-    //Castle                                                     //Recordar preguntar que pasa si a la misma variable quiero cambiarle de textura
-    castle->base->Vida_max = 100;
-    castle->HP = castle->base->Vida_max;
-    castle->Texture = gcnew Texture("Assets/Environment/MapsElements/Asset 27.png");
-    castle->Scale = Vector2f((float)-0.7, (float)0.7);
-    castle->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
-    castle->Position = Vector2f(-300, 400);
-    castle->positionElement = Vector2i(0, 0);
-    castle->sizeElement= Vector2i(350, 200);
-    cover = gcnew Sprite();
-    cover->Texture = gcnew Texture("Assets/Environment/MapsElements/CoverAsset 27.png");
-    cover->Scale = Vector2f((float)-0.7, (float)0.7);
-    cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
-    cover->Position = Vector2f(-300, 400);
     //Crossbow
     crossbow->Origin = Vector2f(168, 406);
     crossbow->Scale = Vector2f(0.18, 0.18);
@@ -283,7 +270,29 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     segUnidad = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/0.png"));
     dosPuntos = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/2puntos.png"));
     //Base
-    //base->HP = user->VidaMaxBase;
+    base = gcnew FBAModel::Base;
+    base->baseState = gcnew List<Texture^>;
+    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 27.png"));
+    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 28.png"));
+    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 29.png"));
+    base->coverState = gcnew List<Texture^>;
+    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 27.png"));
+    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 28.png"));
+    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
+    base->Vida_max = 200;
+    //Castle
+    castle->base = base;
+    castle->HP = castle->base->Vida_max;
+    castle->Texture = base->baseState[0];
+    castle->Scale = Vector2f((float)-0.7, (float)0.7);
+    castle->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
+    castle->Position = Vector2f(-300, 400);
+    castle->positionElement = Vector2i(0, 0);
+    castle->sizeElement = Vector2i(350, 200);
+    cover = gcnew Sprite();
+    cover->Scale = Vector2f((float)-0.7, (float)0.7);
+    cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
+    cover->Position = Vector2f(-300, 400);
     
 
 }

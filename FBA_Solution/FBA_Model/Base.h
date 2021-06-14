@@ -8,5 +8,7 @@ namespace FBAModel{
         int Vida_max;
         String^ Textura;
         String^ Sprite;
+        List<Texture^>^ baseState;
+        List<Texture^>^ coverState;
     };
 }
