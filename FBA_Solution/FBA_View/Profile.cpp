@@ -88,11 +88,10 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 			u->experience = Int32::Parse(textBox_skill_points->Text);
 			u->levelMax = Int32::Parse(textBox_level->Text);
 			u->survival->timeMax = Int32::Parse(textBox_max_time->Text);
-			FBA_Controller::UpdateUser(Menu_principal::user, u);
+			FBA_Controller::UpdateUser(u);
 			Hide_button();
 			ReadOnly_true();
 			btn_update->Visible = true;
-			Menu_principal::user = u;
 			((Menu_principal^)this->Owner)->User_data();
 		}
 		catch (Exception^ ex) {

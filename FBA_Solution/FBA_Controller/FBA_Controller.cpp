@@ -29,8 +29,8 @@ void FBAController::FBA_Controller::AddUser(User^ user){
 	DBController::AddUser(user);
 }
 
-void FBAController::FBA_Controller::UpdateUser(User^ delete_user,User^ add_user){
-	DBController::UpdateUser(delete_user, add_user);
+void FBAController::FBA_Controller::UpdateUser(User^user){
+	DBController::UpdateUser(user);
 }
 
 void FBAController::FBA_Controller::DeleteUser(User^ user){
