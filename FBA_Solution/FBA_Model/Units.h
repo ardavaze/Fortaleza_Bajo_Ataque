@@ -1,12 +1,14 @@
 #pragma once
 #include "Game_obj.h"
 using namespace SFML::System;
+using namespace SFML::Graphics;
 namespace FBAModel {
     public ref class Units: public Game_obj {
     public:
         List<Texture^>^ AttackAnimation;
         List<Texture^>^ MoveAnimation;
         List<Texture^>^ DeathAnimation;
+        array<SFML::Graphics::Image^>^ HealthBar;
         int Maxlife;
         int attackDamage;
         double movementVelocity;

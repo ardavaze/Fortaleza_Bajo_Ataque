@@ -45,6 +45,16 @@ void FBAView::UnitRender::Todo() {
 				if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
 				this->Texture = unit->MoveAnimation[indice];
 			}
+			this->Texture->Update(unit->HealthBar[0],45,0);
+			if (this->life!=0) {
+				this->Texture->Update(unit->HealthBar[1], 49, 4);
+			}
+			for (int i = 0; i < int(112* this->life/ this->unit->Maxlife); i++){
+				this->Texture->Update(unit->HealthBar[2], 53+i, 4);
+			}
+			if (this->life > this->unit->Maxlife*0.95) {
+				this->Texture->Update(unit->HealthBar[3], 53+111, 4);
+			}
 		}
 		if (!attackMove) {
 			if (this->unit->band == FBAModel::Units::Band::Allies) {
@@ -74,6 +84,7 @@ void FBAView::UnitRender::Todo() {
 			indice = int(timeaux * (this->unit->DeathAnimation->Count / totalTimeJob));
 			if (indice >= this->unit->DeathAnimation->Count) { indice = 0; }
 			this->Texture = unit->DeathAnimation[indice];
+			this->Texture->Update(unit->HealthBar[0], 45, 0);
 		}
 		if (timeaux >= totalTimeJob) {
 			dead = 1;

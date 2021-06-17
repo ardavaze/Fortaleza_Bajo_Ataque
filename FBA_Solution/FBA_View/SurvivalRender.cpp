@@ -183,6 +183,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[0]->AttackAnimation = gcnew List<Texture^>;
     unit_allies[0]->MoveAnimation = gcnew List<Texture^>;
     unit_allies[0]->DeathAnimation = gcnew List<Texture^>;
+    unit_allies[0]->HealthBar = gcnew array < SFML::Graphics::Image^>(4) ;
+    unit_allies[0]->HealthBar[0] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
+    unit_allies[0]->HealthBar[1] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
+    unit_allies[0]->HealthBar[2] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
+    unit_allies[0]->HealthBar[3] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
     String^ d;               //auxiliar para Directorio de imagenes
     for (int j = 0; j < 20; j++) {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": 
@@ -210,6 +215,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[1]->AttackAnimation = gcnew List<Texture^>;
     unit_allies[1]->MoveAnimation = gcnew List<Texture^>;
     unit_allies[1]->DeathAnimation = gcnew List<Texture^>;
+    unit_allies[1]->HealthBar = gcnew array < SFML::Graphics::Image^>(4);
+    unit_allies[1]->HealthBar[0] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
+    unit_allies[1]->HealthBar[1] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
+    unit_allies[1]->HealthBar[2] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
+    unit_allies[1]->HealthBar[3] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
     for (int j = 0; j < 11; j++) {
         d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
             "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_00" + j + ".png";
@@ -236,6 +246,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->AttackAnimation = gcnew List<Texture^>;
     unit_enemies[0]->MoveAnimation = gcnew List<Texture^>;
     unit_enemies[0]->DeathAnimation = gcnew List<Texture^>;
+    unit_enemies[0]->HealthBar = gcnew array < SFML::Graphics::Image^>(4);
+    unit_enemies[0]->HealthBar[0] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
+    unit_enemies[0]->HealthBar[1] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
+    unit_enemies[0]->HealthBar[2] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
+    unit_enemies[0]->HealthBar[3] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
     for (int j = 0; j < 20; j++) {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_attack_00" + j + ".png";
