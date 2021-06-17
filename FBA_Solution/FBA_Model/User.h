@@ -23,3 +23,4 @@ namespace FBAModel {
         User(String^ nickname, String^ lastNameFath, String^ lastNameMoth, String^ name, String^ birthday, String^ email, String^ password);
     };
 }
+//cambio secreto
