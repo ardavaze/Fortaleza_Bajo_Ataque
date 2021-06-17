@@ -12,6 +12,9 @@ void FBAView::Profile::User_data_load(){
 	textBox_skill_points->Text = "" + Menu_principal::user->experience;
 	textBox_level->Text = "" + Menu_principal::user->levelMax;
 	textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
+	System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Profile::typeid));
+	String^ avatar = Menu_principal::user->avatar;
+	pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(avatar)));
 }
 
 void FBAView::Profile::Write_rank()
@@ -19,11 +22,14 @@ void FBAView::Profile::Write_rank()
 	int level = Menu_principal::user->levelMax;
 	if (level < 5)
 		textBox_rank->Text = "CAPITÁN";
-	else if (4 < level < 9)
+	else
+		if (4 <level&& level < 9)
 		textBox_rank->Text = "CORONEL";
-	else if (8 < level < 13)
+	else
+		if (8 < level && level < 13)
 		textBox_rank->Text = "GENERAL";
-	else if (12 < level)
+	else
+		if (12 < level)
 		textBox_rank->Text = "MARISCAL";
 	
 }

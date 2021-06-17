@@ -9,6 +9,7 @@
     <birthday>a</birthday>
     <email>a</email>
     <password>123456</password>
+	<avatar>avatar3</avatar>
     <survival>
       <Dinero>0</Dinero>
       <Unidades_desplegadas>0</Unidades_desplegadas>
@@ -17,7 +18,7 @@
     </survival>
     <experience>10</experience>
     <emerald>15</emerald>
-    <levelMax>5</levelMax>
+    <levelMax>15</levelMax>
     <medal />
   </User>
   <User>
@@ -29,6 +30,7 @@
     <birthday>11/06/2000</birthday>
     <email>a20171555@pucp.edu.pe</email>
     <password>password</password>
+	<avatar>avatar1</avatar>
     <survival>
       <Dinero>0</Dinero>
       <Unidades_desplegadas>0</Unidades_desplegadas>
@@ -49,6 +51,7 @@
     <birthday>05/10/2000</birthday>
     <email>dan051020@gmail.com</email>
     <password>password</password>
+	<avatar>avatar1</avatar>
     <survival>
       <Dinero>0</Dinero>
       <Unidades_desplegadas>0</Unidades_desplegadas>

@@ -139,5 +139,86 @@
     <Image Include="Assets\ResourcesForm\rank\capitán.png">
       <Filter>Archivos de recursos</Filter>
     </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar1.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar2.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar3.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar4.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar5.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar6.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar7.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar8.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar9.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar10.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar11.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar12.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar13.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar14.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar15.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar16.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar17.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar18.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar19.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar20.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="avatar11.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="avatar12.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="avatar101.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="avatar111.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="avatar121.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="avatar131.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="avatar141.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>

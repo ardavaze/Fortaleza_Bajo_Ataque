@@ -76,12 +76,13 @@ namespace FBAView {
 		btn_cancel->Visible = false;
 		btn_OK->Visible = false;
 		btn_delete->Visible = false;
+		btn_update_avatar->Visible = false;
 	}
 	private: void Show_button() {
 		btn_cancel->Visible = true;
 		btn_OK->Visible = true;
 		btn_delete->Visible = true;
-
+		btn_update_avatar->Visible = true;
 	}
 		
 
@@ -117,10 +118,13 @@ namespace FBAView {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ textBox_Birthday;
 	private: System::Windows::Forms::TextBox^ textBox_email;
+private: System::Windows::Forms::PictureBox^ pictureBox_avatar;
 
 
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
 	private: System::Windows::Forms::Button^ btn_delete;
+private: System::Windows::Forms::Button^ btn_update_avatar;
+
 
 
 
@@ -166,9 +170,10 @@ namespace FBAView {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox_Birthday = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_email = (gcnew System::Windows::Forms::TextBox());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox_avatar = (gcnew System::Windows::Forms::PictureBox());
 			this->btn_delete = (gcnew System::Windows::Forms::Button());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->btn_update_avatar = (gcnew System::Windows::Forms::Button());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_avatar))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label_title
@@ -302,12 +307,12 @@ namespace FBAView {
 			this->label2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(79, 240);
+			this->label2->Location = System::Drawing::Point(79, 243);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(185, 550);
+			this->label2->Size = System::Drawing::Size(185, 575);
 			this->label2->TabIndex = 12;
-			this->label2->Text = L"NOMBRE DE \r\nUSUARIO:\r\n\r\n\r\nAVATAR:\r\n\r\n\r\n\r\nNOMBRE:\r\n\r\nAPELLIDO \r\nPATERNO:\r\n\r\nAPELLI"
-				L"DO \r\nMATERNO:\r\n\r\n\r\nFECHA DE \r\nNACIMIENTO:\r\n\r\nCORREO:\r\n\r\n";
+			this->label2->Text = L"NOMBRE DE \r\nUSUARIO:\r\n\r\n\r\nAVATAR:\r\n\r\n\r\n\r\n\r\nNOMBRE:\r\n\r\nAPELLIDO \r\nPATERNO:\r\n\r\nAPEL"
+				L"LIDO \r\nMATERNO:\r\n\r\n\r\nFECHA DE \r\nNACIMIENTO:\r\n\r\nCORREO:\r\n\r\n";
 			// 
 			// btn_cancel
 			// 
@@ -377,7 +382,7 @@ namespace FBAView {
 			this->textBox_name->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_name->ForeColor = System::Drawing::Color::White;
-			this->textBox_name->Location = System::Drawing::Point(268, 449);
+			this->textBox_name->Location = System::Drawing::Point(268, 469);
 			this->textBox_name->Name = L"textBox_name";
 			this->textBox_name->ReadOnly = true;
 			this->textBox_name->Size = System::Drawing::Size(253, 26);
@@ -392,7 +397,7 @@ namespace FBAView {
 			this->textBox_LastName_Father->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->textBox_LastName_Father->ForeColor = System::Drawing::Color::White;
-			this->textBox_LastName_Father->Location = System::Drawing::Point(268, 508);
+			this->textBox_LastName_Father->Location = System::Drawing::Point(268, 528);
 			this->textBox_LastName_Father->Name = L"textBox_LastName_Father";
 			this->textBox_LastName_Father->ReadOnly = true;
 			this->textBox_LastName_Father->Size = System::Drawing::Size(251, 26);
@@ -407,7 +412,7 @@ namespace FBAView {
 			this->textBox_LastName_Mother->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->textBox_LastName_Mother->ForeColor = System::Drawing::Color::White;
-			this->textBox_LastName_Mother->Location = System::Drawing::Point(268, 581);
+			this->textBox_LastName_Mother->Location = System::Drawing::Point(268, 601);
 			this->textBox_LastName_Mother->Name = L"textBox_LastName_Mother";
 			this->textBox_LastName_Mother->ReadOnly = true;
 			this->textBox_LastName_Mother->Size = System::Drawing::Size(251, 26);
@@ -435,7 +440,7 @@ namespace FBAView {
 			this->textBox_Birthday->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_Birthday->ForeColor = System::Drawing::Color::White;
-			this->textBox_Birthday->Location = System::Drawing::Point(270, 696);
+			this->textBox_Birthday->Location = System::Drawing::Point(270, 716);
 			this->textBox_Birthday->Name = L"textBox_Birthday";
 			this->textBox_Birthday->ReadOnly = true;
 			this->textBox_Birthday->Size = System::Drawing::Size(251, 26);
@@ -450,22 +455,22 @@ namespace FBAView {
 			this->textBox_email->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_email->ForeColor = System::Drawing::Color::White;
-			this->textBox_email->Location = System::Drawing::Point(268, 764);
+			this->textBox_email->Location = System::Drawing::Point(268, 784);
 			this->textBox_email->Name = L"textBox_email";
 			this->textBox_email->ReadOnly = true;
 			this->textBox_email->Size = System::Drawing::Size(436, 26);
 			this->textBox_email->TabIndex = 25;
 			this->textBox_email->Text = L"CORREO";
 			// 
-			// pictureBox1
+			// pictureBox_avatar
 			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(270, 311);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(108, 94);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox1->TabIndex = 26;
-			this->pictureBox1->TabStop = false;
+			this->pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_avatar.Image")));
+			this->pictureBox_avatar->Location = System::Drawing::Point(288, 306);
+			this->pictureBox_avatar->Name = L"pictureBox_avatar";
+			this->pictureBox_avatar->Size = System::Drawing::Size(108, 94);
+			this->pictureBox_avatar->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox_avatar->TabIndex = 26;
+			this->pictureBox_avatar->TabStop = false;
 			// 
 			// btn_delete
 			// 
@@ -482,6 +487,18 @@ namespace FBAView {
 			this->btn_delete->UseVisualStyleBackColor = false;
 			this->btn_delete->Click += gcnew System::EventHandler(this, &Profile::btn_delete_Click);
 			// 
+			// btn_update_avatar
+			// 
+			this->btn_update_avatar->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_update_avatar->Location = System::Drawing::Point(270, 406);
+			this->btn_update_avatar->Name = L"btn_update_avatar";
+			this->btn_update_avatar->Size = System::Drawing::Size(143, 29);
+			this->btn_update_avatar->TabIndex = 28;
+			this->btn_update_avatar->Text = L"CAMBIAR";
+			this->btn_update_avatar->UseVisualStyleBackColor = true;
+			this->btn_update_avatar->Click += gcnew System::EventHandler(this, &Profile::btn_update_avatar_Click);
+			// 
 			// Profile
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -489,8 +506,9 @@ namespace FBAView {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
 			this->ClientSize = System::Drawing::Size(1522, 1009);
+			this->Controls->Add(this->btn_update_avatar);
 			this->Controls->Add(this->btn_delete);
-			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->pictureBox_avatar);
 			this->Controls->Add(this->textBox_email);
 			this->Controls->Add(this->textBox_Birthday);
 			this->Controls->Add(this->label3);
@@ -514,7 +532,7 @@ namespace FBAView {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"Profile";
 			this->Text = L"TIME";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_avatar))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -550,5 +568,8 @@ private: System::Void btn_delete_Click(System::Object^ sender, System::EventArgs
 private: System::Void btn_OK_Click(System::Object^ sender, System::EventArgs^ e);
 	
 
+private: System::Void btn_update_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
 };
 }

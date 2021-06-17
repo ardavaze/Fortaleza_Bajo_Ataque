@@ -14,6 +14,7 @@ namespace FBAModel {
         String^ birthday;
         String^ email;
         String^ password;
+        String^ avatar;
         Survival^ survival;
         int experience;
         int emerald;

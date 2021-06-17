@@ -94,7 +94,16 @@ namespace FBAView {
 			textBox_skills_points->Text = "" + Menu_principal::user->experience;
 			int level = Menu_principal::user->levelMax;
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Menu_principal::typeid));
-			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"coronel.Image")));
+			if (level < 5)
+				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"capitan.Image")));
+			else if (4 < level && level < 9)
+				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"coronel.Image")));
+			else if (8 < level && level < 13)
+				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"general.Image")));
+			else if (12 < level)
+				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"mariscal.Image")));
+			String ^ avatar= Menu_principal::user->avatar;
+			this->pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(avatar)));
 		}
 	}
 	   private: void Hide_panel() {
@@ -531,7 +540,6 @@ private: System::Windows::Forms::Panel^ panel_user;
 			// 
 			// pictureBox_rank
 			// 
-			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_rank.Image")));
 			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"capitán.Image")));
 			this->pictureBox_rank->Location = System::Drawing::Point(284, 23);
 			this->pictureBox_rank->Name = L"pictureBox_rank";
@@ -678,9 +686,6 @@ private: System::Windows::Forms::Panel^ panel_user;
 			Hide_panel();
 			open_ChildForm(gcnew Background());
 		}
-
-	
-
 		private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
 			Hide_panel();
 			open_ChildForm(gcnew Scoreboard());

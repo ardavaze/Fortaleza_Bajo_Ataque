@@ -270,10 +270,37 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\ResourcesForm\Avatar\avatar1.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar10.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar11.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar12.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar13.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar14.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar15.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar16.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar17.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar18.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar19.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar2.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar20.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar3.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar4.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar5.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar6.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar7.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar8.png" />
+    <Image Include="Assets\ResourcesForm\Avatar\avatar9.png" />
     <Image Include="Assets\ResourcesForm\rank\capitán.png" />
     <Image Include="Assets\ResourcesForm\rank\coronel.png" />
     <Image Include="Assets\ResourcesForm\rank\general.png" />
     <Image Include="Assets\ResourcesForm\rank\mariscal.png" />
+    <Image Include="avatar101.png" />
+    <Image Include="avatar11.png" />
+    <Image Include="avatar111.png" />
+    <Image Include="avatar12.png" />
+    <Image Include="avatar121.png" />
+    <Image Include="avatar131.png" />
+    <Image Include="avatar141.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
