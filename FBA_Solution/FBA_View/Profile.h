@@ -20,6 +20,7 @@ namespace FBAView {
 		{
 			InitializeComponent();
 			User_data_load();
+			Write_rank();
 			Hide_button();
 			//
 			//TODO: Add the constructor code here
@@ -69,6 +70,7 @@ namespace FBAView {
 		this->textBox_email->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 	}
 	private: void User_data_load();
+	private: void Write_rank();
 	private: void Hide_button() {
 			
 		btn_cancel->Visible = false;

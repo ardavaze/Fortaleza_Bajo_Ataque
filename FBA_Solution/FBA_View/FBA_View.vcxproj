@@ -269,6 +269,12 @@
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\ResourcesForm\rank\capitán.png" />
+    <Image Include="Assets\ResourcesForm\rank\coronel.png" />
+    <Image Include="Assets\ResourcesForm\rank\general.png" />
+    <Image Include="Assets\ResourcesForm\rank\mariscal.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

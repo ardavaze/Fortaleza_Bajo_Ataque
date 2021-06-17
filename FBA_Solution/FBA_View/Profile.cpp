@@ -14,6 +14,20 @@ void FBAView::Profile::User_data_load(){
 	textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
 }
 
+void FBAView::Profile::Write_rank()
+{
+	int level = Menu_principal::user->levelMax;
+	if (level < 5)
+		textBox_rank->Text = "CAPITÁN";
+	else if (4 < level < 9)
+		textBox_rank->Text = "CORONEL";
+	else if (8 < level < 13)
+		textBox_rank->Text = "GENERAL";
+	else if (12 < level)
+		textBox_rank->Text = "MARISCAL";
+	
+}
+
 System::Void FBAView::Profile::btn_delete_Click(System::Object^ sender, System::EventArgs^ e){
 	if (MessageBox::Show(
 		"¿Está seguro de eliminar su cuenta?",

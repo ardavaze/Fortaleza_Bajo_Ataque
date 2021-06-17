@@ -92,6 +92,9 @@ namespace FBAView {
 			textBox_username->Text = "" + Menu_principal::user->nickname;
 			textBox_emerald->Text = "" + Menu_principal::user->emerald;
 			textBox_skills_points->Text = "" + Menu_principal::user->experience;
+			int level = Menu_principal::user->levelMax;
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Menu_principal::typeid));
+			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"coronel.Image")));
 		}
 	}
 	   private: void Hide_panel() {
@@ -507,7 +510,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->textBox_emerald->Location = System::Drawing::Point(222, 78);
 			this->textBox_emerald->Name = L"textBox_emerald";
 			this->textBox_emerald->ReadOnly = true;
-			this->textBox_emerald->Size = System::Drawing::Size(29, 26);
+			this->textBox_emerald->Size = System::Drawing::Size(104, 26);
 			this->textBox_emerald->TabIndex = 7;
 			this->textBox_emerald->Text = L"8";
 			// 
@@ -522,13 +525,14 @@ private: System::Windows::Forms::Panel^ panel_user;
 			this->textBox_skills_points->Location = System::Drawing::Point(222, 122);
 			this->textBox_skills_points->Name = L"textBox_skills_points";
 			this->textBox_skills_points->ReadOnly = true;
-			this->textBox_skills_points->Size = System::Drawing::Size(68, 26);
+			this->textBox_skills_points->Size = System::Drawing::Size(114, 26);
 			this->textBox_skills_points->TabIndex = 5;
 			this->textBox_skills_points->Text = L"75";
 			// 
 			// pictureBox_rank
 			// 
 			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_rank.Image")));
+			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"capitán.Image")));
 			this->pictureBox_rank->Location = System::Drawing::Point(284, 23);
 			this->pictureBox_rank->Name = L"pictureBox_rank";
 			this->pictureBox_rank->Size = System::Drawing::Size(52, 49);

@@ -1,4 +1,4 @@
-#pragma once
+    #pragma once
 #include "Survival.h"
 #include "Medal.h"
 using namespace System;

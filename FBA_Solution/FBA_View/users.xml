@@ -15,9 +15,9 @@
       <Vida_usuario>0</Vida_usuario>
       <timeMax>0</timeMax>
     </survival>
-    <experience>0</experience>
-    <emerald>0</emerald>
-    <levelMax>0</levelMax>
+    <experience>10</experience>
+    <emerald>15</emerald>
+    <levelMax>5</levelMax>
     <medal />
   </User>
   <User>
