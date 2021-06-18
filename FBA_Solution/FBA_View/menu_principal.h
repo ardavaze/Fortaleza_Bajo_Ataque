@@ -67,13 +67,12 @@ namespace FBAView {
 				FBA_Controller::InicializeController();
 				if (user == nullptr) {
 					LoginForm^ login = gcnew LoginForm();
-					login->ShowDialog();
 					login->Owner = this;
+					login->ShowDialog();
 				}
 				InitializeComponent();
 				User_data();
 				sound_menu->PlayLooping();
-
 			}
 
 		protected:
