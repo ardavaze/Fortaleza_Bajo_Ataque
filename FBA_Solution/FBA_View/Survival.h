@@ -289,15 +289,9 @@ namespace FBAView {
 
 		}
 #pragma endregion
-	private: System::Void btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e) {
-		SurvivalRender^ juego=gcnew SurvivalRender;
-		juego->owner=this->Owner;
-		juego->Run();
-		FBAController::FBA_Controller::UpdateUser(Menu_principal::user);
-	}
+	private: System::Void btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void btn_close_Click_1(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-
 };
 }

@@ -26,3 +26,10 @@ void FBAView::Survival::user_rank_load()
 
 	}*/
 }
+
+System::Void FBAView::Survival::btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e) {
+	SurvivalRender^ juego = gcnew SurvivalRender;
+	juego->owner = this->Owner;
+	juego->Run();
+	FBAController::FBA_Controller::UpdateUser(Menu_principal::user);
+}

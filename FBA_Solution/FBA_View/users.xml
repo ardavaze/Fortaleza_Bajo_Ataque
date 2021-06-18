@@ -44,19 +44,19 @@
   </User>
   <User>
     <id>2</id>
-    <nickname>Ardavaz</nickname>
-    <lastNameFath>Zavala</lastNameFath>
-    <lastNameMoth>Valdivieso</lastNameMoth>
+    <nickname>Ardavaze</nickname>
+    <lastNameFath>Valdivieso</lastNameFath>
+    <lastNameMoth>Zavala</lastNameMoth>
     <name>Danny</name>
     <birthday>05/10/2000</birthday>
     <email>dan051020@gmail.com</email>
     <password>password</password>
-    <avatar>avatar1</avatar>
+    <avatar>avatar11</avatar>
     <survival>
       <Dinero>0</Dinero>
       <Unidades_desplegadas>0</Unidades_desplegadas>
       <Vida_usuario>0</Vida_usuario>
-      <timeMax>0</timeMax>
+      <timeMax>95</timeMax>
     </survival>
     <experience>0</experience>
     <emerald>0</emerald>
