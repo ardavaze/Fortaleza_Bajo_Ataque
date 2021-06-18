@@ -16,41 +16,58 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
     render = gcnew System::Diagnostics::Stopwatch; 
+    chronoGameOver = gcnew System::Diagnostics::Stopwatch;chronoGameOver->Reset();
+    chronoGameOver->Stop();
 }
 
 void FBAView::SurvivalRender::Run() {
     while (this->IsOpen) {
         render->Restart();
-        for (int i = 0; i < 4; i++){
-            if (i !=1) {
-                for (int j = 0; j < physicalElemts[i]->Count; j++)
-                    if(!physicalElemts[i][j]->muerto)
-                    physicalElemts[i][j]->OccupySpace();
-            }
-        }
-        for (int i = 1; i < 4; i++) {
-            for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                if (!physicalElemts[i][j]->muerto)
-                physicalElemts[i][j]->ProcessCollision();
-            }
-        }
-        for (int i = 2; i < 4; i++) {
-            for (int j = physicalElemts[i]->Count - 1; 0 <= j; j--) {
-                if (!physicalElemts[i][j]->muerto)
-                physicalElemts[i][j]->FreeSpace();
-            }
-        }
-        for (int i = 2; i < 4; i++) {
-            for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                physicalElemts[i][j]->Todo();
-            }
-        }
-        for (int i = 2; i < 4; i++) {
-            for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                if (physicalElemts[i][j]->dead) {
-                    physicalElemts[i]->RemoveAt(j);
+        if (gameOver == 0) {
+            for (int i = 0; i < 4; i++) {
+                if (i != 1) {
+                    for (int j = 0; j < physicalElemts[i]->Count; j++)
+                        if (!physicalElemts[i][j]->muerto)
+                            physicalElemts[i][j]->OccupySpace();
                 }
             }
+            for (int i = 1; i < 4; i++) {
+                for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                    if (!physicalElemts[i][j]->muerto)
+                        physicalElemts[i][j]->ProcessCollision();
+                }
+            }
+            for (int i = 2; i < 4; i++) {
+                for (int j = physicalElemts[i]->Count - 1; 0 <= j; j--) {
+                    if (!physicalElemts[i][j]->muerto)
+                        physicalElemts[i][j]->FreeSpace();
+                }
+            }
+            for (int i = 2; i < 4; i++) {
+                for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                    physicalElemts[i][j]->Todo();
+                }
+            }
+            for (int i = 2; i < 4; i++) {
+                for (int j = 0; j < physicalElemts[i]->Count; j++) {
+                    if (physicalElemts[i][j]->dead) {
+                        physicalElemts[i]->RemoveAt(j);
+                    }
+                }
+            }
+            TimeEnemies->Stop();
+            if (TimeEnemies->Elapsed.TotalSeconds > 10) {
+                GenerateUnits_enemies(this->unit_enemies[0]);
+                TimeEnemies->Restart();
+            }
+            else TimeEnemies->Start();
+            if (arrow->throwed)
+                arrow->MakeFly();
+            else {
+                arrow->Position = crossbow->Position;
+                arrow->Rotation = crossbow->Rotation;
+            }
+            watch->ActualizarNumero();
         }
         Procesar_evento();
         this->Clear();
@@ -66,20 +83,8 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->watch->dosPuntos);
         this->Draw(this->watch->segDecena);
         this->Draw(this->watch->segUnidad);
-        watch->ActualizarNumero();
-        if (arrow->throwed)
-            arrow->MakeFly();
-        else {
-            arrow->Position = crossbow->Position;
-            arrow->Rotation = crossbow->Rotation;
-        }
         
-        TimeEnemies->Stop();
-        if (TimeEnemies->Elapsed.TotalSeconds > 10) {
-            GenerateUnits_enemies(this->unit_enemies[0]);
-            TimeEnemies->Restart();
-        }
-        else TimeEnemies->Start();
+
         for (int i = 2; i < 4; i++) {
             for (int j = 0; j < physicalElemts[i]->Count; j++) {
                 this->Draw(physicalElemts[i][j]);
@@ -90,6 +95,20 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->crossbow);
         this->Draw(this->arrow);
         render->Stop();
+
+        if (castle->HP < 0) {  
+            gameOver++; 
+            this->Draw(this->gameOverImage);
+        }
+        if (gameOver == 1) {
+            endGame();
+            chronoGameOver->Restart();
+        }
+        chronoGameOver->Stop();
+        if (chronoGameOver->Elapsed.Seconds>=5) {
+            this->Close();
+        }
+        if(gameOver >= 2) { chronoGameOver->Start(); }
         this->Display();
     }
 
@@ -108,37 +127,39 @@ void FBAView::SurvivalRender::Procesar_evento(){
             this->Close();
             break;
         case EventType::KeyPressed:
-            if (Keyboard::IsKeyPressed(Keyboard::Key::D)) {
-                TimeGenerate->Stop();
-                if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-                    GenerateUnits(this->unit_allies[0]);
-                    TimeGenerate->Restart();
+            if (gameOver == 0) {
+                if (Keyboard::IsKeyPressed(Keyboard::Key::D)) {
+                    TimeGenerate->Stop();
+                    if (TimeGenerate->Elapsed.TotalSeconds > 6) {
+                        GenerateUnits(this->unit_allies[0]);
+                        TimeGenerate->Restart();
+                    }
+                    else TimeGenerate->Start();
                 }
-                else TimeGenerate->Start();
-            }
-            if (Keyboard::IsKeyPressed(Keyboard::Key::E)) {
-                TimeGenerate->Stop();
-                if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-                    GenerateUnits(this->unit_allies[1]);
-                    TimeGenerate->Restart();
+                if (Keyboard::IsKeyPressed(Keyboard::Key::E)) {
+                    TimeGenerate->Stop();
+                    if (TimeGenerate->Elapsed.TotalSeconds > 6) {
+                        GenerateUnits(this->unit_allies[1]);
+                        TimeGenerate->Restart();
+                    }
+                    else TimeGenerate->Start();
                 }
-                else TimeGenerate->Start();
-            }
-            if (Keyboard::IsKeyPressed(Keyboard::Key::Up)) {
-                crossbow->Rotation--;
-                arrow->Rotation = crossbow->Rotation;
-            }
-            if (Keyboard::IsKeyPressed(Keyboard::Key::Down)) {
-                crossbow->Rotation++;
-                arrow->Rotation =   crossbow->Rotation;
-            }
-            if (Keyboard::IsKeyPressed(Keyboard::Key::Space)) {
-                TimeThrowArrow->Stop();
-                if (TimeThrowArrow->Elapsed.TotalSeconds > 5) {
-                    ThrowArrow();
-                    TimeThrowArrow->Restart();
+                if (Keyboard::IsKeyPressed(Keyboard::Key::Up)) {
+                    crossbow->Rotation--;
+                    arrow->Rotation = crossbow->Rotation;
                 }
-                else TimeThrowArrow->Start();
+                if (Keyboard::IsKeyPressed(Keyboard::Key::Down)) {
+                    crossbow->Rotation++;
+                    arrow->Rotation = crossbow->Rotation;
+                }
+                if (Keyboard::IsKeyPressed(Keyboard::Key::Space)) {
+                    TimeThrowArrow->Stop();
+                    if (TimeThrowArrow->Elapsed.TotalSeconds > 5) {
+                        ThrowArrow();
+                        TimeThrowArrow->Restart();
+                    }
+                    else TimeThrowArrow->Start();
+                }
             }
             break;
         }
@@ -306,7 +327,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 27.png"));
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 28.png"));
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
-    base->Vida_max = 1000;
+    base->Vida_max = 100; //1000
     //Castle
     castle->base = base;
     castle->HP = castle->base->Vida_max;
@@ -320,6 +341,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     cover->Scale = Vector2f((float)-0.7, (float)0.7);
     cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
     cover->Position = Vector2f(-300, 400);
+    //Game
+    gameOver = 0;
+    gameOverImage = gcnew Sprite(gcnew Texture("Assets/Environment/GameOver.png"));
+    gameOverImage->Origin = Vector2f(gameOverImage->Texture->Size.X / 2, gameOverImage->Texture->Size.Y / 2);
+    gameOverImage->Position = Vector2f(1920 / 2, 1080 / 2);
 }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
@@ -369,5 +395,20 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(Units^ baseUnit){
     newUnit->attackDamage = newUnit->unit->attackDamage;
     newUnit->life= newUnit->unit->Maxlife;
     newUnit->deathTime = newUnit->unit->deathTime;
+}
+
+void FBAView::SurvivalRender::endGame()
+{
+    watch->Chronometer->Stop();
+    watch->ChronometerAux->Stop();
+    int a;
+    a = int(watch->Chronometer->Elapsed.TotalSeconds);
+    if (((Menu_principal^)owner)->user->survival->timeMax < a) {
+        ((Menu_principal^)owner)->user->survival->timeMax = a;
+    }
+    /*if (0 < a) {
+        a=0;
+    }*/
+    gameOver++;
 }
 
