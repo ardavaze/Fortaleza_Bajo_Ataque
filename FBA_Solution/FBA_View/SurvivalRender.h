@@ -31,6 +31,8 @@ namespace FBAView{
 		void endGame();
 		Sprite^ gameOverImage;
 		Sprite^ userImage;
+		SFML::Graphics::Font^ font;
+		SFML::Graphics::Text^ text;
 		//
 		//Watch
 		//

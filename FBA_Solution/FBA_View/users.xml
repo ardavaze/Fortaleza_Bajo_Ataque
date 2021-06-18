@@ -23,14 +23,14 @@
   </User>
   <User>
     <id>3</id>
-    <nickname>Rovenegas</nickname>
-    <lastNameFath>Venegas</lastNameFath>
-    <lastNameMoth>Cabello</lastNameMoth>
+    <nickname>RogerVen</nickname>
+    <lastNameFath>Cabello</lastNameFath>
+    <lastNameMoth>Venegas</lastNameMoth>
     <name>Roger</name>
     <birthday>11/06/2000</birthday>
     <email>a20171555@pucp.edu.pe</email>
     <password>password</password>
-    <avatar>avatar13</avatar>
+    <avatar>avatar7</avatar>
     <survival>
       <Dinero>0</Dinero>
       <Unidades_desplegadas>0</Unidades_desplegadas>
