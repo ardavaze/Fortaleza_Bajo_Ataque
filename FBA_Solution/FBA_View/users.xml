@@ -59,4 +59,5 @@
     <emerald>0</emerald>
     <levelMax>0</levelMax>
   </User>
+  <User xsi:nil="true" />
 </ArrayOfUser>
