@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Avatar.h"
 namespace FBAView {
 
 	using namespace System;
@@ -85,7 +85,7 @@ namespace FBAView {
 		btn_update_avatar->Visible = true;
 	}
 		
-
+	public: String^ avatar;
 	private: System::Windows::Forms::Label^ label_title;
 	private: System::Windows::Forms::ListView^ listView1;
 
@@ -569,6 +569,11 @@ private: System::Void btn_OK_Click(System::Object^ sender, System::EventArgs^ e)
 	
 
 private: System::Void btn_update_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
+	Avatar^ avatar = gcnew Avatar();
+	avatar->Owner = this;
+	avatar->ShowDialog();
+	System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Profile::typeid));
+	pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(this->avatar)));
 
 }
 };

@@ -13,7 +13,7 @@ void FBAView::Profile::User_data_load(){
 	textBox_level->Text = "" + Menu_principal::user->levelMax;
 	textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
 	System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Profile::typeid));
-	String^ avatar = Menu_principal::user->avatar;
+	this->avatar = Menu_principal::user->avatar;
 	pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(avatar)));
 }
 
@@ -79,6 +79,7 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 		try {
 			u = Menu_principal::user;
 			u->nickname = "" + textBox_username->Text;
+			u->avatar = this->avatar;
 			u->name = "" + textBox_name->Text;
 			u->lastNameFath = "" + textBox_LastName_Mother->Text;
 			u->lastNameMoth = "" + textBox_LastName_Father->Text;
@@ -88,7 +89,7 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 			u->experience = Int32::Parse(textBox_skill_points->Text);
 			u->levelMax = Int32::Parse(textBox_level->Text);
 			u->survival->timeMax = Int32::Parse(textBox_max_time->Text);
-			FBA_Controller::UpdateUser(u);
+			FBA_Controller::UpdateUser(Menu_principal::user);
 			Hide_button();
 			ReadOnly_true();
 			btn_update->Visible = true;

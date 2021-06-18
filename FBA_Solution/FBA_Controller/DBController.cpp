@@ -47,10 +47,10 @@ void FBAController::DBController::AddUser(User^ usernew){
 
 void FBAController::DBController::UpdateUser(User^ user){
  
-    for (int i = 0; i < DBController::user->Count; i++) {
+    /*for (int i = 0; i < DBController::user->Count; i++) {
         if (DBController::user[i]->id == user->id)
             DBController::user[i] = user;
-    }
+    }*/
     SaveUsers();
 }
 

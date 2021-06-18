@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArrowRender.cpp" />
+    <ClCompile Include="Avatar.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="campaign.cpp" />
     <ClCompile Include="ControlElements.cpp" />
@@ -174,6 +175,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrowRender.h" />
+    <ClInclude Include="Avatar.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Background.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -215,6 +219,9 @@
     <ClInclude Include="Watch.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Avatar.resx">
+      <DependentUpon>Avatar.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Background.resx">
       <DependentUpon>Background.h</DependentUpon>
     </EmbeddedResource>
