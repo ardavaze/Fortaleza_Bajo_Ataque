@@ -73,6 +73,8 @@ void FBAView::SurvivalRender::Run() {
         this->Clear();
         this->Draw(this->background);
         this->Draw(this->castle);
+        this->Draw(this->userImage);
+        this->Draw(this->text);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
         //    da->Position = Vector2f(20 * i, 0);
@@ -198,6 +200,8 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     cover->Scale = Vector2f((float)-0.7, (float)0.7);
     cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
     cover->Position = Vector2f(-300, 400);
+    text = gcnew SFML::Graphics::Text;
+    font= gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
     //physical elements
     physicalElemts[0]=gcnew List<PhysicalElement^>() ; //Castillo
     physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
@@ -345,6 +349,17 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameOverImage = gcnew Sprite(gcnew Texture("Assets/Environment/GameOver.png"));
     gameOverImage->Origin = Vector2f(gameOverImage->Texture->Size.X / 2, gameOverImage->Texture->Size.Y / 2);
     gameOverImage->Position = Vector2f(1920 / 2, 1080 / 2);
+    //User Image
+    //((Menu_principal^)owner)->user->avatar;
+    userImage = gcnew Sprite(gcnew Texture("Assets/ResourcesForm/Avatar/"+ ((Menu_principal^)owner)->user->avatar +".png"));
+    userImage->Position = Vector2f(20, 20);
+    userImage->Scale = Vector2f(0.2, 0.2);
+    //Fuente
+    text->Font = font;
+    text->DisplayedString = ((Menu_principal^)owner)->user->nickname;
+    text->Position = Vector2f(160, 50);
+    text->Color = SFML::Graphics::Color::Black;
+    text->Scale = Vector2f(1.7,1.5);
 }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
