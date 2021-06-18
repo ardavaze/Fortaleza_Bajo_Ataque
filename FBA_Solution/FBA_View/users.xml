@@ -30,12 +30,12 @@
     <birthday>11/06/2000</birthday>
     <email>a20171555@pucp.edu.pe</email>
     <password>password</password>
-    <avatar>avatar1</avatar>
+    <avatar>avatar13</avatar>
     <survival>
       <Dinero>0</Dinero>
       <Unidades_desplegadas>0</Unidades_desplegadas>
       <Vida_usuario>0</Vida_usuario>
-      <timeMax>0</timeMax>
+      <timeMax>43</timeMax>
     </survival>
     <experience>0</experience>
     <emerald>0</emerald>

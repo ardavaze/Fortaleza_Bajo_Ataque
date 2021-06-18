@@ -27,10 +27,10 @@ namespace FBAView{
 		List<FBAModel::Units^>^ unit_allies;
 		List<FBAModel::Units^>^ unit_enemies;
 		System::Diagnostics::Stopwatch^ TimeGenerate;
-
 		int gameOver;
 		void endGame();
 		Sprite^ gameOverImage;
+		Sprite^ userImage;
 		//
 		//Watch
 		//

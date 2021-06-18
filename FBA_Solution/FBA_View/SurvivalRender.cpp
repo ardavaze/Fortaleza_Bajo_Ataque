@@ -73,6 +73,7 @@ void FBAView::SurvivalRender::Run() {
         this->Clear();
         this->Draw(this->background);
         this->Draw(this->castle);
+        this->Draw(this->userImage);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
         //    da->Position = Vector2f(20 * i, 0);
@@ -346,6 +347,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameOverImage = gcnew Sprite(gcnew Texture("Assets/Environment/GameOver.png"));
     gameOverImage->Origin = Vector2f(gameOverImage->Texture->Size.X / 2, gameOverImage->Texture->Size.Y / 2);
     gameOverImage->Position = Vector2f(1920 / 2, 1080 / 2);
+    //User Image
+    //((Menu_principal^)owner)->user->avatar;
+    userImage = gcnew Sprite(gcnew Texture("Assets/ResourcesForm/Avatar/"+ ((Menu_principal^)owner)->user->avatar +".png"));
+    userImage->Position = Vector2f(20, 20);
+    userImage->Scale = Vector2f(0.2, 0.2);
 }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
