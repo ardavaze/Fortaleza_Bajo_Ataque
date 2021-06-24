@@ -56,7 +56,7 @@ void FBAView::SurvivalRender::Run() {
                 }
             }
             TimeEnemies->Stop();
-            if (TimeEnemies->Elapsed.TotalSeconds > 10) {
+            if (TimeEnemies->Elapsed.TotalSeconds > 8) {
                 GenerateUnits_enemies(this->unit_enemies[0]);
                 TimeEnemies->Restart();
             }
@@ -85,8 +85,6 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->watch->dosPuntos);
         this->Draw(this->watch->segDecena);
         this->Draw(this->watch->segUnidad);
-        
-
         for (int i = 2; i < 4; i++) {
             for (int j = 0; j < physicalElemts[i]->Count; j++) {
                 this->Draw(physicalElemts[i][j]);
@@ -178,6 +176,30 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
     watch = gcnew Watch;
+    //Base
+    base = gcnew FBAModel::Base;
+    base->baseState = gcnew List<Texture^>;
+    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 27.png"));
+    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 28.png"));
+    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 29.png"));
+    base->coverState = gcnew List<Texture^>;
+    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 27.png"));
+    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 28.png"));
+    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
+    base->Vida_max = 1000; //1000
+    //Castle
+    castle->base = base;
+    castle->HP = castle->base->Vida_max;
+    castle->Texture = base->baseState[0];
+    castle->Scale = Vector2f((float)-0.7, (float)0.7);
+    castle->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
+    castle->Position = Vector2f(-300, 400);
+    castle->positionElement = Vector2i(90, 0);
+    castle->sizeElement = Vector2i(350, 200);
+    cover = gcnew Sprite();
+    cover->Scale = Vector2f((float)-0.7, (float)0.7);
+    cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
+    cover->Position = Vector2f(-300, 400);
     text = gcnew SFML::Graphics::Text;
     font= gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
     //physical elements
@@ -321,30 +343,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     watch->dosPuntos ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
     watch->Chronometer = gcnew System::Diagnostics::Stopwatch;    watch->Chronometer->Start();
     watch->ChronometerAux = gcnew System::Diagnostics::Stopwatch; watch->ChronometerAux->Start();
-    //Base
-    base = gcnew FBAModel::Base;
-    base->baseState = gcnew List<Texture^>;
-    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 27.png"));
-    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 28.png"));
-    base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 29.png"));
-    base->coverState = gcnew List<Texture^>;
-    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 27.png"));
-    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 28.png"));
-    base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
-    base->Vida_max = 100; //1000
-    //Castle
-    castle->base = base;
-    castle->HP = castle->base->Vida_max;
-    castle->Texture = base->baseState[0];
-    castle->Scale = Vector2f((float)-0.7, (float)0.7);
-    castle->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
-    castle->Position = Vector2f(-300, 400);
-    castle->positionElement = Vector2i(0, 0);
-    castle->sizeElement = Vector2i(350, 200);
-    cover = gcnew Sprite();
-    cover->Scale = Vector2f((float)-0.7, (float)0.7);
-    cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
-    cover->Position = Vector2f(-300, 400);
+
     //Game
     gameOver = 0;
     gameOverImage = gcnew Sprite(gcnew Texture("Assets/Environment/GameOver.png"));
