@@ -5,6 +5,7 @@ using namespace SFML::Window;
 using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace SFML::Audio;
 
 FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31), "Modo survival", Styles::Fullscreen){
     InitializeGraphics();
@@ -360,7 +361,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     text->Position = Vector2f(160, 50);
     text->Color = SFML::Graphics::Color::Black;
     text->Scale = Vector2f(1.7,1.5);
-}
+    //Music
+    gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
+    gameSound = gcnew Sound(gameSoundBuffer);
+    gameSound->Play();
+ }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
     UnitRender^ newUnit =gcnew UnitRender ;

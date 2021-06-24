@@ -9,6 +9,7 @@ using namespace SFML::Window;
 using namespace SFML::System;
 using namespace System::Windows::Forms;
 using namespace System::Collections::Generic;
+using namespace SFML::Audio;
 namespace FBAView{
 	public ref class SurvivalRender : public RenderWindow {
 	public:
@@ -33,6 +34,8 @@ namespace FBAView{
 		Sprite^ userImage;
 		SFML::Graphics::Font^ font;
 		SFML::Graphics::Text^ text;
+		SoundBuffer^ gameSoundBuffer;
+		Sound^ gameSound;
 		//
 		//Watch
 		//
