@@ -36,6 +36,7 @@ namespace FBAView{
 		SFML::Graphics::Text^ text;
 		SoundBuffer^ gameSoundBuffer;
 		Sound^ gameSound;
+		Sprite^ avatarMold;
 		//
 		//Watch
 		//

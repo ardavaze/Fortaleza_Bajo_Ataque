@@ -75,6 +75,7 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->background);
         this->Draw(this->castle);
         this->Draw(this->userImage);
+        this->Draw(this->avatarMold);
         this->Draw(this->text);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
@@ -353,18 +354,22 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //User Image
     //((Menu_principal^)owner)->user->avatar;
     userImage = gcnew Sprite(gcnew Texture("Assets/ResourcesForm/Avatar/"+ ((Menu_principal^)owner)->user->avatar +".png"));
-    userImage->Position = Vector2f(20, 20);
+    userImage->Position = Vector2f(64, 30);
     userImage->Scale = Vector2f(0.2, 0.2);
     //Fuente
     text->Font = font;
     text->DisplayedString = ((Menu_principal^)owner)->user->nickname;
-    text->Position = Vector2f(160, 50);
-    text->Color = SFML::Graphics::Color::Black;
-    text->Scale = Vector2f(1.7,1.5);
+    text->Position = Vector2f(250, 63);
+    text->Color = SFML::Graphics::Color::Cyan;
+    text->Scale = Vector2f(1.7,0.7);
     //Music
     gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
     gameSound = gcnew Sound(gameSoundBuffer);
     gameSound->Play();
+    //Avatar mold
+    avatarMold = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/Avatar molde 2.png"));
+    avatarMold->Position = Vector2f(0, 0);
+    avatarMold->Scale = Vector2f(1, 1);
  }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
