@@ -26,7 +26,9 @@ void FBAView::UnitRender::Todo() {
 		if (this->frstTimeJob) {
 			timeJob->Restart();
 			attackMoveJob = attackMove;
-			if (attackMove) { totalTimeJob = (60 / attackVelocity); }
+			if (attackMove) {
+				this->unit->attackSound->Play();
+				totalTimeJob = (60 / attackVelocity); }
 			else { totalTimeJob = ((80 / 50) / movementVelocity); } //tiempo en que demora moverse una sola vez y la velocidad es 80 pix por movimiento
 			positionx = Position.X;
 			frstTimeJob = 0;
@@ -72,6 +74,7 @@ void FBAView::UnitRender::Todo() {
 	else {
 		double timeaux;
 		if (this->frstTimeJob) {
+			this->unit->deathSound->Play();
 			timeJob->Restart();
 			indice = 0;
 			totalTimeJob = deathTime;//tiempo en que demora moverse una sola vez y la velocidad es 80 pix por movimiento

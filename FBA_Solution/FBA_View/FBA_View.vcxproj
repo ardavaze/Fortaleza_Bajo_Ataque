@@ -156,6 +156,7 @@
     <ClCompile Include="ArrowRender.cpp" />
     <ClCompile Include="Avatar.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="ConsoleButton.cpp" />
     <ClCompile Include="campaign.cpp" />
     <ClCompile Include="ControlElements.cpp" />
     <ClCompile Include="Credits.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Background.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ConsoleButton.h" />
     <ClInclude Include="campaign.h">
       <FileType>CppForm</FileType>
     </ClInclude>

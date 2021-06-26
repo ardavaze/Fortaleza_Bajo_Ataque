@@ -108,6 +108,7 @@ void FBAView::SurvivalRender::Run() {
         }
         chronoGameOver->Stop();
         if (chronoGameOver->Elapsed.Seconds>=5) {
+            gameSound->Stop();
             this->Close();
         }
         if(gameOver >= 2) { chronoGameOver->Start(); }
@@ -126,6 +127,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
     if (this->PollEvent(event)) {
         switch (event.Type) {
         case EventType::Closed:
+            gameSound->Stop();
             this->Close();
             break;
         case EventType::KeyPressed:
@@ -249,6 +251,10 @@ void FBAView::SurvivalRender::InitializeGraphics() {
             "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
         unit_allies[0]->DeathAnimation->Add(gcnew Texture(d));
     }
+    unit_allies[0]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
+    unit_allies[0]->attackSound = gcnew Sound(unit_allies[0]->attackBuffer);
+    unit_allies[0]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
+    unit_allies[0]->deathSound = gcnew Sound(unit_allies[0]->deathBuffer);
     unit_allies[0]->Image = unit_allies[0]->MoveAnimation[0];
     unit_allies[0]->scale=Vector2f(0.6,0.6);
     unit_allies[0]->positionElement = Vector2i(42, 52);
@@ -311,7 +317,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
             "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
         unit_enemies[0]->DeathAnimation->Add(gcnew Texture(d));
     }
-    unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0];
+    unit_enemies[0]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
+    unit_enemies[0]->attackSound = gcnew Sound(unit_enemies[0]->attackBuffer);
+    unit_enemies[0]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
+    unit_enemies[0]->deathSound = gcnew Sound(unit_enemies[0]->deathBuffer);
+    unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0]; 
     unit_enemies[0]->scale = Vector2f(-0.6, 0.6);
     unit_enemies[0]->positionElement = Vector2i(42, 52);
     unit_enemies[0]->sizeElement = Vector2i(177 - 42, 284 - 52);
