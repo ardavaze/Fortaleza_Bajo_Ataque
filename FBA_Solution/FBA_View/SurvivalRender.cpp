@@ -77,6 +77,7 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->userImage);
         this->Draw(this->avatarMold);
         this->Draw(this->text);
+        this->Draw(this->console);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
         //    da->Position = Vector2f(20 * i, 0);
@@ -205,7 +206,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
     cover->Position = Vector2f(-300, 400);
     text = gcnew SFML::Graphics::Text;
-    font= gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
+    font= gcnew SFML::Graphics::Font("Assets/Fonts/OldLondon.ttf");
     //physical elements
     physicalElemts[0]=gcnew List<PhysicalElement^>() ; //Castillo
     physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
@@ -371,7 +372,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     text->DisplayedString = ((Menu_principal^)owner)->user->nickname;
     text->Position = Vector2f(250, 63);
     text->Color = SFML::Graphics::Color::Cyan;
-    text->Scale = Vector2f(1.7,0.7);
+    text->Scale = Vector2f(1,1);
     //Music
     gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
     gameSound = gcnew Sound(gameSoundBuffer);
@@ -380,6 +381,10 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     avatarMold = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/Avatar molde 2.png"));
     avatarMold->Position = Vector2f(0, 0);
     avatarMold->Scale = Vector2f(1, 1);
+    //console
+    console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 3.png"));
+    console->Position = Vector2f(400, 800);
+    console->Scale = Vector2f(1.5, 1.5);
  }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
