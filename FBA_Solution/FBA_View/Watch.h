@@ -8,13 +8,15 @@ using namespace SFML::System;
 namespace FBAView {
 	public ref class Watch:ControlElements{
 	public:
+		Watch();
 		array<SFML::Graphics::Texture^>^ numbers;
 		SFML::Graphics::Texture^ twoPoints ;
-		Sprite^ segUnidad;
-		Sprite^ segDecena;
-		Sprite^ minUnidad;
+		Sprite^ secUnit;
+		Sprite^ secDecena;
+		Sprite^ minUnit;
 		Sprite^ minDecena;
 		Sprite^ dosPuntos;
+		RenderTexture^ board;
 		int segUnidTranscurridos = 0;
 		int segDecTranscurridos = 0;
 		int minUnidTranscurridos = 0;
@@ -22,7 +24,6 @@ namespace FBAView {
 		Vector2f refCronometro; //= Vector2f(730,60);
 		Vector2f scaleCronometro = Vector2f(1, 1);
 		Diagnostics::Stopwatch^ Chronometer;
-		Diagnostics::Stopwatch^ ChronometerAux;
 		Void ActualizarNumero();
 	};
 }

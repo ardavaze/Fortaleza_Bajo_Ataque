@@ -80,11 +80,7 @@ void FBAView::SurvivalRender::Run() {
         //    da->Position = Vector2f(20 * i, 0);
         //    this->Draw(da);
         //}
-        this->Draw(this->watch->minDecena);
-        this->Draw(this->watch->minUnidad);
-        this->Draw(this->watch->dosPuntos);
-        this->Draw(this->watch->segDecena);
-        this->Draw(this->watch->segUnidad);
+        this->Draw(this->watch);
         for (int i = 2; i < 4; i++) {
             for (int j = 0; j < physicalElemts[i]->Count; j++) {
                 this->Draw(physicalElemts[i][j]);
@@ -322,27 +318,12 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //Cronometro
     watch->numbers = gcnew array<Texture^>(10);
     for (int i = 0; i < watch->numbers->Length; i++) {
-        watch->numbers[i] = gcnew Texture("Assets/Environment/Numeros/"+ i +".png");
+        watch->numbers[i] = gcnew Texture("Assets/Environment/Numeros/" + i + ".png");
     }
-    watch->minDecena = gcnew Sprite(watch->numbers[0]);
-    watch->minUnidad = gcnew Sprite(watch->numbers[0]);
-    watch->segDecena = gcnew Sprite(watch->numbers[0]);
-    watch->segUnidad = gcnew Sprite(watch->numbers[0]);
-    watch->dosPuntos = gcnew Sprite(gcnew Texture("Assets/Environment/Numeros/2puntos.png"));
-    watch->refCronometro = Vector2f(1200, 60);
-    watch->minDecena ->Position=Vector2f(watch->refCronometro.X, watch->refCronometro.Y);
-    watch->minUnidad ->Position=Vector2f(watch->refCronometro.X+115, watch->refCronometro.Y);
-    watch->dosPuntos->Position = Vector2f(watch->refCronometro.X+230, watch->refCronometro.Y);
-    watch->segDecena ->Position=Vector2f(watch->refCronometro.X+345, watch->refCronometro.Y);
-    watch->segUnidad ->Position=Vector2f(watch->refCronometro.X+460, watch->refCronometro.Y);
-    watch->scaleCronometro = Vector2f(0.85,0.85);
-    watch->minDecena ->Scale=Vector2f(watch->scaleCronometro.X, watch->scaleCronometro.Y);
-    watch->minUnidad ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
-    watch->segDecena ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
-    watch->segUnidad ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
-    watch->dosPuntos ->Scale=Vector2f(watch->scaleCronometro.X,watch->scaleCronometro.Y);
-    watch->Chronometer = gcnew System::Diagnostics::Stopwatch;    watch->Chronometer->Start();
-    watch->ChronometerAux = gcnew System::Diagnostics::Stopwatch; watch->ChronometerAux->Start();
+    watch->twoPoints = gcnew Texture("Assets/Environment/Numeros/2puntos.png");
+    watch->Position = Vector2f(1300, 0);
+    watch->Scale = Vector2f(0.5, 0.5);
+    watch->Chronometer->Start();
 
     //Game
     gameOver = 0;
@@ -414,7 +395,6 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(Units^ baseUnit){
 void FBAView::SurvivalRender::endGame()
 {
     watch->Chronometer->Stop();
-    watch->ChronometerAux->Stop();
     int a;
     a = int(watch->Chronometer->Elapsed.TotalSeconds);
     if (((Menu_principal^)owner)->user->survival->timeMax < a) {
