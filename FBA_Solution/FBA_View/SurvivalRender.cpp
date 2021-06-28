@@ -71,10 +71,11 @@ void FBAView::SurvivalRender::Run() {
             watch->ActualizarNumero();
         }
         Procesar_evento();
+        userAvatar->UpdateUserHP(castle->life/castle->base->Vida_max);
         this->Clear();
+        this->Draw(this->userAvatar);
         this->Draw(this->background);
         this->Draw(this->castle);
-        this->Draw(this->text);
         this->Draw(this->console);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
@@ -204,8 +205,6 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     cover->Scale = Vector2f((float)-0.7, (float)0.7);
     cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
     cover->Position = Vector2f(-300, 400);
-    text = gcnew SFML::Graphics::Text;
-    font= gcnew SFML::Graphics::Font("Assets/Fonts/OldLondon.ttf");
     //physical elements
     physicalElemts[0]=gcnew List<PhysicalElement^>() ; //Castillo
     physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
@@ -362,11 +361,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameOverImage->Origin = Vector2f(gameOverImage->Texture->Size.X / 2, gameOverImage->Texture->Size.Y / 2);
     gameOverImage->Position = Vector2f(1920 / 2, 1080 / 2);
     //Fuente
-    text->Font = font;
+    /*text->Font = font;
     text->DisplayedString = ((Menu_principal^)owner)->user->nickname;
     text->Position = Vector2f(250, 63);
     text->Color = SFML::Graphics::Color::Cyan;
-    text->Scale = Vector2f(1,1);
+    text->Scale = Vector2f(1,1);*/
     //Music
     gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
     gameSound = gcnew Sound(gameSoundBuffer);
@@ -374,9 +373,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //Avatar
     userAvatar->avatar->Texture = gcnew Texture("Assets/ResourcesForm/Avatar/" + ((Menu_principal^)owner)->user->avatar + ".png");
     userAvatar->avatarMold->Texture = gcnew Texture("Assets/Environment/MapsElements/user life mold.png");
-    userAvatar->avatarBackground->Texture= gcnew Texture("Assets/Environment/MapsElements/user life background.png");
-    userAvatar->font = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR");
-    userAvatar->usernameText=
+    userAvatar->healthBar=gcnew HealthBar("Assets/Environment/MapsElements/user life background.png","Assets/Environment/MapsElements/barrita.png");
+    userAvatar->Position = Vector2f(0, 0);
+    userAvatar->Scale = Vector2f(1, 1);
+    /*userAvatar->font = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR");*/
+
     //console
     console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 3.png"));
     console->Position = Vector2f(400, 800);

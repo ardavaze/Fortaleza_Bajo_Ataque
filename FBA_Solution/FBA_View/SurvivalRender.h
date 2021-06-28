@@ -5,6 +5,7 @@
 #include "PhysicalElement.h"
 #include "Watch.h"
 #include "UserLifeBar.h"
+#include "HealthBar.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
