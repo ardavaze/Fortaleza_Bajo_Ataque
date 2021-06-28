@@ -4,6 +4,7 @@
 #include "CastleRender.h"
 #include "PhysicalElement.h"
 #include "Watch.h"
+#include "UserLifeBar.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -31,16 +32,13 @@ namespace FBAView{
 		int gameOver;
 		void endGame();
 		Sprite^ gameOverImage;
-		Sprite^ userImage;
-		SFML::Graphics::Font^ font;
-		SFML::Graphics::Text^ text;
 		SoundBuffer^ gameSoundBuffer;
 		Sound^ gameSound;
-		Sprite^ avatarMold;
 		Sprite^ console;
 		//
 		//Watch
 		//
+		UserLifeBar^ userAvatar;
 		Watch^ watch;
 		void InitializeGraphics();
 		Void Procesar_evento();
