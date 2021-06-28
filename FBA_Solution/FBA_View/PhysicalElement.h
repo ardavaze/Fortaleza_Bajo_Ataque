@@ -6,6 +6,12 @@ using namespace SFML::System;
 namespace FBAView {
 	public ref class PhysicalElement : public Sprite {
 	public:
+		enum class States {
+			Attack,
+			Move,
+			Die
+		};
+		States state;
 		Vector2i sizeElement;//tamaño real del personaje sin considerar el rectangulo de imagen que la contiene
 		Vector2i positionElement;//posicion del comienzo del elemento respecto de la esquina del rectangulo de imagen que la contiene
 		Game_obj::TypeElement type;
@@ -18,7 +24,7 @@ namespace FBAView {
 		virtual void Todo() {};
 		virtual Void LostLife(int) {};
 		bool muerto=0;
-		bool dead=0;
+		bool death=0;
 	protected:
 		Vector2f size;
 		array<int>^ index;

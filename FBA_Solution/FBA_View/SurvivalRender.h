@@ -4,6 +4,7 @@
 #include "CastleRender.h"
 #include "PhysicalElement.h"
 #include "Watch.h"
+#include "HealthBar.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -13,6 +14,7 @@ namespace FBAView{
 	public ref class SurvivalRender : public RenderWindow {
 	public:
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
+		HealthBar^ healthBar;
 		Form^ owner;
 		array<List<PhysicalElement^>^>^ physicalElemts;
 		Void Run();

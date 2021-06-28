@@ -16,6 +16,7 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
     render = gcnew System::Diagnostics::Stopwatch; 
+    watch->Chronometer->Restart();
     chronoGameOver = gcnew System::Diagnostics::Stopwatch;chronoGameOver->Reset();
     chronoGameOver->Stop();
 }
@@ -27,20 +28,22 @@ void FBAView::SurvivalRender::Run() {
             for (int i = 0; i < 4; i++) {
                 if (i != 1) {
                     for (int j = 0; j < physicalElemts[i]->Count; j++)
-                        if (!physicalElemts[i][j]->muerto)
+                        if (physicalElemts[i][j]->state != PhysicalElement::States::Die)
                             physicalElemts[i][j]->OccupySpace();
                 }
             }
             for (int i = 1; i < 4; i++) {
                 for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                    if (!physicalElemts[i][j]->muerto)
+                    if (physicalElemts[i][j]->state!=PhysicalElement::States::Die)
                         physicalElemts[i][j]->ProcessCollision();
                 }
             }
-            for (int i = 2; i < 4; i++) {
-                for (int j = physicalElemts[i]->Count - 1; 0 <= j; j--) {
-                    if (!physicalElemts[i][j]->muerto)
-                        physicalElemts[i][j]->FreeSpace();
+            for (int i = 3; 0<= i; i--) {
+                if (i != 1) {
+                    for (int j = physicalElemts[i]->Count - 1; 0 <= j; j--) {
+                        if (physicalElemts[i][j]->state != PhysicalElement::States::Die)
+                            physicalElemts[i][j]->FreeSpace();
+                    }
                 }
             }
             for (int i = 2; i < 4; i++) {
@@ -50,7 +53,7 @@ void FBAView::SurvivalRender::Run() {
             }
             for (int i = 2; i < 4; i++) {
                 for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                    if (physicalElemts[i][j]->dead) {
+                    if (physicalElemts[i][j]->death) {
                         physicalElemts[i]->RemoveAt(j);
                     }
                 }
@@ -67,7 +70,7 @@ void FBAView::SurvivalRender::Run() {
                 arrow->Position = crossbow->Position;
                 arrow->Rotation = crossbow->Rotation;
             }
-            watch->ActualizarNumero();
+            watch->UpdateWatch();
         }
         Procesar_evento();
         this->Clear();
@@ -226,11 +229,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[0]->AttackAnimation = gcnew List<Texture^>;
     unit_allies[0]->MoveAnimation = gcnew List<Texture^>;
     unit_allies[0]->DeathAnimation = gcnew List<Texture^>;
-    unit_allies[0]->HealthBar = gcnew array < SFML::Graphics::Image^>(4) ;
-    unit_allies[0]->HealthBar[0] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
-    unit_allies[0]->HealthBar[1] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
-    unit_allies[0]->HealthBar[2] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
-    unit_allies[0]->HealthBar[3] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
+    unit_allies[0]->HealthBar = gcnew array < SFML::Graphics::Texture^>(4) ;
+    unit_allies[0]->HealthBar[0] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
+    unit_allies[0]->HealthBar[1] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
+    unit_allies[0]->HealthBar[2] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
+    unit_allies[0]->HealthBar[3] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
     String^ d;               //auxiliar para Directorio de imagenes
     for (int j = 0; j < 20; j++) {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": 
@@ -258,11 +261,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[1]->AttackAnimation = gcnew List<Texture^>;
     unit_allies[1]->MoveAnimation = gcnew List<Texture^>;
     unit_allies[1]->DeathAnimation = gcnew List<Texture^>;
-    unit_allies[1]->HealthBar = gcnew array < SFML::Graphics::Image^>(4);
-    unit_allies[1]->HealthBar[0] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
-    unit_allies[1]->HealthBar[1] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
-    unit_allies[1]->HealthBar[2] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
-    unit_allies[1]->HealthBar[3] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
+    unit_allies[1]->HealthBar = gcnew array < SFML::Graphics::Texture^>(4);
+    unit_allies[1]->HealthBar[0] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
+    unit_allies[1]->HealthBar[1] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
+    unit_allies[1]->HealthBar[2] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
+    unit_allies[1]->HealthBar[3] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
     for (int j = 0; j < 11; j++) {
         d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
             "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_00" + j + ".png";
@@ -289,11 +292,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->AttackAnimation = gcnew List<Texture^>;
     unit_enemies[0]->MoveAnimation = gcnew List<Texture^>;
     unit_enemies[0]->DeathAnimation = gcnew List<Texture^>;
-    unit_enemies[0]->HealthBar = gcnew array < SFML::Graphics::Image^>(4);
-    unit_enemies[0]->HealthBar[0] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
-    unit_enemies[0]->HealthBar[1] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
-    unit_enemies[0]->HealthBar[2] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
-    unit_enemies[0]->HealthBar[3] = gcnew SFML::Graphics::Image("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
+    unit_enemies[0]->HealthBar = gcnew array < SFML::Graphics::Texture^>(4);
+    unit_enemies[0]->HealthBar[0] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
+    unit_enemies[0]->HealthBar[1] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
+    unit_enemies[0]->HealthBar[2] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
+    unit_enemies[0]->HealthBar[3] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
     for (int j = 0; j < 20; j++) {
         d = j > 9? "Assets/Characters/Soldier/4_enemies_1_attack_0" + j + ".png": //que pasa con la direccion de memoria creada con gcnew
                     "Assets/Characters/Soldier/4_enemies_1_attack_00" + j + ".png";
@@ -315,15 +318,24 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies[0]->attackDamage = 40;
     unit_enemies[0]->Maxlife = 200;
     unit_enemies[0]->deathTime = 1.2;
+    //HealthBar
+    this->healthBar = gcnew HealthBar();
+    this->healthBar->healthBar = unit_allies[0]->HealthBar;
+    this->healthBar->Generate();
     //Cronometro
     watch->numbers = gcnew array<Texture^>(10);
     for (int i = 0; i < watch->numbers->Length; i++) {
         watch->numbers[i] = gcnew Texture("Assets/Environment/Numeros/" + i + ".png");
     }
     watch->twoPoints = gcnew Texture("Assets/Environment/Numeros/2puntos.png");
-    watch->Position = Vector2f(1300, 0);
-    watch->Scale = Vector2f(0.5, 0.5);
-    watch->Chronometer->Start();
+    watch->Position = Vector2f(1400, 0);
+    watch->Scale = Vector2f(0.8, 0.8);
+    watch->secUnit->Texture=watch->numbers[0];
+    watch->secDecena->Texture = watch->numbers[0];
+    watch->minUnit->Texture = watch->numbers[0];
+    watch->minDecena->Texture = watch->numbers[0];
+    watch->dosPuntos->Texture = watch->twoPoints;
+    watch->PaintTexture();
 
     //Game
     gameOver = 0;
@@ -344,9 +356,9 @@ void FBAView::SurvivalRender::InitializeGraphics() {
 }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
-    UnitRender^ newUnit =gcnew UnitRender ;
+    UnitRender^ newUnit =gcnew UnitRender(baseUnit) ;
     physicalElemts[2]->Add(newUnit);
-    newUnit->unit= baseUnit;
+    newUnit->healthbar = this->healthBar;
     newUnit->band= newUnit->unit->band;
     newUnit->Texture = newUnit->unit->Image;
     newUnit->Scale = newUnit->unit->scale;
@@ -374,10 +386,10 @@ void FBAView::SurvivalRender::ThrowArrow() {
 }
 
 void FBAView::SurvivalRender::GenerateUnits_enemies(Units^ baseUnit){
-    UnitRender^ newUnit = gcnew UnitRender;
+    UnitRender^ newUnit = gcnew UnitRender(baseUnit);
     physicalElemts[3]->Add(newUnit);
     //((UnitRender^)physicalElemts[3][physicalElemts[3]->Count - 1])
-    newUnit->unit = baseUnit;
+    newUnit->healthbar = this->healthBar;
     newUnit->band = newUnit->unit->band;
     newUnit->Texture = newUnit->unit->Image;
     newUnit->Scale = newUnit->unit->scale;

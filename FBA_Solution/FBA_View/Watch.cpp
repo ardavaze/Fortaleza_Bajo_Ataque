@@ -13,18 +13,15 @@ FBAView::Watch::Watch() {
     minUnit->Scale = Vector2f(1, 1);
     minDecena->Scale = Vector2f(1, 1);
     dosPuntos->Scale = Vector2f(1, 1);
-    secUnit->Position= Vector2f(480,20);
-    secDecena->Position = Vector2f(360,20);
-    minUnit->Position = Vector2f(120,20);
-    minDecena->Position = Vector2f(0,20);
-    dosPuntos->Position = Vector2f(240,20);
+    secUnit->Position= Vector2f(490,20);
+    secDecena->Position = Vector2f(370,20);
+    minUnit->Position = Vector2f(130,20);
+    minDecena->Position = Vector2f(10,20);
+    dosPuntos->Position = Vector2f(250,20);
 }
 
-Void FBAView::Watch::ActualizarNumero(){
-    Chronometer->Stop();
-    int timeAux=Chronometer->Elapsed.Seconds % 10;
-    Chronometer->Start();
-    if (timeAux != segUnidTranscurridos) {
+Void FBAView::Watch::UpdateWatch(){
+    if ( (Chronometer->Elapsed.Seconds % 10) != segUnidTranscurridos ) {
         segUnidTranscurridos = Chronometer->Elapsed.Seconds % 10;
         segDecTranscurridos = Chronometer->Elapsed.Seconds / 10;
         minUnidTranscurridos = Chronometer->Elapsed.Minutes % 10;
@@ -34,13 +31,18 @@ Void FBAView::Watch::ActualizarNumero(){
         secDecena->Texture = this->numbers[segDecTranscurridos];
         secUnit->Texture = this->numbers[segUnidTranscurridos];
         dosPuntos->Texture = this->twoPoints;
-        this->board->Clear(SFML::Graphics::Color::Color(120, 120, 120, 0));
-        this->board->Draw(dosPuntos);
-        this->board->Draw(minUnit);
-        this->board->Draw(minDecena);
-        this->board->Draw(secUnit);
-        this->board->Draw(secDecena);
-        this->board->Display();
-        this->Texture = this->board->Texture;
+        this->PaintTexture();
     }
+}
+
+Void FBAView::Watch::PaintTexture() {
+    this->board->Clear(SFML::Graphics::Color::Color(120, 120, 255, 200));
+    this->board->Draw(dosPuntos);
+    this->board->Draw(minUnit);
+    this->board->Draw(minDecena);
+    this->board->Draw(secUnit);
+    this->board->Draw(secDecena);
+    this->board->Display();
+    this->Texture = this->board->Texture;
+    return Void();
 }

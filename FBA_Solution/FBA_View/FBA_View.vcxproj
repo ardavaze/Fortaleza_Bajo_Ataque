@@ -160,6 +160,7 @@
     <ClCompile Include="ControlElements.cpp" />
     <ClCompile Include="Credits.cpp" />
     <ClCompile Include="CastleRender.cpp" />
+    <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Menu_principal.cpp" />
     <ClCompile Include="PhysicalElement.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Credits.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="HealthBar.h" />
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
