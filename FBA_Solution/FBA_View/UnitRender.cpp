@@ -27,7 +27,6 @@ void FBAView::UnitRender::Todo() {
 			timeJob->Restart();
 			attackMoveJob = attackMove;
 			if (attackMove) {
-				this->unit->attackSound->Play();
 				totalTimeJob = (60 / attackVelocity); }
 			else { totalTimeJob = ((80 / 50) / movementVelocity); } //tiempo en que demora moverse una sola vez y la velocidad es 80 pix por movimiento
 			positionx = Position.X;
@@ -41,6 +40,8 @@ void FBAView::UnitRender::Todo() {
 				indice = int(timeaux * (this->unit->AttackAnimation->Count / totalTimeJob));
 				if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
 				this->Texture = unit->AttackAnimation[indice];
+				if (indice == unit->AttackAnimation->Count / 2)
+					this->unit->attackSound->Play();
 			}
 			else {
 				indice = int(timeaux * (this->unit->MoveAnimation->Count / totalTimeJob));
@@ -74,7 +75,6 @@ void FBAView::UnitRender::Todo() {
 	else {
 		double timeaux;
 		if (this->frstTimeJob) {
-			this->unit->deathSound->Play();
 			timeJob->Restart();
 			indice = 0;
 			totalTimeJob = deathTime;//tiempo en que demora moverse una sola vez y la velocidad es 80 pix por movimiento
@@ -84,6 +84,8 @@ void FBAView::UnitRender::Todo() {
 		timeaux = timeJob->Elapsed.TotalSeconds;
 		timeJob->Start();
 		if (timeaux >= (indice + 1) * (totalTimeJob / this->unit->DeathAnimation->Count)) {
+			if (indice == unit->DeathAnimation->Count / 2)
+				this->unit->deathSound->Play();
 			indice = int(timeaux * (this->unit->DeathAnimation->Count / totalTimeJob));
 			if (indice >= this->unit->DeathAnimation->Count) { indice = 0; }
 			this->Texture = unit->DeathAnimation[indice];
