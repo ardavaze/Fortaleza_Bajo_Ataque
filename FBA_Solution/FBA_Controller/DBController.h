@@ -7,6 +7,7 @@ namespace FBAController {
 	public ref class DBController{
 	private:
 		static List<User^>^ user=gcnew List<User^>;
+		static List<User^>^ OrderedUsersByScore = gcnew  List<User^>;
 
 	public:
 		static void InicializeController();
@@ -19,6 +20,8 @@ namespace FBAController {
 		static void DeleteUser(User^);
 		static List<User^>^ QueryAllUser();
 		static User^ QueryUserByID();
+
+		
 	};
 }
 
