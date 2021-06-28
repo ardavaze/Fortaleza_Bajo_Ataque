@@ -1,6 +1,7 @@
     #pragma once
 #include "Survival.h"
 #include "Medal.h"
+#include "Level.h"
 using namespace System;
 namespace FBAModel {
     [Serializable]
@@ -18,8 +19,8 @@ namespace FBAModel {
         Survival^ survival;
         int experience;
         int emerald;
-        int levelMax;
         Medal^ medal;
+        Level^ level;
         User() {}
         User(String^ nickname, String^ lastNameFath, String^ lastNameMoth, String^ name, String^ birthday, String^ email, String^ password);
     };

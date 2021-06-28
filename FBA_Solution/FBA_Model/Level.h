@@ -2,6 +2,7 @@
 #pragma once
 using namespace System;
 namespace FBAModel{
+    [Serializable]
     public ref class Level {
     public:
         int Numero;
