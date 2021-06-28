@@ -1,12 +1,16 @@
 #pragma once
-ref class UserLifeBar
-{
+#include "ControlElements.h";
+namespace FBAView {
+	public ref class UserLifeBar:ControlElements{
+	public:
+	 
+	
 
 
 
 
 
+	};
 
-
-};
+}
 
