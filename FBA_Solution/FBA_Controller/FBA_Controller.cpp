@@ -11,15 +11,15 @@ void FBAController::FBA_Controller::InicializeController(){
 	DBController::InicializeController();
 }
 
-void FBAController::FBA_Controller::SaveUsers()
-{
-	DBController::SaveUsers();
-}
-
-void FBAController::FBA_Controller::LoadUsers()
-{
-	DBController::LoadUsers();
-}
+//void FBAController::FBA_Controller::SaveUsers()
+//{
+//	DBController::SaveUsers();
+//}
+//
+//void FBAController::FBA_Controller::LoadUsers()
+//{
+//	DBController::LoadUsers();
+//}
 
 User^ FBAController::FBA_Controller::ValidateUser(String^ username, String^ password){
 	return DBController::ValidateUser(username, password);

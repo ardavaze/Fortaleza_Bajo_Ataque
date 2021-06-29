@@ -13,10 +13,10 @@ namespace FBAView {
 	/// <summary>
 	/// Summary for Survival
 	/// </summary>
-	public ref class Survival : public System::Windows::Forms::Form
+	public ref class SurvivalForm : public System::Windows::Forms::Form
 	{
 	public:
-		Survival(void)
+		SurvivalForm(void)
 		{
 			InitializeComponent();
 			user_rank_load();
@@ -29,7 +29,7 @@ namespace FBAView {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Survival()
+		~SurvivalForm()
 		{
 			if (components)
 			{
@@ -112,7 +112,7 @@ namespace FBAView {
 			this->btn_playSurvival->TabIndex = 1;
 			this->btn_playSurvival->Text = L"JUGAR";
 			this->btn_playSurvival->UseVisualStyleBackColor = false;
-			this->btn_playSurvival->Click += gcnew System::EventHandler(this, &Survival::btn_playSurvival_Click);
+			this->btn_playSurvival->Click += gcnew System::EventHandler(this, &SurvivalForm::btn_playSurvival_Click);
 			// 
 			// label_title
 			// 
@@ -289,9 +289,9 @@ namespace FBAView {
 
 		}
 #pragma endregion
-	private: System::Void btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void btn_close_Click_1(System::Object^ sender, System::EventArgs^ e) {
-		this->Close();
-	}
-};
+		private: System::Void btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e);
+		private: System::Void btn_close_Click_1(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+	};
 }

@@ -10,8 +10,8 @@ namespace FBAController {
 	public:
 		static void InicializeController();
 		/*User*/
-		static void SaveUsers();
-		static void LoadUsers();
+		//static void SaveUsers();
+		//static void LoadUsers();
 		static User^ ValidateUser(String^ username, String^ password);
 		static void AddUser(User^);
 		static void UpdateUser(User^);

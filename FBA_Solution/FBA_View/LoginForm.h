@@ -362,9 +362,5 @@ namespace FBAView {
 			regist->Owner = this;
 			regist->ShowDialog();
 		}
-	private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	};
 }

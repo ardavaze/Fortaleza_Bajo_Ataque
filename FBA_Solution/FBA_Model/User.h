@@ -1,27 +1,35 @@
-    #pragma once
-#include "Survival.h"
-#include "Medal.h"
-#include "Level.h"
+#pragma once
 using namespace System;
 namespace FBAModel {
     [Serializable]
     public ref class User {
     public:
+        /// <summary>
+        /// Crea un user vacio
+        /// </summary>
+        User();
+        /// <summary>
+        /// Crea una copia de un User
+        /// </summary>
+        User(User^);
+        /// <summary>
+        /// Crea un User nuevo con valores inicial en los campos que no se ingresan
+        /// </summary>
+        User(String^, String^ , String^ , String^ , String^ , String^ , String^ );
         int id;
         String^ nickname;
+        String^ password;
+        String^ name;
         String^ lastNameFath;
         String^ lastNameMoth;
-        String^ name;
         String^ birthday;
         String^ email;
-        String^ password;
-        String^ avatar;
-        Survival^ survival;
+        enum class Rank {
+            Captain, Colonel, General, Marshal
+        };
+        Rank rank;
         int experience;
         int emerald;
-        Medal^ medal;
-        Level^ level;
-        User() {}
-        User(String^ nickname, String^ lastNameFath, String^ lastNameMoth, String^ name, String^ birthday, String^ email, String^ password);
+        int level;
     };
 }

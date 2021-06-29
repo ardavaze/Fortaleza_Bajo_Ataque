@@ -169,7 +169,7 @@
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Skins.cpp" />
-    <ClCompile Include="Survival.cpp" />
+    <ClCompile Include="SurvivalForm.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="UnitRender.cpp" />
     <ClCompile Include="Watch.cpp" />
@@ -213,7 +213,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PhysicalElement.h" />
-    <ClInclude Include="Survival.h">
+    <ClInclude Include="SurvivalForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="SurvivalRender.h" />
@@ -254,8 +254,8 @@
     <EmbeddedResource Include="Skins.resx">
       <DependentUpon>Skins.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Survival.resx">
-      <DependentUpon>Survival.h</DependentUpon>
+    <EmbeddedResource Include="SurvivalForm.resx">
+      <DependentUpon>SurvivalForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

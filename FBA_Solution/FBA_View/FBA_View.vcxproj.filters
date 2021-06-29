@@ -21,7 +21,7 @@
     <ClCompile Include="LoginForm.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Survival.cpp">
+    <ClCompile Include="SurvivalForm.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="campaign.cpp">
@@ -83,7 +83,7 @@
     <ClInclude Include="LoginForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Survival.h">
+    <ClInclude Include="SurvivalForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="campaign.h">

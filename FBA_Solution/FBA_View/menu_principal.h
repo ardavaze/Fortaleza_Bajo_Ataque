@@ -1,7 +1,7 @@
 #pragma once
 #include "SurvivalRender.h"
 #include "campaign.h"
-#include "Survival.h"
+#include "SurvivalForm.h"
 #include "LoginForm.h"
 #include "Skins.h"
 #include "Background.h"

@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ConnectionParam.h" />
     <ClInclude Include="DBController.h" />
     <ClInclude Include="FBA_Controller.h" />
     <ClInclude Include="pch.h" />
@@ -130,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ConnectionParam.cpp" />
     <ClCompile Include="DBController.cpp" />
     <ClCompile Include="FBA_Controller.cpp" />
     <ClCompile Include="pch.cpp">

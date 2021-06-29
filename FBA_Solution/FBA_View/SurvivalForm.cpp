@@ -1,6 +1,6 @@
-#include "Survival.h"
+#include "SurvivalForm.h"
 #include "menu_principal.h"
-void FBAView::Survival::user_rank_load()
+void FBAView::SurvivalForm::user_rank_load()
 {
 	/*int level = Menu_principal::user->Level_max;
 	if (0 < level < 5) {
@@ -27,7 +27,7 @@ void FBAView::Survival::user_rank_load()
 	}*/
 }
 
-System::Void FBAView::Survival::btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e) {
+System::Void FBAView::SurvivalForm::btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e) {
 	SurvivalRender^ juego = gcnew SurvivalRender;
 	juego->owner = this->Owner;
 	juego->Run();
