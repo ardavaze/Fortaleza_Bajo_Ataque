@@ -71,10 +71,10 @@ void FBAView::SurvivalRender::Run() {
             watch->ActualizarNumero();
         }
         Procesar_evento();
-        userAvatar->UpdateUserHP(castle->life/castle->base->Vida_max);
+        userAvatar->UpdateUserHP(double(castle->HP)/castle->base->Vida_max);
         this->Clear();
-        this->Draw(this->userAvatar);
         this->Draw(this->background);
+        this->Draw(this->userAvatar);
         this->Draw(this->castle);
         this->Draw(this->console);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
