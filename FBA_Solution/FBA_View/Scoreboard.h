@@ -12,7 +12,7 @@ namespace FBAView {
 	using namespace FBAModel;
 	using namespace System::Collections::Generic;
 	using namespace FBAController;
-
+	using namespace System::Threading;
 	/// <summary>
 	/// Summary for Scoreboard
 	/// </summary>
@@ -41,7 +41,7 @@ namespace FBAView {
 
 	private: System::Windows::Forms::SplitContainer^ splitContainer1;
 	private: System::Windows::Forms::DataGridView^ dgvScoreRank1;
-
+	public: Thread^ myThread;
 
 
 
@@ -299,7 +299,6 @@ namespace FBAView {
 			this->tabControl1->Size = System::Drawing::Size(946, 443);
 			this->tabControl1->SizeMode = System::Windows::Forms::TabSizeMode::Fixed;
 			this->tabControl1->TabIndex = 7;
-			this->tabControl1->SelectedIndexChanged += gcnew System::EventHandler(this, &Scoreboard::tabControl1_SelectedIndexChanged);
 			// 
 			// tabRank1
 			// 
@@ -620,22 +619,10 @@ namespace FBAView {
 	public:
 		List <Survival^>^ survivalList = gcnew List <Survival^>;
 
-		void RefreshScores() {
-			survivalList = DBController::QueryAllSurvival();
-			if (tabRank1->Visible)
-				RefreshRank1();
-			if (tabRank2->Visible)
-				RefreshRank2();
-			if (tabRank3->Visible)
-				RefreshRank3();
-			if (tabRank4->Visible)
-				RefreshRank4();
-		}
-
 		void RefreshRank1() {
 			dgvScoreRank1->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
-				if (survivalList[0]->rank == User::Rank::Marshal) { //CORREGIR
+				if (survivalList[i]->rank == User::Rank::Marshal) { //CORREGIR
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
@@ -651,11 +638,11 @@ namespace FBAView {
 		void RefreshRank2() {
 			dgvScoreRank2->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
-				if (survivalList[0]->rank == User::Rank::General) { //CORREGIR
+				if (survivalList[i]->rank == User::Rank::General) { //CORREGIR
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
-					dgvScoreRank1->Rows->Add(gcnew array<String^> {
+					dgvScoreRank2->Rows->Add(gcnew array<String^> {
 						"" + (i + 1),
 							"" + survivalList[i]->user->nickname,
 							"" + (min < 10 ? "0" : "") + min + ":" + ((seg < 10 || seg == 0) ? "0" : "") + seg + " min."
@@ -666,11 +653,11 @@ namespace FBAView {
 		void RefreshRank3() {
 			dgvScoreRank3->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
-				if (survivalList[0]->rank == User::Rank::Colonel) { //CORREGIR
+				if (survivalList[i]->rank == User::Rank::Colonel) { //CORREGIR
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
-					dgvScoreRank1->Rows->Add(gcnew array<String^> {
+					dgvScoreRank3->Rows->Add(gcnew array<String^> {
 						"" + (i + 1),
 							"" + survivalList[i]->user->nickname,
 							"" + (min < 10 ? "0" : "") + min + ":" + ((seg < 10 || seg == 0) ? "0" : "") + seg + " min."
@@ -681,11 +668,11 @@ namespace FBAView {
 		void RefreshRank4() {
 			dgvScoreRank4->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
-				if (survivalList[0]->rank == User::Rank::Captain) { //CORREGIR
+				if (survivalList[i]->rank == User::Rank::Captain) { //CORREGIR
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
-					dgvScoreRank1->Rows->Add(gcnew array<String^> {
+					dgvScoreRank4->Rows->Add(gcnew array<String^> {
 						"" + (i + 1),
 							"" + survivalList[i]->user->nickname,
 							"" + (min < 10 ? "0" : "") + min + ":" + ((seg < 10 || seg == 0) ? "0" : "") + seg + " min."
@@ -695,15 +682,27 @@ namespace FBAView {
 
 		}
 
-
-
-
-private: System::Void Scoreboard_Load(System::Object^ sender, System::EventArgs^ e) {
-	RefreshScores();
-}
-
-private: System::Void tabControl1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	RefreshScores();
-}
+	private: System::Void Scoreboard_Load(System::Object^ sender, System::EventArgs^ e) {
+		myThread = gcnew Thread(gcnew ThreadStart(this, &Scoreboard::RefreshScores));
+		myThread->IsBackground = true;
+		myThread->Start();
+	}
+	public:	System::Void RefreshScores() {
+		while (true) {
+			List <Survival^>^ a = DBController::QueryAllSurvival();
+			array<List <Survival^>^>^ b = gcnew array<List <Survival^>^>(1);
+			b[0] = a;
+			Invoke(gcnew MyDelegate(this, &Scoreboard::cabashoTroya), b);
+			myThread->Sleep(1000);
+		}
+	}
+	private: delegate void MyDelegate(List <Survival^>^);
+	public:	void cabashoTroya(List <Survival^>^ a) {
+		survivalList = a;
+		RefreshRank1();
+		RefreshRank2();
+		RefreshRank3();
+		RefreshRank4();
+	}
 };
 }
