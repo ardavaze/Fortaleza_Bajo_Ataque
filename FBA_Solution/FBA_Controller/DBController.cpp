@@ -177,7 +177,8 @@ void FBAController::DBController::DeleteUser(int userID){
 }
 
 List<User^>^ FBAController::DBController::QueryAllUser(){
-    throw gcnew System::NotImplementedException();
+    return user;
+    //throw gcnew System::NotImplementedException();
     // TODO: insert return statement here
 }
 

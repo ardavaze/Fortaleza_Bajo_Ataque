@@ -145,3 +145,16 @@ CREATE PROCEDURE dbo.usp_UpdateSurvival(
 		WHERE id=@iid
 	END
 GO
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[usp_QueryAllSurvival]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].[usp_QueryAllSurvival]
+END
+GO
+CREATE PROCEDURE dbo.usp_QueryAllSurvival
+AS
+	Select a.id,a.nickname,a.name,a.lastNameFath,a.lastNameMoth,a.rank,a.avatar,a.experience,a.emerald,a.level,b.id as id_Survival,b.unspentGold,b.unitsDeployed,b.unitsDefeated,b.date,b.rank as rank_Survival,b.timeMax 
+	FROM USER_FBA as a inner join SURVIVAL as b on a.id=b.id_User
+GO
