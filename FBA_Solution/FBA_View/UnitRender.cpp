@@ -100,6 +100,7 @@ void FBAView::UnitRender::Todo() {
 Void FBAView::UnitRender::LostLife(int damage){
 	this->life -= damage;
 	if (life <= 0) { 
+		life = 0;
 		muerto = 1; 
 		frstTimeJob = 1;
 	}
