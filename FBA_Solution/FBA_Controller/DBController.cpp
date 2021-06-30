@@ -60,8 +60,7 @@ void FBAController::DBController::DeleteUser(User^user){
 }
 
 List<User^>^ FBAController::DBController::QueryAllUser(){
-    List<User^>^ userList = gcnew List<User^>();
-    return userList;
+    return user;
     //throw gcnew System::NotImplementedException();
     // TODO: insert return statement here
 }
