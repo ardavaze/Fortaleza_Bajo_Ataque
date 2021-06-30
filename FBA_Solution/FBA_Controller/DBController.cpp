@@ -10,7 +10,6 @@ void FBAController::DBController::InicializeController(){
         connParam = (ConnectionParam^)reader->Deserialize(file);
     }
     catch (...) {
-
         return;
     }
     finally {
@@ -19,19 +18,23 @@ void FBAController::DBController::InicializeController(){
 }
 
 SqlConnection^ FBAController::DBController::GetConnection() {
-    throw gcnew System::NotImplementedException();
-    // TODO: insert return statement here
+    SqlConnection^ conn = gcnew SqlConnection();
+    String^ connStr = "Server=" + connParam->Server + ";Database=" + connParam->Database +
+        ";User ID=" + connParam->User + ";Password=" + connParam->Password;
+    conn->ConnectionString = connStr;
+    conn->Open();
+    return conn;
 }
 
 User^ FBAController::DBController::ValidateUser(String^ username, String^ password){
-    User^ user = nullptr;
+    FBAModel::User^ user = nullptr;
     /* Paso 1: Se obtiene la conexión */
     SqlConnection^ conn = GetConnection();
 
     /* Paso 2: Se prepara la sentencia */
     SqlCommand^ comm = gcnew SqlCommand();
     comm->Connection = conn;
-    comm->CommandText = "SELECT * FROM sales_user WHERE username='" + username +
+    comm->CommandText = "SELECT * FROM USER_FBA WHERE nickname='" + username +
         "' AND password='" + password + "'";
 
     /* Paso 3: Se ejecuta la sentencia */
@@ -47,6 +50,19 @@ User^ FBAController::DBController::ValidateUser(String^ username, String^ passwo
         user->lastNameMoth = safe_cast<String^>(dr["lastNameMoth"]);
         user->birthday = safe_cast<String^>(dr["birthday"]);
         user->email = safe_cast<String^>(dr["email"]);
+        for each (User::Rank f in Enum::GetValues(User::Rank::Captain.GetType())) {
+            if (f.ToString() == safe_cast<String^>(dr["rank"])) {
+                user->rank = f;
+            }
+        }
+        for each (User::Avatar f in Enum::GetValues(User::Avatar::Avatar1.GetType())) {
+            if (f.ToString() == safe_cast<String^>(dr["avatar"])) {
+                user->avatar = f;
+            }
+        }
+        user->experience = (int)dr["experience"];
+        user->emerald = (int)dr["emerald"];
+        user->level = (int)dr["level"];
     }
 
     /* Paso 5: Se cierra los objetos de conexión!!!!!!!!!! */
@@ -56,21 +72,108 @@ User^ FBAController::DBController::ValidateUser(String^ username, String^ passwo
     return user;
 }
 
-void FBAController::DBController::AddUser(User^ usernew){
-    DBController::user->Add(usernew) ;
+void FBAController::DBController::AddUser(User^ user){
+    // Paso 1: Se obtiene la conexión
+    SqlConnection^ conn = GetConnection();
+
+    // Paso 2:  Se prepara la sentencia
+    SqlCommand^ comm;
+    String^ strCmd;
+    strCmd = "dbo.usp_AddManager";
+    comm = gcnew SqlCommand(strCmd, conn);
+    comm->CommandType = System::Data::CommandType::StoredProcedure;
+    comm->Parameters->Add("@nickname", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@lastNameFath", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@lastNameMoth", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@birthday", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@email", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@rank", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@avatar", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@employees_number", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@employees_number", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@employees_number", System::Data::SqlDbType::Int);
+
+    SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+    outputIdParam->Direction = System::Data::ParameterDirection::Output;
+    comm->Parameters->Add(outputIdParam);
+    comm->Prepare();
+
+    comm->Parameters["@nickname"]->Value = user->nickname;
+    comm->Parameters["@password"]->Value = user->password;
+    comm->Parameters["@name"]->Value = user->name;
+    comm->Parameters["@lastNameFath"]->Value = user->lastNameFath;
+    comm->Parameters["@lastNameMoth"]->Value = user->lastNameMoth;
+    comm->Parameters["@birthday"]->Value = user->birthday;
+    comm->Parameters["@email"]->Value = user->email;
+    comm->Parameters["@rank"]->Value = user->rank;
+    comm->Parameters["@avatar"]->Value = user->avatar;
+    comm->Parameters["@experience"]->Value = user->experience;
+    comm->Parameters["@emerald"]->Value = user->emerald;
+    comm->Parameters["@level"]->Value = user->level;
+
+    //Paso 3: Se ejecuta la sentencia
+    comm->ExecuteNonQuery();
+
+    //Paso 4: Si se quiere procesar la salida.
+    int output_id = Convert::ToInt32(comm->Parameters["@id"]->Value);
+
+    //Paso 5: Se cierra la conexión
+    conn->Close();
+
 }
 
 void FBAController::DBController::UpdateUser(User^ user){
- 
-    /*for (int i = 0; i < DBController::user->Count; i++) {
-        if (DBController::user[i]->id == user->id)
-            DBController::user[i] = user;
-    }*/
+    // Paso 1: Se obtiene la conexión
+    SqlConnection^ conn = GetConnection();
+
+    // Paso 2:  Se prepara la sentencia
+    SqlCommand^ comm;
+    String^ strCmd;
+    strCmd = "dbo.usp_UpdateUser";
+    comm = gcnew SqlCommand(strCmd, conn);
+    comm->CommandType = System::Data::CommandType::StoredProcedure;
+    comm->Parameters->Add("@vnickname", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vpassword", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vname", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vlastNameFath", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vlastNameMoth", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vbirthday", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vemail", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vrank", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vavatar", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@iexperience", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@iemerald", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@ilevel", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@iid", System::Data::SqlDbType::Int);
+
+    comm->Prepare();
+
+    comm->Parameters["@vnickname"]->Value = user->nickname;
+    comm->Parameters["@vpassword"]->Value = "password";
+    comm->Parameters["@vname"]->Value = user->name;
+    comm->Parameters["@vlastNameFath"]->Value = user->lastNameFath;
+    comm->Parameters["@vlastNameMoth"]->Value = user->lastNameMoth;
+    comm->Parameters["@vbirthday"]->Value = user->birthday;
+    comm->Parameters["@vemail"]->Value = user->email;
+    comm->Parameters["@vrank"]->Value = user->rank;
+    comm->Parameters["@vavatar"]->Value = user->avatar;
+    comm->Parameters["@iexperience"]->Value = user->experience;
+    comm->Parameters["@iemerald"]->Value = user->emerald;
+    comm->Parameters["@ilevel"]->Value = user->level;
+    comm->Parameters["@iid"]->Value = user->id;
+
+    //Paso 3: Se ejecuta la sentencia
+    comm->ExecuteNonQuery();
+
+    //Paso 4: Se cierra la conexión
+    conn->Close();
 }
 
-void FBAController::DBController::DeleteUser(User^user){
-    DBController::user->Remove(user);
-
+void FBAController::DBController::DeleteUser(int userID){
+    throw gcnew System::NotImplementedException();
+    // TODO: insert return statement here
 }
 
 List<User^>^ FBAController::DBController::QueryAllUser(){
@@ -79,6 +182,84 @@ List<User^>^ FBAController::DBController::QueryAllUser(){
 }
 
 User^ FBAController::DBController::QueryUserByID(){
+    throw gcnew System::NotImplementedException();
+    // TODO: insert return statement here
+}
+
+void FBAController::DBController::AddSurvival(Survival^)
+{
+    throw gcnew System::NotImplementedException();
+}
+
+void FBAController::DBController::UpdateSurvival(Survival^)
+{
+    throw gcnew System::NotImplementedException();
+}
+
+void FBAController::DBController::DeleteSurvival(int)
+{
+    throw gcnew System::NotImplementedException();
+}
+
+List<Survival^>^ FBAController::DBController::QueryAllSurvival() {
+    /* 1er paso: Se obtiene la conexión */
+    SqlConnection^ conn = GetConnection();
+
+    /* 2do paso: Se prepara la sentencia */
+    SqlCommand^ comm;
+
+    comm = gcnew SqlCommand("usp_QueryAllSurvival", conn);
+    comm->CommandType = System::Data::CommandType::StoredProcedure;
+    comm->Prepare();
+
+    /* 3er paso: Se ejecuta la sentencia */
+    SqlDataReader^ reader = comm->ExecuteReader();
+
+    /* 4to paso: Se procesan los resultados */
+    List<Survival^>^ list = gcnew List<Survival^>;
+    while (reader->Read()) {
+        User^ user = gcnew User();
+        Survival^ s = gcnew Survival();
+        s->user = user;
+        s->id = Int32::Parse(reader["id_Survival"]->ToString());
+        s->unspentGold = Int32::Parse(reader["unspentGold"]->ToString());
+        s->unitsDefeated = Int32::Parse(reader["unitsDefeated"]->ToString());
+        s->unitsDeployed = Int32::Parse(reader["unitsDeployed"]->ToString());
+        s->date = reader["date"]->ToString();
+        for each (User::Rank f in Enum::GetValues(User::Rank::Captain.GetType())) {
+            if (f.ToString() == reader["rank_Survival"]->ToString()) {
+                s->rank = f;
+            }
+        }
+        s->timeMax = Int32::Parse(reader["timeMax"]->ToString());
+        user->id = Int32::Parse(reader["id"]->ToString());
+        user->nickname = reader["nickname"]->ToString();
+        user->name = reader["name"]->ToString();
+        user->lastNameFath= reader["lastNameFath"]->ToString();
+        user->lastNameMoth = reader["lastNameMoth"]->ToString();
+        for each (User::Rank f in Enum::GetValues(User::Rank::Captain.GetType())) {
+            if (f.ToString() == reader["rank"]->ToString()) {
+                s->rank = f;
+            }
+        }
+        for each (User::Avatar f in Enum::GetValues(User::Avatar::Avatar1.GetType())) {
+            if (f.ToString() == reader["avatar"]->ToString()) {
+                user->avatar = f;
+            }
+        }
+        user->experience = Int32::Parse(reader["experience"]->ToString());
+        user->emerald = Int32::Parse(reader["emerald"]->ToString());
+        user->level = Int32::Parse(reader["level"]->ToString());
+        list->Add(s);
+    }
+
+    /* IMPORTANTE 5to paso: Cerramos la conexión con la BD */
+    conn->Close();
+    return list;
+}
+
+List<Survival^>^ FBAController::DBController::QueryAllSurvivalByUser(User^ user)
+{
     throw gcnew System::NotImplementedException();
     // TODO: insert return statement here
 }

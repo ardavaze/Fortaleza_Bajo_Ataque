@@ -10,16 +10,15 @@ void FBAView::Profile::User_data_load(){
 	textBox_email->Text = "" + Menu_principal::user->email;
 	textBox_emerald->Text = "" + Menu_principal::user->emerald;
 	textBox_skill_points->Text = "" + Menu_principal::user->experience;
-	textBox_level->Text = "" + Menu_principal::user->levelMax;
-	textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
+	textBox_level->Text = "" + Menu_principal::user->level;
+	//textBox_max_time->Text = "" + Menu_principal::user->survival->timeMax;
 	System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Profile::typeid));
-	this->avatar = Menu_principal::user->avatar;
-	pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(avatar)));
+	pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(Menu_principal::user->avatar.ToString())));
 }
 
 void FBAView::Profile::Write_rank()
 {
-	int level = Menu_principal::user->levelMax;
+	int level = Menu_principal::user->level;
 	if (level < 5)
 		textBox_rank->Text = "CAPITÁN";
 	else
@@ -40,7 +39,7 @@ System::Void FBAView::Profile::btn_delete_Click(System::Object^ sender, System::
 		"Confirmación", MessageBoxButtons::YesNo,
 		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
 	{
-		FBA_Controller::DeleteUser(Menu_principal::user);
+		FBA_Controller::DeleteUser(Menu_principal::user->id);
 		Application::Exit();
 	}
 }
@@ -79,16 +78,14 @@ System::Void FBAView::Profile::btn_OK_Click(System::Object^ sender, System::Even
 		try {
 			u = Menu_principal::user;
 			u->nickname = "" + textBox_username->Text;
-			u->avatar = this->avatar;
 			u->name = "" + textBox_name->Text;
 			u->lastNameFath = "" + textBox_LastName_Mother->Text;
 			u->lastNameMoth = "" + textBox_LastName_Father->Text;
 			u->birthday = "" + textBox_Birthday->Text;
+			u->avatar = this->avatar;
 			u->email = "" + textBox_email->Text;
 			u->emerald = Int32::Parse(textBox_emerald->Text);
 			u->experience = Int32::Parse(textBox_skill_points->Text);
-			u->levelMax = Int32::Parse(textBox_level->Text);
-			u->survival->timeMax = Int32::Parse(textBox_max_time->Text);
 			FBA_Controller::UpdateUser(Menu_principal::user);
 			Hide_button();
 			ReadOnly_true();

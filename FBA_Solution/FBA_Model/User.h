@@ -15,7 +15,7 @@ namespace FBAModel {
         /// <summary>
         /// Crea un User nuevo con valores inicial en los campos que no se ingresan
         /// </summary>
-        User(String^, String^ , String^ , String^ , String^ , String^ , String^ );
+        User(String^, String^, String^, String^, String^, String^, String^);
         int id;
         String^ nickname;
         String^ password;
@@ -28,6 +28,10 @@ namespace FBAModel {
             Captain, Colonel, General, Marshal
         };
         Rank rank;
+        enum class Avatar {
+            Avatar1, Avatar2, Avatar3, Avatar4
+        };
+        Avatar avatar;
         int experience;
         int emerald;
         int level;

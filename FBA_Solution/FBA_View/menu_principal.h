@@ -18,6 +18,7 @@ namespace FBAView {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Media;
+	using namespace FBAController;
 	
 	/// <summary>
 	/// Summary for Menu_principal
@@ -63,6 +64,7 @@ namespace FBAView {
 	public:
 
 		   static FBAModel::User^ user;
+		   static String^ avatar;
 			Menu_principal(void){
 				FBA_Controller::InicializeController();
 				if (user == nullptr) {
@@ -72,6 +74,7 @@ namespace FBAView {
 				}
 				InitializeComponent();
 				User_data();
+				List<Survival^>^ a = FBA_Controller::QueryAllSurvival();
 				sound_menu->PlayLooping();
 			}
 
@@ -91,18 +94,10 @@ namespace FBAView {
 			textBox_username->Text = "" + Menu_principal::user->nickname;
 			textBox_emerald->Text = "" + Menu_principal::user->emerald;
 			textBox_skills_points->Text = "" + Menu_principal::user->experience;
-			int level = Menu_principal::user->levelMax;
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Menu_principal::typeid));
-			if (level < 5)
-				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"capitan.Image")));
-			else if (4 < level && level < 9)
-				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"coronel.Image")));
-			else if (8 < level && level < 13)
-				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"general.Image")));
-			else if (12 < level)
-				this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"mariscal.Image")));
-			String ^ avatar= Menu_principal::user->avatar;
-			this->pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(avatar)));
+			String^ a = Menu_principal::user->rank.ToString();
+			this->pictureBox_rank->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(Menu_principal::user->rank.ToString() + ".Image")));
+			this->pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(Menu_principal::user->avatar.ToString())));
 		}
 	}
 	   private: void Hide_panel() {
@@ -669,7 +664,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 		private: System::Void btn_survival_Click(System::Object^ sender, System::EventArgs^ e) {
 			Hide_panel();
 		
-			open_ChildForm(gcnew Survival());
+			open_ChildForm(gcnew SurvivalForm());
 
 		}
 		private: System::Void btn_tienda_Click(System::Object^ sender, System::EventArgs^ e) {

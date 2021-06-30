@@ -249,7 +249,6 @@ namespace FBAView {
 			this->pictureBox2->Size = System::Drawing::Size(601, 50);
 			this->pictureBox2->TabIndex = 9;
 			this->pictureBox2->TabStop = false;
-			this->pictureBox2->Click += gcnew System::EventHandler(this, &LoginForm::pictureBox2_Click);
 			this->pictureBox2->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &LoginForm::pictureBox2_MouseDown);
 			this->pictureBox2->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &LoginForm::pictureBox2_MouseMove);
 			// 
@@ -279,7 +278,6 @@ namespace FBAView {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"CyberPUCP 1917";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &LoginForm::LoginForm_FormClosed);
-			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &LoginForm::LoginForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();

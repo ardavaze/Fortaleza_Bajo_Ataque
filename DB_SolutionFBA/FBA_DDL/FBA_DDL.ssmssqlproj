@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="FBA_DDL">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="200.16.7.140:a20172885">
+          <Created>2021-06-29T23:16:31.6934917-05:00</Created>
+          <Type>SQL</Type>
+          <Server>200.16.7.140</Server>
+          <UserName>a20172885</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="SQLQuery1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:200.16.7.140:False:a20172885</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>200.16.7.140</AssociatedConnSrvName>
+          <AssociatedConnUserName>a20172885</AssociatedConnUserName>
+          <FullPath>SQLQuery1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="USP_TABLES.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:200.16.7.140:False:a20172885</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>200.16.7.140</AssociatedConnSrvName>
+          <AssociatedConnUserName>a20172885</AssociatedConnUserName>
+          <FullPath>USP_TABLES.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

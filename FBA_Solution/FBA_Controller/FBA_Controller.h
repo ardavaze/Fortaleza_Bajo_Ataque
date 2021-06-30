@@ -15,8 +15,15 @@ namespace FBAController {
 		static User^ ValidateUser(String^ username, String^ password);
 		static void AddUser(User^);
 		static void UpdateUser(User^);
-		static void DeleteUser(User^);
+		static void DeleteUser(int);
 		static List<User^>^ QueryAllUser();
 		static User^ QueryUserByID();
+
+		/*Survival*/
+		static void AddSurvival(Survival^);
+		static void UpdateSurvival(Survival^);
+		static void DeleteSurvival(int);
+		static List<Survival^>^ QueryAllSurvival();
+		static List<Survival^>^ QueryAllSurvivalByUser(User^);
 	};
 }

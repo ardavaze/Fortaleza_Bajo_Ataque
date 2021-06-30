@@ -6,9 +6,9 @@ using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
 
-FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31), "Modo survival", Styles::Fullscreen){
+FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080), "Modo survival", Styles::Fullscreen){
     InitializeGraphics();
-    for (int i = 0; i < 96; i++){
+    for (int i = 0; i < 96; i++) {
         physicalSpace[i] = gcnew List<PhysicalElement^>;
     }
 	this->SetFramerateLimit(60);
@@ -19,6 +19,7 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
     watch->Chronometer->Restart();
     chronoGameOver = gcnew System::Diagnostics::Stopwatch;chronoGameOver->Reset();
     chronoGameOver->Stop();
+
 }
 
 void FBAView::SurvivalRender::Run() {
@@ -65,6 +66,7 @@ void FBAView::SurvivalRender::Run() {
             }
             else TimeEnemies->Start();
             if (arrow->throwed)
+
                 arrow->MakeFly();
             else {
                 arrow->Position = crossbow->Position;
@@ -344,7 +346,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameOverImage->Position = Vector2f(1920 / 2, 1080 / 2);
     //User Image
     //((Menu_principal^)owner)->user->avatar;
-    userImage = gcnew Sprite(gcnew Texture("Assets/ResourcesForm/Avatar/"+ ((Menu_principal^)owner)->user->avatar +".png"));
+    userImage = gcnew Sprite(gcnew Texture("Assets/ResourcesForm/Avatar/avatar1.png"));
     userImage->Position = Vector2f(20, 20);
     userImage->Scale = Vector2f(0.2, 0.2);
     //Fuente
@@ -409,9 +411,9 @@ void FBAView::SurvivalRender::endGame()
     watch->Chronometer->Stop();
     int a;
     a = int(watch->Chronometer->Elapsed.TotalSeconds);
-    if (((Menu_principal^)owner)->user->survival->timeMax < a) {
-        ((Menu_principal^)owner)->user->survival->timeMax = a;
-    }
+    //if (((Menu_principal^)owner)->user->survival->timeMax < a) {
+    //    ((Menu_principal^)owner)->user->survival->timeMax = a;
+    //}
     /*if (0 < a) {
         a=0;
     }*/

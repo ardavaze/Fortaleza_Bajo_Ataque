@@ -48,7 +48,8 @@ namespace FBAView{
 		System::Diagnostics::Stopwatch^ TimeEnemies;
 		System::Diagnostics::Stopwatch^ chronoGameOver;
 		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(96);
-		int piso = 740;
+		static array<array<ControlElements^>^>^ physical = gcnew array<array<ControlElements^>^>(1920);
+		int piso = 740;	
 		System::Diagnostics::Stopwatch^ render;
 	};
 }

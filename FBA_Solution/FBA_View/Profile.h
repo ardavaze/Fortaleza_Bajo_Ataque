@@ -85,7 +85,7 @@ namespace FBAView {
 		btn_update_avatar->Visible = true;
 	}
 		
-	public: String^ avatar;
+	public: User::Avatar avatar;
 	private: System::Windows::Forms::Label^ label_title;
 	private: System::Windows::Forms::ListView^ listView1;
 
@@ -556,9 +556,6 @@ private: System::Void btn_cancel_Click(System::Object^ sender, System::EventArgs
 	btn_update->Visible = true;
 }
 
-
-
-
 private: System::Void btn_delete_Click(System::Object^ sender, System::EventArgs^ e);
 
 	
@@ -573,7 +570,7 @@ private: System::Void btn_update_avatar_Click(System::Object^ sender, System::Ev
 	avatar->Owner = this;
 	avatar->ShowDialog();
 	System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Profile::typeid));
-	pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(this->avatar)));
+	pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(this->avatar.ToString())));
 
 }
 };

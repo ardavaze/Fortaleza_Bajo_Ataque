@@ -33,8 +33,8 @@ void FBAController::FBA_Controller::UpdateUser(User^user){
 	DBController::UpdateUser(user);
 }
 
-void FBAController::FBA_Controller::DeleteUser(User^ user){
-	DBController::DeleteUser( user);
+void FBAController::FBA_Controller::DeleteUser(int userID){
+	DBController::DeleteUser(userID);
 }
 
 List<User^>^ FBAController::FBA_Controller::QueryAllUser(){
@@ -43,4 +43,29 @@ List<User^>^ FBAController::FBA_Controller::QueryAllUser(){
 
 User^ FBAController::FBA_Controller::QueryUserByID(){
 	return DBController::QueryUserByID();
+}
+
+void FBAController::FBA_Controller::AddSurvival(Survival^ survival)
+{
+	DBController::AddSurvival(survival);
+}
+
+void FBAController::FBA_Controller::UpdateSurvival(Survival^ survival)
+{
+	DBController::UpdateSurvival(survival);
+}
+
+void FBAController::FBA_Controller::DeleteSurvival(int survivalID)
+{
+	DBController::DeleteSurvival(survivalID);
+}
+
+List<Survival^>^ FBAController::FBA_Controller::QueryAllSurvival()
+{
+	return DBController::QueryAllSurvival();
+}
+
+List<Survival^>^ FBAController::FBA_Controller::QueryAllSurvivalByUser(User^ user)
+{
+	return DBController::QueryAllSurvivalByUser(user);
 }

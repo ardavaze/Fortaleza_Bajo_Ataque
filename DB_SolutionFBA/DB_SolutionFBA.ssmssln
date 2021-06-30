@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "FBA_DDL", "FBA_DDL\FBA_DDL.ssmssqlproj", "{6C8F4B5D-8CE1-4060-B733-F51AD1A07FFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C8F4B5D-8CE1-4060-B733-F51AD1A07FFB}.Default|Default.ActiveCfg = Default
+		{2E336539-16A8-4934-ADE2-CA9C32E10F34}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E1B1F75-5F92-4A90-83F5-E2403ADE04AF}
+	EndGlobalSection
+EndGlobal
