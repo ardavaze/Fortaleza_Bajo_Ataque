@@ -28,6 +28,7 @@ void FBAView::SurvivalForm::user_rank_load()
 }
 
 System::Void FBAView::SurvivalForm::btn_playSurvival_Click(System::Object^ sender, System::EventArgs^ e) {
+	((Menu_principal^)this->Owner)->sound_menu->Stop();
 	SurvivalRender^ juego = gcnew SurvivalRender;
 	juego->owner = this->Owner;
 	juego->Run();
