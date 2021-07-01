@@ -6,12 +6,16 @@ FBAView::UserLifeBar::UserLifeBar()
     avatar = gcnew Sprite;
     avatarMold = gcnew Sprite;
     avatarBackground_Life = gcnew Sprite;
+    usernameText = gcnew SFML::Graphics::Text;
     avatar->Scale= Vector2f(0.25, 0.25);
     avatarMold->Scale= Vector2f(1, 1);
     avatarBackground_Life->Scale = Vector2f(1, 1);
-    avatar->Position= Vector2f(50, 20);
+    avatar->Position= Vector2f(53, 20);
     avatarMold->Position = Vector2f(0, 0);
     avatarBackground_Life->Position = Vector2f(0, 0);
+    usernameText->Position = Vector2f(250, 63);
+    usernameText->Color = SFML::Graphics::Color::Cyan;
+    usernameText->Scale = Vector2f(2, 1);
 }
 
 void FBAView::UserLifeBar::UpdateUserHP(double HP)
@@ -21,6 +25,7 @@ void FBAView::UserLifeBar::UpdateUserHP(double HP)
     board->Draw(avatarBackground_Life);
     board->Draw(avatar);
     board->Draw(avatarMold);
+    board->Draw(usernameText);
     board->Display();
     this->Texture = board->Texture;
 }

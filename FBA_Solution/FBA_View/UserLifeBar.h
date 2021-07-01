@@ -11,8 +11,8 @@ namespace FBAView {
 		Sprite^ avatarMold;
 		Sprite^ avatarBackground_Life;
 		List<ControlElements^>^ b;
-		/*SFML::Graphics::Font^ font;
-		SFML::Graphics::Text^ usernameText;*/
+		SFML::Graphics::Font^ font;
+		SFML::Graphics::Text^ usernameText;
 		RenderTexture^ board;
 		HealthBar^ healthBar;
 		UserLifeBar();

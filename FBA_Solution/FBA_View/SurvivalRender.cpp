@@ -388,9 +388,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     userAvatar->healthBar=gcnew HealthBar("Assets/Environment/MapsElements/user life background.png","Assets/Environment/MapsElements/barrita.png");
     userAvatar->Position = Vector2f(0, 0);
     userAvatar->Scale = Vector2f(1, 1);
+    userAvatar->font = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
+    userAvatar->usernameText->Font = userAvatar->font;
+    userAvatar->usernameText->DisplayedString = ((Menu_principal^)owner)->user->nickname;
     userAvatar->UpdateUserHP(1);
-    /*userAvatar->font = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR");*/
-
+          
     //console
     console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 3.png"));
     console->Position = Vector2f(400, 800);
