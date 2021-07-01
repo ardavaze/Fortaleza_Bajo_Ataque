@@ -203,6 +203,7 @@
     <ClInclude Include="Profile.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scoreboard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -303,6 +304,9 @@
     <Image Include="Assets\ResourcesForm\rank\coronel.png" />
     <Image Include="Assets\ResourcesForm\rank\general.png" />
     <Image Include="Assets\ResourcesForm\rank\mariscal.png" />
+    <Image Include="Assets\ResourcesForm\tower.ico">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </Image>
     <Image Include="avatar101.png" />
     <Image Include="avatar11.png" />
     <Image Include="avatar111.png" />
@@ -310,6 +314,10 @@
     <Image Include="avatar121.png" />
     <Image Include="avatar131.png" />
     <Image Include="avatar141.png" />
+    <Image Include="icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FBA_View.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
