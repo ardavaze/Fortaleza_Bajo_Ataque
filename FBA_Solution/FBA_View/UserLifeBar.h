@@ -19,7 +19,7 @@ namespace FBAView {
 		void UpdateUserHP(double);
 		virtual void ProcessCollision() override;
 		Button^ button;
-		void UseSpace();
+		virtual void EventClick () override;
 	};
 
 }

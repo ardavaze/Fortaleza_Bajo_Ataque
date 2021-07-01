@@ -15,10 +15,8 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080), "M
     for (int i = 0; i < 1920; i++) {
         controlSpace[i] = gcnew array<ControlElements^>(1080);
     }
-    for (int i = 0; i < controlElemts->Count; i++)
-    {
+    for (int i = 0; i < controlElemts->Count; i++) {
         controlElemts[i]->OcuppySpace(controlSpace);
-
     }
     this->SetFramerateLimit(60);
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
@@ -87,8 +85,8 @@ void FBAView::SurvivalRender::Run() {
         userAvatar->UpdateUserHP(double(castle->HP)/castle->base->Vida_max);
         this->Clear();
         this->Draw(this->background);
-        this->Draw(this->userAvatar);
         this->Draw(this->castle);
+        this->Draw(this->userAvatar);
         this->Draw(this->console);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
@@ -97,7 +95,7 @@ void FBAView::SurvivalRender::Run() {
         //}
         this->Draw(this->watch);
         for (int i = 2; i < 4; i++) {
-            for (int j = 0; j < physicalElemts[i]->Count; j++) {
+            for (int j = physicalElemts[i]->Count -1; j >=  0 ; j--) {
                 this->Draw(physicalElemts[i][j]);
             }
         }
@@ -107,7 +105,7 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->arrow);
         render->Stop();
 
-        if (castle->HP < 0) {  
+        if (castle->HP <= 0) {  
             gameOver++; 
             this->Draw(this->gameOverImage);
         }
@@ -172,6 +170,13 @@ void FBAView::SurvivalRender::Procesar_evento(){
                         TimeThrowArrow->Restart();
                     }
                     else TimeThrowArrow->Start();
+                }
+            }
+            break;
+        case EventType::MouseButtonPressed:
+            if (Mouse::IsButtonPressed(Mouse::Button::Left)) {
+                if (controlSpace[Mouse::GetPosition().X][Mouse::GetPosition().Y] != nullptr) {
+                    controlSpace[Mouse::GetPosition().X][Mouse::GetPosition().Y]->ProcessCollision();
                 }
             }
             break;
@@ -343,7 +348,9 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //HealthBar
     this->healthBar = gcnew HealthBar();
     this->healthBar->healthBar = unit_allies[0]->HealthBar;
-    this->healthBar->Generate();
+    this->healthBar->corner = 1;
+    this->healthBar->position = Vector2i(4,4);
+    this->healthBar->Generate(121);
     //Cronometro
     watch->numbers = gcnew array<Texture^>(10);
     for (int i = 0; i < watch->numbers->Length; i++) {
@@ -376,11 +383,12 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameSound->Play();
     //Avatar
     controlElemts->Add(userAvatar);
-    userAvatar->avatar->Texture = gcnew Texture("Assets/ResourcesForm/Avatar/" + ((Menu_principal^)owner)->user->avatar + ".png");
+    userAvatar->avatar->Texture = gcnew Texture("Assets/ResourcesForm/Avatar/" + ((Menu_principal^)owner)->user->avatar.ToString() + ".png");
     userAvatar->avatarMold->Texture = gcnew Texture("Assets/Environment/MapsElements/user life mold.png");
     userAvatar->healthBar=gcnew HealthBar("Assets/Environment/MapsElements/user life background.png","Assets/Environment/MapsElements/barrita.png");
     userAvatar->Position = Vector2f(0, 0);
     userAvatar->Scale = Vector2f(1, 1);
+    userAvatar->UpdateUserHP(1);
     /*userAvatar->font = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR");*/
 
     //console

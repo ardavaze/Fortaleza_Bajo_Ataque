@@ -7,11 +7,12 @@ void FBAView::ControlElements::OcuppySpace(array<array<ControlElements^>^>^ cont
 	int incialY = this->Position.Y;
 	int finalX=incialX+ Math::Round(Math::Abs(this->Texture->Size.X * this->Scale.X));
 	int finalY = incialY + Math::Round(Math::Abs(this->Texture->Size.Y * this->Scale.Y));
-	for (int i=incialX; i < finalX; i++)
-	{
-		for (int j = incialY; j < finalY; j++)
-		{
-			controlSpace[i][j]= this;
+	Image^ image = this->Texture->CopyToImage();
+	for (int i=incialX; i < finalX; i++) {
+		for (int j = incialY; j < finalY; j++) {
+			if (image->GetPixel((i-incialX)/ this->Scale.X,(j-incialY)/ this->Scale.Y).A>122) {
+				controlSpace[i][j] = this;
+			}
 		}
 	}
 }
