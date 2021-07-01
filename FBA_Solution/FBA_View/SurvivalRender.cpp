@@ -12,7 +12,15 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080,31),
     for (int i = 0; i < 96; i++){
         physicalSpace[i] = gcnew List<PhysicalElement^>;
     }
-	this->SetFramerateLimit(60);
+    for (int i = 0; i < 1920; i++) {
+        controlSpace[i] = gcnew array<ControlElements^>(1080);
+    }
+    for (int i = 0; i < controlElemts->Count; i++)
+    {
+        controlElemts[i]->OcuppySpace(controlSpace);
+
+    }
+    this->SetFramerateLimit(60);
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
@@ -172,6 +180,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
 
 void FBAView::SurvivalRender::InitializeGraphics() {
     physicalElemts = gcnew array<List<PhysicalElement^>^>(4);
+    controlElemts = gcnew List<ControlElements^>;
     background = gcnew Sprite(gcnew Texture("Assets/Environment/Maps/GameBackground.png"));
     castle = gcnew CastleRender();
     castle->base = gcnew Base;
@@ -371,6 +380,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameSound = gcnew Sound(gameSoundBuffer);
     gameSound->Play();
     //Avatar
+    controlElemts->Add(userAvatar);
     userAvatar->avatar->Texture = gcnew Texture("Assets/ResourcesForm/Avatar/" + ((Menu_principal^)owner)->user->avatar + ".png");
     userAvatar->avatarMold->Texture = gcnew Texture("Assets/Environment/MapsElements/user life mold.png");
     userAvatar->healthBar=gcnew HealthBar("Assets/Environment/MapsElements/user life background.png","Assets/Environment/MapsElements/barrita.png");

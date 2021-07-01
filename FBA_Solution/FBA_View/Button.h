@@ -2,11 +2,11 @@
 #include "ControlElements.h"
 using namespace SFML::Graphics;
 namespace FBAView {
-	public ref class ConsoleButton:ControlElements{
+	public ref class Button:ControlElements{
 	public:
-		ConsoleButton();
-		Font^ letterFont;
-		Text^ letterText;
+		Button();
+		//Font^ letterFont;
+		//Text^ letterText;
 		Sprite^ unitSprite;
 		RectangleShape^ verticalLine;
 		RectangleShape^ horizontalLine;

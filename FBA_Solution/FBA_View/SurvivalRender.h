@@ -18,6 +18,7 @@ namespace FBAView{
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
 		Form^ owner;
 		array<List<PhysicalElement^>^>^ physicalElemts;
+		List<ControlElements^>^ controlElemts;
 		Void Run();
 		Sprite^ background;
 		CastleRender^ castle;
@@ -50,6 +51,7 @@ namespace FBAView{
 		System::Diagnostics::Stopwatch^ TimeEnemies;
 		System::Diagnostics::Stopwatch^ chronoGameOver;
 		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(96);
+		static array<array<ControlElements^>^>^ controlSpace = gcnew array<array<ControlElements^>^>(1920);
 		int piso = 740;
 		System::Diagnostics::Stopwatch^ render;
 	};

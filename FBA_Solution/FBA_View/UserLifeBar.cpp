@@ -25,3 +25,16 @@ void FBAView::UserLifeBar::UpdateUserHP(double HP)
     this->Texture = board->Texture;
 }
 
+void FBAView::UserLifeBar::ProcessCollision()
+{
+    
+}
+
+void FBAView::UserLifeBar::UseSpace()
+{
+    for (int i = 0; i < b->Count; i++)
+    {
+        b[i]->OcuppySpace(this->controlSpace);
+    }
+}
+
