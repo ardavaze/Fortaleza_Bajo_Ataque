@@ -15,9 +15,9 @@ Void FBAView::CastleRender::LostLife(int damage) {
 		this->Texture = base->baseState[2]; //3er sprite
 		this->indiceStatus = 2;
 	}
-	else if (HP <= 0) { 
+	else if (HP <= 0) {
 		HP = 0;
-		muerto = 1; 
+		muerto = 1;
 	}
 
 	return Void();

@@ -156,6 +156,7 @@
     <ClCompile Include="ArrowRender.cpp" />
     <ClCompile Include="Avatar.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="campaign.cpp" />
     <ClCompile Include="ControlElements.cpp" />
     <ClCompile Include="Credits.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="SurvivalForm.cpp" />
     <ClCompile Include="SurvivalRender.cpp" />
     <ClCompile Include="UnitRender.cpp" />
+    <ClCompile Include="UserLifeBar.cpp" />
     <ClCompile Include="Watch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +184,7 @@
     <ClInclude Include="Background.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="campaign.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -219,6 +222,7 @@
     </ClInclude>
     <ClInclude Include="SurvivalRender.h" />
     <ClInclude Include="UnitRender.h" />
+    <ClInclude Include="UserLifeBar.h" />
     <ClInclude Include="Watch.h" />
   </ItemGroup>
   <ItemGroup>

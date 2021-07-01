@@ -31,5 +31,6 @@ System::Void FBAView::SurvivalForm::btn_playSurvival_Click(System::Object^ sende
 	SurvivalRender^ juego = gcnew SurvivalRender;
 	juego->owner = this->Owner;
 	juego->Run();
+	((Menu_principal^)this->Owner)->sound_menu->PlayLooping();
 	FBAController::FBA_Controller::UpdateUser(Menu_principal::user);
 }

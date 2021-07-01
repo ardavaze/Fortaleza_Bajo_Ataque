@@ -5,13 +5,22 @@ using namespace SFML::Window;
 using namespace SFML::System;
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace SFML::Audio;
 
 FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080), "Modo survival", Styles::Fullscreen){
     InitializeGraphics();
     for (int i = 0; i < 96; i++) {
         physicalSpace[i] = gcnew List<PhysicalElement^>;
     }
-	this->SetFramerateLimit(60);
+    for (int i = 0; i < 1920; i++) {
+        controlSpace[i] = gcnew array<ControlElements^>(1080);
+    }
+    for (int i = 0; i < controlElemts->Count; i++)
+    {
+        controlElemts[i]->OcuppySpace(controlSpace);
+
+    }
+    this->SetFramerateLimit(60);
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
@@ -75,11 +84,12 @@ void FBAView::SurvivalRender::Run() {
             watch->UpdateWatch();
         }
         Procesar_evento();
+        userAvatar->UpdateUserHP(double(castle->HP)/castle->base->Vida_max);
         this->Clear();
         this->Draw(this->background);
+        this->Draw(this->userAvatar);
         this->Draw(this->castle);
-        this->Draw(this->userImage);
-        this->Draw(this->text);
+        this->Draw(this->console);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
         //    da->Position = Vector2f(20 * i, 0);
@@ -107,6 +117,7 @@ void FBAView::SurvivalRender::Run() {
         }
         chronoGameOver->Stop();
         if (chronoGameOver->Elapsed.Seconds>=5) {
+            gameSound->Stop();
             this->Close();
         }
         if(gameOver >= 2) { chronoGameOver->Start(); }
@@ -125,6 +136,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
     if (this->PollEvent(event)) {
         switch (event.Type) {
         case EventType::Closed:
+            gameSound->Stop();
             this->Close();
             break;
         case EventType::KeyPressed:
@@ -169,6 +181,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
 
 void FBAView::SurvivalRender::InitializeGraphics() {
     physicalElemts = gcnew array<List<PhysicalElement^>^>(4);
+    controlElemts = gcnew List<ControlElements^>;
     background = gcnew Sprite(gcnew Texture("Assets/Environment/Maps/GameBackground.png"));
     castle = gcnew CastleRender();
     castle->base = gcnew Base;
@@ -177,6 +190,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
     watch = gcnew Watch;
+    userAvatar = gcnew UserLifeBar;
     //Base
     base = gcnew FBAModel::Base;
     base->baseState = gcnew List<Texture^>;
@@ -201,8 +215,6 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     cover->Scale = Vector2f((float)-0.7, (float)0.7);
     cover->Origin = Vector2f(castle->Texture->Size.X, 1080 / 2);
     cover->Position = Vector2f(-300, 400);
-    text = gcnew SFML::Graphics::Text;
-    font= gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
     //physical elements
     physicalElemts[0]=gcnew List<PhysicalElement^>() ; //Castillo
     physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
@@ -248,6 +260,10 @@ void FBAView::SurvivalRender::InitializeGraphics() {
             "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
         unit_allies[0]->DeathAnimation->Add(gcnew Texture(d));
     }
+    unit_allies[0]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
+    unit_allies[0]->attackSound = gcnew Sound(unit_allies[0]->attackBuffer);
+    unit_allies[0]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
+    unit_allies[0]->deathSound = gcnew Sound(unit_allies[0]->deathBuffer);
     unit_allies[0]->Image = unit_allies[0]->MoveAnimation[0];
     unit_allies[0]->scale=Vector2f(0.6,0.6);
     unit_allies[0]->positionElement = Vector2i(42, 52);
@@ -310,7 +326,11 @@ void FBAView::SurvivalRender::InitializeGraphics() {
             "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
         unit_enemies[0]->DeathAnimation->Add(gcnew Texture(d));
     }
-    unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0];
+    unit_enemies[0]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
+    unit_enemies[0]->attackSound = gcnew Sound(unit_enemies[0]->attackBuffer);
+    unit_enemies[0]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
+    unit_enemies[0]->deathSound = gcnew Sound(unit_enemies[0]->deathBuffer);
+    unit_enemies[0]->Image = unit_enemies[0]->MoveAnimation[0]; 
     unit_enemies[0]->scale = Vector2f(-0.6, 0.6);
     unit_enemies[0]->positionElement = Vector2i(42, 52);
     unit_enemies[0]->sizeElement = Vector2i(177 - 42, 284 - 52);
@@ -344,18 +364,30 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameOverImage = gcnew Sprite(gcnew Texture("Assets/Environment/GameOver.png"));
     gameOverImage->Origin = Vector2f(gameOverImage->Texture->Size.X / 2, gameOverImage->Texture->Size.Y / 2);
     gameOverImage->Position = Vector2f(1920 / 2, 1080 / 2);
-    //User Image
-    //((Menu_principal^)owner)->user->avatar;
-    userImage = gcnew Sprite(gcnew Texture("Assets/ResourcesForm/Avatar/avatar1.png"));
-    userImage->Position = Vector2f(20, 20);
-    userImage->Scale = Vector2f(0.2, 0.2);
     //Fuente
-    text->Font = font;
+    /*text->Font = font;
     text->DisplayedString = ((Menu_principal^)owner)->user->nickname;
-    text->Position = Vector2f(160, 50);
-    text->Color = SFML::Graphics::Color::Black;
-    text->Scale = Vector2f(1.7,1.5);
-}
+    text->Position = Vector2f(250, 63);
+    text->Color = SFML::Graphics::Color::Cyan;
+    text->Scale = Vector2f(1,1);*/
+    //Music
+    gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
+    gameSound = gcnew Sound(gameSoundBuffer);
+    gameSound->Play();
+    //Avatar
+    controlElemts->Add(userAvatar);
+    userAvatar->avatar->Texture = gcnew Texture("Assets/ResourcesForm/Avatar/" + ((Menu_principal^)owner)->user->avatar + ".png");
+    userAvatar->avatarMold->Texture = gcnew Texture("Assets/Environment/MapsElements/user life mold.png");
+    userAvatar->healthBar=gcnew HealthBar("Assets/Environment/MapsElements/user life background.png","Assets/Environment/MapsElements/barrita.png");
+    userAvatar->Position = Vector2f(0, 0);
+    userAvatar->Scale = Vector2f(1, 1);
+    /*userAvatar->font = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR");*/
+
+    //console
+    console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 3.png"));
+    console->Position = Vector2f(400, 800);
+    console->Scale = Vector2f(1.5, 1.5);
+ }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
     UnitRender^ newUnit =gcnew UnitRender(baseUnit) ;

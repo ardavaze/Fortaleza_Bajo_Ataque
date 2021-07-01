@@ -671,8 +671,9 @@ private: System::Windows::Forms::Panel^ panel_user;
 		}
 		private: System::Void btn_survival_Click(System::Object^ sender, System::EventArgs^ e) {
 			Hide_panel();
-		
-			open_ChildForm(gcnew SurvivalForm());
+			Survival^ a = gcnew Survival();
+			a->Owner = this;
+			open_ChildForm(a);
 
 		}
 		private: System::Void btn_tienda_Click(System::Object^ sender, System::EventArgs^ e) {

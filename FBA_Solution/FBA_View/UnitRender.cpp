@@ -64,6 +64,8 @@ void FBAView::UnitRender::Todo() {
 			if ((indice == this->unit->MoveAnimation->Count / 2) &&(state== FBAView::UnitRender::States::Attack)) {
 				this->enemyUnit->LostLife(this->attackDamage); 
 			}
+			if (indice == unit->AttackAnimation->Count / 2)
+				this->unit->attackSound->Play();
 			break;
 		case FBAView::UnitRender::States::Move:
 			if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
@@ -79,6 +81,8 @@ void FBAView::UnitRender::Todo() {
 		case FBAView::UnitRender::States::Die:
 			if (indice >= this->unit->DeathAnimation->Count) { indice = 0; }
 			this->body->Texture = unit->DeathAnimation[indice];
+			if (indice == unit->DeathAnimation->Count / 2)
+				this->unit->deathSound->Play();
 			break;
 		}
 		this->PaintTexture();

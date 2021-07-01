@@ -2,9 +2,9 @@
 <ArrayOfUser xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <User>
     <id>1</id>
-    <nickname>george</nickname>
-    <lastNameFath>mendoza</lastNameFath>
-    <lastNameMoth>zambrano</lastNameMoth>
+    <nickname>georgé</nickname>
+    <lastNameFath>zambrano</lastNameFath>
+    <lastNameMoth>representación</lastNameMoth>
     <name>aea</name>
     <birthday>a</birthday>
     <email>a</email>
@@ -14,7 +14,7 @@
       <Dinero>0</Dinero>
       <Unidades_desplegadas>0</Unidades_desplegadas>
       <Vida_usuario>0</Vida_usuario>
-      <timeMax>0</timeMax>
+      <timeMax>99</timeMax>
     </survival>
     <experience>10</experience>
     <emerald>15</emerald>

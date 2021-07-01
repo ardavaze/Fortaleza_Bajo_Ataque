@@ -72,6 +72,12 @@
     <ClCompile Include="Avatar.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="UserLifeBar.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="HealthBar.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -132,6 +138,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Avatar.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="UserLifeBar.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="HealthBar.h">
