@@ -634,14 +634,16 @@ namespace FBAView {
 		List <Survival^>^ survivalList = gcnew List <Survival^>;
 
 		void RefreshRank1() {
+			int pos = 0;
 			dgvScoreRank1->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
 				if (survivalList[i]->rank == User::Rank::Marshal) { //CORREGIR
+					pos++;
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
 					dgvScoreRank1->Rows->Add(gcnew array<String^> {
-							""+(i + 1),
+							""+ pos,
 							"" + survivalList[i]->user->nickname,
 							"" + (min<10? "0" : "") + min + ":" + ((seg < 10 || seg==0) ? "0" : "") + seg + " min."
 					});
@@ -650,14 +652,16 @@ namespace FBAView {
 		}
 
 		void RefreshRank2() {
+			int pos = 0;
 			dgvScoreRank2->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
 				if (survivalList[i]->rank == User::Rank::General) { //CORREGIR
+					pos++;
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
 					dgvScoreRank2->Rows->Add(gcnew array<String^> {
-						"" + (i + 1),
+						"" + pos,
 							"" + survivalList[i]->user->nickname,
 							"" + (min < 10 ? "0" : "") + min + ":" + ((seg < 10 || seg == 0) ? "0" : "") + seg + " min."
 					});
@@ -665,14 +669,16 @@ namespace FBAView {
 			}
 		}
 		void RefreshRank3() {
+			int pos = 0;
 			dgvScoreRank3->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
 				if (survivalList[i]->rank == User::Rank::Colonel) { //CORREGIR
+					pos++;
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
 					dgvScoreRank3->Rows->Add(gcnew array<String^> {
-						"" + (i + 1),
+						"" + pos,
 							"" + survivalList[i]->user->nickname,
 							"" + (min < 10 ? "0" : "") + min + ":" + ((seg < 10 || seg == 0) ? "0" : "") + seg + " min."
 					});
@@ -680,14 +686,16 @@ namespace FBAView {
 			}
 		}
 		void RefreshRank4() {
+			int pos = 0;
 			dgvScoreRank4->Rows->Clear();
 			for (int i = 0; i < survivalList->Count; i++) {
 				if (survivalList[i]->rank == User::Rank::Captain) { //CORREGIR
+					pos++;
 					int seg, min;
 					seg = (survivalList[i]->timeMax) % 60;
 					min = (survivalList[i]->timeMax) / 60;
 					dgvScoreRank4->Rows->Add(gcnew array<String^> {
-						"" + (i + 1),
+						"" + pos,
 							"" + survivalList[i]->user->nickname,
 							"" + (min < 10 ? "0" : "") + min + ":" + ((seg < 10 || seg == 0) ? "0" : "") + seg + " min."
 					});

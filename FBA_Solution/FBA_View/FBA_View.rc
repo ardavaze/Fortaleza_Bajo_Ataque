@@ -44,18 +44,6 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_ICON1               ICON                    "icon1.ico"
-
-IDI_ICON2               ICON                    "D:\\Usuario\\Documents\\GitHub\\ardavaze\\Fortaleza_Bajo_Ataque\\FBA_Solution\\FBA_View\\Assets\\ResourcesForm\\tower.ico"
-
 #endif    // Spanish (Mexico) resources
 /////////////////////////////////////////////////////////////////////////////
 
