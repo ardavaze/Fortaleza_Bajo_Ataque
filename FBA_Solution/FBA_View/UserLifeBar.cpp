@@ -12,13 +12,13 @@ FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString)
     avatarMold->Scale= Vector2f(1, 1);
     avatarBackground_Life->Scale = Vector2f(1, 1);
     usernameText->Scale = Vector2f(2, 1);
-    avatarButton->Scale = Vector2f(0.9, 0.9);
+    avatarButton->Scale = Vector2f(0.8, 0.8);
     avatar->Position= Vector2f(55,15);
     avatarMold->Position = Vector2f(0, 0);
     avatarBackground_Life->Position = Vector2f(0, 0);
     usernameText->Position = Vector2f(250, 63);
     usernameText->Color = SFML::Graphics::Color::Cyan;
-    avatarButton->Position= Vector2f(150, 20);
+    avatarButton->Position= Vector2f(174, 10);
     avatar->Texture = gcnew SFML::Graphics::Texture("Assets/ResourcesForm/Avatar/" +avatarString+ ".png");
     avatarMold->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/MapsElements/user life mold.png");
     healthBar = gcnew HealthBar("Assets/Environment/MapsElements/user life background.png", "Assets/Environment/MapsElements/barrita.png");
