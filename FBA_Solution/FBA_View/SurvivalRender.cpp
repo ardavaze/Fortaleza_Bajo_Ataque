@@ -17,6 +17,7 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080), "M
     }
     for (int i = 0; i < controlElemts->Count; i++) {
         controlElemts[i]->OcuppySpace(controlSpace);
+        controlElemts[i]->internalControlSpace;
     }
     this->SetFramerateLimit(60);
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
@@ -176,7 +177,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
         case EventType::MouseButtonPressed:
             if (Mouse::IsButtonPressed(Mouse::Button::Left)) {
                 if (controlSpace[Mouse::GetPosition().X][Mouse::GetPosition().Y] != nullptr) {
-                    controlSpace[Mouse::GetPosition().X][Mouse::GetPosition().Y]->ProcessCollision();
+                    controlSpace[Mouse::GetPosition().X][Mouse::GetPosition().Y]->ProcessCollision(Mouse::GetPosition().X, Mouse::GetPosition().Y);
                 }
             }
             break;
@@ -195,7 +196,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies = gcnew List<FBAModel::Units^>;
     unit_enemies = gcnew List<FBAModel::Units^>;
     watch = gcnew Watch;
-    userAvatar = gcnew UserLifeBar;
+    userAvatar = gcnew UserLifeBar(((Menu_principal^)owner)->user->nickname,((Menu_principal^)owner)->user->avatar.ToString());
     //Base
     base = gcnew FBAModel::Base;
     base->baseState = gcnew List<Texture^>;
@@ -383,14 +384,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameSound->Play();
     //Avatar
     controlElemts->Add(userAvatar);
-    userAvatar->avatar->Texture = gcnew Texture("Assets/ResourcesForm/Avatar/" + ((Menu_principal^)owner)->user->avatar.ToString() + ".png");
-    userAvatar->avatarMold->Texture = gcnew Texture("Assets/Environment/MapsElements/user life mold.png");
-    userAvatar->healthBar=gcnew HealthBar("Assets/Environment/MapsElements/user life background.png","Assets/Environment/MapsElements/barrita.png");
-    userAvatar->Position = Vector2f(0, 0);
-    userAvatar->Scale = Vector2f(1, 1);
-    userAvatar->font = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
-    userAvatar->usernameText->Font = userAvatar->font;
-    userAvatar->usernameText->DisplayedString = ((Menu_principal^)owner)->user->nickname;
+
     userAvatar->UpdateUserHP(1);
           
     //console

@@ -1,7 +1,12 @@
 
 #include "Button.h"
-
-FBAView::Button::Button()
+#include "UserLifeBar.h"
+void FBAView::Button::ProcessCollision(int x, int y)
 {
-	throw gcnew System::NotImplementedException();
+    this->EventClick();
+}
+
+void FBAView::Button::EventClick()
+{
+    UserLifeBar::usernameText->Color = SFML::Graphics::Color::Red;
 }

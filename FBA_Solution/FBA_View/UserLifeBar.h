@@ -10,16 +10,17 @@ namespace FBAView {
 		Sprite^ avatar;
 		Sprite^ avatarMold;
 		Sprite^ avatarBackground_Life;
-		List<ControlElements^>^ b;
+		List<ControlElements^>^ internalControlElemts;
 		SFML::Graphics::Font^ font;
-		SFML::Graphics::Text^ usernameText;
+		static SFML::Graphics::Text^ usernameText;
 		RenderTexture^ board;
 		HealthBar^ healthBar;
-		UserLifeBar();
+		UserLifeBar(String^,String^);
 		void UpdateUserHP(double);
-		virtual void ProcessCollision() override;
-		Button^ button;
+		virtual void ProcessCollision(int , int ) override;
+		Button^ avatarButton;
 		virtual void EventClick () override;
+	private: void InternalOcuppySpace();
 	};
 
 }
