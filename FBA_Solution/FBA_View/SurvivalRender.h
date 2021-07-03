@@ -55,5 +55,11 @@ namespace FBAView{
 		static array<array<ControlElements^>^>^ controlSpace = gcnew array<array<ControlElements^>^>(1920);
 		int piso = 740;
 		System::Diagnostics::Stopwatch^ render;
+		void userclick(System::Object^ sender, ClickArgs^ e) {
+			castle->HP-=10;
+		}
+		void avatarclick(System::Object^ sender, ClickArgs^ e) {
+			castle->HP = castle->base->Vida_max;
+		}
 	};
 }

@@ -10,3 +10,7 @@ void FBAView::Button::EventClick()
 {
     UserLifeBar::usernameText->Color = SFML::Graphics::Color::Red;
 }
+
+void FBAView::Button::MouseCollision(ClickArgs^ e) {
+    this->click(this, e);
+}

@@ -9,5 +9,6 @@ namespace FBAView {
 		Sprite^ buttonSprite;
 		virtual void ProcessCollision(int x, int y) override;
 		virtual void EventClick() override;
+		void MouseCollision(ClickArgs^) override;
 	};
 }

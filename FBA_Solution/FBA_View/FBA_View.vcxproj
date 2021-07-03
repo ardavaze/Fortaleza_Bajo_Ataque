@@ -154,10 +154,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArrowRender.cpp" />
-    <ClCompile Include="Avatar.cpp" />
+    <ClCompile Include="AvatarForm.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="campaign.cpp" />
+    <ClCompile Include="Container.cpp" />
     <ClCompile Include="ControlElements.cpp" />
     <ClCompile Include="Credits.cpp" />
     <ClCompile Include="CastleRender.cpp" />
@@ -166,7 +167,7 @@
     <ClCompile Include="Menu_principal.cpp" />
     <ClCompile Include="PhysicalElement.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
-    <ClCompile Include="Profile.cpp" />
+    <ClCompile Include="ProfileForm.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Skins.cpp" />
@@ -178,7 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrowRender.h" />
-    <ClInclude Include="Avatar.h">
+    <ClInclude Include="AvatarForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Background.h">
@@ -189,6 +190,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="CastleRender.h" />
+    <ClInclude Include="Container.h" />
     <ClInclude Include="ControlElements.h" />
     <ClInclude Include="Credits.h">
       <FileType>CppForm</FileType>
@@ -203,7 +205,7 @@
     <ClInclude Include="RegisterForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Profile.h">
+    <ClInclude Include="ProfileForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
@@ -226,8 +228,8 @@
     <ClInclude Include="Watch.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Avatar.resx">
-      <DependentUpon>Avatar.h</DependentUpon>
+    <EmbeddedResource Include="AvatarForm.resx">
+      <DependentUpon>AvatarForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Background.resx">
       <DependentUpon>Background.h</DependentUpon>
@@ -247,8 +249,8 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Profile.resx">
-      <DependentUpon>Profile.h</DependentUpon>
+    <EmbeddedResource Include="ProfileForm.resx">
+      <DependentUpon>ProfileForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scoreboard.resx">
       <DependentUpon>Scoreboard.h</DependentUpon>

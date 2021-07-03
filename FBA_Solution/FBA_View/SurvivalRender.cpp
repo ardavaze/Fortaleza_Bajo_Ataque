@@ -17,7 +17,6 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080), "M
     }
     for (int i = 0; i < controlElemts->Count; i++) {
         controlElemts[i]->OcuppySpace(controlSpace);
-        controlElemts[i]->internalControlSpace;
     }
     this->SetFramerateLimit(60);
     TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
@@ -176,8 +175,11 @@ void FBAView::SurvivalRender::Procesar_evento(){
             break;
         case EventType::MouseButtonPressed:
             if (Mouse::IsButtonPressed(Mouse::Button::Left)) {
-                if (controlSpace[Mouse::GetPosition().X][Mouse::GetPosition().Y] != nullptr) {
-                    controlSpace[Mouse::GetPosition().X][Mouse::GetPosition().Y]->ProcessCollision(Mouse::GetPosition().X, Mouse::GetPosition().Y);
+                Vector2i mouse = Mouse::GetPosition();
+                if (controlSpace[mouse.X][mouse.Y] != nullptr) {
+                    ClickArgs^ e= gcnew ClickArgs;
+                    e->mousePosition = mouse;
+                    controlSpace[mouse.X][mouse.Y]->MouseCollision(e);
                 }
             }
             break;
@@ -384,6 +386,8 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameSound->Play();
     //Avatar
     controlElemts->Add(userAvatar);
+    userAvatar->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::userclick);
+    userAvatar->avatarButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::avatarclick);
 
     userAvatar->UpdateUserHP(1);
           

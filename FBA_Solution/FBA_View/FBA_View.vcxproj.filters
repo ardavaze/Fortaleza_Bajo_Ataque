@@ -60,7 +60,7 @@
     <ClCompile Include="CastleRender.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Profile.cpp">
+    <ClCompile Include="ProfileForm.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="ControlElements.cpp">
@@ -69,7 +69,7 @@
     <ClCompile Include="Watch.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Avatar.cpp">
+    <ClCompile Include="AvatarForm.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
@@ -79,6 +79,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="HealthBar.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Container.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,7 +131,7 @@
     <ClInclude Include="CastleRender.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Profile.h">
+    <ClInclude Include="ProfileForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ControlElements.h">
@@ -137,7 +140,7 @@
     <ClInclude Include="Watch.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Avatar.h">
+    <ClInclude Include="AvatarForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
@@ -150,6 +153,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Container.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

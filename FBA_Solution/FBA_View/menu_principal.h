@@ -8,7 +8,7 @@
 #include "Scoreboard.h"
 #include "Credits.h"
 #include "Settings.h"
-#include "Profile.h"
+#include "ProfileForm.h"
 namespace FBAView {
 
 	using namespace System;
@@ -719,7 +719,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 		}
 		private: System::Void pictureBox_avatar_Click(System::Object^ sender, System::EventArgs^ e) {
 			Hide_panel();
-			Profile^ a = gcnew Profile();
+			ProfileForm^ a = gcnew ProfileForm();
 			a->Owner = this;
 			open_ChildForm(a);
 		}

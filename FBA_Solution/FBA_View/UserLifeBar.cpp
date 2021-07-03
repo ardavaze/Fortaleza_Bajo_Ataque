@@ -52,18 +52,18 @@ void FBAView::UserLifeBar::UpdateUserHP(double HP)
     this->Texture = board->Texture;
 }
 
-void FBAView::UserLifeBar::ProcessCollision(int xMouse, int yMouse) {
-    int x = xMouse - this->Position.X;
-    int y = yMouse - this->Position.Y;
-    if (internalControlSpace[x][y] != nullptr) {
-        internalControlSpace[x][y]->ProcessCollision(x, y);
-    }
-    else {
-        this->EventClick();
-    }
-
-    
-}
+//void FBAView::UserLifeBar::ProcessCollision(int xMouse, int yMouse) {
+//    int x = xMouse - this->Position.X;
+//    int y = yMouse - this->Position.Y;
+//    if (internalControlSpace[x][y] != nullptr) {
+//        internalControlSpace[x][y]->ProcessCollision(x, y);
+//    }
+//    else {
+//        this->EventClick();
+//    }
+//
+//    
+//}
 
 //void FBAView::UserLifeBar::UseSpace()
 //{
@@ -81,9 +81,8 @@ void FBAView::UserLifeBar::InternalOcuppySpace()
 {
     internalControlElemts = gcnew List<ControlElements^>;
     internalControlElemts->Add(avatarButton);
-    for (int i = 0; i<internalControlElemts->Count;  i++)
-    {
-        internalControlElemts[i]->OcuppySpace(this->internalControlSpace);
+    for (int i = 0; i<internalControlElemts->Count;  i++) {
+        internalControlElemts[i]->(this->internalControlSpace);
     }
 }
 

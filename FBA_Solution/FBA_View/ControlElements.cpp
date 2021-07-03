@@ -18,14 +18,7 @@ void FBAView::ControlElements::OcuppySpace(array<array<ControlElements^>^>^ cont
 
 }
 
-void FBAView::ControlElements::ProcessCollision(int xMouse,int yMouse)
-{
-	throw gcnew System::NotImplementedException();
-}
-
-
-
-void FBAView::ControlElements::EventClick()
+void FBAView::ControlElements::MouseCollision(ClickArgs^)
 {
 	throw gcnew System::NotImplementedException();
 }
