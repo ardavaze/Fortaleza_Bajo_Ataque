@@ -1,7 +1,7 @@
 #include "ControlElements.h"
 #include "SurvivalRender.h"
 
-void FBAView::ControlElements::OcuppySpace(array<array<ControlElements^>^>^ controlSpace)
+Void FBAView::ControlElements::OcuppySpace(array<array<ControlElements^>^>^ controlSpace)
 {
 	int incialX = this->Position.X;
 	int incialY = this->Position.Y;
@@ -18,7 +18,7 @@ void FBAView::ControlElements::OcuppySpace(array<array<ControlElements^>^>^ cont
 
 }
 
-void FBAView::ControlElements::MouseCollision(ClickArgs^)
+Void FBAView::ControlElements::MouseCollision(ClickArgs^)
 {
 	throw gcnew System::NotImplementedException();
 }

@@ -28,8 +28,10 @@ FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString)
     usernameText->Font = font;
     usernameText->DisplayedString = nickname;
     avatarButton->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/settings.png");
+    internalControlElemts = gcnew List<ControlElements^>;
+    internalControlElemts->Add(avatarButton);
     UpdateUserHP(1);
-    //
+    //  
     int sizeX = Math::Round(Math::Abs(this->Texture->Size.X * this->Scale.X));
     int sizeY = Math::Round(Math::Abs(this->Texture->Size.Y * this->Scale.Y));
     internalControlSpace = gcnew array<array<ControlElements^>^>(sizeX);
@@ -50,40 +52,6 @@ void FBAView::UserLifeBar::UpdateUserHP(double HP)
     board->Draw(avatarButton);
     board->Display();
     this->Texture = board->Texture;
-}
-
-//void FBAView::UserLifeBar::ProcessCollision(int xMouse, int yMouse) {
-//    int x = xMouse - this->Position.X;
-//    int y = yMouse - this->Position.Y;
-//    if (internalControlSpace[x][y] != nullptr) {
-//        internalControlSpace[x][y]->ProcessCollision(x, y);
-//    }
-//    else {
-//        this->EventClick();
-//    }
-//
-//    
-//}
-
-//void FBAView::UserLifeBar::UseSpace()
-//{
-//    for (int i = 0; i < b->Count; i++)
-//    {
-//        b[i]->OcuppySpace(this->controlSpace);
-//    }
-//}
-
-void FBAView::UserLifeBar::EventClick() {
-    //NOTHING
-}
-
-void FBAView::UserLifeBar::InternalOcuppySpace()
-{
-    internalControlElemts = gcnew List<ControlElements^>;
-    internalControlElemts->Add(avatarButton);
-    for (int i = 0; i<internalControlElemts->Count;  i++) {
-        internalControlElemts[i]->(this->internalControlSpace);
-    }
 }
 
 
