@@ -1,13 +1,6 @@
 #include "SurvivalRender.h"
 #include "menu_principal.h"
-using namespace SFML::Graphics;
-using namespace SFML::Window;
-using namespace SFML::System;
-using namespace System;
-using namespace System::Collections::Generic;
-using namespace SFML::Audio;
-
-FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080), "Modo survival", Styles::Fullscreen){
+FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(SFML::Window::VideoMode::DesktopMode.Width, SFML::Window::VideoMode::DesktopMode.Height), "Modo survival", Styles::Fullscreen){
     InitializeGraphics();
     for (int i = 0; i < 96; i++) {
         physicalSpace[i] = gcnew List<PhysicalElement^>;
@@ -30,7 +23,15 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(1920,1080), "M
 }
 
 void FBAView::SurvivalRender::Run() {
+    a = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920, 1080));
+    b = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920, 1080));
     while (this->IsOpen) {
+        if (Mouse::GetPosition().X > SFML::Window::VideoMode::DesktopMode.Width - 2) {
+            a->Move(Vector2f(6, 0));
+        }
+        if (Mouse::GetPosition().X < 2) {
+            a->Move(Vector2f(-6, 0));
+        }
         render->Restart();
         if (gameOver == 0) {
             for (int i = 0; i < 4; i++) {
@@ -84,16 +85,15 @@ void FBAView::SurvivalRender::Run() {
         Procesar_evento();
         userAvatar->UpdateUserHP(double(castle->HP)/castle->base->Vida_max);
         this->Clear();
+        this->SetView(a);
         this->Draw(this->background);
         this->Draw(this->castle);
-        this->Draw(this->userAvatar);
-        this->Draw(this->console);
         //RectangleShape^ da= gcnew RectangleShape(Vector2f(19, 400)); //solo para probar 
         //for (int i = 0; i < 96; i++){
         //    da->Position = Vector2f(20 * i, 0);
         //    this->Draw(da);
         //}
-        this->Draw(this->watch);
+       
         for (int i = 2; i < 4; i++) {
             for (int j = physicalElemts[i]->Count -1; j >=  0 ; j--) {
                 this->Draw(physicalElemts[i][j]);
@@ -104,7 +104,10 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->crossbow);
         this->Draw(this->arrow);
         render->Stop();
-
+        this->SetView(b);
+        this->Draw(this->userAvatar);
+        this->Draw(this->console);
+        this->Draw(this->watch);
         if (castle->HP <= 0) {  
             gameOver++; 
             this->Draw(this->gameOverImage);
@@ -176,14 +179,24 @@ void FBAView::SurvivalRender::Procesar_evento(){
         case EventType::MouseButtonPressed:
             if (Mouse::IsButtonPressed(Mouse::Button::Left)) {
                 Vector2i mouse = Mouse::GetPosition();
+                mouse.X = Mouse::GetPosition().X * (this->GetView()->Size.X / SFML::Window::VideoMode::DesktopMode.Width);
+                mouse.Y = Mouse::GetPosition().Y * (this->GetView()->Size.Y / SFML::Window::VideoMode::DesktopMode.Height);
                 if (controlSpace[mouse.X][mouse.Y] != nullptr) {
-                    ClickArgs^ e= gcnew ClickArgs;
+                    ClickArgs^ e = gcnew ClickArgs;
                     e->mousePosition = mouse;
                     controlSpace[mouse.X][mouse.Y]->MouseCollision(e);
                 }
             }
             break;
+        case EventType::MouseButtonReleased:
+            if (!Mouse::IsButtonPressed(Mouse::Button::Left)) {
+                int k = 0;
+            }
+            break;
+        case EventType::MouseMoved:
+            break;
         }
+
     }
 }
 

@@ -12,10 +12,13 @@ using namespace SFML::System;
 using namespace System::Windows::Forms;
 using namespace System::Collections::Generic;
 using namespace SFML::Audio;
+using namespace System;
 namespace FBAView{
 	public ref class SurvivalRender : public RenderWindow {
 	public:
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
+		SFML::Graphics::View^ a;
+		SFML::Graphics::View^ b;
 		HealthBar^ healthBar;
 		Form^ owner;
 		array<List<PhysicalElement^>^>^ physicalElemts;
