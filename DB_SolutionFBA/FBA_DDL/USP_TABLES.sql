@@ -62,7 +62,6 @@ END
 GO
 CREATE PROCEDURE dbo.usp_UpdateUser(
 	@vnickname VARCHAR(100),
-	@vpassword VARCHAR(100),
 	@vname VARCHAR(100),
 	@vlastNameFath VARCHAR(100),
 	@vlastNameMoth VARCHAR(100),
@@ -77,7 +76,7 @@ CREATE PROCEDURE dbo.usp_UpdateUser(
  ) AS 
 	BEGIN
 		UPDATE USER_FBA
-		SET nickname=@vnickname, password=@vpassword, name=@vname, lastNameFath=@vlastNameFath, lastNameMoth=@vlastNameMoth, birthday=@vbirthday, 
+		SET nickname=@vnickname, name=@vname, lastNameFath=@vlastNameFath, lastNameMoth=@vlastNameMoth, birthday=@vbirthday, 
 				email=@vemail, rank=@vrank, avatar=@vavatar, experience=@iexperience, emerald=@iemerald, level=@ilevel
 		WHERE id=@iid
 	END
@@ -155,6 +154,14 @@ END
 GO
 CREATE PROCEDURE dbo.usp_QueryAllSurvival
 AS
-	Select a.id,a.nickname,a.name,a.lastNameFath,a.lastNameMoth,a.rank,a.avatar,a.experience,a.emerald,a.level,b.id as id_Survival,b.unspentGold,b.unitsDeployed,b.unitsDefeated,b.date,b.rank as rank_Survival,b.timeMax 
+Select a.id,a.nickname,a.name,a.lastNameFath,a.lastNameMoth,a.rank,a.avatar,a.experience,a.emerald,a.level,b.id as id_Survival,b.unspentGold,b.unitsDeployed,b.unitsDefeated,b.date,b.rank as rank_Survival,b.timeMax
 	FROM USER_FBA as a inner join SURVIVAL as b on a.id=b.id_User
+	where b.id in(SELECT SURVIVAL.id
+FROM SURVIVAL 
+INNER JOIN ( 
+   select SURVIVAL.id_User as idUser, max(SURVIVAL.timeMax) as tmx  
+   from SURVIVAL
+   group by SURVIVAL.id_User 
+) as tm 
+ON tm.tmx = SURVIVAL.timeMax and tm.idUser= SURVIVAL.id_User)
 GO

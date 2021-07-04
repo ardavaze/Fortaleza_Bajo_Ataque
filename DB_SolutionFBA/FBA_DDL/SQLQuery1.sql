@@ -23,7 +23,7 @@ VALUES (2,100,10,15,'11/06/2021','Captain',40)
 GO
 INSERT INTO SURVIVAL(id_User, unspentGold, unitsDeployed, unitsDefeated, 
 						date, rank, timeMax)
-VALUES (3,50,5,30,'09/05/2021','General',20)
+VALUES (3,50,5,30,'10/05/2021','General',60)
 GO
 SELECT * FROM USER_FBA
 GO
