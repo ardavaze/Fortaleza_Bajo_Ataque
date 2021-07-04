@@ -2,8 +2,6 @@
 #include "Container.h";
 #include "HealthBar.h";
 #include "Button.h";
-using namespace SFML::System;
-using namespace SFML::Graphics;
 namespace FBAView {
 	public ref class UserLifeBar:Container{
 	public:

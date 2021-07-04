@@ -451,12 +451,17 @@ void FBAView::SurvivalRender::endGame()
     watch->Chronometer->Stop();
     int a;
     a = int(watch->Chronometer->Elapsed.TotalSeconds);
-    //if (((Menu_principal^)owner)->user->survival->timeMax < a) {
-    //    ((Menu_principal^)owner)->user->survival->timeMax = a;
-    //}
-    /*if (0 < a) {
-        a=0;
-    }*/
+    Survival^ survival = gcnew Survival();
+    survival->date = System::DateTime::Now.Day + "/" + System::DateTime::Now.Month + "/" + System::DateTime::Now.Year;
+    survival->rank = Menu_principal::user->rank;
+    survival->timeMax = a;
+    survival->user = Menu_principal::user;
+    try {
+        FBAController::FBA_Controller::AddSurvival(survival);
+    }
+    catch (...) {
+        MessageBox::Show("Parece que no tiene conexion a internet o hay problemas con el servidor del juego, porfavor intentelo en unos minutos");
+    }
     gameOver++;
 }
 

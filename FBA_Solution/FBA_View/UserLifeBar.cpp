@@ -41,8 +41,7 @@ FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString)
     InternalOcuppySpace();
 }
 
-void FBAView::UserLifeBar::UpdateUserHP(double HP)
-{   
+void FBAView::UserLifeBar::UpdateUserHP(double HP) {   
     avatarBackground_Life->Texture = healthBar->GetBar(HP);
     board->Clear(SFML::Graphics::Color::Color(0,0,0,0));
     board->Draw(avatarBackground_Life);

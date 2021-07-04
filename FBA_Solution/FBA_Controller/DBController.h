@@ -9,7 +9,6 @@ using namespace System::Collections::Generic;
 namespace FBAController {
 	public ref class DBController{
 	private:
-		static List<User^>^ user=gcnew List<User^>;
 		static ConnectionParam^ connParam;
 		static SqlConnection^ GetConnection();
 	public:

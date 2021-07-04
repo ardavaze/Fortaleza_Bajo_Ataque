@@ -79,49 +79,50 @@ void FBAController::DBController::AddUser(User^ user){
     // Paso 2:  Se prepara la sentencia
     SqlCommand^ comm;
     String^ strCmd;
-    strCmd = "dbo.usp_AddManager";
+    strCmd = "dbo.usp_AddUser";
     comm = gcnew SqlCommand(strCmd, conn);
     comm->CommandType = System::Data::CommandType::StoredProcedure;
-    comm->Parameters->Add("@nickname", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@lastNameFath", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@lastNameMoth", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@birthday", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@email", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@rank", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@avatar", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@employees_number", System::Data::SqlDbType::Int);
-    comm->Parameters->Add("@employees_number", System::Data::SqlDbType::Int);
-    comm->Parameters->Add("@employees_number", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@vnickname", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vpassword", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vname", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vlastNameFath", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vlastNameMoth", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vbirthday", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vemail", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vrank", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vavatar", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@iexperience", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@iemerald", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@ilevel", System::Data::SqlDbType::Int);
 
-    SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+    SqlParameter^ outputIdParam = gcnew SqlParameter("@iid", System::Data::SqlDbType::Int);
     outputIdParam->Direction = System::Data::ParameterDirection::Output;
     comm->Parameters->Add(outputIdParam);
     comm->Prepare();
 
-    comm->Parameters["@nickname"]->Value = user->nickname;
-    comm->Parameters["@password"]->Value = user->password;
-    comm->Parameters["@name"]->Value = user->name;
-    comm->Parameters["@lastNameFath"]->Value = user->lastNameFath;
-    comm->Parameters["@lastNameMoth"]->Value = user->lastNameMoth;
-    comm->Parameters["@birthday"]->Value = user->birthday;
-    comm->Parameters["@email"]->Value = user->email;
-    comm->Parameters["@rank"]->Value = user->rank;
-    comm->Parameters["@avatar"]->Value = user->avatar;
-    comm->Parameters["@experience"]->Value = user->experience;
-    comm->Parameters["@emerald"]->Value = user->emerald;
-    comm->Parameters["@level"]->Value = user->level;
+    comm->Parameters["@vnickname"]->Value = user->nickname;
+    comm->Parameters["@vpassword"]->Value = user->password;
+    comm->Parameters["@vname"]->Value = user->name;
+    comm->Parameters["@vlastNameFath"]->Value = user->lastNameFath;
+    comm->Parameters["@vlastNameMoth"]->Value = user->lastNameMoth;
+    comm->Parameters["@vbirthday"]->Value = user->birthday;
+    comm->Parameters["@vemail"]->Value = user->email;
+    comm->Parameters["@vrank"]->Value = user->rank;
+    comm->Parameters["@vavatar"]->Value = user->avatar;
+    comm->Parameters["@iexperience"]->Value = user->experience;
+    comm->Parameters["@iemerald"]->Value = user->emerald;
+    comm->Parameters["@ilevel"]->Value = user->level;
 
     //Paso 3: Se ejecuta la sentencia
     comm->ExecuteNonQuery();
 
     //Paso 4: Si se quiere procesar la salida.
-    int output_id = Convert::ToInt32(comm->Parameters["@id"]->Value);
+    int output_id = Convert::ToInt32(comm->Parameters["@iid"]->Value);
 
     //Paso 5: Se cierra la conexión
     conn->Close();
-
+    user->id = output_id;
+    user->password = nullptr;
 }
 
 void FBAController::DBController::UpdateUser(User^ user){
@@ -135,7 +136,6 @@ void FBAController::DBController::UpdateUser(User^ user){
     comm = gcnew SqlCommand(strCmd, conn);
     comm->CommandType = System::Data::CommandType::StoredProcedure;
     comm->Parameters->Add("@vnickname", System::Data::SqlDbType::VarChar, 100);
-    comm->Parameters->Add("@vpassword", System::Data::SqlDbType::VarChar, 100);
     comm->Parameters->Add("@vname", System::Data::SqlDbType::VarChar, 100);
     comm->Parameters->Add("@vlastNameFath", System::Data::SqlDbType::VarChar, 100);
     comm->Parameters->Add("@vlastNameMoth", System::Data::SqlDbType::VarChar, 100);
@@ -151,7 +151,6 @@ void FBAController::DBController::UpdateUser(User^ user){
     comm->Prepare();
 
     comm->Parameters["@vnickname"]->Value = user->nickname;
-    comm->Parameters["@vpassword"]->Value = "password";
     comm->Parameters["@vname"]->Value = user->name;
     comm->Parameters["@vlastNameFath"]->Value = user->lastNameFath;
     comm->Parameters["@vlastNameMoth"]->Value = user->lastNameMoth;
@@ -172,12 +171,11 @@ void FBAController::DBController::UpdateUser(User^ user){
 }
 
 void FBAController::DBController::DeleteUser(int userID){
-    throw gcnew System::NotImplementedException();
-    // TODO: insert return statement here
+
 }
 
 List<User^>^ FBAController::DBController::QueryAllUser(){
-    return user;
+    return nullptr;
     //throw gcnew System::NotImplementedException();
     // TODO: insert return statement here
 }
@@ -187,9 +185,46 @@ User^ FBAController::DBController::QueryUserByID(){
     // TODO: insert return statement here
 }
 
-void FBAController::DBController::AddSurvival(Survival^)
-{
-    throw gcnew System::NotImplementedException();
+void FBAController::DBController::AddSurvival(Survival^ survival) {
+    // Paso 1: Se obtiene la conexión
+    SqlConnection^ conn = GetConnection();
+
+    // Paso 2:  Se prepara la sentencia
+    SqlCommand^ comm;
+    String^ strCmd;
+    strCmd = "dbo.usp_AddSurvival";
+    comm = gcnew SqlCommand(strCmd, conn);
+    comm->CommandType = System::Data::CommandType::StoredProcedure;
+    comm->Parameters->Add("@iid_User", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@iunspentGold", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@iunitsDeployed", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@iunitsDefeated", System::Data::SqlDbType::Int);
+    comm->Parameters->Add("@vdate", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@vrank", System::Data::SqlDbType::VarChar, 100);
+    comm->Parameters->Add("@itimeMax", System::Data::SqlDbType::Int);
+
+    SqlParameter^ outputIdParam = gcnew SqlParameter("@iid", System::Data::SqlDbType::Int);
+    outputIdParam->Direction = System::Data::ParameterDirection::Output;
+    comm->Parameters->Add(outputIdParam);
+    comm->Prepare();
+
+    comm->Parameters["@iid_User"]->Value = survival->user->id;
+    comm->Parameters["@iunspentGold"]->Value = survival->unspentGold;
+    comm->Parameters["@iunitsDeployed"]->Value = survival->unitsDeployed;
+    comm->Parameters["@iunitsDefeated"]->Value = survival->unitsDefeated;
+    comm->Parameters["@vdate"]->Value =survival->date;
+    comm->Parameters["@vrank"]->Value = survival->rank;
+    comm->Parameters["@itimeMax"]->Value = survival->timeMax;
+
+    //Paso 3: Se ejecuta la sentencia
+    comm->ExecuteNonQuery();
+
+    //Paso 4: Si se quiere procesar la salida.
+    int output_id = Convert::ToInt32(comm->Parameters["@iid"]->Value);
+
+    //Paso 5: Se cierra la conexión
+    conn->Close();
+    survival->id = output_id;
 }
 
 void FBAController::DBController::UpdateSurvival(Survival^)
