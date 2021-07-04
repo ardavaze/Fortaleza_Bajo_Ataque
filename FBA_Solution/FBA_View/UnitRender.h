@@ -17,7 +17,7 @@ namespace FBAView {
 		HealthBar^ healthbar;
 		Sprite^ HPBar;
 		Sprite^ body;
-		void ProcessCollision() override;
+		virtual void ProcessCollision() override;
 		virtual Void Todo() override;
 		virtual Void LostLife(int) override;
 		Void PaintTexture();
