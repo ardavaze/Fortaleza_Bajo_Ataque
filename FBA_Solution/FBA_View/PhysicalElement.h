@@ -21,8 +21,8 @@ namespace FBAView {
 		void OccupySpace();
 		void FreeSpace();
 		virtual void ProcessCollision() {}
-		virtual void Todo() {};
-		virtual Void LostLife(int) {};
+		virtual void ToDo() {};
+		virtual Void LoseLife(int) {};
 		bool muerto=0;
 		bool death=0;
 	protected:

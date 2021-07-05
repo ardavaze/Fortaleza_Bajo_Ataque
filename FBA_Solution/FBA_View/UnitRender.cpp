@@ -7,11 +7,12 @@ FBAView::UnitRender::UnitRender(FBAModel::Units^ unit) {
 	this->body = gcnew Sprite(this->unit->Image);
 	this->HPBar = gcnew Sprite();
 	this->HPBar->Position = Vector2f(40,4);
+	//rango
 }
 
 void FBAView::UnitRender::ProcessCollision() {
 	int k;
-	for (int i = 0; i < 2; i++) {//recorremos 2 cuadrados del espacio fisico al frente o detras de la unidad
+	for (int i = 0; i < rango; i++) {//recorremos 2 cuadrados del espacio fisico al frente o detras de la unidad
 		if (this->band == Game_obj::Band::Allies) { k = (numRectangule + i); }
 		else { k = ((i * -1) - 1); }
 		if ( ( (frstRectangule + k) < 96 ) && ( (frstRectangule + k) >= 0 ) ) {
@@ -19,6 +20,7 @@ void FBAView::UnitRender::ProcessCollision() {
 				if (SurvivalRender::physicalSpace[frstRectangule + k ][j]->band != this->band) {
 					this->state = UnitRender::States::Attack;
 					this->enemyUnit = SurvivalRender::physicalSpace[frstRectangule + k][j];
+					this->dist = i*20;
 					return;
 				}
 			}
@@ -28,7 +30,7 @@ void FBAView::UnitRender::ProcessCollision() {
 	this->state = UnitRender::States::Move;
 }
 
-void FBAView::UnitRender::Todo() {
+void FBAView::UnitRender::ToDo() {
 	double timeaux;
 	if (this->frstTimeJob) {
 		timeJob->Restart();
@@ -53,16 +55,14 @@ void FBAView::UnitRender::Todo() {
 	timeJob->Start();
 	if (timeaux >= (indice + 1) * (totalTimeJob / this->unit->MoveAnimation->Count)) {
 		indice = int(timeaux * (this->unit->AttackAnimation->Count / totalTimeJob));
-		if (life != unit->Maxlife) {
-			int k = 0;
-		}
 		this->HPBar->Texture = healthbar->GetBar(double(this->life)/this->unit->Maxlife);
 		switch (statejob) {
 		case FBAView::UnitRender::States::Attack:
 			if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
 			this->body->Texture = unit->AttackAnimation[indice];
 			if ((indice == this->unit->MoveAnimation->Count / 2) &&(state== FBAView::UnitRender::States::Attack)) {
-				this->enemyUnit->LostLife(this->attackDamage); 
+				this->enemyUnit->LoseLife(this->attackDamage); 
+
 			}
 			if (indice == unit->AttackAnimation->Count / 2)
 				this->unit->attackSound->Play();
@@ -95,7 +95,7 @@ void FBAView::UnitRender::Todo() {
 	}
 }
 
-Void FBAView::UnitRender::LostLife(int damage){
+Void FBAView::UnitRender::LoseLife(int damage){
 	this->life -= damage;
 	if (life <= 0) {
 		life = 0;

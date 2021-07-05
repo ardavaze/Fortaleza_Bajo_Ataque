@@ -26,12 +26,12 @@ void FBAView::SurvivalRender::Run() {
     a = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920, 1080));
     b = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920, 1080));
     while (this->IsOpen) {
-        if (Mouse::GetPosition().X > SFML::Window::VideoMode::DesktopMode.Width - 2) {
-            a->Move(Vector2f(6, 0));
-        }
-        if (Mouse::GetPosition().X < 2) {
-            a->Move(Vector2f(-6, 0));
-        }
+        //if (Mouse::GetPosition().X > SFML::Window::VideoMode::DesktopMode.Width - 2) {
+        //    a->Move(Vector2f(6, 0));
+        //}
+        //if (Mouse::GetPosition().X < 2) {
+        //    a->Move(Vector2f(-6, 0));
+        //}
         render->Restart();
         if (gameOver == 0) {
             for (int i = 0; i < 4; i++) {
@@ -45,6 +45,9 @@ void FBAView::SurvivalRender::Run() {
                 for (int j = 0; j < physicalElemts[i]->Count; j++) {
                     if (physicalElemts[i][j]->state!=PhysicalElement::States::Die)
                         physicalElemts[i][j]->ProcessCollision();
+                    if (physicalElemts[i][j]->GetType() == UnitDistanceRender::typeid) {
+                        ((UnitDistanceRender^)physicalElemts[i][j])->arrow->ProcessCollision();
+                    }
                 }
             }
             for (int i = 3; 0<= i; i--) {
@@ -57,7 +60,12 @@ void FBAView::SurvivalRender::Run() {
             }
             for (int i = 2; i < 4; i++) {
                 for (int j = 0; j < physicalElemts[i]->Count; j++) {
-                    physicalElemts[i][j]->Todo();
+                    physicalElemts[i][j]->ToDo();
+                    if (physicalElemts[i][j]->GetType() == UnitDistanceRender::typeid) {
+                        if (((UnitDistanceRender^)physicalElemts[i][j])->arrow->throwed) {
+                            ((UnitDistanceRender^)physicalElemts[i][j])->arrow-> MakeFly();
+                        }
+                    }
                 }
             }
             for (int i = 2; i < 4; i++) {
@@ -74,7 +82,6 @@ void FBAView::SurvivalRender::Run() {
             }
             else TimeEnemies->Start();
             if (arrow->throwed)
-
                 arrow->MakeFly();
             else {
                 arrow->Position = crossbow->Position;
@@ -93,10 +100,14 @@ void FBAView::SurvivalRender::Run() {
         //    da->Position = Vector2f(20 * i, 0);
         //    this->Draw(da);
         //}
-       
         for (int i = 2; i < 4; i++) {
             for (int j = physicalElemts[i]->Count -1; j >=  0 ; j--) {
                 this->Draw(physicalElemts[i][j]);
+                if (physicalElemts[i][j]->GetType() == UnitDistanceRender::typeid) {
+                    if (((UnitDistanceRender^)physicalElemts[i][j])->arrow->throwed) {
+                        this->Draw(((UnitDistanceRender^)physicalElemts[i][j])->arrow);
+                    } 
+                }
             }
         }
         cover->Texture = base->coverState[castle->indiceStatus];
@@ -153,7 +164,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
                 if (Keyboard::IsKeyPressed(Keyboard::Key::E)) {
                     TimeGenerate->Stop();
                     if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-                        GenerateUnits(this->unit_allies[1]);
+                        GenerateUnitsDistance(this->unit_allies[2]);
                         TimeGenerate->Restart();
                     }
                     else TimeGenerate->Start();
@@ -323,6 +334,35 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[1]->attackDamage = 40;
     unit_allies[1]->Maxlife = 200;
     unit_allies[1]->deathTime = 1.2;
+
+    unit_allies->Add(gcnew FBAModel::Units);
+    unit_allies[2]->band = FBAModel::Units::Band::Allies;
+    unit_allies[2]->AttackAnimation = gcnew List<Texture^>;
+    unit_allies[2]->MoveAnimation = gcnew List<Texture^>;
+    unit_allies[2]->DeathAnimation = gcnew List<Texture^>;
+    unit_allies[2]->HealthBar = gcnew array < SFML::Graphics::Texture^>(4);
+    unit_allies[2]->HealthBar[0] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
+    unit_allies[2]->HealthBar[1] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
+    unit_allies[2]->HealthBar[2] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
+    unit_allies[2]->HealthBar[3] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner2.png");
+    for (int j = 0; j < 12; j++) {
+        d = j > 9 ? "Assets/Characters/wraith/PNG/Wraith_03/PNG Sequences/Attacking/Wraith_03_Attack_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
+            "Assets/Characters/wraith/PNG/Wraith_03/PNG Sequences/Attacking/Wraith_03_Attack_00" + j + ".png";
+        unit_allies[2]->AttackAnimation->Add(gcnew Texture(d));
+        d = j > 9 ? "Assets/Characters/wraith/PNG/Wraith_03/PNG Sequences/Walking/Wraith_03_Moving Forward_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
+            "Assets/Characters/wraith/PNG/Wraith_03/PNG Sequences/Walking/Wraith_03_Moving Forward_00" + j + ".png";
+        unit_allies[2]->MoveAnimation->Add(gcnew Texture(d));
+    }
+    unit_allies[2]->Image = unit_allies[2]->MoveAnimation[0];
+    unit_allies[2]->scale = Vector2f(0.45, 0.45);//
+    unit_allies[2]->positionElement = Vector2i(120, 45);//
+    unit_allies[2]->sizeElement = Vector2i(220, 302);//
+    unit_allies[2]->attackVelocity = 50;
+    unit_allies[2]->movementVelocity = 0.9;
+    unit_allies[2]->moneyValue = 50;
+    unit_allies[2]->attackDamage = 40;
+    unit_allies[2]->Maxlife = 200;
+    unit_allies[2]->deathTime = 1.2;
     //
     //Unidades Enemigas
     //
@@ -425,6 +465,27 @@ void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
     newUnit->attackDamage =newUnit->unit->attackDamage;
     newUnit->life=newUnit->unit->Maxlife;
     newUnit->deathTime = newUnit->unit->deathTime;
+    newUnit->rango = 2;
+}
+void FBAView::SurvivalRender::GenerateUnitsDistance(Units^ baseUnit) {
+    UnitDistanceRender^ newUnit = gcnew UnitDistanceRender(baseUnit);
+    physicalElemts[2]->Add(newUnit);
+    newUnit->healthbar = this->healthBar;
+    newUnit->band = newUnit->unit->band;
+    newUnit->Texture = newUnit->unit->Image;
+    newUnit->Scale = newUnit->unit->scale;
+    newUnit->sizeElement = newUnit->unit->sizeElement;
+    newUnit->positionElement = newUnit->unit->positionElement;
+    newUnit->Position = Vector2f((float)450, (float)(piso - (newUnit->Scale.Y) * (newUnit->positionElement.Y + newUnit->sizeElement.Y)));
+    newUnit->attackVelocity = newUnit->unit->attackVelocity;
+    newUnit->movementVelocity = newUnit->unit->movementVelocity;
+    newUnit->attackDamage = newUnit->unit->attackDamage;
+    newUnit->life = newUnit->unit->Maxlife;
+    newUnit->deathTime = newUnit->unit->deathTime;
+    newUnit->arrow = gcnew ArrowRender();
+    newUnit->arrow->Texture = gcnew Texture("Assets/Characters/wraith/PNG/Wraith_03/Vector Parts/Spells-Effect.png");
+    newUnit->rango = 10;
+    newUnit->arrow->parrow = gcnew Projectile;
 }
 
 void FBAView::SurvivalRender::ThrowArrow() {
@@ -457,6 +518,7 @@ void FBAView::SurvivalRender::GenerateUnits_enemies(Units^ baseUnit){
     newUnit->attackDamage = newUnit->unit->attackDamage;
     newUnit->life= newUnit->unit->Maxlife;
     newUnit->deathTime = newUnit->unit->deathTime;
+    newUnit->rango = 2;
 }
 
 void FBAView::SurvivalRender::endGame()

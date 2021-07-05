@@ -6,6 +6,7 @@
 #include "Watch.h"
 #include "UserLifeBar.h"
 #include "HealthBar.h"
+#include "UnitDistanceRender.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -50,6 +51,7 @@ namespace FBAView{
 		Void Procesar_evento();
 		Event event;
 		void GenerateUnits(Units^);
+		void GenerateUnitsDistance(Units^);
 		void ThrowArrow();
 		void GenerateUnits_enemies(Units^);
 		System::Diagnostics::Stopwatch^ TimeEnemies;
