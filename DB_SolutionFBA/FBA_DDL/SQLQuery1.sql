@@ -34,3 +34,6 @@ FROM USER_FBA as a inner join SURVIVAL as b on a.id=b.id_User
 GO
 Execute dbo.usp_QueryAllSurvival
 GO
+select Max(b.timeMax) as timeMax from USER_FBA as a inner join SURVIVAL as b on a.id=b.id_User
+where a.id=5
+Group by a.id

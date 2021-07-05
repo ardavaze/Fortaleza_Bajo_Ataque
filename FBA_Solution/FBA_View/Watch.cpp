@@ -37,6 +37,7 @@ Void FBAView::Watch::UpdateWatch(){
 
 Void FBAView::Watch::PaintTexture() {
     this->board->Clear(SFML::Graphics::Color::Color(120, 120, 255, 200));
+
     this->board->Draw(dosPuntos);
     this->board->Draw(minUnit);
     this->board->Draw(minDecena);

@@ -1,7 +1,6 @@
 #include "UserLifeBar.h"
 
-FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString)
-{   
+FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString) {   
     board = gcnew RenderTexture(510, 170);
     avatar = gcnew Sprite;
     avatarMold = gcnew Sprite;
