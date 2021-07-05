@@ -106,6 +106,7 @@ void FBAView::SurvivalRender::Run() {
         render->Stop();
         this->SetView(b);
         this->Draw(this->userAvatar);
+        this->Draw(this->button);
         this->Draw(this->console);
         this->Draw(this->watch);
         if (castle->HP <= 0) {  
@@ -403,11 +404,14 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     userAvatar->avatarButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::avatarclick);
 
     userAvatar->UpdateUserHP(1);
-          
+    //buton
+    button = gcnew Sprite(gcnew Texture("Assets/Environment/button/barbaro 2.jpg"));
+    button->Position = Vector2f(468, 878);
+    button->Scale = Vector2f(0.25, 0.25);
     //console
-    console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 3.png"));
-    console->Position = Vector2f(400, 800);
-    console->Scale = Vector2f(1.5, 1.5);
+    console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 4.png"));
+    console->Position = Vector2f(200, 800);
+    console->Scale = Vector2f(1.75, 1.75);
  }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){

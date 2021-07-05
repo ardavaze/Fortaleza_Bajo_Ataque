@@ -41,6 +41,7 @@ namespace FBAView{
 		SoundBuffer^ gameSoundBuffer;
 		Sound^ gameSound;
 		Sprite^ console;
+		Sprite^ button;
 		//
 		//Watch
 		//
