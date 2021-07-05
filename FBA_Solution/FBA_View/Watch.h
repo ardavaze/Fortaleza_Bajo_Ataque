@@ -16,9 +16,11 @@ namespace FBAView {
 		Sprite^ minUnit;
 		Sprite^ minDecena;
 		Sprite^ dosPuntos;
+		Sprite^ background;
 		Diagnostics::Stopwatch^ Chronometer;
 		Void UpdateWatch();
 		Void PaintTexture();
+
 	protected:
 		RenderTexture^ board;
 		int segUnidTranscurridos = 0;
