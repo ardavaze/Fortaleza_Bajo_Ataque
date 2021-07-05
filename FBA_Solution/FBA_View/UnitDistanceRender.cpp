@@ -5,6 +5,7 @@ FBAView::UnitDistanceRender::UnitDistanceRender(FBAModel::Units^ unit): FBAView:
 
 Void FBAView::UnitDistanceRender::ToDo() {
 	if (this->arrow->throwed == 0) {
+		timeJob->Start();
 		double timeaux;
 		if (this->frstTimeJob) {
 			timeJob->Restart();
@@ -35,11 +36,12 @@ Void FBAView::UnitDistanceRender::ToDo() {
 				if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
 				this->body->Texture = unit->AttackAnimation[indice];
 				if ((indice == int(0.66 * unit->MoveAnimation->Count)) && (state == FBAView::UnitRender::States::Attack)) {
+					timeJob->Stop();
 					arrow->throwed = 1;
-					arrow->parrow->Velocity = 600;
-					int ang = Math::Asin(dist * 400 / Math::Pow(arrow->parrow->Velocity, 2)) / 2;
-					arrow->velX = arrow->parrow->Velocity * Math::Cos((ang)*Math::PI / 180);
-					arrow->velY = arrow->parrow->Velocity * Math::Sin((ang)*Math::PI / 180);
+					arrow->parrow->Velocity = 400;
+					double ang = Math::Asin(this->dist * (-400) / Math::Pow(arrow->parrow->Velocity, 2)) / 2;
+					arrow->velX = arrow->parrow->Velocity * Math::Cos(ang);
+					arrow->velY = arrow->parrow->Velocity * Math::Sin(ang);
 					arrow->Timearrow = gcnew System::Diagnostics::Stopwatch;
 					arrow->Timearrow->Restart();
 					arrow->xInicial = this->Position.X + 353 * this->Scale.X;

@@ -46,7 +46,9 @@ void FBAView::SurvivalRender::Run() {
                     if (physicalElemts[i][j]->state!=PhysicalElement::States::Die)
                         physicalElemts[i][j]->ProcessCollision();
                     if (physicalElemts[i][j]->GetType() == UnitDistanceRender::typeid) {
-                        ((UnitDistanceRender^)physicalElemts[i][j])->arrow->ProcessCollision();
+                        if (((UnitDistanceRender^)physicalElemts[i][j])->arrow->throwed) {
+                            ((UnitDistanceRender^)physicalElemts[i][j])->arrow->ProcessCollision2();
+                        }
                     }
                 }
             }
@@ -62,8 +64,9 @@ void FBAView::SurvivalRender::Run() {
                 for (int j = 0; j < physicalElemts[i]->Count; j++) {
                     physicalElemts[i][j]->ToDo();
                     if (physicalElemts[i][j]->GetType() == UnitDistanceRender::typeid) {
+                        ((UnitDistanceRender^)physicalElemts[i][j])->arrow->ToDo() ;
                         if (((UnitDistanceRender^)physicalElemts[i][j])->arrow->throwed) {
-                            ((UnitDistanceRender^)physicalElemts[i][j])->arrow-> MakeFly();
+                            ((UnitDistanceRender^)physicalElemts[i][j])->arrow-> MakeFly2();
                         }
                     }
                 }
@@ -76,7 +79,7 @@ void FBAView::SurvivalRender::Run() {
                 }
             }
             TimeEnemies->Stop();
-            if (TimeEnemies->Elapsed.TotalSeconds > 8) {
+            if (TimeEnemies->Elapsed.TotalSeconds > 14) {
                 GenerateUnits_enemies(this->unit_enemies[0]);
                 TimeEnemies->Restart();
             }
@@ -269,6 +272,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     arrow->Position = crossbow->Position;
     arrow->throwed = 0;
     arrow->Rotation = 0;
+    arrow->posPunta = Vector2f(953, 953);
     //Unidades Alidas  
     unit_allies->Add(gcnew FBAModel::Units);
     unit_allies[0]->band = FBAModel::Units::Band::Allies;
@@ -357,7 +361,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_allies[2]->scale = Vector2f(0.45, 0.45);//
     unit_allies[2]->positionElement = Vector2i(120, 45);//
     unit_allies[2]->sizeElement = Vector2i(220, 302);//
-    unit_allies[2]->attackVelocity = 50;
+    unit_allies[2]->attackVelocity = 40;
     unit_allies[2]->movementVelocity = 0.9;
     unit_allies[2]->moneyValue = 50;
     unit_allies[2]->attackDamage = 40;
@@ -484,7 +488,7 @@ void FBAView::SurvivalRender::GenerateUnitsDistance(Units^ baseUnit) {
     newUnit->deathTime = newUnit->unit->deathTime;
     newUnit->arrow = gcnew ArrowRender();
     newUnit->arrow->Texture = gcnew Texture("Assets/Characters/wraith/PNG/Wraith_03/Vector Parts/Spells-Effect.png");
-    newUnit->rango = 10;
+    newUnit->rango = 19;
     newUnit->arrow->parrow = gcnew Projectile;
 }
 

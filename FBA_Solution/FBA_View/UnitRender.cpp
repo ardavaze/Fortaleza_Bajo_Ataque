@@ -18,9 +18,9 @@ void FBAView::UnitRender::ProcessCollision() {
 		if ( ( (frstRectangule + k) < 96 ) && ( (frstRectangule + k) >= 0 ) ) {
 			for (int j = 0; j < SurvivalRender::physicalSpace[frstRectangule + k]->Count ; j++) {
 				if (SurvivalRender::physicalSpace[frstRectangule + k ][j]->band != this->band) {
+					this->dist = i * 20;
 					this->state = UnitRender::States::Attack;
 					this->enemyUnit = SurvivalRender::physicalSpace[frstRectangule + k][j];
-					this->dist = i*20;
 					return;
 				}
 			}
