@@ -84,6 +84,7 @@ void FBAView::SurvivalRender::Run() {
         }
         Procesar_evento();
         userAvatar->UpdateUserHP(double(castle->HP)/castle->base->Vida_max);
+        userConsole->UpdateQueue();
         this->Clear();
         this->SetView(a);
         this->Draw(this->background);
@@ -106,8 +107,7 @@ void FBAView::SurvivalRender::Run() {
         render->Stop();
         this->SetView(b);
         this->Draw(this->userAvatar);
-        this->Draw(this->button);
-        this->Draw(this->console);
+        this->Draw(this->userConsole);
         this->Draw(this->watch);
         if (castle->HP <= 0) {  
             gameOver++; 
@@ -213,6 +213,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     unit_enemies = gcnew List<FBAModel::Units^>;
     watch = gcnew Watch;
     userAvatar = gcnew UserLifeBar(((Menu_principal^)owner)->user->nickname,((Menu_principal^)owner)->user->avatar.ToString());
+    userConsole = gcnew FBAView::Console;
     //Base
     base = gcnew FBAModel::Base;
     base->baseState = gcnew List<Texture^>;
@@ -400,18 +401,13 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     gameSound->Play();
     //Avatar
     controlElemts->Add(userAvatar);
-    userAvatar->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::userclick);
+    userAvatar->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::avatarclick);
     userAvatar->avatarButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::avatarclick);
-
     userAvatar->UpdateUserHP(1);
-    //buton
-    button = gcnew Sprite(gcnew Texture("Assets/Environment/button/barbaro 2.jpg"));
-    button->Position = Vector2f(468, 878);
-    button->Scale = Vector2f(0.25, 0.25);
-    //console
-    console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 4.png"));
-    console->Position = Vector2f(200, 800);
-    console->Scale = Vector2f(1.75, 1.75);
+    //Console
+    controlElemts->Add(userConsole);
+    userConsole->barbarianButton -> click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::barbarianClick);
+
  }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
