@@ -22,10 +22,10 @@ FBAView::Console::Console()
 	barbarianButton->Position = Vector2f(268, 78);
 	barbarianButton->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/button/barbaro 2.jpg");
 	dwarfButton->Scale = Vector2f(0.25, 0.25);
-	dwarfButton->Position = Vector2f(420, 78);
+	dwarfButton->Position = Vector2f(418, 78);
 	dwarfButton->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/button/enano.jpg");
 	wraithButton->Scale = Vector2f(0.25, 0.25);
-	wraithButton->Position = Vector2f(572, 78);
+	wraithButton->Position = Vector2f(568, 78);
 	wraithButton->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/button/wraith.jpg");
 	ConsoleFont1 = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
 	barbarianLetter->Scale = Vector2f(2, 1);
