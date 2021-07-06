@@ -42,6 +42,7 @@ namespace FBAView{
 		SoundBuffer^ gameSoundBuffer;
 		Sound^ gameSound;
 		FBAView::Console^ userConsole;
+		
 		//
 		//Watch
 		//
