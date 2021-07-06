@@ -12,14 +12,15 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(SFML::Window::
         controlElemts[i]->OcuppySpace(controlSpace);
     }
     this->SetFramerateLimit(60);
-    TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
+    barbarianTime = gcnew System::Diagnostics::Stopwatch; barbarianTime->Reset();
+    dwarfTime= gcnew System::Diagnostics::Stopwatch; dwarfTime->Reset();
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
     render = gcnew System::Diagnostics::Stopwatch; 
     watch->Chronometer->Restart();
     chronoGameOver = gcnew System::Diagnostics::Stopwatch;chronoGameOver->Reset();
     chronoGameOver->Stop();
-
+    userCoins = 100;
 }
 
 void FBAView::SurvivalRender::Run() {
@@ -83,6 +84,7 @@ void FBAView::SurvivalRender::Run() {
             watch->UpdateWatch();
         }
         Procesar_evento();
+        TimeAnalysis();
         userAvatar->UpdateUserHP(double(castle->HP)/castle->base->Vida_max);
         userConsole->UpdateQueue();
         this->Clear();
@@ -144,20 +146,11 @@ void FBAView::SurvivalRender::Procesar_evento(){
         case EventType::KeyPressed:
             if (gameOver == 0) {
                 if (Keyboard::IsKeyPressed(Keyboard::Key::D)) {
-                    TimeGenerate->Stop();
-                    if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-                        GenerateUnits(this->unit_allies[0]);
-                        TimeGenerate->Restart();
-                    }
-                    else TimeGenerate->Start();
+                    BarbarianEvent();
                 }
                 if (Keyboard::IsKeyPressed(Keyboard::Key::E)) {
-                    TimeGenerate->Stop();
-                    if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-                        GenerateUnits(this->unit_allies[1]);
-                        TimeGenerate->Restart();
-                    }
-                    else TimeGenerate->Start();
+                    DwarfEvent();
+                
                 }
                 if (Keyboard::IsKeyPressed(Keyboard::Key::Up)) {
                     crossbow->Rotation--;
@@ -199,6 +192,57 @@ void FBAView::SurvivalRender::Procesar_evento(){
         }
 
     }
+}
+
+void FBAView::SurvivalRender::BarbarianEvent()
+{  
+    if (userCoins - (this->unit_allies[0]->moneyValue) >= 0) {
+        if (barbarianQueue<3) {
+            if (barbarianQueue == 0) {
+                barbarianTime->Start();
+            }
+                barbarianQueue = barbarianQueue +1;
+                userCoins = userCoins - (this->unit_allies[0]->moneyValue);
+        }   
+    }
+}
+
+void FBAView::SurvivalRender::DwarfEvent()
+{
+    if (userCoins - (this->unit_allies[1]->moneyValue) >= 0) {
+        if (dwarfQueue < 3) {
+            if (dwarfQueue == 0) {
+                dwarfTime->Start();
+            }
+            dwarfQueue = dwarfQueue + 1;
+            userCoins = userCoins - (this->unit_allies[1]->moneyValue);
+        }
+    }
+}
+
+void FBAView::SurvivalRender::TimeAnalysis()
+{   
+    if (barbarianQueue > 0) {
+        if (barbarianTime->Elapsed.TotalSeconds > 6){
+            GenerateUnits(this->unit_allies[0]);
+            barbarianQueue= barbarianQueue - 1;
+            barbarianTime->Reset();
+            if (barbarianQueue > 0) {
+                barbarianTime->Start();
+            }
+        }
+    }
+    if (dwarfQueue > 0) {
+        if (dwarfTime->Elapsed.TotalSeconds > 6) {
+            GenerateUnits(this->unit_allies[1]);
+            dwarfQueue = dwarfQueue - 1;
+            dwarfTime->Reset();
+            if (dwarfQueue > 0) {
+                dwarfTime->Start();
+            }
+        }
+    }
+   
 }
 
 void FBAView::SurvivalRender::InitializeGraphics() {
@@ -407,7 +451,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
     //Console
     controlElemts->Add(userConsole);
     userConsole->barbarianButton -> click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::barbarianClick);
-
+    userConsole->dwarfButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::dwarfClick);
  }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){

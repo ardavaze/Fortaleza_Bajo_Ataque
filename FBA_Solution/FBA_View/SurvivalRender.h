@@ -35,17 +35,23 @@ namespace FBAView{
 		System::Diagnostics::Stopwatch^ TimeThrowArrow;
 		List<FBAModel::Units^>^ unit_allies;
 		List<FBAModel::Units^>^ unit_enemies;
-		System::Diagnostics::Stopwatch^ TimeGenerate;
 		int gameOver;
 		void endGame();
 		Sprite^ gameOverImage;
 		SoundBuffer^ gameSoundBuffer;
 		Sound^ gameSound;
 		FBAView::Console^ userConsole;
-		
+		static int userCoins=100;
+		static int barbarianQueue=0;
+		static int dwarfQueue=0;
+		static System::Diagnostics::Stopwatch^ barbarianTime;
+		static System::Diagnostics::Stopwatch^ dwarfTime;
+		void BarbarianEvent();
+		void DwarfEvent();
 		//
 		//Watch
 		//
+		void TimeAnalysis();
 		UserLifeBar^ userAvatar;
 		Watch^ watch;
 		void InitializeGraphics();
@@ -61,12 +67,10 @@ namespace FBAView{
 		int piso = 740;
 		System::Diagnostics::Stopwatch^ render;
 		Void barbarianClick(System::Object^ sender, ClickArgs^ e) {
-			TimeGenerate->Stop();
-			if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-				GenerateUnits(this->unit_allies[0]);
-				TimeGenerate->Restart();
-			}
-			else TimeGenerate->Start();
+			BarbarianEvent();
+		}
+		Void dwarfClick(System::Object^ sender, ClickArgs^ e) {
+			DwarfEvent();
 		}
 		void avatarclick(System::Object^ sender, ClickArgs^ e) {
 			castle->HP -= 10;

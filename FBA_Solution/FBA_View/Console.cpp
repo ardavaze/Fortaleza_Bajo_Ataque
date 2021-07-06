@@ -1,4 +1,6 @@
 #include "Console.h"
+#include "menu_principal.h"
+#include "SurvivalRender.h"
 
 
 FBAView::Console::Console()
@@ -22,11 +24,15 @@ FBAView::Console::Console()
 	wraithCost = gcnew SFML::Graphics::Text;
 	separator = gcnew RectangleShape;
 	coin4 = gcnew Sprite;
-	userCoins= gcnew SFML::Graphics::Text;
+	userCoinsText= gcnew SFML::Graphics::Text;
+	barbarianBar= gcnew RectangleShape;
+	barbarianQueue1= gcnew CircleShape;
+	barbarianQueue2= gcnew CircleShape ;
+	barbarianQueue3= gcnew CircleShape ;
 	//
 	Position = Vector2f(200,800);
 	Scale = Vector2f(1, 1);
-	//
+	//statik
 	consoleMold->Scale = Vector2f(1.75, 1.75);
 	consoleMold->Position = Vector2f(0,0);
 	consoleMold->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/MapsElements/console mold 4.png");
@@ -86,11 +92,28 @@ FBAView::Console::Console()
 	coin4->Scale = Vector2f(0.15, 0.15);
 	coin4->Position = Vector2f(1200, 120);
 	coin4->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/monedas.png");
-	userCoins->Scale = Vector2f(1.5, 1);
-	userCoins->Position = Vector2f(1250, 120);
-	userCoins->Color = SFML::Graphics::Color::White;
-	userCoins->Font = ConsoleFont2;
-	userCoins->DisplayedString = "100";
+	userCoinsText->Scale = Vector2f(1.5, 1);
+	userCoinsText->Position = Vector2f(1250, 120);
+	userCoinsText->Color = SFML::Graphics::Color::White;
+	userCoinsText->Font = ConsoleFont2;
+	userCoinsText->DisplayedString = ""+ SurvivalRender::userCoins;
+	//dinamic
+	barbarianBar->Size = Vector2f(10, 90);
+	barbarianBar->Scale= Vector2f(1, -1);
+	barbarianBar->Position = Vector2f(245, 170);
+	barbarianBar->FillColor = SFML::Graphics::Color::Cyan;
+	barbarianQueue1->Radius = 7;
+	barbarianQueue1->Scale = Vector2f(1, 1);
+	barbarianQueue1->Position = Vector2f(368, 86);
+	barbarianQueue1->FillColor= SFML::Graphics::Color::Cyan;
+	barbarianQueue2->Radius = 7;
+	barbarianQueue2->Scale = Vector2f(1, 1);
+	barbarianQueue2->Position = Vector2f(368, 116);
+	barbarianQueue2->FillColor = SFML::Graphics::Color::Cyan;
+	barbarianQueue3->Radius = 7;
+	barbarianQueue3->Scale = Vector2f(1, 1);
+	barbarianQueue3->Position = Vector2f(368, 146);
+	barbarianQueue3->FillColor = SFML::Graphics::Color::Cyan;
 	//
 	internalControlElemts = gcnew List<ControlElements^>;
 	internalControlElemts->Add(barbarianButton);
@@ -109,6 +132,9 @@ FBAView::Console::Console()
 
 void FBAView::Console::UpdateQueue()
 {
+	BarAnalysis();
+	QueueAnalysis();
+	userCoinsText->DisplayedString = "" + SurvivalRender::userCoins;
 	board->Clear(SFML::Graphics::Color::Color(0, 0, 0, 0));
 	board->Draw(barbarianButton);
 	board->Draw(dwarfButton);
@@ -125,8 +151,47 @@ void FBAView::Console::UpdateQueue()
 	board->Draw(wraithCost);
 	board->Draw(separator);
 	board->Draw(coin4);
-	board->Draw(userCoins);
+	board->Draw(userCoinsText);
+	board->Draw(barbarianBar);
+	board->Draw(barbarianQueue1);
+	board->Draw(barbarianQueue2);
+	board->Draw(barbarianQueue3);
 	board->Display();
 	this->Texture = board->Texture;
 }
 
+void FBAView::Console::BarAnalysis()
+{	
+	if (SurvivalRender::barbarianQueue>0)
+	{
+		float yscale = -1 * (SurvivalRender::barbarianTime->Elapsed.TotalSeconds / 6) * 1;
+		barbarianBar->Scale = Vector2f(1, yscale);
+	}
+	else
+		barbarianBar->Scale = Vector2f(1, 0);
+
+}
+
+void FBAView::Console::QueueAnalysis()
+{
+	if (SurvivalRender::barbarianQueue == 0) {
+		barbarianQueue1->Scale = Vector2f(0, 0);
+		barbarianQueue2->Scale = Vector2f(0, 0);
+		barbarianQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::barbarianQueue == 1) {
+	barbarianQueue1->Scale = Vector2f(1, 1);
+	barbarianQueue2->Scale = Vector2f(0, 0);
+	barbarianQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::barbarianQueue == 2) {
+	barbarianQueue1->Scale = Vector2f(1, 1);
+	barbarianQueue2->Scale = Vector2f(1, 1);
+	barbarianQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::barbarianQueue == 3) {
+	barbarianQueue1->Scale = Vector2f(1, 1);
+	barbarianQueue2->Scale = Vector2f(1, 1);
+	barbarianQueue3->Scale = Vector2f(1, 1);
+	}
+}
