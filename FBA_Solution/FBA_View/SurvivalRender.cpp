@@ -375,7 +375,7 @@ void FBAView::SurvivalRender::InitializeGraphics() {
         watch->numbers[i] = gcnew Texture("Assets/Environment/Numeros/" + i + ".png");
     }
     watch->twoPoints = gcnew Texture("Assets/Environment/Numeros/2puntos.png");
-    watch->Position = Vector2f(1400, 0);
+    watch->Position = Vector2f(700, 0);
     watch->Scale = Vector2f(0.8, 0.8);
     watch->secUnit->Texture=watch->numbers[0];
     watch->secDecena->Texture = watch->numbers[0];
