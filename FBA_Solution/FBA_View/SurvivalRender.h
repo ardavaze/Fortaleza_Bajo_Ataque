@@ -33,13 +33,16 @@ namespace FBAView{
 		CastleRender^ castle;
 		List<ControlElements^>^ controlElemts;
 		FBAView::Console^ userConsole;
-		static int userCoins = 100;
+		static int userCoins = 150;
 		static int barbarianQueue = 0;
 		static int dwarfQueue = 0;
+		static int wraithQueue = 0;
 		static System::Diagnostics::Stopwatch^ barbarianTime;
 		static System::Diagnostics::Stopwatch^ dwarfTime;
+		static System::Diagnostics::Stopwatch^ wraithTime;
 		void BarbarianEvent();
 		void DwarfEvent();
+		void WraithEvent();
 		void TimeAnalysis();
 		UserLifeBar^ userAvatar;
 		Watch^ watch;
@@ -78,11 +81,14 @@ namespace FBAView{
 			}
 			else TimeGenerate->Start();
 		}
-		Void barbarianClick(System::Object^ sender, ClickArgs^ e) {
+		Void BarbarianClick(System::Object^ sender, ClickArgs^ e) {
 			BarbarianEvent();
 		}
-		Void dwarfClick(System::Object^ sender, ClickArgs^ e) {
+		Void DwarfClick(System::Object^ sender, ClickArgs^ e) {
 			DwarfEvent();
+		}
+		Void WraithClick(System::Object^ sender, ClickArgs^ e) {
+			WraithEvent();
 		}
 		Void avatarclick(System::Object^ sender, ClickArgs^ e) {
 			castle->HP -= 10;

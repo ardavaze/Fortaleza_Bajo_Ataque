@@ -29,6 +29,14 @@ FBAView::Console::Console()
 	barbarianQueue1= gcnew CircleShape;
 	barbarianQueue2= gcnew CircleShape ;
 	barbarianQueue3= gcnew CircleShape ;
+	dwarfBar = gcnew RectangleShape;
+	dwarfQueue1 = gcnew CircleShape;
+	dwarfQueue2 = gcnew CircleShape;
+	dwarfQueue3 = gcnew CircleShape;
+	wraithBar = gcnew RectangleShape;
+	wraithQueue1 = gcnew CircleShape;
+	wraithQueue2 = gcnew CircleShape;
+	wraithQueue3 = gcnew CircleShape;
 	//
 	Position = Vector2f(200,800);
 	Scale = Vector2f(1, 1);
@@ -61,7 +69,7 @@ FBAView::Console::Console()
 	wraithLetter->Position = Vector2f(564, 78);
 	wraithLetter->Color = SFML::Graphics::Color::White;
 	wraithLetter->Font = ConsoleFont1;
-	wraithLetter->DisplayedString = "F";
+	wraithLetter->DisplayedString = "C";
 	coin1->Scale = Vector2f(0.15, 0.15);
 	coin1->Position = Vector2f(268, 175);
 	coin1->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/monedas.png");
@@ -97,7 +105,7 @@ FBAView::Console::Console()
 	userCoinsText->Color = SFML::Graphics::Color::White;
 	userCoinsText->Font = ConsoleFont2;
 	userCoinsText->DisplayedString = ""+ SurvivalRender::userCoins;
-	//dinamic
+	//dinamic barbarian
 	barbarianBar->Size = Vector2f(10, 90);
 	barbarianBar->Scale= Vector2f(1, -1);
 	barbarianBar->Position = Vector2f(245, 170);
@@ -114,6 +122,40 @@ FBAView::Console::Console()
 	barbarianQueue3->Scale = Vector2f(1, 1);
 	barbarianQueue3->Position = Vector2f(368, 146);
 	barbarianQueue3->FillColor = SFML::Graphics::Color::Cyan;
+	//dinamic dwarf
+	dwarfBar->Size = Vector2f(10, 90);
+	dwarfBar->Scale = Vector2f(1, -1);
+	dwarfBar->Position = Vector2f(395, 170);
+	dwarfBar->FillColor = SFML::Graphics::Color::Cyan;
+	dwarfQueue1->Radius = 7;
+	dwarfQueue1->Scale = Vector2f(1, 1);
+	dwarfQueue1->Position = Vector2f(518, 86);
+	dwarfQueue1->FillColor = SFML::Graphics::Color::Cyan;
+	dwarfQueue2->Radius = 7;
+	dwarfQueue2->Scale = Vector2f(1, 1);
+	dwarfQueue2->Position = Vector2f(518, 116);
+	dwarfQueue2->FillColor = SFML::Graphics::Color::Cyan;
+	dwarfQueue3->Radius = 7;
+	dwarfQueue3->Scale = Vector2f(1, 1);
+	dwarfQueue3->Position = Vector2f(518, 146);
+	dwarfQueue3->FillColor = SFML::Graphics::Color::Cyan;
+	//dinamic wraith
+	wraithBar->Size = Vector2f(10, 90);
+	wraithBar->Scale = Vector2f(1, -1);
+	wraithBar->Position = Vector2f(545, 170);
+	wraithBar->FillColor = SFML::Graphics::Color::Cyan;
+	wraithQueue1->Radius = 7;
+	wraithQueue1->Scale = Vector2f(1, 1);
+	wraithQueue1->Position = Vector2f(668, 86);
+	wraithQueue1->FillColor = SFML::Graphics::Color::Cyan;
+	wraithQueue2->Radius = 7;
+	wraithQueue2->Scale = Vector2f(1, 1);
+	wraithQueue2->Position = Vector2f(668, 116);
+	wraithQueue2->FillColor = SFML::Graphics::Color::Cyan;
+	wraithQueue3->Radius = 7;
+	wraithQueue3->Scale = Vector2f(1, 1);
+	wraithQueue3->Position = Vector2f(668, 146);
+	wraithQueue3->FillColor = SFML::Graphics::Color::Cyan;
 	//
 	internalControlElemts = gcnew List<ControlElements^>;
 	internalControlElemts->Add(barbarianButton);
@@ -156,6 +198,15 @@ void FBAView::Console::UpdateQueue()
 	board->Draw(barbarianQueue1);
 	board->Draw(barbarianQueue2);
 	board->Draw(barbarianQueue3);
+	board->Draw(dwarfBar);
+	board->Draw(dwarfQueue1);
+	board->Draw(dwarfQueue2);
+	board->Draw(dwarfQueue3);
+	board->Display();
+	board->Draw(wraithBar);
+	board->Draw(wraithQueue1);
+	board->Draw(wraithQueue2);
+	board->Draw(wraithQueue3);
 	board->Display();
 	this->Texture = board->Texture;
 }
@@ -169,6 +220,20 @@ void FBAView::Console::BarAnalysis()
 	}
 	else
 		barbarianBar->Scale = Vector2f(1, 0);
+	if (SurvivalRender::dwarfQueue > 0)
+	{
+		float yscale = -1 * (SurvivalRender::dwarfTime->Elapsed.TotalSeconds / 6) * 1;
+		dwarfBar->Scale = Vector2f(1, yscale);
+	}
+	else
+		dwarfBar->Scale = Vector2f(1, 0);
+	if (SurvivalRender::wraithQueue > 0)
+	{
+		float yscale = -1 * (SurvivalRender::wraithTime->Elapsed.TotalSeconds / 6) * 1;
+		wraithBar->Scale = Vector2f(1, yscale);
+	}
+	else
+		wraithBar->Scale = Vector2f(1, 0);
 
 }
 
@@ -193,5 +258,47 @@ void FBAView::Console::QueueAnalysis()
 	barbarianQueue1->Scale = Vector2f(1, 1);
 	barbarianQueue2->Scale = Vector2f(1, 1);
 	barbarianQueue3->Scale = Vector2f(1, 1);
+	}
+	//
+	if (SurvivalRender::dwarfQueue == 0) {
+		dwarfQueue1->Scale = Vector2f(0, 0);
+		dwarfQueue2->Scale = Vector2f(0, 0);
+		dwarfQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::dwarfQueue == 1) {
+		dwarfQueue1->Scale = Vector2f(1, 1);
+		dwarfQueue2->Scale = Vector2f(0, 0);
+		dwarfQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::dwarfQueue == 2) {
+		dwarfQueue1->Scale = Vector2f(1, 1);
+		dwarfQueue2->Scale = Vector2f(1, 1);
+		dwarfQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::dwarfQueue == 3) {
+		dwarfQueue1->Scale = Vector2f(1, 1);
+		dwarfQueue2->Scale = Vector2f(1, 1);
+		dwarfQueue3->Scale = Vector2f(1, 1);
+	}
+	//
+	if (SurvivalRender::wraithQueue == 0) {
+		wraithQueue1->Scale = Vector2f(0, 0);
+		wraithQueue2->Scale = Vector2f(0, 0);
+		wraithQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::wraithQueue == 1) {
+		wraithQueue1->Scale = Vector2f(1, 1);
+		wraithQueue2->Scale = Vector2f(0, 0);
+		wraithQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::wraithQueue == 2) {
+		wraithQueue1->Scale = Vector2f(1, 1);
+		wraithQueue2->Scale = Vector2f(1, 1);
+		wraithQueue3->Scale = Vector2f(0, 0);
+	}
+	if (SurvivalRender::wraithQueue == 3) {
+		wraithQueue1->Scale = Vector2f(1, 1);
+		wraithQueue2->Scale = Vector2f(1, 1);
+		wraithQueue3->Scale = Vector2f(1, 1);
 	}
 }

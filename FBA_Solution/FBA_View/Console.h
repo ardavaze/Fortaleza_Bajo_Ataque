@@ -28,6 +28,14 @@ namespace FBAView {
 		CircleShape^ barbarianQueue1;
 		CircleShape^ barbarianQueue2;
 		CircleShape^ barbarianQueue3;
+		RectangleShape^ dwarfBar;
+		CircleShape^ dwarfQueue1;
+		CircleShape^ dwarfQueue2;
+		CircleShape^ dwarfQueue3;
+		RectangleShape^ wraithBar;
+		CircleShape^ wraithQueue1;
+		CircleShape^ wraithQueue2;
+		CircleShape^ wraithQueue3;
 		void BarAnalysis();
 		void QueueAnalysis();
 		Console();
