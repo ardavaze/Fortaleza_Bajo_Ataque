@@ -1,7 +1,7 @@
 #include "Watch.h"
 
 FBAView::Watch::Watch() {
-    board = gcnew RenderTexture(850,390);
+    board = gcnew RenderTexture(880,400);
     Chronometer = gcnew System::Diagnostics::Stopwatch;
     secUnit = gcnew Sprite();
     secDecena=gcnew Sprite;
@@ -14,11 +14,11 @@ FBAView::Watch::Watch() {
     minUnit->Scale = Vector2f(1, 1);
     minDecena->Scale = Vector2f(1, 1);
     dosPuntos->Scale = Vector2f(1, 1);
-    secUnit->Position= Vector2f(550, 95);
-    secDecena->Position = Vector2f(430, 95);
-    minUnit->Position = Vector2f(190, 95);
-    minDecena->Position = Vector2f(70, 95);
-    dosPuntos->Position = Vector2f(310, 95);
+    secUnit->Position= Vector2f(547, 129);
+    secDecena->Position = Vector2f(427, 129);
+    minUnit->Position = Vector2f(207, 129);
+    minDecena->Position = Vector2f(87, 129);
+    dosPuntos->Position = Vector2f(317, 129);
     background->Position = Vector2f(0, 0);
     background->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/MapsElements/6.png");
     background->Scale = Vector2f(board->Size.X/background->Texture->Size.X, board->Size.Y / background->Texture->Size.Y);
