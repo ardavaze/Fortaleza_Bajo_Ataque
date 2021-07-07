@@ -15,7 +15,7 @@ namespace FBAView {
 		double movementVelocity; //en metros/segundo(1m=50pix)
 		HealthBar^ healthbar;
 		Sprite^ body;
-		virtual void ProcessCollision() override;
+		virtual Void ProcessCollision() override;
 		virtual Void ToDo() override;
 		virtual Void LoseLife(int) override;
 	protected:

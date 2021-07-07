@@ -55,7 +55,7 @@ Void FBAView::UnitDistanceRender::ToDo() {
 			case FBAView::UnitRender::States::Attack:
 				if (indice >= this->unit->AttackAnimation->Count) { indice = 0; }
 				this->body->Texture = unit->AttackAnimation[indice];
-				Console::WriteLine(""+ indice);
+				System::Console::WriteLine(""+ indice);
 				if ((indice == int(0.66 * unit->MoveAnimation->Count)) && (state == FBAView::UnitRender::States::Attack)) {
 					timeJob->Stop();
 					arrow->throwed = 1;

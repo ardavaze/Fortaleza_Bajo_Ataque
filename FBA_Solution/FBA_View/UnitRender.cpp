@@ -60,7 +60,6 @@ void FBAView::UnitRender::ToDo() {
 			this->body->Texture = unit->AttackAnimation[indice];
 			if ((indice == this->unit->MoveAnimation->Count / 2) &&(state== FBAView::UnitRender::States::Attack)) {
 				this->enemyUnit->LoseLife(this->attackDamage); 
-
 			}
 			if (indice == unit->AttackAnimation->Count / 2)
 				this->unit->attackSound->Play();
@@ -79,8 +78,12 @@ void FBAView::UnitRender::ToDo() {
 		case FBAView::UnitRender::States::Die:
 			if (indice >= this->unit->DeathAnimation->Count) { indice = 0; }
 			this->body->Texture = unit->DeathAnimation[indice];
-			if (indice == unit->DeathAnimation->Count / 2)
+			if (indice == unit->DeathAnimation->Count / 2) {
 				this->unit->deathSound->Play();
+				if (this->unit->band == FBAModel::Units::Band::Enemies) {
+					SurvivalRender::userCoins = SurvivalRender::userCoins + 10;
+				}
+			}
 			break;
 		}
 		this->PaintTexture();

@@ -90,6 +90,9 @@
     <ClCompile Include="BackGroundRender.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu_principal.h">
@@ -168,6 +171,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="BackGroundRender.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

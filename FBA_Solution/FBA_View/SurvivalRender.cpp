@@ -12,13 +12,15 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(SFML::Window::
         controlElemts[i]->OcuppySpace(controlSpace);
     }
     this->SetFramerateLimit(60);
-    TimeGenerate = gcnew System::Diagnostics::Stopwatch; TimeGenerate->Start();
+    barbarianTime = gcnew System::Diagnostics::Stopwatch; barbarianTime->Reset();
+    dwarfTime= gcnew System::Diagnostics::Stopwatch; dwarfTime->Reset();
     TimeThrowArrow= gcnew System::Diagnostics::Stopwatch; TimeThrowArrow->Start();
     TimeEnemies=gcnew System::Diagnostics::Stopwatch; TimeEnemies->Start();
     render = gcnew System::Diagnostics::Stopwatch; 
     watch->Chronometer->Restart();
     chronoGameOver = gcnew System::Diagnostics::Stopwatch;chronoGameOver->Reset();
     chronoGameOver->Stop();
+    userCoins = 150;
 }
 
 void FBAView::SurvivalRender::Run() {
@@ -92,9 +94,11 @@ void FBAView::SurvivalRender::Run() {
             watch->UpdateWatch();
         }
         Procesar_evento();
-        Console::WriteLine("" + render->Elapsed.TotalMilliseconds);
+        TimeAnalysis();
+        System::Console::WriteLine("" + render->Elapsed.TotalMilliseconds);
         render->Restart();
         // Logica del pintado en pantalla
+        userConsole->UpdateQueue();
         this->Clear();
         this->SetView(a);
         this->Draw(this->background);
@@ -113,7 +117,7 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->castle->arrowRender);
         this->SetView(b);
         this->Draw(this->userAvatar);
-        this->Draw(this->console);
+        this->Draw(this->userConsole);
         this->Draw(this->watch);
         if (castle->HP <= 0) {  
             gameOver++; 
@@ -129,24 +133,24 @@ void FBAView::SurvivalRender::Run() {
             this->Close();
         }
         if(gameOver >= 2) { chronoGameOver->Start(); }
-        this->SetView(miniMap);
-        this->Draw(this->background);
-        for (int i = 0; i < 3; i++) {
-            for (int j = physicalElemts[i]->Count - 1; j >= 0; j--) {
-                this->Draw(physicalElemts[i][j]);
-                if (physicalElemts[i][j]->GetType() == UnitDistanceRender::typeid) {
-                    if (((UnitDistanceRender^)physicalElemts[i][j])->arrow->throwed) {
-                        this->Draw(((UnitDistanceRender^)physicalElemts[i][j])->arrow);
-                    }
-                }
-            }
-        }
-        this->Draw(castle->cover);
-        this->Draw(this->castle->crossbow);
-        this->Draw(this->castle->arrowRender);
-        Console::WriteLine(" b." + render->Elapsed.TotalMilliseconds);
+        //this->SetView(miniMap);
+        //this->Draw(this->background);
+        //for (int i = 0; i < 3; i++) {
+        //    for (int j = physicalElemts[i]->Count - 1; j >= 0; j--) {
+        //        this->Draw(physicalElemts[i][j]);
+        //        if (physicalElemts[i][j]->GetType() == UnitDistanceRender::typeid) {
+        //            if (((UnitDistanceRender^)physicalElemts[i][j])->arrow->throwed) {
+        //                this->Draw(((UnitDistanceRender^)physicalElemts[i][j])->arrow);
+        //            }
+        //        }
+        //    }
+        //}
+        //this->Draw(castle->cover);
+        //this->Draw(this->castle->crossbow);
+        //this->Draw(this->castle->arrowRender);
+        System::Console::WriteLine(" b." + render->Elapsed.TotalMilliseconds);
         this->Display();
-        Console::WriteLine(" c." + render->Elapsed.TotalMilliseconds);
+        System::Console::WriteLine(" c." + render->Elapsed.TotalMilliseconds);
     }
 }
 
@@ -161,16 +165,10 @@ void FBAView::SurvivalRender::Procesar_evento(){
         case EventType::KeyPressed:
             if (gameOver == 0) {
                 if (Keyboard::IsKeyPressed(Keyboard::Key::D)) {
-                    if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-                        GenerateUnits(this->unitAllies[0]);
-                        TimeGenerate->Restart();
-                    }
+                    BarbarianEvent();
                 }
                 if (Keyboard::IsKeyPressed(Keyboard::Key::E)) {
-                    if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-                        GenerateUnitsDistance(this->unitAllies[2]);
-                        TimeGenerate->Restart();
-                    }
+                    DwarfEvent();
                 }
                 if (Keyboard::IsKeyPressed(Keyboard::Key::Up)) {
                     castle->crossbow->Rotation--;
@@ -187,7 +185,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
                 }
                 if (Keyboard::IsKeyPressed(Keyboard::Key::Space)) {
                     TimeThrowArrow->Stop();
-                    if (TimeThrowArrow->Elapsed.TotalSeconds > 5) {
+                    if (!castle->arrowRender->throwed) {
                         castle->ThrowArrow();
                         TimeThrowArrow->Restart();
                     }
@@ -218,6 +216,55 @@ void FBAView::SurvivalRender::Procesar_evento(){
     }
 }
 
+void FBAView::SurvivalRender::BarbarianEvent()
+{  
+    if (userCoins - (this->unitAllies[0]->moneyValue) >= 0) {
+        if (barbarianQueue<3) {
+            if (barbarianQueue == 0) {
+                barbarianTime->Start();
+            }
+            barbarianQueue = barbarianQueue +1;
+            userCoins = userCoins - (this->unitAllies[0]->moneyValue);
+        }   
+    }
+}
+
+void FBAView::SurvivalRender::DwarfEvent()
+{
+    if (userCoins - (this->unitAllies[2]->moneyValue) >= 0) {
+        if (dwarfQueue < 3) {
+            if (dwarfQueue == 0) {
+                dwarfTime->Start();
+            }
+            dwarfQueue = dwarfQueue + 1;
+            userCoins = userCoins - (this->unitAllies[1]->moneyValue);
+        }
+    }
+}
+void FBAView::SurvivalRender::TimeAnalysis()
+{
+    if (barbarianQueue > 0) {
+        if (barbarianTime->Elapsed.TotalSeconds > 6) {
+            GenerateUnits(this->unitAllies[0]);
+            barbarianQueue = barbarianQueue - 1;
+            barbarianTime->Reset();
+            if (barbarianQueue > 0) {
+                barbarianTime->Start();
+            }
+        }
+    }
+    if (dwarfQueue > 0) {
+        if (dwarfTime->Elapsed.TotalSeconds > 6) {
+            GenerateUnitsDistance(this->unitAllies[2]);
+            dwarfQueue = dwarfQueue - 1;
+            dwarfTime->Reset();
+            if (dwarfQueue > 0) {
+                dwarfTime->Start();
+            }
+        }
+    }
+}
+
 Void FBAView::SurvivalRender::InitializeGraphics() {
     // GameElements
     //// Unidades Alidas  Modelo
@@ -225,6 +272,8 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitAllies->Add(gcnew FBAModel::Units);
     unitAllies[0]->band = FBAModel::Units::Band::Allies;
     unitAllies[0]->AttackAnimation = gcnew List<Texture^>;
+    unitAllies[0]->MoveAnimation = gcnew List<Texture^>;
+    unitAllies[0]->DeathAnimation = gcnew List<Texture^>;
     unitAllies[0]->MoveAnimation = gcnew List<Texture^>;
     unitAllies[0]->DeathAnimation = gcnew List<Texture^>;
     String^ d;               //auxiliar para Directorio de imagenes
@@ -258,22 +307,22 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitAllies[1]->AttackAnimation = gcnew List<Texture^>;
     unitAllies[1]->MoveAnimation = gcnew List<Texture^>;
     unitAllies[1]->DeathAnimation = gcnew List<Texture^>;
-    for (int j = 0; j < 11; j++) {
-        d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
-            "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_00" + j + ".png";
-        unitAllies[1]->AttackAnimation->Add(gcnew Texture(d));
-        d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Walking/Walking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
-            "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Walking/Walking_00" + j + ".png";
-        unitAllies[1]->MoveAnimation->Add(gcnew Texture(d));
-        d = j > 9 ? "Assets/Characters/Soldier/4_enemies_1_die_0" + j + ".png" :
-            "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
-        unitAllies[0]->DeathAnimation->Add(gcnew Texture(d));
-    }
+    //for (int j = 0; j < 11; j++) {
+    //    d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
+    //        "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Attacking/Attacking_00" + j + ".png";
+    //    unitAllies[1]->AttackAnimation->Add(gcnew Texture(d));
+    //    d = j > 9 ? "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Walking/Walking_0" + j + ".png" : //que pasa con la direccion de memoria creada con gcnew
+    //        "Assets/Characters/craftpix-991077-knight-tiny-style-2d-character-sprites/PNG/Knight Gray/PNG Sequences/Walking/Walking_00" + j + ".png";
+    //    unitAllies[1]->MoveAnimation->Add(gcnew Texture(d));
+    //    d = j > 9 ? "Assets/Characters/Soldier/4_enemies_1_die_0" + j + ".png" :
+    //        "Assets/Characters/Soldier/4_enemies_1_die_00" + j + ".png";
+    //    unitAllies[0]->DeathAnimation->Add(gcnew Texture(d));
+    //}
     unitAllies[1]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
     unitAllies[1]->attackSound = gcnew Sound(unitAllies[0]->attackBuffer);
     unitAllies[1]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
     unitAllies[1]->deathSound = gcnew Sound(unitAllies[0]->deathBuffer);
-    unitAllies[1]->Image = unitAllies[1]->MoveAnimation[0];
+    //unitAllies[1]->Image = unitAllies[1]->MoveAnimation[0];
     unitAllies[1]->scale = Vector2f(0.5, 0.5);
     unitAllies[1]->positionElement = Vector2i(172, 94);
     unitAllies[1]->sizeElement = Vector2i(358 - 172, 334 - 94);
@@ -467,7 +516,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     ////physical elements
     physicalElemts = gcnew array<List<PhysicalElement^>^>(3);
     physicalElemts[0] = gcnew List<PhysicalElement^>(); //Castillo
-    physicalElemts[1] = gcnew List<PhysicalElement^>();//Arrow
+    physicalElemts[1] = gcnew List<PhysicalElement^>();
     physicalElemts[2] = gcnew List<PhysicalElement^>();
     physicalElemts[0]->Add(castle);
     ////Avatar
@@ -477,9 +526,9 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     userAvatar->UpdateUserHP(1);
     castle->HPBar = userAvatar;
     ////console
-    console = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/console mold 3.png"));
-    console->Position = Vector2f(400, 800);
-    console->Scale = Vector2f(1.5, 1.5);
+    userConsole = gcnew FBAView::Console;
+    userConsole->barbarianButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::barbarianClick);
+    userConsole->dwarfButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::dwarfClick);
     ////Cronometro
     watch = gcnew Watch;
     watch->numbers = gcnew array<Texture^>(10);
@@ -487,7 +536,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
         watch->numbers[i] = gcnew Texture("Assets/Environment/Numeros/" + i + ".png");
     }
     watch->twoPoints = gcnew Texture("Assets/Environment/Numeros/2puntos.png");
-    watch->Position = Vector2f(1400, 0);
+    watch->Position = Vector2f(700, -20);
     watch->Scale = Vector2f(0.8, 0.8);
     watch->secUnit->Texture = watch->numbers[0];
     watch->secDecena->Texture = watch->numbers[0];
@@ -499,16 +548,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     controlElemts = gcnew List<ControlElements^>;
     controlElemts->Add(userAvatar);
     controlElemts->Add(watch);
+    controlElemts->Add(userConsole);
     //Utilitarios
     ////Game
     gameOver = 0;
-    gameOverImage = gcnew Sprite(gcnew Texture("Assets/Environment/GameOver.png"));
-    gameOverImage->Origin = Vector2f(gameOverImage->Texture->Size.X / 2, gameOverImage->Texture->Size.Y / 2);
-    gameOverImage->Position = Vector2f(1920 / 2, 1080 / 2);
-    ////Music
-    gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
-    gameSound = gcnew Sound(gameSoundBuffer);
-    gameSound->Play();
  }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){

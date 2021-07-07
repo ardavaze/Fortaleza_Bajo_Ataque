@@ -8,6 +8,7 @@
 #include "HealthBar.h"
 #include "UnitDistanceRender.h"
 #include "BackGroundRender.h"
+#include "Console.h"
 using namespace SFML::Graphics;
 using namespace SFML::Window;
 using namespace SFML::System;
@@ -19,19 +20,27 @@ namespace FBAView{
 	public ref class SurvivalRender : public RenderWindow {
 	public:
 		SurvivalRender();/* : RenderWindow(mod, title, style) {}*/
-		/// GameElements
+		/// GameElements Model
 		List<FBAModel::Units^>^ unitAllies;
 		List<FBAModel::Units^>^ unitEnemies;
 		FBAModel::Projectile^ projectile;
 		Base^ base;
 		FBAModel::Skin_Background^ skinBackground;
 		/// Elementos Graficos
+		array<List<PhysicalElement^>^>^ physicalElemts;
 		BackGroundRender^ background;
 		HealthBar^ healthBar;
-		array<List<PhysicalElement^>^>^ physicalElemts;
 		CastleRender^ castle;
 		List<ControlElements^>^ controlElemts;
-		Sprite^ console;
+		FBAView::Console^ userConsole;
+		static int userCoins = 100;
+		static int barbarianQueue = 0;
+		static int dwarfQueue = 0;
+		static System::Diagnostics::Stopwatch^ barbarianTime;
+		static System::Diagnostics::Stopwatch^ dwarfTime;
+		void BarbarianEvent();
+		void DwarfEvent();
+		void TimeAnalysis();
 		UserLifeBar^ userAvatar;
 		Watch^ watch;
 		//Entorno Grafico
@@ -68,6 +77,12 @@ namespace FBAView{
 				TimeGenerate->Restart();
 			}
 			else TimeGenerate->Start();
+		}
+		Void barbarianClick(System::Object^ sender, ClickArgs^ e) {
+			BarbarianEvent();
+		}
+		Void dwarfClick(System::Object^ sender, ClickArgs^ e) {
+			DwarfEvent();
 		}
 		Void avatarclick(System::Object^ sender, ClickArgs^ e) {
 			castle->HP -= 10;
