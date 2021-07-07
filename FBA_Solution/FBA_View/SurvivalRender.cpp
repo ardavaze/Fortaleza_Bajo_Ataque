@@ -456,9 +456,9 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitEnemies[2]->Maxlife = 200;
     unitEnemies[2]->deathTime = 1.2;
     //// Proyectiles
-    projectile= gcnew Projectile;
+    projectile = gcnew Projectile;
     //// Base
-    base= gcnew Base;
+    base = gcnew Base;
     base->baseState = gcnew List<Texture^>;
     base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 27.png"));
     base->baseState->Add(gcnew Texture("Assets/Environment/MapsElements/Asset 28.png"));
@@ -469,14 +469,14 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
     base->Vida_max = 1000;
     //// SkinBackground
-    skinBackground= gcnew FBAModel::Skin_Background;
+    skinBackground = gcnew FBAModel::Skin_Background;
     skinBackground->texture = (gcnew Texture("Assets/Environment/Maps/GameBackground.png"));
     // Elementos Graficos
     //// BackGround
     background = gcnew BackGroundRender(skinBackground);
     background->Scale = Vector2f(3840.f / background->Texture->Size.X, 1080.f / background->Texture->Size.Y);
     //// HealthBar
-    array< SFML::Graphics::Texture^>^ hb= gcnew array < SFML::Graphics::Texture^>(4);
+    array< SFML::Graphics::Texture^>^ hb = gcnew array < SFML::Graphics::Texture^>(4);
     hb[0] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_bar_full.png");
     hb[1] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_corner1.png");
     hb[2] = gcnew SFML::Graphics::Texture("Assets/Characters/fantasy-platformer-ui/PNG/16Inner_Interface/hp_point.png");
@@ -537,7 +537,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     }
     watch->twoPoints = gcnew Texture("Assets/Environment/Numeros/2puntos.png");
     watch->Position = Vector2f(700, -20);
-    watch->Scale = Vector2f(0.8, 0.8);
+    watch->Scale = Vector2f(0.7, 0.7);
     watch->secUnit->Texture = watch->numbers[0];
     watch->secDecena->Texture = watch->numbers[0];
     watch->minUnit->Texture = watch->numbers[0];
@@ -550,8 +550,12 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     controlElemts->Add(watch);
     controlElemts->Add(userConsole);
     //Utilitarios
-    ////Game
+    ////game
     gameOver = 0;
+    //Music
+    gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
+    gameSound = gcnew Sound(gameSoundBuffer);
+    gameSound->Play();
  }
 
 void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
