@@ -96,7 +96,7 @@
     <Link>
       <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.5.1-x64\lib</AdditionalLibraryDirectories>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EntryPointSymbol>Main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
@@ -155,7 +155,8 @@
   <ItemGroup>
     <ClCompile Include="ArrowRender.cpp" />
     <ClCompile Include="AvatarForm.cpp" />
-    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BackgroundForm.cpp" />
+    <ClCompile Include="BackGroundRender.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="campaign.cpp" />
     <ClCompile Include="Container.cpp" />
@@ -183,9 +184,10 @@
     <ClInclude Include="AvatarForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Background.h">
+    <ClInclude Include="BackgroundForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="BackGroundRender.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="campaign.h">
       <FileType>CppForm</FileType>
@@ -233,8 +235,8 @@
     <EmbeddedResource Include="AvatarForm.resx">
       <DependentUpon>AvatarForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Background.resx">
-      <DependentUpon>Background.h</DependentUpon>
+    <EmbeddedResource Include="BackgroundForm.resx">
+      <DependentUpon>BackgroundForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="campaign.resx">
       <DependentUpon>campaign.h</DependentUpon>

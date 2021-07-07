@@ -4,9 +4,7 @@
 FBAView::UnitRender::UnitRender(FBAModel::Units^ unit) {
 	this->unit = unit;
 	this->board = gcnew RenderTexture(this->unit->Image->Size.X, this->unit->Image->Size.Y);
-	this->body = gcnew Sprite(this->unit->Image);
-	this->HPBar = gcnew Sprite();
-	this->HPBar->Position = Vector2f(40,4);
+	this->body = gcnew Sprite(this->unit->Image);	
 	//rango
 }
 
@@ -15,7 +13,7 @@ void FBAView::UnitRender::ProcessCollision() {
 	for (int i = 0; i < rango; i++) {//recorremos 2 cuadrados del espacio fisico al frente o detras de la unidad
 		if (this->band == Game_obj::Band::Allies) { k = (numRectangule + i); }
 		else { k = ((i * -1) - 1); }
-		if ( ( (frstRectangule + k) < 96 ) && ( (frstRectangule + k) >= 0 ) ) {
+		if ( ( (frstRectangule + k) < SurvivalRender::physicalSpace->Length) && ( (frstRectangule + k) >= 0 ) ) {
 			for (int j = 0; j < SurvivalRender::physicalSpace[frstRectangule + k]->Count ; j++) {
 				if (SurvivalRender::physicalSpace[frstRectangule + k ][j]->band != this->band) {
 					this->dist = i * 20;
@@ -55,7 +53,7 @@ void FBAView::UnitRender::ToDo() {
 	timeJob->Start();
 	if (timeaux >= (indice + 1) * (totalTimeJob / this->unit->MoveAnimation->Count)) {
 		indice = int(timeaux * (this->unit->AttackAnimation->Count / totalTimeJob));
-		this->HPBar->Texture = healthbar->GetBar(double(this->life)/this->unit->Maxlife);
+		healthbar->GetBar(double(this->HP)/this->unit->Maxlife);
 		switch (statejob) {
 		case FBAView::UnitRender::States::Attack:
 			if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
@@ -96,9 +94,9 @@ void FBAView::UnitRender::ToDo() {
 }
 
 Void FBAView::UnitRender::LoseLife(int damage){
-	this->life -= damage;
-	if (life <= 0) {
-		life = 0;
+	this->HP -= damage;
+	if (HP <= 0) {
+		HP = 0;
 		state = UnitRender::States::Die; 
 		frstTimeJob = 1;
 	}
@@ -107,10 +105,11 @@ Void FBAView::UnitRender::LoseLife(int damage){
 
 Void FBAView::UnitRender::PaintTexture() {
 	this->board->Clear(SFML::Graphics::Color::Color(0,0,0,0));
-	this->board->Draw(HPBar);
+	this->board->Draw(healthbar);
 	this->board->Draw(body);
 	this->board->Display();
 	this->Texture = this->board->Texture;
+	return Void();
 }
 
 

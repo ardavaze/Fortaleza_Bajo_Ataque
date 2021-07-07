@@ -6,6 +6,7 @@ namespace FBAView {
 	public:
 		UnitDistanceRender(FBAModel::Units^);
 		ArrowRender^ arrow;
+		Void ProcessCollision() override;
 		Void ToDo() override;
 		Void PaintTexture() override;
 	};

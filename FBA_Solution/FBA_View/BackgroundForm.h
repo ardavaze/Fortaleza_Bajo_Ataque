@@ -12,10 +12,10 @@ namespace FBAView {
 	/// <summary>
 	/// Summary for Background
 	/// </summary>
-	public ref class Background : public System::Windows::Forms::Form
+	public ref class BackgroundForm : public System::Windows::Forms::Form
 	{
 	public:
-		Background(void)
+		BackgroundForm(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace FBAView {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Background()
+		~BackgroundForm()
 		{
 			if (components)
 			{
@@ -120,7 +120,7 @@ namespace FBAView {
 			this->btn_close->TabIndex = 3;
 			this->btn_close->Text = L"<";
 			this->btn_close->UseVisualStyleBackColor = false;
-			this->btn_close->Click += gcnew System::EventHandler(this, &Background::btn_close_Click);
+			this->btn_close->Click += gcnew System::EventHandler(this, &BackgroundForm::btn_close_Click);
 			// 
 			// pnlItem1
 			// 
@@ -271,7 +271,7 @@ namespace FBAView {
 			this->btnBuy3->TabIndex = 0;
 			this->btnBuy3->Text = L"Comprar";
 			this->btnBuy3->UseVisualStyleBackColor = false;
-			this->btnBuy3->Click += gcnew System::EventHandler(this, &Background::btnBuy_Click);
+			this->btnBuy3->Click += gcnew System::EventHandler(this, &BackgroundForm::btnBuy_Click);
 			// 
 			// label1
 			// 

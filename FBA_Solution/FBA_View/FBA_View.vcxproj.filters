@@ -39,7 +39,7 @@
     <ClCompile Include="Skins.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
+    <ClCompile Include="BackgroundForm.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Scoreboard.cpp">
@@ -87,6 +87,9 @@
     <ClCompile Include="UnitDistanceRender.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="BackGroundRender.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu_principal.h">
@@ -113,7 +116,7 @@
     <ClInclude Include="Skins.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
+    <ClInclude Include="BackgroundForm.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Scoreboard.h">
@@ -162,6 +165,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="UnitDistanceRender.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGroundRender.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

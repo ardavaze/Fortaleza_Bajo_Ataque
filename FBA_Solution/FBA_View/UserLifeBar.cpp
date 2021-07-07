@@ -41,9 +41,9 @@ FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString) {
 }
 
 void FBAView::UserLifeBar::UpdateUserHP(double HP) {   
-    avatarBackground_Life->Texture = healthBar->GetBar(HP);
+    healthBar->GetBar(HP);
     board->Clear(SFML::Graphics::Color::Color(0,0,0,0));
-    board->Draw(avatarBackground_Life);
+    board->Draw(healthBar);
     board->Draw(avatar);
     board->Draw(avatarMold);
     board->Draw(usernameText);

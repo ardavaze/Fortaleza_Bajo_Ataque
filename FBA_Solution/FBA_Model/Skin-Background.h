@@ -5,6 +5,7 @@ namespace FBAModel {
     public ref class Skin_Background : public Product {
     public:
         String^ Tipo;
+        SFML::Graphics::Texture^ texture;
     };
 }
 

@@ -4,7 +4,7 @@
 #include "SurvivalForm.h"
 #include "LoginForm.h"
 #include "Skins.h"
-#include "Background.h"
+#include "BackgroundForm.h"
 #include "Scoreboard.h"
 #include "Credits.h"
 #include "Settings.h"
@@ -687,7 +687,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 
 		private: System::Void btn_backgrounds_Click(System::Object^ sender, System::EventArgs^ e) {
 			Hide_panel();
-			open_ChildForm(gcnew Background());
+			open_ChildForm(gcnew BackgroundForm());
 		}
 		private: System::Void btn_scoreboard_Click(System::Object^ sender, System::EventArgs^ e) {
 			Hide_panel();

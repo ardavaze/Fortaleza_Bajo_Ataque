@@ -6,9 +6,7 @@ namespace FBAModel{
     public:
         int Nro_ballesta;
         int Vida_max;
-        String^ Textura;
-        String^ Sprite;
-        List<Texture^>^ baseState;
-        List<Texture^>^ coverState;
+        List<SFML::Graphics::Texture^>^ baseState;
+        List<SFML::Graphics::Texture^>^ coverState;
     };
 }

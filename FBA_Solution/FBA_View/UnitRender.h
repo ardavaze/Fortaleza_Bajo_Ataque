@@ -13,20 +13,14 @@ namespace FBAView {
 		UnitRender(FBAModel::Units^);
 		FBAModel::Units^ unit;
 		double movementVelocity; //en metros/segundo(1m=50pix)
-		double attackVelocity;  //ataques/minuto
-		double deathTime; //Segundos que demora en morirse
-		int rango;
 		HealthBar^ healthbar;
-		Sprite^ HPBar;
 		Sprite^ body;
 		virtual void ProcessCollision() override;
 		virtual Void ToDo() override;
-		virtual Void PaintTexture();
 		virtual Void LoseLife(int) override;
-		
 	protected:
+		virtual Void PaintTexture() override;
 		int dist;
-		bool attackMove;//1 si debe atacar, 0 si debe moverse
 		int indice = 0;
 		bool frstTimeJob=1;
 		double totalTimeJob;
@@ -34,7 +28,6 @@ namespace FBAView {
 		bool frstTimechange;
 		int positionx;
 		PhysicalElement^ enemyUnit;
-		RenderTexture^ board;
 		System::Diagnostics::Stopwatch^ timeJob=gcnew System::Diagnostics::Stopwatch;
 	};
 }

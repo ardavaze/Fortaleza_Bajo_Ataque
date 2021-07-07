@@ -1,10 +1,30 @@
 #include "UnitDistanceRender.h"
-
+#include "SurvivalRender.h"
 FBAView::UnitDistanceRender::UnitDistanceRender(FBAModel::Units^ unit): FBAView::UnitRender::UnitRender(unit){
 }
 
+Void FBAView::UnitDistanceRender::ProcessCollision() {
+	int k;
+	for (int i = 0; i < rango; i++) {//recorremos 2 cuadrados del espacio fisico al frente o detras de la unidad
+		if (this->band == Game_obj::Band::Allies) { k = (numRectangule + i); }
+		else { k = ((i * -1) - 1); }
+		if (((frstRectangule + k) < SurvivalRender::physicalSpace->Length) && ((frstRectangule + k) >= 0)) {
+			for (int j = 0; j < SurvivalRender::physicalSpace[frstRectangule + k]->Count; j++) {
+				if (SurvivalRender::physicalSpace[frstRectangule + k][j]->band != this->band) {
+					this->dist = i * 20;
+					this->state = UnitRender::States::Attack;
+					this->enemyUnit = SurvivalRender::physicalSpace[frstRectangule + k][j];
+					return;
+				}
+			}
+		}
+	}
+	this->enemyUnit = nullptr;
+	this->state = UnitRender::States::Move;
+}
+
 Void FBAView::UnitDistanceRender::ToDo() {
-	if (this->arrow->throwed == 0) {
+	if (this->statejob!=States::DoNothing) {
 		timeJob->Start();
 		double timeaux;
 		if (this->frstTimeJob) {
@@ -30,28 +50,31 @@ Void FBAView::UnitDistanceRender::ToDo() {
 		timeJob->Start();
 		if (timeaux >= (indice + 1) * (totalTimeJob / this->unit->MoveAnimation->Count)) {
 			indice = int(timeaux * (this->unit->AttackAnimation->Count / totalTimeJob));
-			this->HPBar->Texture = healthbar->GetBar(double(this->life) / this->unit->Maxlife);
+			healthbar->GetBar(double(this->HP) / this->unit->Maxlife);
 			switch (statejob) {
 			case FBAView::UnitRender::States::Attack:
-				if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
+				if (indice >= this->unit->AttackAnimation->Count) { indice = 0; }
 				this->body->Texture = unit->AttackAnimation[indice];
+				Console::WriteLine(""+ indice);
 				if ((indice == int(0.66 * unit->MoveAnimation->Count)) && (state == FBAView::UnitRender::States::Attack)) {
 					timeJob->Stop();
 					arrow->throwed = 1;
-					arrow->parrow->Velocity = 400;
-					double ang = Math::Asin(this->dist * (-400) / Math::Pow(arrow->parrow->Velocity, 2)) / 2;
-					arrow->velX = arrow->parrow->Velocity * Math::Cos(ang);
-					arrow->velY = arrow->parrow->Velocity * Math::Sin(ang);
+					arrow->damage = 30;
+					arrow->arrow->Velocity = 600;
+					double ang = Math::Asin(this->dist * (-g)*pixPerMeter / Math::Pow(arrow->arrow->Velocity, 2)) / 2;
+					arrow->velocity.X = (band == Game_obj::Band::Allies ? 1 : -1) *arrow->arrow->Velocity * Math::Cos(ang);
+					arrow->velocity.Y = arrow->arrow->Velocity * Math::Sin(ang);
 					arrow->Timearrow = gcnew System::Diagnostics::Stopwatch;
 					arrow->Timearrow->Restart();
-					arrow->xInicial = this->Position.X + 353 * this->Scale.X;
-					arrow->yInicial = this->Position.Y + 222 * this->Scale.Y;
+					arrow->posInit.X = this->Position.X + 353 * this->Scale.X;
+					arrow->posInit.Y = this->Position.Y + 222 * this->Scale.Y;
 					arrow->Scale = this->Scale;
 					arrow->Origin = Vector2f(arrow->Texture->Size.X / 2, arrow->Texture->Size.Y / 2);
-					arrow->Position = Vector2f(arrow->xInicial, arrow->yInicial);
+					arrow->Position = Vector2f(arrow->posInit.X, arrow->posInit.Y);
 				}
-				if (indice == unit->AttackAnimation->Count / 2)
+				if (indice == unit->AttackAnimation->Count / 2) {
 					//this->unit->attackSound->Play();
+				}
 					break;
 			case FBAView::UnitRender::States::Move:
 				if (indice >= this->unit->MoveAnimation->Count) { indice = 0; }
@@ -67,8 +90,9 @@ Void FBAView::UnitDistanceRender::ToDo() {
 			case FBAView::UnitRender::States::Die:
 				if (indice >= this->unit->DeathAnimation->Count) { indice = 0; }
 				this->body->Texture = unit->DeathAnimation[indice];
-				if (indice == unit->DeathAnimation->Count / 2)
+				if (indice == unit->DeathAnimation->Count / 2) {
 					//this->unit->deathSound->Play();
+				}
 					break;
 			}
 			this->PaintTexture();
@@ -78,13 +102,21 @@ Void FBAView::UnitDistanceRender::ToDo() {
 			if (this->statejob == UnitRender::States::Die) {
 				death = 1;
 			}
+			if (this->statejob == UnitRender::States::Attack) {
+				this->statejob = States::DoNothing;
+			}
+		}
+	}
+	else {
+		if (this->arrow->throwed==0) {
+			this->statejob = States::Attack;
 		}
 	}
 }
 
 Void FBAView::UnitDistanceRender::PaintTexture() {
 	this->board->Clear(SFML::Graphics::Color::Color(0, 0, 0, 0));
-	this->board->Draw(HPBar);
+	this->board->Draw(healthbar);
 	this->board->Draw(body);
 	this->board->Display();
 	this->Texture = this->board->Texture;

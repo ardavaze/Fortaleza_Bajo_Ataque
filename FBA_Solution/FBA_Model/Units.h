@@ -9,7 +9,6 @@ namespace FBAModel {
         List<Texture^>^ AttackAnimation;
         List<Texture^>^ MoveAnimation;
         List<Texture^>^ DeathAnimation;
-        array<SFML::Graphics::Texture^>^ HealthBar;
         int Maxlife;
         int attackDamage;
         double movementVelocity;

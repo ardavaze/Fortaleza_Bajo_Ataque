@@ -2,25 +2,25 @@
 #include "PhysicalElement.h"
 using namespace SFML::Graphics;
 using namespace System;
+using namespace SFML::System;
 namespace FBAView {
-	public ref class ArrowRender :PhysicalElement {
+	public ref class ArrowRender : Sprite {
 	public:
-		void MakeFly();
-		void MakeFly2();
-		FBAModel::Projectile^ parrow;
-		float velX;
-		float velY;
-		int xInicial;
-		int yInicial;
+		bool arrowBall; //1 si es flecha , 0 si es una bolita
+		FBAModel::Projectile^ arrow;
+		Vector2f velocity;
+		Vector2i posInit;
+		int damage;
 		bool throwed;
-		System::Diagnostics::Stopwatch^ Timearrow;
-		bool analizeCollision;
-		bool impacto;
-		virtual void ProcessCollision() override;
-		virtual void ProcessCollision2();
+		FBAModel::Game_obj::Band band;
+		virtual Void ProcessCollision();
 		Vector2f posPunta;
+		Void ToDo();
+		System::Diagnostics::Stopwatch^ Timearrow;
+	protected:
+		bool impacto;
 		PhysicalElement^ enemyUnit;
-		void ToDo() override;
+		
 	};
 }
 
