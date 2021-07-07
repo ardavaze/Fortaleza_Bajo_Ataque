@@ -7,6 +7,7 @@ namespace FBAView {
 	public ref class HealthBar :Sprite {
 	public:
 		HealthBar();
+		HealthBar(HealthBar^);
 		HealthBar(String^, String^ );
 		array<SFML::Graphics::Texture^>^ healthBar;
 		array<SFML::Graphics::Texture^>^ parts;

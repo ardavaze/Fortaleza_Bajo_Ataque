@@ -54,7 +54,6 @@ namespace FBAView{
 		Void Run();
 		Void GenerateUnits(Units^);
 		Void GenerateUnitsDistance(Units^);
-		Void GenerateUnits_enemies(Units^);
 		Void endGame();
 		System::Diagnostics::Stopwatch^ TimeThrowArrow;
 		System::Diagnostics::Stopwatch^ TimeGenerate;

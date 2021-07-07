@@ -4,6 +4,14 @@ FBAView::HealthBar::HealthBar() {
 
 }
 
+FBAView::HealthBar::HealthBar(HealthBar^ HB) {
+    this->healthBar = HB->healthBar;
+    this->parts = HB->parts;
+    this->position.X = HB->position.X;
+    this->position.Y = HB->position.X;
+    this->corner = HB->corner;
+}
+
 FBAView::HealthBar::HealthBar(String^name, String^ life){
     this->healthBar = gcnew array<SFML::Graphics::Texture^>(4);
     this->healthBar[0] = gcnew SFML::Graphics::Texture(name);
