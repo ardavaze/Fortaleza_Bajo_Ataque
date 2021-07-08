@@ -73,7 +73,7 @@ Void FBAView::UnitDistanceRender::ToDo() {
 					arrow->Position = Vector2f(arrow->posInit.X, arrow->posInit.Y);
 				}
 				if (indice == unit->AttackAnimation->Count / 2) {
-					//this->unit->attackSound->Play();
+					this->unit->attackSound->Play();
 				}
 					break;
 			case FBAView::UnitRender::States::Move:
@@ -91,7 +91,7 @@ Void FBAView::UnitDistanceRender::ToDo() {
 				if (indice >= this->unit->DeathAnimation->Count) { indice = 0; }
 				this->body->Texture = unit->DeathAnimation[indice];
 				if (indice == unit->DeathAnimation->Count / 2) {
-					//this->unit->deathSound->Play();
+					this->unit->deathSound->Play();
 				}
 					break;
 			}
