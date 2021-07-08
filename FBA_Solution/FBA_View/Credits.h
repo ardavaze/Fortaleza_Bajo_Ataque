@@ -34,7 +34,7 @@ namespace FBAView {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ btn_close;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::Label^ label1;
@@ -69,7 +69,6 @@ namespace FBAView {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Credits::typeid));
-			this->btn_close = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -89,17 +88,6 @@ namespace FBAView {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// btn_close
-			// 
-			this->btn_close->Location = System::Drawing::Point(91, 50);
-			this->btn_close->Margin = System::Windows::Forms::Padding(2);
-			this->btn_close->Name = L"btn_close";
-			this->btn_close->Size = System::Drawing::Size(56, 45);
-			this->btn_close->TabIndex = 4;
-			this->btn_close->Text = L"<-";
-			this->btn_close->UseVisualStyleBackColor = true;
-			this->btn_close->Click += gcnew System::EventHandler(this, &Credits::btn_close_Click);
 			// 
 			// pictureBox1
 			// 
@@ -129,7 +117,7 @@ namespace FBAView {
 			this->label1->ForeColor = System::Drawing::SystemColors::ControlLight;
 			this->label1->Location = System::Drawing::Point(80, 123);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(321, 62);
+			this->label1->Size = System::Drawing::Size(258, 50);
 			this->label1->TabIndex = 7;
 			this->label1->Text = L"EQUIPO\r\nDESARROLLADOR";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -142,7 +130,7 @@ namespace FBAView {
 			this->label2->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label2->Location = System::Drawing::Point(122, 185);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(237, 75);
+			this->label2->Size = System::Drawing::Size(186, 57);
 			this->label2->TabIndex = 8;
 			this->label2->Text = L"Danny Valdivieso\r\nJorge Mendoza\r\nRoger Venegas";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -155,7 +143,7 @@ namespace FBAView {
 			this->label3->ForeColor = System::Drawing::SystemColors::ControlLight;
 			this->label3->Location = System::Drawing::Point(162, 309);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(150, 31);
+			this->label3->Size = System::Drawing::Size(120, 25);
 			this->label3->TabIndex = 9;
 			this->label3->Text = L"MÚSICA";
 			// 
@@ -167,7 +155,7 @@ namespace FBAView {
 			this->label4->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label4->Location = System::Drawing::Point(53, 340);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(374, 75);
+			this->label4->Size = System::Drawing::Size(294, 57);
 			this->label4->TabIndex = 10;
 			this->label4->Text = L"\"DETROIT: BECOME HUMAN\"\r\nMain Menu Theme \r\nSoundTrack";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -180,7 +168,7 @@ namespace FBAView {
 			this->label5->ForeColor = System::Drawing::SystemColors::ControlLight;
 			this->label5->Location = System::Drawing::Point(112, 482);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(263, 31);
+			this->label5->Size = System::Drawing::Size(210, 25);
 			this->label5->TabIndex = 11;
 			this->label5->Text = L"GAME ASSETS";
 			this->label5->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -193,7 +181,7 @@ namespace FBAView {
 			this->label6->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label6->Location = System::Drawing::Point(122, 516);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(235, 25);
+			this->label6->Size = System::Drawing::Size(183, 19);
 			this->label6->TabIndex = 12;
 			this->label6->Text = L"© 2020 CraftPix";
 			this->label6->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -206,7 +194,7 @@ namespace FBAView {
 			this->label7->ForeColor = System::Drawing::SystemColors::ControlLight;
 			this->label7->Location = System::Drawing::Point(905, 90);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(352, 62);
+			this->label7->Size = System::Drawing::Size(281, 50);
 			this->label7->TabIndex = 13;
 			this->label7->Text = L"AGRADECIMIENTOS\r\nESPECIALES";
 			this->label7->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -219,7 +207,7 @@ namespace FBAView {
 			this->label9->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label9->Location = System::Drawing::Point(949, 487);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(308, 75);
+			this->label9->Size = System::Drawing::Size(243, 57);
 			this->label9->TabIndex = 15;
 			this->label9->Text = L"Basado originalmente \r\nen el juego\r\nTroy (2009).";
 			this->label9->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -232,7 +220,7 @@ namespace FBAView {
 			this->label10->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label10->Location = System::Drawing::Point(949, 174);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(283, 50);
+			this->label10->Size = System::Drawing::Size(224, 38);
 			this->label10->TabIndex = 16;
 			this->label10->Text = L"Al canal de YouTube\r\n\"Escuela de Juegos\".";
 			this->label10->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -245,7 +233,7 @@ namespace FBAView {
 			this->label8->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label8->Location = System::Drawing::Point(537, 744);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(251, 25);
+			this->label8->Size = System::Drawing::Size(197, 19);
 			this->label8->TabIndex = 17;
 			this->label8->Text = L"CyberPucp. 2021.\r\n";
 			this->label8->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -258,7 +246,7 @@ namespace FBAView {
 			this->label11->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label11->Location = System::Drawing::Point(547, 581);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(231, 25);
+			this->label11->Size = System::Drawing::Size(182, 19);
 			this->label11->TabIndex = 18;
 			this->label11->Text = L"Presentado por:";
 			this->label11->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -271,7 +259,7 @@ namespace FBAView {
 			this->label12->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label12->Location = System::Drawing::Point(958, 378);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(302, 75);
+			this->label12->Size = System::Drawing::Size(238, 57);
 			this->label12->TabIndex = 19;
 			this->label12->Text = L"y a nuestro asesor\r\nde proyecto, al\r\nProf. Johan Baldeón.";
 			this->label12->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -308,7 +296,6 @@ namespace FBAView {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->btn_close);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"Credits";
