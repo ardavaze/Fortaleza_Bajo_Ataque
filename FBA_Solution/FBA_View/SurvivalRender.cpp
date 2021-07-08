@@ -361,8 +361,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     }
     unitAllies[0]->attackBuffer = gcnew SoundBuffer("Assets/Audio/hammer hit.wav");
     unitAllies[0]->attackSound = gcnew Sound(unitAllies[0]->attackBuffer);
+    unitAllies[0]->attackSound->Volume = 10;
     unitAllies[0]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
     unitAllies[0]->deathSound = gcnew Sound(unitAllies[0]->deathBuffer);
+    unitAllies[0]->deathSound->Volume = 10;
     unitAllies[0]->Image = unitAllies[0]->MoveAnimation[0];
     unitAllies[0]->scale = Vector2f(0.6, 0.6);
     unitAllies[0]->positionElement = Vector2i(156, 66);
@@ -393,8 +395,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     }
     unitAllies[1]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
     unitAllies[1]->attackSound = gcnew Sound(unitAllies[1]->attackBuffer);
+    unitAllies[1]->attackSound->Volume = 10;
     unitAllies[1]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
     unitAllies[1]->deathSound = gcnew Sound(unitAllies[1]->deathBuffer);
+    unitAllies[1]->deathSound->Volume = 10;
     unitAllies[1]->Image = unitAllies[1]->MoveAnimation[0];
     unitAllies[1]->scale = Vector2f(0.6, 0.6);
     unitAllies[1]->positionElement = Vector2i(175, 80);
@@ -426,8 +430,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     }
     unitAllies[2]->attackBuffer = gcnew SoundBuffer("Assets/Audio/magic 1.wav");
     unitAllies[2]->attackSound = gcnew Sound(unitAllies[2]->attackBuffer);
+    unitAllies[2]->attackSound->Volume = 10;
     unitAllies[2]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ghost moan.wav");
     unitAllies[2]->deathSound = gcnew Sound(unitAllies[2]->deathBuffer);
+    unitAllies[2]->deathSound->Volume = 10;
     unitAllies[2]->Image = unitAllies[2]->MoveAnimation[0];
     unitAllies[2]->scale = Vector2f(0.5, 0.5);//
     unitAllies[2]->positionElement = Vector2i(120, 45);//
@@ -460,8 +466,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     }
     unitEnemies[0]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
     unitEnemies[0]->attackSound = gcnew Sound(unitEnemies[0]->attackBuffer);
+    unitEnemies[0]->attackSound->Volume = 10;
     unitEnemies[0]->deathBuffer = gcnew SoundBuffer("Assets/Audio/monster moan 1.wav");
     unitEnemies[0]->deathSound = gcnew Sound(unitEnemies[0]->deathBuffer);
+    unitEnemies[0]->deathSound->Volume = 10;
     unitEnemies[0]->Image = unitEnemies[0]->MoveAnimation[0];
     unitEnemies[0]->scale = Vector2f(-0.2, 0.2);
     unitEnemies[0]->positionElement = Vector2i(387, 68);
@@ -492,8 +500,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     }
     unitEnemies[1]->attackBuffer = gcnew SoundBuffer("Assets/Audio/hammer hit.wav");
     unitEnemies[1]->attackSound = gcnew Sound(unitEnemies[1]->attackBuffer);
+    unitEnemies[1]->attackSound->Volume = 10;
     unitEnemies[1]->deathBuffer = gcnew SoundBuffer("Assets/Audio/monster moan 2.wav");
     unitEnemies[1]->deathSound = gcnew Sound(unitEnemies[1]->deathBuffer);
+    unitEnemies[1]->deathSound->Volume = 10;
     unitEnemies[1]->Image = unitEnemies[1]->MoveAnimation[0];
     unitEnemies[1]->scale = Vector2f(-0.4, 0.4);
     unitEnemies[1]->positionElement = Vector2i(676, 363);
@@ -524,8 +534,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     }
     unitEnemies[2]->attackBuffer = gcnew SoundBuffer("Assets/Audio/magic 2.wav");
     unitEnemies[2]->attackSound = gcnew Sound(unitEnemies[2]->attackBuffer);
+    unitEnemies[2]->attackSound->Volume = 10;
     unitEnemies[2]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ghost moan 2.wav");
     unitEnemies[2]->deathSound = gcnew Sound(unitEnemies[2]->deathBuffer);
+    unitEnemies[2]->deathSound->Volume = 10;
     unitEnemies[2]->Image = unitEnemies[2]->MoveAnimation[0];
     unitEnemies[2]->scale = Vector2f(-0.3, 0.3);
     unitEnemies[2]->positionElement = Vector2i(962, 271);
@@ -551,6 +563,12 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 28.png"));
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
     base->Vida_max = 1000;
+    base->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Bow Thwap String - SFX Producer (1).wav");
+    base->attackSound = gcnew Sound(base->attackBuffer);
+    base->attackSound->Volume = 10;
+    base->deathBuffer = gcnew SoundBuffer("Assets/Audio/building-collapse-sound-effects-eathquake-sounds-rocks-falling-brick-wall-collapse-crashes (mp3cut.net).wav");
+    base->deathSound = gcnew Sound(base->deathBuffer);
+    base->deathSound->Volume = 10;
     //// SkinBackground
     skinBackground = gcnew FBAModel::Skin_Background;
     skinBackground->texture = (gcnew Texture("Assets/Environment/Maps/GameBackground.png"));
@@ -670,8 +688,9 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     gameOver = 0;
     pause = 0;
     //Music
-    gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
+    gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/Juego.wav");
     gameSound = gcnew Sound(gameSoundBuffer);
+    gameSound->Volume = 3;
     gameSound->Play();
 
 

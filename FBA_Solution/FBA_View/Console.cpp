@@ -54,7 +54,7 @@ FBAView::Console::Console()
 	wraithButton->Position = Vector2f(568, 78);
 	wraithButton->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/button/wraith.jpg");
 	ConsoleFont1 = gcnew SFML::Graphics::Font("Assets/Fonts/SHAXIZOR.ttf");
-	ConsoleFont2 = gcnew SFML::Graphics::Font("Assets/Fonts/Legionary.ttf");
+	ConsoleFont2 = gcnew SFML::Graphics::Font("Assets/Fonts/Fortnite.ttf");
 	barbarianLetter->Scale = Vector2f(2, 1);
 	barbarianLetter->Position = Vector2f(260, 78);
 	barbarianLetter->Color= SFML::Graphics::Color::White;

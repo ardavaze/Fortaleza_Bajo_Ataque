@@ -15,6 +15,9 @@ namespace FBAView {
 		Void ProcessCollision() override;
 		Void ToDo() override;
 		Void ThrowArrow();
+		bool firstTime1=1;
+		bool firstTime2 = 1;
+		bool firstTime3 = 1;
 	};
 }
 
