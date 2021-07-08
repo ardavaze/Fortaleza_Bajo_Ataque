@@ -650,7 +650,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     controlElemts->Add(exitButton);
     //Utilitarios
     ////game
-    gameOverImage = gcnew Sprite();
+    gameOverImage = gcnew Sprite(gcnew Texture("Assets/Environment/GameOver.png"));
     gameOver = 0;
     pause = 0;
     //Music
