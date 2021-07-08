@@ -52,6 +52,7 @@ namespace FBAView{
 		Button^ exitButton;
 		//Entorno Grafico
 		int posx = 0;
+		Vector2i mousePositionBefore;
 		int piso = 740;
 		static array<List<PhysicalElement^>^>^ physicalSpace = gcnew array<List<PhysicalElement^>^>(192);
 		static array<array<ControlElements^>^>^ controlSpace = gcnew array<array<ControlElements^>^>(1920);
@@ -77,15 +78,6 @@ namespace FBAView{
 		System::Diagnostics::Stopwatch^ TimeEnemies;
 		System::Diagnostics::Stopwatch^ chronoGameOver;
 		System::Diagnostics::Stopwatch^ render;
-
-		Void userclick(System::Object^ sender, ClickArgs^ e) {
-			TimeGenerate->Stop();
-			if (TimeGenerate->Elapsed.TotalSeconds > 6) {
-				GenerateUnits(this->unitAllies[0]);
-				TimeGenerate->Restart();
-			}
-			else TimeGenerate->Start();
-		}
 		Void BarbarianClick(System::Object^ sender, ClickArgs^ e) {
 			if (pause == 0) { BarbarianEvent(); }
 		}
@@ -135,6 +127,12 @@ namespace FBAView{
 				gameSound->Stop();
 				this->Close();
 			}
+		}
+		Void btnOver(System::Object^ sender, ClickArgs^ e) {
+			this->userConsole->barbarianButton->Color = SFML::Graphics::Color::Color(200,200,200);
+		}
+		Void btnLeave(System::Object^ sender, ClickArgs^ e) {
+			this->userConsole->barbarianButton->Color = SFML::Graphics::Color::Color(255, 255, 255);
 		}
 	};
 }

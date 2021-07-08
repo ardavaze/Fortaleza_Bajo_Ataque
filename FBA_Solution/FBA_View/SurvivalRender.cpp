@@ -30,6 +30,7 @@ void FBAView::SurvivalRender::Run() {
     miniMap = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920*3/2, 750));
     miniMap->Move(Vector2f(0, 100));
     miniMap->Viewport = FloatRect(0, 0.8,0.30 ,0.2 );
+    mousePositionBefore = Vector2i(0,0);
     while (this->IsOpen) {
         render->Restart();
         if ( (Mouse::GetPosition().X > SFML::Window::VideoMode::DesktopMode.Width - 2)&&(posx <= (1914/2)) ) {
@@ -96,7 +97,7 @@ void FBAView::SurvivalRender::Run() {
         }
         Procesar_evento();
         TimeAnalysis();
-        System::Console::WriteLine("" + render->Elapsed.TotalMilliseconds);
+        //System::Console::WriteLine("" + render->Elapsed.TotalMilliseconds);
         render->Restart();
         // Logica del pintado en pantalla
         userConsole->UpdateQueue();
@@ -155,9 +156,9 @@ void FBAView::SurvivalRender::Run() {
         //this->Draw(castle->cover);
         //this->Draw(this->castle->crossbow);
         //this->Draw(this->castle->arrowRender);
-        System::Console::WriteLine(" b." + render->Elapsed.TotalMilliseconds);
+        //System::Console::WriteLine(" b." + render->Elapsed.TotalMilliseconds);
         this->Display();
-        System::Console::WriteLine(" c." + render->Elapsed.TotalMilliseconds);
+        //System::Console::WriteLine(" c." + render->Elapsed.TotalMilliseconds);
     }
 }
 
@@ -231,7 +232,41 @@ void FBAView::SurvivalRender::Procesar_evento(){
             }
             break;
         case EventType::MouseMoved:
-            break;
+            Vector2i mouse;
+            mouse.X = Mouse::GetPosition().X * (this->DefaultView->Size.X / SFML::Window::VideoMode::DesktopMode.Width);
+            mouse.Y = Mouse::GetPosition().Y * (this->DefaultView->Size.Y / SFML::Window::VideoMode::DesktopMode.Height);
+ 
+            System::Console::WriteLine("mousebefore " + mousePositionBefore.X + "  " + mousePositionBefore.Y);
+            System::Console::WriteLine("mouse " + mouse.X + "  " + mouse.Y);
+            if ((mouse.X>=0)&&(mouse.Y >= 0)&& (mouse.X<this->DefaultView->Size.X) && (mouse.Y< this->DefaultView->Size.Y)) {
+                if (controlSpace[mouse.X][mouse.Y] != controlSpace[mousePositionBefore.X][mousePositionBefore.Y]) {
+                    if (controlSpace[mouse.X][mouse.Y] != nullptr) {
+                        ClickArgs^ e = gcnew ClickArgs;
+                        e->mouseState = ClickArgs::MouseState::Over;
+                        e->mousePosition = mouse;
+                        e->mousePositionBefore = mousePositionBefore;
+                        controlSpace[mouse.X][mouse.Y]->MouseMove(e);
+                    }
+                    if (controlSpace[mousePositionBefore.X][mousePositionBefore.Y] != nullptr) {
+                        ClickArgs^ e = gcnew ClickArgs;
+                        e->mouseState = ClickArgs::MouseState::Leave;
+                        e->mousePositionBefore = mousePositionBefore;
+                        e->mousePosition = mouse;
+                        controlSpace[mousePositionBefore.X][mousePositionBefore.Y]->MouseMove(e);
+                    }
+                }
+                else {
+                    if (controlSpace[mouse.X][mouse.Y] != nullptr) {
+                        ClickArgs^ e = gcnew ClickArgs;
+                        e->mouseState = ClickArgs::MouseState::inside;
+                        e->mousePosition = mouse;
+                        e->mousePositionBefore = mousePositionBefore;
+                        controlSpace[mouse.X][mouse.Y]->MouseMove(e);
+                    }
+                }
+                mousePositionBefore = mouse;
+                break;
+            }
         }
 
     }
@@ -564,7 +599,6 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     physicalElemts[0]->Add(castle);
     ////Avatar
     userAvatar = gcnew UserLifeBar(((Menu_principal^)owner)->user->nickname, ((Menu_principal^)owner)->user->avatar.ToString(), ((Menu_principal^)owner)->user->rank.ToString());
-    userAvatar->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::userclick);
     
     userAvatar->UpdateUserHP(1);
     castle->HPBar = userAvatar;
@@ -573,6 +607,9 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     userConsole->barbarianButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::BarbarianClick);
     userConsole->dwarfButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::DwarfClick);
     userConsole->wraithButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::WraithClick);
+    userConsole->barbarianButton->mouseOver += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnOver);
+    userConsole->barbarianButton->mouseLeave += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnLeave);
+    
     ////Cronometro
     watch = gcnew Watch;
     watch->numbers = gcnew array<Texture^>(10);
@@ -620,6 +657,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     controlElemts->Add(exitButton);
     //Utilitarios
     ////game
+    gameOverImage = gcnew Sprite();
     gameOver = 0;
     pause = 0;
     //Music

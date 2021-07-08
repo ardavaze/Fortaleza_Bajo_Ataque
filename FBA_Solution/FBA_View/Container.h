@@ -7,6 +7,7 @@ namespace FBAView {
         List<ControlElements^>^ internalControlElemts;
         Void MouseCollision(ClickArgs^) override;
         Void InternalOcuppySpace();
+        virtual Void MouseMove(ClickArgs^) override;
     };
 }
 

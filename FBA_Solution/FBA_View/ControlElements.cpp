@@ -18,7 +18,19 @@ Void FBAView::ControlElements::OcuppySpace(array<array<ControlElements^>^>^ cont
 
 }
 
-Void FBAView::ControlElements::MouseCollision(ClickArgs^)
-{
-	throw gcnew System::NotImplementedException();
+Void FBAView::ControlElements::MouseCollision(ClickArgs^) {
+
+}
+
+Void FBAView::ControlElements::MouseMove(ClickArgs^ e ){
+    switch (e->mouseState) {
+    case ClickArgs::MouseState::inside:
+        break;
+    case ClickArgs::MouseState::Leave:
+		this->mouseLeave(this,e);
+		break;
+    case ClickArgs::MouseState::Over:
+		this->mouseOver(this, e);
+		break;
+    }
 }

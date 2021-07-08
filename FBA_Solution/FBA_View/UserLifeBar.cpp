@@ -32,17 +32,16 @@ FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString, String^ 
     usernameText->DisplayedString = nickname;
     rankSprite->Texture = gcnew SFML::Graphics::Texture("Assets/Environment/Rank/" + rank + ".png");
     
-    //internalControlElemts = gcnew List<ControlElements^>;
-    //internalControlElemts->Add(avatarButton);
+    internalControlElemts = gcnew List<ControlElements^>;
     UpdateUserHP(1);
-    ////  
-    //int sizeX = Math::Round(Math::Abs(this->Texture->Size.X * this->Scale.X));
-    //int sizeY = Math::Round(Math::Abs(this->Texture->Size.Y * this->Scale.Y));
-    //internalControlSpace = gcnew array<array<ControlElements^>^>(sizeX);
-    //for (int i = 0; i < sizeX; i++) {
-    //    internalControlSpace[i] = gcnew array<ControlElements^>(sizeY);
-    //}
-    //InternalOcuppySpace();
+    //  
+    int sizeX = Math::Round(Math::Abs(this->Texture->Size.X * this->Scale.X));
+    int sizeY = Math::Round(Math::Abs(this->Texture->Size.Y * this->Scale.Y));
+    internalControlSpace = gcnew array<array<ControlElements^>^>(sizeX);
+    for (int i = 0; i < sizeX; i++) {
+        internalControlSpace[i] = gcnew array<ControlElements^>(sizeY);
+    }
+    InternalOcuppySpace();
 }
 
 void FBAView::UserLifeBar::UpdateUserHP(double HP) {   
