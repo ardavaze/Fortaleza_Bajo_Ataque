@@ -34,7 +34,9 @@ namespace FBAView {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ btn_close;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	protected:
+
 	protected:
 
 	protected:
@@ -52,30 +54,33 @@ namespace FBAView {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->btn_close = (gcnew System::Windows::Forms::Button());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Skins::typeid));
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// btn_close
+			// pictureBox1
 			// 
-			this->btn_close->Location = System::Drawing::Point(74, 63);
-			this->btn_close->Name = L"btn_close";
-			this->btn_close->Size = System::Drawing::Size(88, 78);
-			this->btn_close->TabIndex = 2;
-			this->btn_close->Text = L"<-";
-			this->btn_close->UseVisualStyleBackColor = true;
-			this->btn_close->Click += gcnew System::EventHandler(this, &Skins::btn_close_Click);
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(245, -121);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(892, 822);
+			this->pictureBox1->TabIndex = 0;
+			this->pictureBox1->TabStop = false;
 			// 
 			// Skins
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->ClientSize = System::Drawing::Size(1552, 1023);
-			this->Controls->Add(this->btn_close);
+			this->ClientSize = System::Drawing::Size(1035, 665);
+			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"Skins";
 			this->Text = L"Skins";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
 		}

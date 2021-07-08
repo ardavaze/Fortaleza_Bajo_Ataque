@@ -8,13 +8,12 @@ FBAView::UserLifeBar::UserLifeBar(String^nickname, String^avatarString, String^ 
     usernameText = gcnew SFML::Graphics::Text;
     rankSprite= gcnew Sprite;
 
-    avatar->Scale= Vector2f(0.25, 0.25);
+    avatar->Scale= Vector2f(0.213, 0.213);
     avatarMold->Scale= Vector2f(1, 1);
     avatarBackground_Life->Scale = Vector2f(1, 1);
     usernameText->Scale = Vector2f(2, 1);
     rankSprite->Scale = Vector2f(0.30, 0.30);
-    
-    avatar->Position= Vector2f(55,15);
+    avatar->Position= Vector2f(60,28);
     avatarMold->Position = Vector2f(0, 0);
     avatarBackground_Life->Position = Vector2f(0, 0);
     usernameText->Position = Vector2f(250, 63);
