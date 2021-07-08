@@ -52,8 +52,7 @@ namespace SFML.Graphics
         /// <exception cref="LoadingFailedException" />
         ////////////////////////////////////////////////////////////
         public Texture(string filename, IntRect area) :
-            base(sfTexture_createFromFile(filename, ref area))
-        {
+            base(sfTexture_createFromFile(filename, ref area)) {
             if (CPointer == IntPtr.Zero)
             {
                 throw new LoadingFailedException("texture", filename);

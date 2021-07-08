@@ -65,6 +65,9 @@ namespace FBAView{
 		Sprite^ gameOverImage;
 		SoundBuffer^ gameSoundBuffer;
 		Sound^ gameSound;
+		System::Threading::Thread^ myThread;
+		Sprite^ Charged;
+		Sprite^ Charged1;
 		//Metodos y utilitarios
 		Void InitializeGraphics();
 		Void Procesar_evento();
@@ -73,6 +76,25 @@ namespace FBAView{
 		Void GenerateUnits(Units^);
 		Void GenerateUnitsDistance(Units^);
 		Void endGame();
+		Void ScreenCharge() {
+			TimeGenerate->Restart();
+			while (charging) {
+				this->Clear();
+				if (tal) {
+					this->Draw(Charged);
+				}
+				else {
+					this->Draw(Charged1);
+				}
+				this->Display();
+				if (TimeGenerate->Elapsed.Milliseconds>500) {
+					TimeGenerate->Restart();
+					tal = !tal;
+				}
+			}
+		}
+		bool tal;
+		bool charging;
 		System::Diagnostics::Stopwatch^ TimeThrowArrow;
 		System::Diagnostics::Stopwatch^ TimeGenerate;
 		System::Diagnostics::Stopwatch^ TimeEnemies;
