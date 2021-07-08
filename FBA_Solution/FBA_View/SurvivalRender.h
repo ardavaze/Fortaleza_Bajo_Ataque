@@ -94,6 +94,11 @@ namespace FBAView{
 		}
 		Void pauseClick(System::Object^ sender, ClickArgs^ e) {
 			pause=1;
+			pauseButton->enable = 0;
+			resumeButton->enable = 1;
+			exitButton->enable = 1;
+
+
 			watch->Chronometer->Stop();
 			for (int j = 1; j < 3;j++) {
 				for (int i = 0; i < physicalElemts[j]->Count;i++) {
@@ -106,6 +111,9 @@ namespace FBAView{
 		}
 		Void resumeClick(System::Object^ sender, ClickArgs^ e) {
 			pause = 0;
+			pauseButton->enable = 1;
+			resumeButton->enable = 0;
+			exitButton->enable = 0;
 			watch->Chronometer->Start();
 			for (int j = 1; j < 3;j++) {
 				for (int i = 0; i < physicalElemts[j]->Count;i++) {
@@ -117,8 +125,10 @@ namespace FBAView{
 			dwarfTime->Start();
 		}
 		Void exitClick(System::Object^ sender, ClickArgs^ e) {
-			gameSound->Stop();
-			this->Close();
+			if (pause == 1) {
+				gameSound->Stop();
+				this->Close();
+			}
 		}
 	};
 }

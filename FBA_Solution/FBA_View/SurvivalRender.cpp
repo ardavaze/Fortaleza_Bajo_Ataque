@@ -561,9 +561,13 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     pauseButton->Texture= gcnew Texture("Assets/Environment/button/PAUSE.png");
     pauseButton->Position = Vector2f(1810,20);
     resumeButton->Texture = gcnew Texture("Assets/Environment/button/PLAY.png");
-    resumeButton->Position = Vector2f(1810, 20);
+    resumeButton->Position = Vector2f(1710, 20);
     exitButton->Texture = gcnew Texture("Assets/Environment/button/EXIT.png");
     exitButton->Position = Vector2f(1810, 960);
+
+    pauseButton->enable = 1;
+    resumeButton->enable = 0;
+    exitButton->enable = 0;
 
     pauseButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::pauseClick);
     resumeButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::resumeClick);
