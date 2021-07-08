@@ -300,6 +300,66 @@ List<Survival^>^ FBAController::DBController::QueryAllSurvivalByUser(User^ user)
     // TODO: insert return statement here
 }
 
+int FBAController::DBController::QuerySurvivalByID(int Id)
+{
+    int a = 0;
+    FBAModel::User^ user = nullptr;
+    /* Paso 1: Se obtiene la conexión */
+    SqlConnection^ conn = GetConnection();
+
+    /* Paso 2: Se prepara la sentencia */
+    SqlCommand^ comm = gcnew SqlCommand();
+    comm->Connection = conn;
+    comm->CommandText = "select Count(b.id) as cuenta from USER_FBA as a inner join SURVIVAL as b on a.id=b.id_User where a.id = " + Id + " Group by a.id";
+
+
+
+    /* Paso 3: Se ejecuta la sentencia */
+    SqlDataReader^ dr = comm->ExecuteReader();
+
+    /* Paso 4: Se procesan los resultados */
+    if (dr->Read()) {
+        a = (int)dr["cuenta"];
+
+    }
+
+    /* Paso 5: Se cierra los objetos de conexión!!!!!!!!!! */
+    if (dr != nullptr) dr->Close();
+    if (conn != nullptr) conn->Close();
+
+    return a;
+}
+
+int FBAController::DBController::QueryTimeSurvivalByID(int Id)
+{
+    int a = 0;
+    FBAModel::User^ user = nullptr;
+    /* Paso 1: Se obtiene la conexión */
+    SqlConnection^ conn = GetConnection();
+
+    /* Paso 2: Se prepara la sentencia */
+    SqlCommand^ comm = gcnew SqlCommand();
+    comm->Connection = conn;
+    comm->CommandText = "select Max(b.timeMax) as timeMax from USER_FBA as a inner join SURVIVAL as b on a.id=b.id_User where a.id = " + Id + " Group by a.id";
+
+
+
+    /* Paso 3: Se ejecuta la sentencia */
+    SqlDataReader^ dr = comm->ExecuteReader();
+
+    /* Paso 4: Se procesan los resultados */
+    if (dr->Read()) {
+        a = (int)dr["timeMax"];
+
+    }
+
+    /* Paso 5: Se cierra los objetos de conexión!!!!!!!!!! */
+    if (dr != nullptr) dr->Close();
+    if (conn != nullptr) conn->Close();
+
+    return a;
+}
+
 // Antiguo codigo para leer archivos
 // 
 //void FBAController::DBController::SaveUsers() {

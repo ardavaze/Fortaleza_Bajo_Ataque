@@ -12,5 +12,6 @@ void FBAView::Button::EventClick()
 }
 
 void FBAView::Button::MouseCollision(ClickArgs^ e) {
-    this->click(this, e);
+    if(enable==1){ this->click(this, e); }
+    
 }

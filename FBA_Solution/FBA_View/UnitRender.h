@@ -28,7 +28,7 @@ namespace FBAView {
 		bool frstTimechange;
 		int positionx;
 		PhysicalElement^ enemyUnit;
-		System::Diagnostics::Stopwatch^ timeJob=gcnew System::Diagnostics::Stopwatch;
+		
 	};
 }
 

@@ -87,15 +87,15 @@ namespace FBAView {
 		
 	public: User::Avatar avatar;
 	private: System::Windows::Forms::Label^ label_title;
-	private: System::Windows::Forms::ListView^ listView1;
+
 
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ btn_cancel;
 	private: System::Windows::Forms::Button^ btn_OK;
 	private: System::Windows::Forms::Button^ btn_update;
-	private: System::Windows::Forms::Label^ label_friends_list;
-	private: System::Windows::Forms::ColumnHeader^ name;
-	private: System::Windows::Forms::ColumnHeader^ rank;
+
+
+
 
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBox_username;
@@ -149,9 +149,6 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ProfileForm::typeid));
 			this->label_title = (gcnew System::Windows::Forms::Label());
-			this->listView1 = (gcnew System::Windows::Forms::ListView());
-			this->name = (gcnew System::Windows::Forms::ColumnHeader());
-			this->rank = (gcnew System::Windows::Forms::ColumnHeader());
 			this->textBox_max_time = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_level = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_skill_points = (gcnew System::Windows::Forms::TextBox());
@@ -163,7 +160,6 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->btn_OK = (gcnew System::Windows::Forms::Button());
 			this->btn_update = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label_friends_list = (gcnew System::Windows::Forms::Label());
 			this->textBox_name = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_LastName_Father = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_LastName_Mother = (gcnew System::Windows::Forms::TextBox());
@@ -183,33 +179,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 				static_cast<System::Byte>(0)));
 			this->label_title->ForeColor = System::Drawing::Color::White;
 			this->label_title->Location = System::Drawing::Point(0, 0);
+			this->label_title->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label_title->Name = L"label_title";
-			this->label_title->Size = System::Drawing::Size(412, 100);
+			this->label_title->Size = System::Drawing::Size(276, 67);
 			this->label_title->TabIndex = 6;
 			this->label_title->Text = L"PERFIL";
-			// 
-			// listView1
-			// 
-			this->listView1->BackColor = System::Drawing::SystemColors::WindowFrame;
-			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) { this->name, this->rank });
-			this->listView1->GridLines = true;
-			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(1074, 225);
-			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(373, 565);
-			this->listView1->TabIndex = 7;
-			this->listView1->UseCompatibleStateImageBehavior = false;
-			this->listView1->View = System::Windows::Forms::View::Details;
-			// 
-			// name
-			// 
-			this->name->Text = L"Nombre";
-			this->name->Width = 191;
-			// 
-			// rank
-			// 
-			this->rank->Text = L"Insignia";
-			this->rank->Width = 146;
 			// 
 			// textBox_max_time
 			// 
@@ -219,10 +193,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_max_time->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_max_time->ForeColor = System::Drawing::Color::White;
-			this->textBox_max_time->Location = System::Drawing::Point(814, 484);
+			this->textBox_max_time->Location = System::Drawing::Point(543, 315);
+			this->textBox_max_time->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_max_time->Name = L"textBox_max_time";
 			this->textBox_max_time->ReadOnly = true;
-			this->textBox_max_time->Size = System::Drawing::Size(212, 26);
+			this->textBox_max_time->Size = System::Drawing::Size(141, 17);
 			this->textBox_max_time->TabIndex = 19;
 			this->textBox_max_time->Text = L"TIME";
 			// 
@@ -234,10 +209,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_level->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_level->ForeColor = System::Drawing::Color::White;
-			this->textBox_level->Location = System::Drawing::Point(814, 425);
+			this->textBox_level->Location = System::Drawing::Point(543, 276);
+			this->textBox_level->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_level->Name = L"textBox_level";
 			this->textBox_level->ReadOnly = true;
-			this->textBox_level->Size = System::Drawing::Size(212, 26);
+			this->textBox_level->Size = System::Drawing::Size(141, 17);
 			this->textBox_level->TabIndex = 18;
 			this->textBox_level->Text = L"LEVEL";
 			// 
@@ -249,10 +225,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_skill_points->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_skill_points->ForeColor = System::Drawing::Color::White;
-			this->textBox_skill_points->Location = System::Drawing::Point(814, 353);
+			this->textBox_skill_points->Location = System::Drawing::Point(543, 229);
+			this->textBox_skill_points->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_skill_points->Name = L"textBox_skill_points";
 			this->textBox_skill_points->ReadOnly = true;
-			this->textBox_skill_points->Size = System::Drawing::Size(212, 26);
+			this->textBox_skill_points->Size = System::Drawing::Size(141, 17);
 			this->textBox_skill_points->TabIndex = 17;
 			this->textBox_skill_points->Text = L"SKILL_POINT";
 			// 
@@ -264,10 +241,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_emerald->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_emerald->ForeColor = System::Drawing::Color::White;
-			this->textBox_emerald->Location = System::Drawing::Point(814, 294);
+			this->textBox_emerald->Location = System::Drawing::Point(543, 191);
+			this->textBox_emerald->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_emerald->Name = L"textBox_emerald";
 			this->textBox_emerald->ReadOnly = true;
-			this->textBox_emerald->Size = System::Drawing::Size(212, 26);
+			this->textBox_emerald->Size = System::Drawing::Size(141, 17);
 			this->textBox_emerald->TabIndex = 16;
 			this->textBox_emerald->Text = L"EMERALD";
 			// 
@@ -279,10 +257,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_rank->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_rank->ForeColor = System::Drawing::Color::White;
-			this->textBox_rank->Location = System::Drawing::Point(814, 240);
+			this->textBox_rank->Location = System::Drawing::Point(543, 156);
+			this->textBox_rank->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_rank->Name = L"textBox_rank";
 			this->textBox_rank->ReadOnly = true;
-			this->textBox_rank->Size = System::Drawing::Size(212, 26);
+			this->textBox_rank->Size = System::Drawing::Size(141, 17);
 			this->textBox_rank->TabIndex = 15;
 			this->textBox_rank->Text = L"RANK";
 			// 
@@ -294,10 +273,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_username->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_username->ForeColor = System::Drawing::Color::White;
-			this->textBox_username->Location = System::Drawing::Point(270, 254);
+			this->textBox_username->Location = System::Drawing::Point(180, 165);
+			this->textBox_username->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_username->Name = L"textBox_username";
 			this->textBox_username->ReadOnly = true;
-			this->textBox_username->Size = System::Drawing::Size(251, 26);
+			this->textBox_username->Size = System::Drawing::Size(167, 17);
 			this->textBox_username->TabIndex = 13;
 			this->textBox_username->Text = L"USERNAME";
 			// 
@@ -307,9 +287,10 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->label2->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(79, 243);
+			this->label2->Location = System::Drawing::Point(53, 158);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(185, 575);
+			this->label2->Size = System::Drawing::Size(124, 391);
 			this->label2->TabIndex = 12;
 			this->label2->Text = L"NOMBRE DE \r\nUSUARIO:\r\n\r\n\r\nAVATAR:\r\n\r\n\r\n\r\n\r\nNOMBRE:\r\n\r\nAPELLIDO \r\nPATERNO:\r\n\r\nAPEL"
 				L"LIDO \r\nMATERNO:\r\n\r\n\r\nFECHA DE \r\nNACIMIENTO:\r\n\r\nCORREO:\r\n\r\n";
@@ -318,9 +299,10 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			// 
 			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_cancel->Location = System::Drawing::Point(859, 881);
+			this->btn_cancel->Location = System::Drawing::Point(573, 573);
+			this->btn_cancel->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_cancel->Name = L"btn_cancel";
-			this->btn_cancel->Size = System::Drawing::Size(176, 38);
+			this->btn_cancel->Size = System::Drawing::Size(117, 25);
 			this->btn_cancel->TabIndex = 11;
 			this->btn_cancel->Text = L"Cancelar";
 			this->btn_cancel->UseVisualStyleBackColor = true;
@@ -330,9 +312,10 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			// 
 			this->btn_OK->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_OK->Location = System::Drawing::Point(679, 882);
+			this->btn_OK->Location = System::Drawing::Point(453, 573);
+			this->btn_OK->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_OK->Name = L"btn_OK";
-			this->btn_OK->Size = System::Drawing::Size(155, 37);
+			this->btn_OK->Size = System::Drawing::Size(103, 24);
 			this->btn_OK->TabIndex = 10;
 			this->btn_OK->Text = L"Aceptar";
 			this->btn_OK->UseVisualStyleBackColor = true;
@@ -342,9 +325,10 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			// 
 			this->btn_update->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_update->Location = System::Drawing::Point(482, 883);
+			this->btn_update->Location = System::Drawing::Point(321, 574);
+			this->btn_update->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_update->Name = L"btn_update";
-			this->btn_update->Size = System::Drawing::Size(175, 37);
+			this->btn_update->Size = System::Drawing::Size(117, 24);
 			this->btn_update->TabIndex = 9;
 			this->btn_update->Text = L"Modificar";
 			this->btn_update->UseVisualStyleBackColor = true;
@@ -356,23 +340,12 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->label1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 22, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(32, 131);
+			this->label1->Location = System::Drawing::Point(21, 85);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(560, 46);
+			this->label1->Size = System::Drawing::Size(382, 31);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Información de cuenta";
-			// 
-			// label_friends_list
-			// 
-			this->label_friends_list->AutoSize = true;
-			this->label_friends_list->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 22, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label_friends_list->ForeColor = System::Drawing::Color::White;
-			this->label_friends_list->Location = System::Drawing::Point(1025, 131);
-			this->label_friends_list->Name = L"label_friends_list";
-			this->label_friends_list->Size = System::Drawing::Size(394, 46);
-			this->label_friends_list->TabIndex = 9;
-			this->label_friends_list->Text = L"Lista de Amigos";
 			// 
 			// textBox_name
 			// 
@@ -382,10 +355,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_name->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_name->ForeColor = System::Drawing::Color::White;
-			this->textBox_name->Location = System::Drawing::Point(268, 469);
+			this->textBox_name->Location = System::Drawing::Point(179, 305);
+			this->textBox_name->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_name->Name = L"textBox_name";
 			this->textBox_name->ReadOnly = true;
-			this->textBox_name->Size = System::Drawing::Size(253, 26);
+			this->textBox_name->Size = System::Drawing::Size(169, 17);
 			this->textBox_name->TabIndex = 20;
 			this->textBox_name->Text = L"NOMBRE 1";
 			// 
@@ -397,10 +371,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_LastName_Father->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->textBox_LastName_Father->ForeColor = System::Drawing::Color::White;
-			this->textBox_LastName_Father->Location = System::Drawing::Point(268, 528);
+			this->textBox_LastName_Father->Location = System::Drawing::Point(179, 343);
+			this->textBox_LastName_Father->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_LastName_Father->Name = L"textBox_LastName_Father";
 			this->textBox_LastName_Father->ReadOnly = true;
-			this->textBox_LastName_Father->Size = System::Drawing::Size(251, 26);
+			this->textBox_LastName_Father->Size = System::Drawing::Size(167, 17);
 			this->textBox_LastName_Father->TabIndex = 21;
 			this->textBox_LastName_Father->Text = L"APELLIDO";
 			// 
@@ -412,10 +387,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_LastName_Mother->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->textBox_LastName_Mother->ForeColor = System::Drawing::Color::White;
-			this->textBox_LastName_Mother->Location = System::Drawing::Point(268, 601);
+			this->textBox_LastName_Mother->Location = System::Drawing::Point(179, 391);
+			this->textBox_LastName_Mother->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_LastName_Mother->Name = L"textBox_LastName_Mother";
 			this->textBox_LastName_Mother->ReadOnly = true;
-			this->textBox_LastName_Mother->Size = System::Drawing::Size(251, 26);
+			this->textBox_LastName_Mother->Size = System::Drawing::Size(167, 17);
 			this->textBox_LastName_Mother->TabIndex = 22;
 			this->textBox_LastName_Mother->Text = L"APELLIDO";
 			// 
@@ -425,9 +401,10 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->label3->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::Color::White;
-			this->label3->Location = System::Drawing::Point(539, 243);
+			this->label3->Location = System::Drawing::Point(359, 158);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(252, 300);
+			this->label3->Size = System::Drawing::Size(167, 204);
 			this->label3->TabIndex = 23;
 			this->label3->Text = L"RANGO:\r\n\r\nESMERALDAS:\r\n\r\nPUNTOS DE \r\nHABILIDAD:\r\n\r\nNIVEL CAMPAÑA:\r\n\r\nTIEMPO MÁXIM"
 				L"O\r\nSUPERRVIVENVIA:\r\n\r\n";
@@ -440,10 +417,11 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_Birthday->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_Birthday->ForeColor = System::Drawing::Color::White;
-			this->textBox_Birthday->Location = System::Drawing::Point(270, 716);
+			this->textBox_Birthday->Location = System::Drawing::Point(180, 465);
+			this->textBox_Birthday->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_Birthday->Name = L"textBox_Birthday";
 			this->textBox_Birthday->ReadOnly = true;
-			this->textBox_Birthday->Size = System::Drawing::Size(251, 26);
+			this->textBox_Birthday->Size = System::Drawing::Size(167, 17);
 			this->textBox_Birthday->TabIndex = 24;
 			this->textBox_Birthday->Text = L"FECHA";
 			// 
@@ -455,19 +433,21 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->textBox_email->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox_email->ForeColor = System::Drawing::Color::White;
-			this->textBox_email->Location = System::Drawing::Point(268, 784);
+			this->textBox_email->Location = System::Drawing::Point(179, 510);
+			this->textBox_email->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->textBox_email->Name = L"textBox_email";
 			this->textBox_email->ReadOnly = true;
-			this->textBox_email->Size = System::Drawing::Size(436, 26);
+			this->textBox_email->Size = System::Drawing::Size(291, 17);
 			this->textBox_email->TabIndex = 25;
 			this->textBox_email->Text = L"CORREO";
 			// 
 			// pictureBox_avatar
 			// 
 			this->pictureBox_avatar->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox_avatar.Image")));
-			this->pictureBox_avatar->Location = System::Drawing::Point(288, 306);
+			this->pictureBox_avatar->Location = System::Drawing::Point(192, 199);
+			this->pictureBox_avatar->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox_avatar->Name = L"pictureBox_avatar";
-			this->pictureBox_avatar->Size = System::Drawing::Size(108, 94);
+			this->pictureBox_avatar->Size = System::Drawing::Size(72, 61);
 			this->pictureBox_avatar->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox_avatar->TabIndex = 26;
 			this->pictureBox_avatar->TabStop = false;
@@ -479,9 +459,10 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->btn_delete->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_delete->ForeColor = System::Drawing::Color::White;
-			this->btn_delete->Location = System::Drawing::Point(84, 882);
+			this->btn_delete->Location = System::Drawing::Point(56, 573);
+			this->btn_delete->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_delete->Name = L"btn_delete";
-			this->btn_delete->Size = System::Drawing::Size(283, 38);
+			this->btn_delete->Size = System::Drawing::Size(189, 25);
 			this->btn_delete->TabIndex = 27;
 			this->btn_delete->Text = L"Eliminar cuenta";
 			this->btn_delete->UseVisualStyleBackColor = false;
@@ -491,21 +472,22 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			// 
 			this->btn_update_avatar->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_update_avatar->Location = System::Drawing::Point(270, 406);
+			this->btn_update_avatar->Location = System::Drawing::Point(180, 264);
+			this->btn_update_avatar->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_update_avatar->Name = L"btn_update_avatar";
-			this->btn_update_avatar->Size = System::Drawing::Size(143, 29);
+			this->btn_update_avatar->Size = System::Drawing::Size(95, 19);
 			this->btn_update_avatar->TabIndex = 28;
 			this->btn_update_avatar->Text = L"CAMBIAR";
 			this->btn_update_avatar->UseVisualStyleBackColor = true;
 			this->btn_update_avatar->Click += gcnew System::EventHandler(this, &ProfileForm::btn_update_avatar_Click);
 			// 
-			// Profile
+			// ProfileForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->ClientSize = System::Drawing::Size(1522, 1009);
+			this->ClientSize = System::Drawing::Size(1015, 656);
 			this->Controls->Add(this->btn_update_avatar);
 			this->Controls->Add(this->btn_delete);
 			this->Controls->Add(this->pictureBox_avatar);
@@ -518,11 +500,9 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->Controls->Add(this->btn_cancel);
 			this->Controls->Add(this->textBox_max_time);
 			this->Controls->Add(this->btn_OK);
-			this->Controls->Add(this->label_friends_list);
 			this->Controls->Add(this->btn_update);
 			this->Controls->Add(this->textBox_level);
 			this->Controls->Add(this->textBox_skill_points);
-			this->Controls->Add(this->listView1);
 			this->Controls->Add(this->textBox_emerald);
 			this->Controls->Add(this->textBox_rank);
 			this->Controls->Add(this->label_title);
@@ -530,7 +510,8 @@ private: System::Windows::Forms::Button^ btn_update_avatar;
 			this->Controls->Add(this->textBox_username);
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Name = L"Profile";
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Name = L"ProfileForm";
 			this->Text = L"TIME";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_avatar))->EndInit();
 			this->ResumeLayout(false);

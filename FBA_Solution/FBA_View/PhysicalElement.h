@@ -30,6 +30,7 @@ namespace FBAView {
 		double attackVelocity;  //ataques/minuto
 		double deathTime; //Segundos que demora en morirse
 		int rango;
+		System::Diagnostics::Stopwatch^ timeJob = gcnew System::Diagnostics::Stopwatch;
 	protected:
 		virtual Void PaintTexture();
 		RenderTexture^ board;

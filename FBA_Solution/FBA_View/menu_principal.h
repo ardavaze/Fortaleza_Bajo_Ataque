@@ -673,6 +673,7 @@ private: System::Windows::Forms::Panel^ panel_user;
 			Hide_panel();
 			SurvivalForm^ a = gcnew SurvivalForm();
 			a->Owner = this;
+			a->user = Menu_principal::user;
 			open_ChildForm(a);
 
 		}

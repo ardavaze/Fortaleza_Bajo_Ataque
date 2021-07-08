@@ -46,6 +46,10 @@ namespace FBAView{
 		void TimeAnalysis();
 		UserLifeBar^ userAvatar;
 		Watch^ watch;
+		Sprite^ pauseMenu;
+		Button^ pauseButton;
+		Button^ resumeButton;
+		Button^ exitButton;
 		//Entorno Grafico
 		int posx = 0;
 		int piso = 740;
@@ -56,6 +60,7 @@ namespace FBAView{
 		SFML::Graphics::View^ miniMap;
 		Form^ owner;
 		int gameOver;
+		bool pause;
 		Sprite^ gameOverImage;
 		SoundBuffer^ gameSoundBuffer;
 		Sound^ gameSound;
@@ -82,16 +87,54 @@ namespace FBAView{
 			else TimeGenerate->Start();
 		}
 		Void BarbarianClick(System::Object^ sender, ClickArgs^ e) {
-			BarbarianEvent();
+			if (pause == 0) { BarbarianEvent(); }
 		}
 		Void DwarfClick(System::Object^ sender, ClickArgs^ e) {
-			DwarfEvent();
+			if (pause == 0) { DwarfEvent(); }
 		}
 		Void WraithClick(System::Object^ sender, ClickArgs^ e) {
 			WraithEvent();
 		}
 		Void avatarclick(System::Object^ sender, ClickArgs^ e) {
 			castle->HP -= 10;
+		}
+		Void pauseClick(System::Object^ sender, ClickArgs^ e) {
+			pause=1;
+			pauseButton->enable = 0;
+			resumeButton->enable = 1;
+			exitButton->enable = 1;
+
+
+			watch->Chronometer->Stop();
+			for (int j = 1; j < 3;j++) {
+				for (int i = 0; i < physicalElemts[j]->Count;i++) {
+					physicalElemts[j][i]->timeJob->Stop();
+
+				}
+			}
+			barbarianTime->Stop();
+			dwarfTime->Stop();
+		}
+		Void resumeClick(System::Object^ sender, ClickArgs^ e) {
+			pause = 0;
+			pauseButton->enable = 1;
+			resumeButton->enable = 0;
+			exitButton->enable = 0;
+			watch->Chronometer->Start();
+			for (int j = 1; j < 3;j++) {
+				for (int i = 0; i < physicalElemts[j]->Count;i++) {
+					physicalElemts[j][i]->timeJob->Start();
+
+				}
+			}
+			barbarianTime->Start();
+			dwarfTime->Start();
+		}
+		Void exitClick(System::Object^ sender, ClickArgs^ e) {
+			if (pause == 1) {
+				gameSound->Stop();
+				this->Close();
+			}
 		}
 	};
 }

@@ -40,7 +40,7 @@ void FBAView::SurvivalRender::Run() {
             a->Move(Vector2f(-6, 0));
             posx -= 6;
         }
-        if (gameOver == 0) {
+        if (gameOver == 0 && pause == 0) {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < physicalElemts[i]->Count; j++)
                     if (physicalElemts[i][j]->state != PhysicalElement::States::Die)
@@ -120,6 +120,12 @@ void FBAView::SurvivalRender::Run() {
         this->Draw(this->userAvatar);
         this->Draw(this->userConsole);
         this->Draw(this->watch);
+        if (pause == 0) { this->Draw(this->pauseButton); }
+        if (pause == 1) { 
+            this->Draw(this->pauseMenu);
+            this->Draw(this->resumeButton);
+            this->Draw(this->exitButton);
+        }
         if (castle->HP <= 0) {  
             gameOver++; 
             this->Draw(this->gameOverImage);
@@ -164,7 +170,7 @@ void FBAView::SurvivalRender::Procesar_evento(){
             this->Close();
             break;
         case EventType::KeyPressed:
-            if (gameOver == 0) {
+            if (gameOver == 0 && pause == 0) {
                 if (Keyboard::IsKeyPressed(Keyboard::Key::D)) {
                     BarbarianEvent();
                 }
@@ -582,14 +588,40 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     watch->minDecena->Texture = watch->numbers[0];
     watch->dosPuntos->Texture = watch->twoPoints;
     watch->PaintTexture();
+    ////Menu de Pausa
+    pauseMenu = gcnew Sprite(gcnew Texture("Assets/Environment/MapsElements/pauseMenu.png"));
+    pauseMenu->Position = Vector2f(0,0);
+    ////Botones de pausa
+    pauseButton = gcnew Button;
+    resumeButton = gcnew Button;
+    exitButton = gcnew Button;
+    pauseButton->Texture= gcnew Texture("Assets/Environment/button/PAUSE.png");
+    pauseButton->Position = Vector2f(1810,20);
+    resumeButton->Texture = gcnew Texture("Assets/Environment/button/PLAY.png");
+    resumeButton->Position = Vector2f(1710, 20);
+    exitButton->Texture = gcnew Texture("Assets/Environment/button/EXIT.png");
+    exitButton->Position = Vector2f(1810, 960);
+
+    pauseButton->enable = 1;
+    resumeButton->enable = 0;
+    exitButton->enable = 0;
+
+    pauseButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::pauseClick);
+    resumeButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::resumeClick);
+    exitButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::exitClick);
+
     ////ControlElements
     controlElemts = gcnew List<ControlElements^>;
     controlElemts->Add(userAvatar);
     controlElemts->Add(watch);
     controlElemts->Add(userConsole);
+    controlElemts->Add(pauseButton);
+    controlElemts->Add(resumeButton);
+    controlElemts->Add(exitButton);
     //Utilitarios
     ////game
     gameOver = 0;
+    pause = 0;
     //Music
     gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/game_music.wav");
     gameSound = gcnew Sound(gameSoundBuffer);
