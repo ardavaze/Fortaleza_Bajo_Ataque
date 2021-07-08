@@ -27,18 +27,18 @@ FBAView::SurvivalRender::SurvivalRender() :RenderWindow(VideoMode(SFML::Window::
 void FBAView::SurvivalRender::Run() {
     a = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920, 1080));
     b = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920, 1080));
-    miniMap = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920*2, 750));
+    miniMap = gcnew SFML::Graphics::View(FloatRect(0, 0, 1920*3/2, 750));
     miniMap->Move(Vector2f(0, 100));
     miniMap->Viewport = FloatRect(0, 0.8,0.30 ,0.2 );
     while (this->IsOpen) {
         render->Restart();
-        if ( (Mouse::GetPosition().X > SFML::Window::VideoMode::DesktopMode.Width - 2)&&(posx <= 1914) ) {
-            a->Move(Vector2f(6, 0));
-            posx += 6;
+        if ( (Mouse::GetPosition().X > SFML::Window::VideoMode::DesktopMode.Width - 2)&&(posx <= (1914/2)) ) {
+            a->Move(Vector2f(3, 0));
+            posx += 3;
         }
         if ( (Mouse::GetPosition().X < 2)&&(posx >= 6) ) {
-            a->Move(Vector2f(-6, 0));
-            posx -= 6;
+            a->Move(Vector2f(-3, 0));
+            posx -= 3;
         }
         if (gameOver == 0 && pause == 0) {
             for (int i = 0; i < 3; i++) {
@@ -644,7 +644,7 @@ void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
     else{
         physicalElemts[2]->Add(newUnit);
         newUnit->Origin = Vector2f(newUnit->Texture->Size.X, 0);
-        newUnit->Position = Vector2f(1920 * 2, (float)(piso - (newUnit->Scale.Y) * (newUnit->positionElement.Y + newUnit->sizeElement.Y)));
+        newUnit->Position = Vector2f(1920 * 3/2, (float)(piso - (newUnit->Scale.Y) * (newUnit->positionElement.Y + newUnit->sizeElement.Y)));
     }
     newUnit->attackVelocity = newUnit->unit->attackVelocity;
     newUnit->movementVelocity = newUnit->unit->movementVelocity;

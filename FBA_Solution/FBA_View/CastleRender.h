@@ -11,7 +11,7 @@ namespace FBAView {
 		Sprite^ cover;
 		Sprite^ crossbow;
 		ArrowRender^ arrowRender;
-		Void LostLife(int damage) override;
+		Void LoseLife(int damage) override;
 		Void ProcessCollision() override;
 		Void ToDo() override;
 		Void ThrowArrow();

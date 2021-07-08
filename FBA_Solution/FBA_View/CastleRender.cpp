@@ -7,7 +7,7 @@ FBAView::CastleRender::CastleRender(FBAModel::Base^base) {
 	this->cover = gcnew Sprite(base->coverState[0]);
 }
 
-Void FBAView::CastleRender::LostLife(int damage) {
+Void FBAView::CastleRender::LoseLife(int damage) {
 	this->HP -= damage;
 	this->HPBar->UpdateUserHP(double(this->HP) / this->base->Vida_max);
 	if ((this->HP / this->base->Vida_max) > 0.6) {
