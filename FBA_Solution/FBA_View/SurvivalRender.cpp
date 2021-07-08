@@ -557,9 +557,9 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     physicalElemts[2] = gcnew List<PhysicalElement^>();
     physicalElemts[0]->Add(castle);
     ////Avatar
-    userAvatar = gcnew UserLifeBar(((Menu_principal^)owner)->user->nickname, ((Menu_principal^)owner)->user->avatar.ToString());
+    userAvatar = gcnew UserLifeBar(((Menu_principal^)owner)->user->nickname, ((Menu_principal^)owner)->user->avatar.ToString(), ((Menu_principal^)owner)->user->rank.ToString());
     userAvatar->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::userclick);
-    userAvatar->avatarButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::avatarclick);
+    
     userAvatar->UpdateUserHP(1);
     castle->HPBar = userAvatar;
     ////console
