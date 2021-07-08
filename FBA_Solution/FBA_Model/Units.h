@@ -22,5 +22,7 @@ namespace FBAModel {
         Vector2f scale;      //la escala que debe tener la imagen al dibujarla
         Vector2i sizeElement;     //tamaño real del personaje sin considerar el rectangulo de imagen que la contiene
         Vector2i positionElement; //posicion del comienzo del elemento respecto de la esquina del rectangulo de imagen que la contiene 
+        Vector2f sizeHP;     //tamaño real del personaje sin considerar el rectangulo de imagen que la contiene
+        Vector2f positionHP; //posicion del comienzo del elemento respecto de la esquina del rectangulo de imagen que la contiene 
     };  
 }

@@ -367,6 +367,8 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitAllies[0]->scale = Vector2f(0.6, 0.6);
     unitAllies[0]->positionElement = Vector2i(156, 66);
     unitAllies[0]->sizeElement = Vector2i(206, 258);
+    unitAllies[0]->positionHP = Vector2f(0,0);
+    unitAllies[0]->sizeHP = Vector2f(1,1);
     unitAllies[0]->attackVelocity = 50;
     unitAllies[0]->movementVelocity = 0.9;
     unitAllies[0]->moneyValue = 50;
@@ -390,13 +392,15 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
         unitAllies[1]->DeathAnimation->Add(gcnew Texture(d));
     }
     unitAllies[1]->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Sword Strike 7.wav");
-    unitAllies[1]->attackSound = gcnew Sound(unitAllies[0]->attackBuffer);
+    unitAllies[1]->attackSound = gcnew Sound(unitAllies[1]->attackBuffer);
     unitAllies[1]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ES_Human Moan 14.wav");
-    unitAllies[1]->deathSound = gcnew Sound(unitAllies[0]->deathBuffer);
+    unitAllies[1]->deathSound = gcnew Sound(unitAllies[1]->deathBuffer);
     unitAllies[1]->Image = unitAllies[1]->MoveAnimation[0];
     unitAllies[1]->scale = Vector2f(0.6, 0.6);
     unitAllies[1]->positionElement = Vector2i(175, 80);
     unitAllies[1]->sizeElement = Vector2i(195, 266);
+    unitAllies[1]->positionHP = Vector2f(0, 0);
+    unitAllies[1]->sizeHP = Vector2f(1, 1);
     unitAllies[1]->attackVelocity = 50;
     unitAllies[1]->movementVelocity = 0.9;
     unitAllies[1]->moneyValue = 50;
@@ -421,13 +425,15 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
         unitAllies[2]->DeathAnimation->Add(gcnew Texture(d));
     }
     unitAllies[2]->attackBuffer = gcnew SoundBuffer("Assets/Audio/magic 1.wav");
-    unitAllies[2]->attackSound = gcnew Sound(unitAllies[0]->attackBuffer);
+    unitAllies[2]->attackSound = gcnew Sound(unitAllies[2]->attackBuffer);
     unitAllies[2]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ghost moan.wav");
-    unitAllies[2]->deathSound = gcnew Sound(unitAllies[0]->deathBuffer);
+    unitAllies[2]->deathSound = gcnew Sound(unitAllies[2]->deathBuffer);
     unitAllies[2]->Image = unitAllies[2]->MoveAnimation[0];
-    unitAllies[2]->scale = Vector2f(0.48, 0.48);//
+    unitAllies[2]->scale = Vector2f(0.5, 0.5);//
     unitAllies[2]->positionElement = Vector2i(120, 45);//
     unitAllies[2]->sizeElement = Vector2i(220, 302);//
+    unitAllies[2]->positionHP = Vector2f(0, 0);
+    unitAllies[2]->sizeHP = Vector2f(1, 1);
     unitAllies[2]->attackVelocity = 38;
     unitAllies[2]->movementVelocity = 0.9;
     unitAllies[2]->moneyValue = 50;
@@ -460,6 +466,8 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitEnemies[0]->scale = Vector2f(-0.2, 0.2);
     unitEnemies[0]->positionElement = Vector2i(387, 68);
     unitEnemies[0]->sizeElement = Vector2i(599, 834);
+    unitEnemies[0]->positionHP = Vector2f(0, 0);
+    unitEnemies[0]->sizeHP = Vector2f(1, 1);
     unitEnemies[0]->attackVelocity = 50;
     unitEnemies[0]->movementVelocity = 0.9;
     unitEnemies[0]->moneyValue = 50;
@@ -483,13 +491,15 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
         unitEnemies[1]->DeathAnimation->Add(gcnew Texture(d));
     }
     unitEnemies[1]->attackBuffer = gcnew SoundBuffer("Assets/Audio/hammer hit.wav");
-    unitEnemies[1]->attackSound = gcnew Sound(unitEnemies[0]->attackBuffer);
+    unitEnemies[1]->attackSound = gcnew Sound(unitEnemies[1]->attackBuffer);
     unitEnemies[1]->deathBuffer = gcnew SoundBuffer("Assets/Audio/monster moan 2.wav");
-    unitEnemies[1]->deathSound = gcnew Sound(unitEnemies[0]->deathBuffer);
-    unitEnemies[1]->Image = unitEnemies[0]->MoveAnimation[0];
+    unitEnemies[1]->deathSound = gcnew Sound(unitEnemies[1]->deathBuffer);
+    unitEnemies[1]->Image = unitEnemies[1]->MoveAnimation[0];
     unitEnemies[1]->scale = Vector2f(-0.4, 0.4);
     unitEnemies[1]->positionElement = Vector2i(676, 363);
     unitEnemies[1]->sizeElement = Vector2i(305, 509);
+    unitEnemies[1]->positionHP = Vector2f(0, 0);
+    unitEnemies[1]->sizeHP = Vector2f(1, 1);
     unitEnemies[1]->attackVelocity = 50;
     unitEnemies[1]->movementVelocity = 0.9;
     unitEnemies[1]->moneyValue = 50;
@@ -513,13 +523,15 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
         unitEnemies[2]->DeathAnimation->Add(gcnew Texture(d));
     }
     unitEnemies[2]->attackBuffer = gcnew SoundBuffer("Assets/Audio/magic 2.wav");
-    unitEnemies[2]->attackSound = gcnew Sound(unitEnemies[0]->attackBuffer);
+    unitEnemies[2]->attackSound = gcnew Sound(unitEnemies[2]->attackBuffer);
     unitEnemies[2]->deathBuffer = gcnew SoundBuffer("Assets/Audio/ghost moan 2.wav");
-    unitEnemies[2]->deathSound = gcnew Sound(unitEnemies[0]->deathBuffer);
-    unitEnemies[2]->Image = unitEnemies[0]->MoveAnimation[0];
+    unitEnemies[2]->deathSound = gcnew Sound(unitEnemies[2]->deathBuffer);
+    unitEnemies[2]->Image = unitEnemies[2]->MoveAnimation[0];
     unitEnemies[2]->scale = Vector2f(-0.3, 0.3);
     unitEnemies[2]->positionElement = Vector2i(962, 271);
     unitEnemies[2]->sizeElement = Vector2i(399, 682);
+    unitEnemies[2]->positionHP = Vector2f(0, 0);
+    unitEnemies[2]->sizeHP = Vector2f(1, 1);
     unitEnemies[2]->attackVelocity = 50;
     unitEnemies[2]->movementVelocity = 0.9;
     unitEnemies[2]->moneyValue = 50;
@@ -687,7 +699,8 @@ void FBAView::SurvivalRender::GenerateUnits(Units^ baseUnit){
     UnitRender^ newUnit =gcnew UnitRender(baseUnit) ;
     newUnit->band = newUnit->unit->band;
     newUnit->healthbar = gcnew HealthBar(this->healthBar);
-    newUnit->healthbar->Position = Vector2f(40, 4);
+    newUnit->healthbar->Position = baseUnit->positionHP;
+    newUnit->healthbar->Scale = baseUnit->sizeHP;
     newUnit->Texture = newUnit->unit->Image;
     newUnit->Scale = newUnit->unit->scale;
     newUnit->sizeElement = newUnit->unit->sizeElement;
@@ -713,7 +726,8 @@ void FBAView::SurvivalRender::GenerateUnitsDistance(Units^ baseUnit) {
     UnitDistanceRender^ newUnit = gcnew UnitDistanceRender(baseUnit);
     physicalElemts[1]->Add(newUnit);
     newUnit->healthbar = gcnew HealthBar(this->healthBar);
-    newUnit->healthbar->Position = Vector2f(150, 4);
+    newUnit->healthbar->Position = baseUnit->positionHP;
+    newUnit->healthbar->Scale = baseUnit->sizeHP;
     newUnit->band = newUnit->unit->band;
     newUnit->Texture = newUnit->unit->Image;
     newUnit->Scale = newUnit->unit->scale;
