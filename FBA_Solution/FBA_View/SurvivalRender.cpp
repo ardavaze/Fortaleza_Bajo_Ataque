@@ -660,6 +660,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     //Music
     gameSoundBuffer = gcnew SoundBuffer("Assets/Audio/Juego.wav");
     gameSound = gcnew Sound(gameSoundBuffer);
+    gameSound->Volume = 3;
     gameSound->Play();
 
 
