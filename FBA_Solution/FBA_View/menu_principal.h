@@ -26,7 +26,7 @@ namespace FBAView {
 	public ref class Menu_principal : public System::Windows::Forms::Form
 	{
 		public:
-			SoundPlayer^ sound_menu = gcnew SoundPlayer("Assets/Audio/menu_music.wav");
+			SoundPlayer^ sound_menu = gcnew SoundPlayer("Assets/Audio/Menu.wav");
 			SoundPlayer^ sound_submenu_click = gcnew SoundPlayer("Trigger_click.wav");
 
 	public:
@@ -69,13 +69,14 @@ namespace FBAView {
 				FBA_Controller::InicializeController();
 				if (user == nullptr) {
 					LoginForm^ login = gcnew LoginForm();
+					sound_menu->PlayLooping();
 					login->Owner = this;
 					login->ShowDialog();
 				}
 				InitializeComponent();
 				User_data();
 				List<Survival^>^ a = FBA_Controller::QueryAllSurvival();
-				sound_menu->PlayLooping();
+				
 			}
 
 		protected:
