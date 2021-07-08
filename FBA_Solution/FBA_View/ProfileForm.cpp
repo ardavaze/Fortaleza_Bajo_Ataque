@@ -18,18 +18,14 @@ void FBAView::ProfileForm::User_data_load(){
 
 void FBAView::ProfileForm::Write_rank()
 {
-	int level = Menu_principal::user->level;
-	if (level < 5)
-		textBox_rank->Text = "CAPITÁN";
-	else
-		if (4 <level&& level < 9)
-		textBox_rank->Text = "CORONEL";
-	else
-		if (8 < level && level < 13)
-		textBox_rank->Text = "GENERAL";
-	else
-		if (12 < level)
-		textBox_rank->Text = "MARISCAL";
+	if (Menu_principal::user->rank == User::Rank::Captain)
+		this->textBox_rank->Text = "Capitán";
+	if (Menu_principal::user->rank == User::Rank::Colonel)
+		this->textBox_rank->Text = "Coronel";
+	if (Menu_principal::user->rank == User::Rank::General)
+		this->textBox_rank->Text = "General";
+	if (Menu_principal::user->rank == User::Rank::Marshal)
+		this->textBox_rank->Text = "Mariscal";
 	
 }
 

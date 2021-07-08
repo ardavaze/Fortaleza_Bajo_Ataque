@@ -28,7 +28,8 @@ namespace FBAController {
 		static void DeleteSurvival(int);
 		static List<Survival^>^ QueryAllSurvival();
 		static List<Survival^>^ QueryAllSurvivalByUser(User^ );
-
+		static int QuerySurvivalByID(int Id);
+		static int QueryTimeSurvivalByID(int Id);
 		//antiguo
 		/*static void SaveUsers();
 		static void LoadUsers();*/

@@ -69,3 +69,14 @@ List<Survival^>^ FBAController::FBA_Controller::QueryAllSurvivalByUser(User^ use
 {
 	return DBController::QueryAllSurvivalByUser(user);
 }
+
+int FBAController::FBA_Controller::QuerySurvivalByID(int Id)
+{
+	return DBController::QuerySurvivalByID(Id);
+}
+
+int FBAController::FBA_Controller::QueryTimeSurvivalByID(int Id)
+{
+	return DBController::QueryTimeSurvivalByID(Id);
+}
+	
