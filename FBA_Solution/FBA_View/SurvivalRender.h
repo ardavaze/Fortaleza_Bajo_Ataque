@@ -150,11 +150,23 @@ namespace FBAView{
 				this->Close();
 			}
 		}
-		Void btnOver(System::Object^ sender, ClickArgs^ e) {
-			this->userConsole->barbarianButton->Color = SFML::Graphics::Color::Color(200,200,200);
+		Void btnOverbarbarian(System::Object^ sender, ClickArgs^ e) {
+			this->userConsole->barbarianButton->Color = SFML::Graphics::Color::Color(180, 180, 180);
 		}
-		Void btnLeave(System::Object^ sender, ClickArgs^ e) {
+		Void btnLeavebarbarian(System::Object^ sender, ClickArgs^ e) {
 			this->userConsole->barbarianButton->Color = SFML::Graphics::Color::Color(255, 255, 255);
+		}
+		Void btnOverdwarf(System::Object^ sender, ClickArgs^ e) {
+			this->userConsole->dwarfButton->Color = SFML::Graphics::Color::Color(180, 180, 180);
+		}
+		Void btnLeavedwarf(System::Object^ sender, ClickArgs^ e) {
+			this->userConsole->dwarfButton->Color = SFML::Graphics::Color::Color(255, 255, 255);
+		}
+		Void btnOverwraith(System::Object^ sender, ClickArgs^ e) {
+			this->userConsole->wraithButton->Color = SFML::Graphics::Color::Color(180, 180, 180);
+		}
+		Void btnLeavewraith(System::Object^ sender, ClickArgs^ e) {
+			this->userConsole->wraithButton->Color = SFML::Graphics::Color::Color(255, 255, 255);
 		}
 	};
 }

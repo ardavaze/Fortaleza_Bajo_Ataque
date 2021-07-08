@@ -367,7 +367,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitAllies[0]->scale = Vector2f(0.6, 0.6);
     unitAllies[0]->positionElement = Vector2i(156, 66);
     unitAllies[0]->sizeElement = Vector2i(206, 258);
-    unitAllies[0]->positionHP = Vector2f(0,0);
+    unitAllies[0]->positionHP = Vector2f(200,0);
     unitAllies[0]->sizeHP = Vector2f(1,1);
     unitAllies[0]->attackVelocity = 50;
     unitAllies[0]->movementVelocity = 0.9;
@@ -399,7 +399,7 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitAllies[1]->scale = Vector2f(0.6, 0.6);
     unitAllies[1]->positionElement = Vector2i(175, 80);
     unitAllies[1]->sizeElement = Vector2i(195, 266);
-    unitAllies[1]->positionHP = Vector2f(0, 0);
+    unitAllies[1]->positionHP = Vector2f(200, 0);
     unitAllies[1]->sizeHP = Vector2f(1, 1);
     unitAllies[1]->attackVelocity = 50;
     unitAllies[1]->movementVelocity = 0.9;
@@ -432,8 +432,8 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitAllies[2]->scale = Vector2f(0.5, 0.5);//
     unitAllies[2]->positionElement = Vector2i(120, 45);//
     unitAllies[2]->sizeElement = Vector2i(220, 302);//
-    unitAllies[2]->positionHP = Vector2f(0, 0);
-    unitAllies[2]->sizeHP = Vector2f(1, 1);
+    unitAllies[2]->positionHP = Vector2f(200, 0);
+    unitAllies[2]->sizeHP = Vector2f(1.1, 1.1);
     unitAllies[2]->attackVelocity = 38;
     unitAllies[2]->movementVelocity = 0.9;
     unitAllies[2]->moneyValue = 50;
@@ -612,8 +612,12 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     userConsole->barbarianButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::BarbarianClick);
     userConsole->dwarfButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::DwarfClick);
     userConsole->wraithButton->click += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::WraithClick);
-    userConsole->barbarianButton->mouseOver += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnOver);
-    userConsole->barbarianButton->mouseLeave += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnLeave);
+    userConsole->barbarianButton->mouseOver += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnOverbarbarian);
+    userConsole->barbarianButton->mouseLeave += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnLeavebarbarian);
+    userConsole->dwarfButton->mouseOver += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnOverdwarf);
+    userConsole->dwarfButton->mouseLeave += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnLeavedwarf);
+    userConsole->wraithButton->mouseOver += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnOverwraith);
+    userConsole->wraithButton->mouseLeave += gcnew System::EventHandler<ClickArgs^>(this, &SurvivalRender::btnLeavewraith);
     
     ////Cronometro
     watch = gcnew Watch;
