@@ -539,6 +539,10 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 28.png"));
     base->coverState->Add(gcnew Texture("Assets/Environment/MapsElements/CoverAsset 29.png"));
     base->Vida_max = 1000;
+    base->attackBuffer = gcnew SoundBuffer("Assets/Audio/ES_Bow Thwap String - SFX Producer (1).wav");
+    base->attackSound = gcnew Sound(base->attackBuffer);
+    base->deathBuffer = gcnew SoundBuffer("Assets/Audio/building-collapse-sound-effects-eathquake-sounds-rocks-falling-brick-wall-collapse-crashes (mp3cut.net).wav");
+    base->deathSound = gcnew Sound(base->deathBuffer);
     //// SkinBackground
     skinBackground = gcnew FBAModel::Skin_Background;
     skinBackground->texture = (gcnew Texture("Assets/Environment/Maps/GameBackground.png"));
