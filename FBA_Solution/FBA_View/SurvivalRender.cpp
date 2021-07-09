@@ -474,8 +474,8 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitEnemies[0]->scale = Vector2f(-0.2, 0.2);
     unitEnemies[0]->positionElement = Vector2i(387, 68);
     unitEnemies[0]->sizeElement = Vector2i(599, 834);
-    unitEnemies[0]->positionHP = Vector2f(0, 0);
-    unitEnemies[0]->sizeHP = Vector2f(1, 1);
+    unitEnemies[0]->positionHP = Vector2f(478, -30);
+    unitEnemies[0]->sizeHP = Vector2f(4, 4);
     unitEnemies[0]->attackVelocity = 50;
     unitEnemies[0]->movementVelocity = 0.9;
     unitEnemies[0]->moneyValue = 50;
@@ -508,8 +508,8 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitEnemies[1]->scale = Vector2f(-0.4, 0.4);
     unitEnemies[1]->positionElement = Vector2i(676, 363);
     unitEnemies[1]->sizeElement = Vector2i(305, 509);
-    unitEnemies[1]->positionHP = Vector2f(0, 0);
-    unitEnemies[1]->sizeHP = Vector2f(1, 1);
+    unitEnemies[1]->positionHP = Vector2f(573, 248);
+    unitEnemies[1]->sizeHP = Vector2f(4, 4);
     unitEnemies[1]->attackVelocity = 50;
     unitEnemies[1]->movementVelocity = 0.9;
     unitEnemies[1]->moneyValue = 50;
@@ -542,8 +542,8 @@ Void FBAView::SurvivalRender::InitializeGraphics() {
     unitEnemies[2]->scale = Vector2f(-0.3, 0.3);
     unitEnemies[2]->positionElement = Vector2i(962, 271);
     unitEnemies[2]->sizeElement = Vector2i(399, 682);
-    unitEnemies[2]->positionHP = Vector2f(0, 0);
-    unitEnemies[2]->sizeHP = Vector2f(1, 1);
+    unitEnemies[2]->positionHP = Vector2f(977, 141);
+    unitEnemies[2]->sizeHP = Vector2f(4, 4);
     unitEnemies[2]->attackVelocity = 50;
     unitEnemies[2]->movementVelocity = 0.9;
     unitEnemies[2]->moneyValue = 50;

@@ -193,16 +193,14 @@ namespace FBAView {
 			// splitContainer1
 			// 
 			this->splitContainer1->Location = System::Drawing::Point(0, 0);
-			this->splitContainer1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->splitContainer1->Name = L"splitContainer1";
 			// 
 			// splitContainer1.Panel2
 			// 
 			this->splitContainer1->Panel2->AllowDrop = true;
 			this->splitContainer1->Panel2->AutoScroll = true;
-			this->splitContainer1->Size = System::Drawing::Size(200, 123);
-			this->splitContainer1->SplitterDistance = 65;
-			this->splitContainer1->SplitterWidth = 5;
+			this->splitContainer1->Size = System::Drawing::Size(150, 100);
+			this->splitContainer1->SplitterDistance = 48;
 			this->splitContainer1->TabIndex = 0;
 			// 
 			// dgvScoreRank1
@@ -253,7 +251,7 @@ namespace FBAView {
 			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::White;
 			this->dgvScoreRank1->RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this->dgvScoreRank1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dgvScoreRank1->Size = System::Drawing::Size(1248, 516);
+			this->dgvScoreRank1->Size = System::Drawing::Size(936, 419);
 			this->dgvScoreRank1->TabIndex = 5;
 			// 
 			// position
@@ -288,10 +286,9 @@ namespace FBAView {
 			this->label1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label1->Location = System::Drawing::Point(661, 75);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(605, 61);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(605, 49);
+			this->label1->Size = System::Drawing::Size(477, 39);
 			this->label1->TabIndex = 6;
 			this->label1->Text = L"Tabla de Puntuaciones";
 			// 
@@ -304,12 +301,12 @@ namespace FBAView {
 			this->tabControl1->Font = (gcnew System::Drawing::Font(L"BankGothic Lt BT", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->tabControl1->ItemSize = System::Drawing::Size(150, 40);
-			this->tabControl1->Location = System::Drawing::Point(283, 154);
-			this->tabControl1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->tabControl1->Location = System::Drawing::Point(349, 144);
+			this->tabControl1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(1261, 545);
+			this->tabControl1->Size = System::Drawing::Size(946, 655);
 			this->tabControl1->SizeMode = System::Windows::Forms::TabSizeMode::Fixed;
 			this->tabControl1->TabIndex = 7;
 			// 
@@ -321,8 +318,8 @@ namespace FBAView {
 			this->tabRank1->Location = System::Drawing::Point(4, 44);
 			this->tabRank1->Margin = System::Windows::Forms::Padding(0);
 			this->tabRank1->Name = L"tabRank1";
-			this->tabRank1->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->tabRank1->Size = System::Drawing::Size(1253, 497);
+			this->tabRank1->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tabRank1->Size = System::Drawing::Size(938, 607);
 			this->tabRank1->TabIndex = 0;
 			this->tabRank1->Text = L"Mariscal";
 			// 
@@ -332,8 +329,8 @@ namespace FBAView {
 			this->tabRank2->Location = System::Drawing::Point(4, 44);
 			this->tabRank2->Margin = System::Windows::Forms::Padding(0);
 			this->tabRank2->Name = L"tabRank2";
-			this->tabRank2->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->tabRank2->Size = System::Drawing::Size(1253, 497);
+			this->tabRank2->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tabRank2->Size = System::Drawing::Size(938, 607);
 			this->tabRank2->TabIndex = 1;
 			this->tabRank2->Text = L"General";
 			this->tabRank2->UseVisualStyleBackColor = true;
@@ -370,7 +367,6 @@ namespace FBAView {
 			this->dgvScoreRank2->EnableHeadersVisualStyles = false;
 			this->dgvScoreRank2->GridColor = System::Drawing::Color::Gray;
 			this->dgvScoreRank2->Location = System::Drawing::Point(0, 0);
-			this->dgvScoreRank2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->dgvScoreRank2->Name = L"dgvScoreRank2";
 			this->dgvScoreRank2->ReadOnly = true;
 			this->dgvScoreRank2->RowHeadersVisible = false;
@@ -386,7 +382,7 @@ namespace FBAView {
 			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::White;
 			this->dgvScoreRank2->RowsDefaultCellStyle = dataGridViewCellStyle4;
 			this->dgvScoreRank2->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dgvScoreRank2->Size = System::Drawing::Size(1248, 516);
+			this->dgvScoreRank2->Size = System::Drawing::Size(936, 607);
 			this->dgvScoreRank2->TabIndex = 8;
 			// 
 			// dataGridViewTextBoxColumn10
@@ -421,8 +417,8 @@ namespace FBAView {
 			this->tabRank3->Location = System::Drawing::Point(4, 44);
 			this->tabRank3->Margin = System::Windows::Forms::Padding(0);
 			this->tabRank3->Name = L"tabRank3";
-			this->tabRank3->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->tabRank3->Size = System::Drawing::Size(1253, 497);
+			this->tabRank3->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tabRank3->Size = System::Drawing::Size(938, 607);
 			this->tabRank3->TabIndex = 2;
 			this->tabRank3->Text = L"Coronel";
 			this->tabRank3->UseVisualStyleBackColor = true;
@@ -459,7 +455,6 @@ namespace FBAView {
 			this->dgvScoreRank3->EnableHeadersVisualStyles = false;
 			this->dgvScoreRank3->GridColor = System::Drawing::Color::Gray;
 			this->dgvScoreRank3->Location = System::Drawing::Point(0, 0);
-			this->dgvScoreRank3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->dgvScoreRank3->Name = L"dgvScoreRank3";
 			this->dgvScoreRank3->ReadOnly = true;
 			this->dgvScoreRank3->RowHeadersVisible = false;
@@ -475,7 +470,7 @@ namespace FBAView {
 			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::White;
 			this->dgvScoreRank3->RowsDefaultCellStyle = dataGridViewCellStyle6;
 			this->dgvScoreRank3->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dgvScoreRank3->Size = System::Drawing::Size(1248, 516);
+			this->dgvScoreRank3->Size = System::Drawing::Size(936, 611);
 			this->dgvScoreRank3->TabIndex = 8;
 			// 
 			// dataGridViewTextBoxColumn4
@@ -510,8 +505,8 @@ namespace FBAView {
 			this->tabRank4->Location = System::Drawing::Point(4, 44);
 			this->tabRank4->Margin = System::Windows::Forms::Padding(0);
 			this->tabRank4->Name = L"tabRank4";
-			this->tabRank4->Padding = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->tabRank4->Size = System::Drawing::Size(1253, 497);
+			this->tabRank4->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tabRank4->Size = System::Drawing::Size(938, 607);
 			this->tabRank4->TabIndex = 3;
 			this->tabRank4->Text = L"Capitán";
 			this->tabRank4->UseVisualStyleBackColor = true;
@@ -548,7 +543,6 @@ namespace FBAView {
 			this->dgvScoreRank4->EnableHeadersVisualStyles = false;
 			this->dgvScoreRank4->GridColor = System::Drawing::Color::Gray;
 			this->dgvScoreRank4->Location = System::Drawing::Point(0, 0);
-			this->dgvScoreRank4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->dgvScoreRank4->Name = L"dgvScoreRank4";
 			this->dgvScoreRank4->ReadOnly = true;
 			this->dgvScoreRank4->RowHeadersVisible = false;
@@ -564,7 +558,7 @@ namespace FBAView {
 			dataGridViewCellStyle8->SelectionForeColor = System::Drawing::Color::White;
 			this->dgvScoreRank4->RowsDefaultCellStyle = dataGridViewCellStyle8;
 			this->dgvScoreRank4->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dgvScoreRank4->Size = System::Drawing::Size(1248, 516);
+			this->dgvScoreRank4->Size = System::Drawing::Size(936, 607);
 			this->dgvScoreRank4->TabIndex = 6;
 			// 
 			// dataGridViewTextBoxColumn8
@@ -595,17 +589,17 @@ namespace FBAView {
 			// 
 			// Scoreboard
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(28)), static_cast<System::Int32>(static_cast<System::Byte>(28)),
 				static_cast<System::Int32>(static_cast<System::Byte>(28)));
-			this->ClientSize = System::Drawing::Size(1692, 1009);
+			this->ClientSize = System::Drawing::Size(1515, 820);
 			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->splitContainer1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->MaximumSize = System::Drawing::Size(2560, 1329);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->MaximumSize = System::Drawing::Size(1920, 1080);
 			this->Name = L"Scoreboard";
 			this->Text = L"Scoreboard";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Scoreboard::Scoreboard_FormClosing);
